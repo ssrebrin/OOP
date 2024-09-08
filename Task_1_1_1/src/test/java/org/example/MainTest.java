@@ -3,7 +3,14 @@ package org.example;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
+/**
+ * Тестирование HeapSort.
+ */
 class MainTest {
+
+    /**
+     * Тест для проверки правильности работы метода heapSort.
+     */
     @Test
     public void testHeapSort() {
         HeapSort heapSort = new HeapSort();
