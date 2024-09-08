@@ -5,6 +5,7 @@ package org.example;
  */
 public class HeapSort {
     /**
+     * Преобразование поддерева в кучу
      *
      * @param arr - массив
      * @param n - размер кучи
@@ -31,6 +32,7 @@ public class HeapSort {
     }
 
     /**
+     * Сортировка массива
      *
      * @param arr - массив для сортировки
      * @return отсортированный массив
