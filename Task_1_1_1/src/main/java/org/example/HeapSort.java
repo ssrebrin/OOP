@@ -1,7 +1,15 @@
 package org.example;
 
+/**
+ * Реализации сортировки кучей (Heap Sort).
+ */
 public class HeapSort {
-
+    /**
+     *
+     * @param arr - массив
+     * @param n - размер кучи
+     * @param i - корень поддерева
+     */
     private void heapify(int[] arr, int n, int i){
         int largest = i;
         int l = 2*i + 1;
@@ -18,13 +26,16 @@ public class HeapSort {
             int s = arr[i];
             arr[i] = arr[largest];
             arr[largest] = s;
+            heapify(arr, n, largest);
         }
-
-        heapify(arr, n, largest);
     }
 
-
-    public void heapsort(int[] arr) {
+    /**
+     *
+     * @param arr - массив для сортировки
+     * @return отсортированный массив
+     */
+    public int[] heapsort(int[] arr) {
         int n = arr.length;
 
         for (int i = n / 2 - 1; i>=0; i--){
@@ -38,6 +49,8 @@ public class HeapSort {
 
             heapify(arr, i, 0);
         }
+
+        return arr;
     }
 
 }
