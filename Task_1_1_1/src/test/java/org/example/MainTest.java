@@ -9,6 +9,9 @@ import org.junit.jupiter.api.Test;
  */
 class MainTest {
 
+    /**
+     * Тест для проверки правильности heapSort.
+     */
     @Test
     public void testHeapSort() {
         HeapSort heapSort = new HeapSort();
@@ -20,6 +23,9 @@ class MainTest {
         assertArrayEquals(expected, input);
     }
 
+    /**
+     * С отрицательными числами и дублями.
+     */
     @Test
     public void testHeapSort1() {
         HeapSort heapSort = new HeapSort();
@@ -31,6 +37,9 @@ class MainTest {
         assertArrayEquals(expected, input);
     }
 
+    /**
+     * Все числа одинаковые.
+     */
     @Test
     public void testHeapSort2() {
         HeapSort heapSort = new HeapSort();
@@ -42,6 +51,9 @@ class MainTest {
         assertArrayEquals(expected, input);
     }
 
+    /**
+     * Пустой массив.
+     */
     @Test
     public void testHeapSort3() {
         HeapSort heapSort = new HeapSort();
@@ -53,6 +65,9 @@ class MainTest {
         assertArrayEquals(expected, input);
     }
 
+    /**
+     * Единственный элемент.
+     */
     @Test
     public void testHeapSort4() {
         HeapSort heapSort = new HeapSort();
@@ -64,6 +79,9 @@ class MainTest {
         assertArrayEquals(expected, input);
     }
 
+    /**
+     * Реверс.
+     */
     @Test
     public void testHeapSort5() {
         HeapSort heapSort = new HeapSort();
