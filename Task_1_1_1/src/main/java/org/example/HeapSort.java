@@ -4,6 +4,22 @@ package org.example;
  * Реализации сортировки кучей.
  */
 public class HeapSort {
+
+    /**
+     * Бесполезный код для создания jar-файла
+     *
+     * @param args -
+     */
+    public static void main(String[] args) {
+        int[] array = {12, 11, 13, 5, 6, 7};
+        HeapSort sorter = new HeapSort();
+        sorter.heapsort(array);
+
+        for (int value : array) {
+            System.out.print(value + " ");
+        }
+    }
+
     /**
      * Преобразование поддерева в кучу.
      *
