@@ -1,16 +1,36 @@
 package org.example;
+import java.util.Arrays;
+import java.util.Random;
 
 /**
  * Реализации сортировки кучей.
  */
 public class HeapSort {
-
+    private int[] generator(int n){
+        int [] c = new int[n];
+        for(int i = 0; i < n; i ++){
+            c[i] = (int) (Math.random() * n);
+        }
+        return c;
+    }
     /**
      * Бесполезный код для создания jar-файла
      *
      * @param args -
      */
     public static void main(String[] args) {
+        HeapSort heapSort = new HeapSort();
+        for(int i =1;i<=300;i++){
+            int [] input = heapSort.generator(i*10000);
+            long startTime = System.nanoTime();
+
+            int[] heapsort = heapSort.heapsort(input);
+
+            long endTime = System.nanoTime();
+            long duration = endTime - startTime;
+
+            System.out.println("(" + i*10000 + ", " + (endTime - startTime)/100 + ")");
+        }
     }
 
     /**
@@ -60,7 +80,6 @@ public class HeapSort {
 
             heapify(arr, i, 0);
         }
-
         return arr;
     }
 }
