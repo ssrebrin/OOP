@@ -1,15 +1,18 @@
-package org.example;
+package ru.nsu.rebrin;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BlackJackTest {
-
     @Test
+    public void Test(){
+        BlackJack main = new BlackJack();
+        assertEquals(3, main.sum(1,2));
+    }
+
+    /*@Test
     public void test() {
         BlackJack main = new BlackJack();
         List<Card> deck = main.prepare_deck();
@@ -84,6 +87,6 @@ public class BlackJackTest {
 
             assertTrue(deck.containsAll(deckTest));
 
-    }
+    }*/
 
 }

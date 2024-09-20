@@ -1,6 +1,5 @@
-package org.example;
+package ru.nsu.rebrin;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,13 +21,12 @@ class PlayerTest {
         user.take_card(deck, false);
 
         user.clear_hand(deck);
-        System.out.print("OOOjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjOO");
         assertTrue(user.hand.isEmpty());
         assertEquals(deck.size(), 52);
     }
 
-    @BeforeEach
+    /*@BeforeEach
     public void setUp(){
 
-    }
+    }*/
 }

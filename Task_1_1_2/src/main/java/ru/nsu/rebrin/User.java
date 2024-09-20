@@ -1,21 +1,19 @@
-package org.example;
+package ru.nsu.rebrin;
 
-import java.util.ArrayList;
+public class User extends Player {
 
-public class Dealer extends Player{
+    public void show_hand(boolean with_score) {
 
-    public void show_hand(boolean with_score){
-
-        System.out.print("Dealer's cards: ");
+        System.out.print("Your hand: ");
         System.out.print("[");
-        for (Card c : this.hand){
+        for (Card c : this.hand) {
             c.show();
             if (c != this.hand.getLast())
                 System.out.print(", ");
         }
         System.out.print("]");
 
-        if(with_score){
+        if (with_score) {
             this.points();
             System.out.print(" => " + this.score);
         }

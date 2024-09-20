@@ -1,4 +1,4 @@
-package org.example;
+package ru.nsu.rebrin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +21,8 @@ public class Player {
     }
 
     public void clear_hand(List<Card> deck){
-        while (!deck.isEmpty()){
-            deck.add(deck.removeLast());
+        while (!this.hand.isEmpty()){
+            deck.add(this.hand.removeLast());
         }
     }
 

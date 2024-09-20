@@ -1,4 +1,4 @@
-package org.example;
+package ru.nsu.rebrin;
 
 public class Card {
     public boolean open;

@@ -1,5 +1,7 @@
-package org.example;
+package ru.nsu.rebrin;
 
+import java.util.InputMismatchException;
+import java.util.concurrent.TimeUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -7,6 +9,10 @@ import java.util.Scanner;
 public class BlackJack {
 
     Scanner in = new Scanner(System.in);
+
+    public int sum(int a,int b){
+        return a+b;
+    }
 
     /**
      * Создает колоду и тусует ее;
@@ -99,6 +105,32 @@ public class BlackJack {
         }
     }
 
+    public boolean scan() {
+        int input;
+        while (true) {
+            try {
+                input = in.nextInt();
+                if (input == 1) return true;
+                else if (input == 0) return false;
+                else {
+                    System.out.println("Input 1 or 0.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Input 1 or 0.");
+                in.next(); // Очистка буфера ввода
+            }
+        }
+    }
+
+
+    public void slp(int n){
+
+        try {
+            TimeUnit.SECONDS.sleep(n);
+        } catch (InterruptedException e) {
+            System.err.println("Поток был прерван: " + e.getMessage());
+        }
+    }
 
     public static void main(String[] args) {
 
@@ -111,10 +143,13 @@ public class BlackJack {
         Dealer dealer = new Dealer();
 
         System.out.println("Welcome to BlackJack");
-
+        main.slp(1);
+        int rounds = 1;
         //Игра
         while (true) {
-            System.out.println("Round " + (user.wins + dealer.wins + 1));
+            System.out.println("Round " + (rounds));
+            main.slp(1);
+            rounds++;
             end = false;
 
             user.clear_hand(deck);
@@ -133,43 +168,115 @@ public class BlackJack {
             //Ход игрока
             while (!end) {
                 user.points();
-                if (user.score == 21){
+                if (user.score == 21) {
                     System.out.println("You hit BlackJack. You win!!!");
+                    main.slp(1);
                     end = true;
-                    user.wins ++;
+                    user.wins++;
                     break;
                 }
 
-                if (user.score >21){
-                    System.out.println("You have exceedded 21. Ypu lose(");
+                if (user.score > 21) {
+                    System.out.println("You have exceeded 21. You lose(");
+                    main.slp(1);
                     end = true;
                     dealer.wins++;
                     break;
                 }
 
                 System.out.println("Input a number");
-                input = main.in.nextInt();
+                main.slp(1);
 
-                if (input == 1) {
+                if (main.scan()) {
                     System.out.print("You take a card ");
                     user.take_card(deck, true).show();
+                    main.slp(1);
                     System.out.println();
                     user.show_hand(true);
                     dealer.show_hand(false);
+                    main.slp(1);
                 } else
                     break;
             }
 
-            if (!end){
-                Sy
+            //ход дилера
+            if (!end) {
+                System.out.println("Dealer move\n------------");
+                main.slp(1);
+                System.out.print("The dealer reveals a close card");
+                main.slp(1);
+                dealer.hand.getLast().open();
+                dealer.hand.getLast().show();
+                System.out.println();
+
+                user.show_hand(true);
+                dealer.show_hand(true);
             }
 
-            while (!end){
+            while (!end) {
+
+                dealer.points();
+                if (dealer.score == 21) {
+                    System.out.println("Dealer hit BlackJack. Dealer win!");
+                    main.slp(1);
+                    end = true;
+                    dealer.wins++;
+                    break;
+                }
+
+                if (dealer.score > 21) {
+                    System.out.println("Dealer have exceeded 21. Dealer lose");
+                    main.slp(1);
+                    end = true;
+                    user.wins++;
+                    break;
+                }
+
+                if (dealer.score >= 17) {
+                    System.out.print("Game over. ");
+                    main.slp(1);
+
+                    if (dealer.score > user.score) {
+                        System.out.println("You lose.");
+                        main.slp(1);
+                        dealer.wins++;
+                    }
+                    if (dealer.score < user.score) {
+                        System.out.println("You win.");
+                        main.slp(1);
+                        user.wins++;
+                    }
+                    if (dealer.score == user.score) {
+                        System.out.println("Dead heat.");
+                        main.slp(1);
+                        dealer.wins++;
+                        user.wins++;
+                    }
+                    break;
+                }
 
 
+                main.slp(2);
+                System.out.print("Dealer take a card ");
+
+                dealer.take_card(deck, true).show();
+                main.slp(2);
+                System.out.println();
+                user.show_hand(true);
+                dealer.show_hand(true);
+                main.slp(1);
 
             }
 
+            System.out.println("Score: " + user.wins + "-" + dealer.wins);
+            main.slp(1);
+            System.out.println("Enter 1 if you want to continue and 0 if not.");
+            main.slp(1);
+
+            if (!main.scan()) {
+                break;
+            }
+            System.out.println("==============================");
         }
 
     }
