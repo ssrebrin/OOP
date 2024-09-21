@@ -15,18 +15,16 @@ class PlayerTest {
     List<Card> deck = main.prepare_deck();
 
     @Test
-    public void Test1(){
+    public void Test1() {
         user.take_card(deck, true);
         user.take_card(deck, true);
         user.take_card(deck, false);
+
+
+        assertTrue(user.score <= 30);
 
         user.clear_hand(deck);
         assertTrue(user.hand.isEmpty());
         assertEquals(deck.size(), 52);
     }
-
-    /*@BeforeEach
-    public void setUp(){
-
-    }*/
 }

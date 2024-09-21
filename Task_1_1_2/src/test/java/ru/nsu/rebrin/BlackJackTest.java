@@ -1,18 +1,49 @@
 package ru.nsu.rebrin;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BlackJackTest {
-    @Test
-    public void Test(){
-        BlackJack main = new BlackJack();
-        assertEquals(3, main.sum(1,2));
+
+    private BlackJack blackJack;
+
+    @BeforeEach
+    void setUp() {
+        blackJack = new BlackJack();
     }
 
-    /*@Test
+    @Test
+    void testPrepareDeck() {
+        List<Card> deck = blackJack.prepare_deck();
+        assertNotNull(deck);
+        assertEquals(52, deck.size());
+        assertTrue(deck.contains(new Card("Ace", 11, "Spades")));
+        assertTrue(deck.contains(new Card("King", 10, "Hearts")));
+    }
+
+    @Test
+    void testScanValidInput() {
+        Scanner scanner = new Scanner("1\n0\n");
+        blackJack.in = scanner;
+
+        assertTrue(blackJack.scan());
+        assertFalse(blackJack.scan());
+    }
+
+    @Test
+    void testScanInvalidInput() {
+        Scanner scanner = new Scanner("3\nabc\n1\n");
+        blackJack.in = scanner;
+
+        assertTrue(blackJack.scan());
+    }
+
+    @Test
     public void test() {
         BlackJack main = new BlackJack();
         List<Card> deck = main.prepare_deck();
@@ -87,6 +118,6 @@ public class BlackJackTest {
 
             assertTrue(deck.containsAll(deckTest));
 
-    }*/
+    }
 
 }

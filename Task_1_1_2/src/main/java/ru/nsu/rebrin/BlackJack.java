@@ -10,10 +10,6 @@ public class BlackJack {
 
     Scanner in = new Scanner(System.in);
 
-    public int sum(int a,int b){
-        return a+b;
-    }
-
     /**
      * Создает колоду и тусует ее;
      *
