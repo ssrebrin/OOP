@@ -6,14 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * The game.
+ */
 public class BlackJack {
 
     Scanner in = new Scanner(System.in);
 
     /**
-     * Создает колоду и тусует ее;
+     * Create the deck and shuffle it.
      *
-     * @return - перемешаная колода
+     * @return - shaffled deck
      */
     public List<Card> prepare_deck() {
         List<Card> deck = new ArrayList<Card>(52);
@@ -89,6 +92,11 @@ public class BlackJack {
         return deck;
     }
 
+    /**
+     * Shuffling the deck.
+     *
+     * @param deck - deck
+     */
     public void shuffle(List<Card> deck) {
         Card temp;
 
@@ -101,6 +109,11 @@ public class BlackJack {
         }
     }
 
+    /**
+     * Waiting correct input.
+     *
+     * @return true if entered 1 and false if 0
+     */
     public boolean scan() {
         int input;
         while (true) {
@@ -119,7 +132,12 @@ public class BlackJack {
     }
 
 
-    public void slp(int n){
+    /**
+     * Waiting n seconds.
+     *
+     * @param n number of seconds
+     */
+    public void slp(int n) {
 
         try {
             TimeUnit.SECONDS.sleep(n);
@@ -128,6 +146,11 @@ public class BlackJack {
         }
     }
 
+    /**
+     * Main game.
+     *
+     * @param args
+     */
     public static void main(String[] args) {
 
         boolean end;

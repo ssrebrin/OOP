@@ -1,5 +1,8 @@
 package ru.nsu.rebrin;
 
+/**
+ * Card class.
+ */
 public class Card {
     public boolean open;
     public String suit;
@@ -13,6 +16,12 @@ public class Card {
         this.open = false;
     }
 
+    /**
+     * Equality relation.
+     *
+     * @param obj - object
+     * @return - true or false
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -27,14 +36,23 @@ public class Card {
                 && value.equals(other.value);
     }
 
+    /**
+     * Open card.
+     */
     public void open() {
         this.open = true;
     }
 
+    /**
+     * Close card.
+     */
     public void close() {
         this.open = false;
     }
 
+    /**
+     * Print card.
+     */
     public void show() {
         if (this.open) {
             System.out.print(suit + " " + value + " (" + meaning + ")");

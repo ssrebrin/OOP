@@ -1,7 +1,15 @@
 package ru.nsu.rebrin;
 
+/**
+ * Dealer class.
+ */
 public class Dealer extends Player {
 
+    /**
+     * Print hand.
+     *
+     * @param with_score - true if with score
+     */
     public void show_hand(boolean with_score) {
 
         System.out.print("Dealer's cards: ");
