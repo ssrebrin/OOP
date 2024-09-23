@@ -201,8 +201,8 @@ public class BlackJack {
                 main.slp(1);
                 System.out.print("The dealer reveals a close card");
                 main.slp(1);
-                dealer.hand.getLast().open();
-                dealer.hand.getLast().show();
+                dealer.hand.get(dealer.hand.size() - 1).open();
+                dealer.hand.get(dealer.hand.size() - 1).show();
                 System.out.println();
 
                 user.show_hand(true);

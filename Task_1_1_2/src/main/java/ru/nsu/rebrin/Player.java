@@ -10,8 +10,8 @@ public class Player {
 
 
     public Card take_card(List<Card> deck, boolean open) {
-        Card card;
-        card = deck.removeLast();
+        Card card = deck.get(deck.size() - 1);
+        deck.remove(deck.size() - 1);
         if (open)
             card.open();
         else
@@ -22,7 +22,9 @@ public class Player {
 
     public void clear_hand(List<Card> deck){
         while (!this.hand.isEmpty()){
-            deck.add(this.hand.removeLast());
+            Card card = this.hand.get(this.hand.size() - 1);
+            this.hand.remove(this.hand.size() - 1);
+            deck.add(card);
         }
     }
 
