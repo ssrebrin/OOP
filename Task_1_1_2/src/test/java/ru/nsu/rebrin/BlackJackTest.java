@@ -1,13 +1,20 @@
 package ru.nsu.rebrin;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+/**
+ * Test
+ */
 public class BlackJackTest {
 
     private BlackJack blackJack;
