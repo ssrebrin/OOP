@@ -8,7 +8,7 @@ public class User extends Player {
         System.out.print("[");
         for (Card c : this.hand) {
             c.show();
-            if (c != this.hand.getLast())
+            if (c != this.hand.get(this.hand.size() - 1))
                 System.out.print(", ");
         }
         System.out.print("]");
