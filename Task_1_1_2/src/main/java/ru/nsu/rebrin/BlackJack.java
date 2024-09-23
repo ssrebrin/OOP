@@ -119,8 +119,12 @@ public class BlackJack {
         while (true) {
             try {
                 input = in.nextInt();
-                if (input == 1) return true;
-                else if (input == 0) return false;
+                if (input == 1) {
+                    return true;
+                }
+                else if (input == 0) {
+                    return false;
+                }
                 else {
                     System.out.println("Input 1 or 0.");
                 }
