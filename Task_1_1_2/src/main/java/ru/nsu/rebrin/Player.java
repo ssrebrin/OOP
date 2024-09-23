@@ -21,10 +21,12 @@ public class Player {
     public Card take_card(List<Card> deck, boolean open) {
         Card card = deck.get(deck.size() - 1);
         deck.remove(deck.size() - 1);
-        if (open)
+        if (open) {
             card.open();
-        else
+        }
+        else {
             card.close();
+        }
         this.hand.add(card);
         return card;
     }
@@ -34,8 +36,8 @@ public class Player {
      *
      * @param deck - deck
      */
-    public void clear_hand(List<Card> deck){
-        while (!this.hand.isEmpty()){
+    public void clear_hand(List<Card> deck) {
+        while (!this.hand.isEmpty()) {
             Card card = this.hand.get(this.hand.size() - 1);
             this.hand.remove(this.hand.size() - 1);
             deck.add(card);
@@ -46,16 +48,17 @@ public class Player {
      * Count points of player.
      */
     public void points() {
-        int ace_cnt = 0;
+        int aceCnt = 0;
         int sc = 0;
         for (Card c : this.hand) {
             if (c.meaning == 11) {
-                ace_cnt++;
+                aceCnt++;
             }
             sc += c.meaning;
         }
-        if (sc > 21)
-            sc -= ace_cnt * 10;
+        if (sc > 21) {
+            sc -= aceCnt * 10;
+        }
         this.score = sc;
     }
 

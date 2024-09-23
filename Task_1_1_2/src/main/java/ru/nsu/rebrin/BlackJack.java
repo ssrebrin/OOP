@@ -1,10 +1,10 @@
 package ru.nsu.rebrin;
 
 import java.util.InputMismatchException;
-import java.util.concurrent.TimeUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 /**
  * The game.
@@ -121,11 +121,9 @@ public class BlackJack {
                 input = in.nextInt();
                 if (input == 1) {
                     return true;
-                }
-                else if (input == 0) {
+                } else if (input == 0) {
                     return false;
-                }
-                else {
+                } else {
                     System.out.println("Input 1 or 0.");
                 }
             } catch (InputMismatchException e) {
@@ -153,7 +151,7 @@ public class BlackJack {
     /**
      * Main game.
      *
-     * @param args
+     * @param args - args
      */
     public static void main(String[] args) {
 
@@ -218,8 +216,9 @@ public class BlackJack {
                     user.show_hand(true);
                     dealer.show_hand(false);
                     main.slp(1);
-                } else
+                } else {
                     break;
+                }
             }
 
             //ход дилера

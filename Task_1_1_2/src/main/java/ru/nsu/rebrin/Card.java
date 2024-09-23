@@ -9,6 +9,13 @@ public class Card {
     public int meaning;
     public String value;
 
+    /**
+     * Init.
+     *
+     * @param suit - suit
+     * @param meaning - meaning
+     * @param value - value
+     */
     public Card(String suit, int meaning, String value) {
         this.meaning = meaning;
         this.suit = suit;
