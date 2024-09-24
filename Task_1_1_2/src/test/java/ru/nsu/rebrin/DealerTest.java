@@ -26,7 +26,7 @@ class DealerTest {
 
         dealer.show_hand(false);
 
-        String expectedOutput = "Your hand: [Two Diamonds (2), <Close card>]";
+        String expectedOutput = "Dealer's cards: [Two Diamonds (2), <Close card>]";
         assertEquals(expectedOutput, outContent.toString().trim());
     }
 
@@ -46,7 +46,7 @@ class DealerTest {
 
         dealer.show_hand(false);
 
-        String expectedOutput = "Your hand: [<Close card>, Ace Spades (11)]";
+        String expectedOutput = "Dealer's cards: [<Close card>, Ace Spades (11)]";
         assertEquals(expectedOutput, outContent.toString().trim());
     }
 
@@ -65,7 +65,7 @@ class DealerTest {
 
         dealer.show_hand(false);
 
-        String expectedOutput = "Your hand: [Ace Diamonds (11), <Close card>]";
+        String expectedOutput = "Dealer's cards: [Ace Diamonds (11), <Close card>]";
         assertEquals(expectedOutput, outContent.toString().trim());
     }
 
@@ -84,7 +84,7 @@ class DealerTest {
 
         dealer.show_hand(true);
 
-        String expectedOutput = "Your hand: [Ace Diamonds (1), Ace Spades (1)] => 2";
+        String expectedOutput = "Dealer's cards: [Ace Diamonds (1), Ace Spades (1)] => 2";
         assertEquals(expectedOutput, outContent.toString().trim());
     }
 
