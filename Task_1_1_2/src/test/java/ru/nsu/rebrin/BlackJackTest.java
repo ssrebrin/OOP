@@ -1,8 +1,5 @@
 package ru.nsu.rebrin;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -12,8 +9,11 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+
 /**
- * Test
+ * Test.
  */
 public class BlackJackTest {
 
@@ -123,7 +123,7 @@ public class BlackJackTest {
             deckTest.add(51, new Card("Ace", 11, "Diamonds"));
         }
 
-            assertTrue(deck.containsAll(deckTest));
+        assertTrue(deck.containsAll(deckTest));
 
     }
 

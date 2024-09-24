@@ -1,11 +1,11 @@
 package ru.nsu.rebrin;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 class PlayerTest {
 
@@ -15,7 +15,7 @@ class PlayerTest {
     List<Card> deck = main.prepare_deck();
 
     @Test
-    public void Test1() {
+    public void test1() {
         user.take_card(deck, true);
         user.take_card(deck, true);
         user.take_card(deck, false);

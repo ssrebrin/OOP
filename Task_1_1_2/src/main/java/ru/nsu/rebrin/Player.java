@@ -23,8 +23,7 @@ public class Player {
         deck.remove(deck.size() - 1);
         if (open) {
             card.open();
-        }
-        else {
+        } else {
             card.close();
         }
         this.hand.add(card);

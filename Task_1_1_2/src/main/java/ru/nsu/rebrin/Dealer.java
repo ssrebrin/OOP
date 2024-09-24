@@ -8,9 +8,9 @@ public class Dealer extends Player {
     /**
      * Print hand.
      *
-     * @param with_score - true if with score
+     * @param withScore - true if with score
      */
-    public void show_hand(boolean with_score) {
+    public void show_hand(boolean withScore) {
 
         System.out.print("Dealer's cards: ");
         System.out.print("[");
@@ -22,7 +22,7 @@ public class Dealer extends Player {
         }
         System.out.print("]");
 
-        if (with_score) {
+        if (withScore) {
             this.points();
             System.out.print(" => " + this.score);
         }
