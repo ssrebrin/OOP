@@ -12,10 +12,22 @@ public class User extends Player {
      */
     public void show_hand(boolean withScore) {
 
+        boolean flag = false;
+
+        if (withScore) {
+            int sum = 0;
+            for (Card c : this.hand) {
+                sum += c.meaning;
+            }
+            if (sum > 21) {
+                flag = true;
+            }
+        }
+
         System.out.print("Your hand: ");
         System.out.print("[");
         for (Card c : this.hand) {
-            c.show();
+            c.show(withScore && flag);
             if (c != this.hand.get(this.hand.size() - 1)) {
                 System.out.print(", ");
             }

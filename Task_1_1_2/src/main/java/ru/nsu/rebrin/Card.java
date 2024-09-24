@@ -58,10 +58,15 @@ public class Card {
     }
 
     /**
-     * Print card.
+     * Show card.
+     *
+     * @param flag - for ace
      */
-    public void show() {
+    public void show(boolean flag) {
         if (this.open) {
+            if (meaning == 11 && flag) {
+                System.out.print(suit + " " + value + " (1)");
+            }
             System.out.print(suit + " " + value + " (" + meaning + ")");
         } else {
             System.out.print("<Close card>");

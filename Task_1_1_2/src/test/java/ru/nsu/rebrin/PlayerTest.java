@@ -10,7 +10,6 @@ class PlayerTest {
 
     BlackJack main = new BlackJack();
     User user = new User();
-    Dealer dealer = new Dealer();
     List<Card> deck = main.prepare_deck();
 
     @Test

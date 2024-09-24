@@ -210,7 +210,7 @@ public class BlackJack {
 
                 if (main.scan()) {
                     System.out.print("You take a card ");
-                    user.take_card(deck, true).show();
+                    user.take_card(deck, true).show(false);
                     main.slp(1);
                     System.out.println();
                     user.show_hand(true);
@@ -228,7 +228,7 @@ public class BlackJack {
                 System.out.print("The dealer reveals a close card");
                 main.slp(1);
                 dealer.hand.get(dealer.hand.size() - 1).open();
-                dealer.hand.get(dealer.hand.size() - 1).show();
+                dealer.hand.get(dealer.hand.size() - 1).show(false);
                 System.out.println();
 
                 user.show_hand(true);
@@ -281,7 +281,7 @@ public class BlackJack {
                 main.slp(2);
                 System.out.print("Dealer take a card ");
 
-                dealer.take_card(deck, true).show();
+                dealer.take_card(deck, true).show(false);
                 main.slp(2);
                 System.out.println();
                 user.show_hand(true);
