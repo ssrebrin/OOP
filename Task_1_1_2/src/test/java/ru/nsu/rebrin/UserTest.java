@@ -1,10 +1,12 @@
 package ru.nsu.rebrin;
 
 import org.junit.jupiter.api.Test;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UserTest {
@@ -14,8 +16,8 @@ class UserTest {
         User user = new User();
         List<Card> deckTest = new ArrayList<>();
 
-        deckTest.add(1, new Card("Ace", 11, "Spades"));
-        deckTest.add(0, new Card("Two", 2, "Diamonds"));
+        deckTest.add(new Card("Ace", 11, "Spades"));
+        deckTest.add(new Card("Two", 2, "Diamonds"));
 
         user.take_card(deckTest, true);
         user.take_card(deckTest, true);
@@ -34,8 +36,8 @@ class UserTest {
         User user = new User();
         List<Card> deckTest = new ArrayList<>();
 
-        deckTest.add(1, new Card("Ace", 11, "Spades"));
-        deckTest.add(0, new Card("Two", 2, "Diamonds"));
+        deckTest.add(new Card("Ace", 11, "Spades"));
+        deckTest.add(new Card("Two", 2, "Diamonds"));
 
         user.take_card(deckTest, true);
         user.take_card(deckTest, true);
@@ -43,7 +45,7 @@ class UserTest {
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
-        user.show_hand(false);
+        user.show_hand(true);
 
         String expectedOutput = "Your hand: [Two Diamonds (2), Ace Spades (11)] => 13";
         assertEquals(expectedOutput, outContent.toString().trim());
@@ -54,8 +56,8 @@ class UserTest {
         User user = new User();
         List<Card> deckTest = new ArrayList<>();
 
-        deckTest.add(1, new Card("Ace", 11, "Spades"));
-        deckTest.add(0, new Card("Ace", 11, "Diamonds"));
+        deckTest.add(new Card("Ace", 11, "Spades"));
+        deckTest.add(new Card("Ace", 11, "Diamonds"));
 
         user.take_card(deckTest, true);
         user.take_card(deckTest, true);

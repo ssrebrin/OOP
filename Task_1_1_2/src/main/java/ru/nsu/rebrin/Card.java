@@ -12,9 +12,9 @@ public class Card {
     /**
      * Init.
      *
-     * @param suit - suit
+     * @param suit    - suit
      * @param meaning - meaning
-     * @param value - value
+     * @param value   - value
      */
     public Card(String suit, int meaning, String value) {
         this.meaning = meaning;
@@ -66,8 +66,9 @@ public class Card {
         if (this.open) {
             if (meaning == 11 && flag) {
                 System.out.print(suit + " " + value + " (1)");
+            } else {
+                System.out.print(suit + " " + value + " (" + meaning + ")");
             }
-            System.out.print(suit + " " + value + " (" + meaning + ")");
         } else {
             System.out.print("<Close card>");
         }
