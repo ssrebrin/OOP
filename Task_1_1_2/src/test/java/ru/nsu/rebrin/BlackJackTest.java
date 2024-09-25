@@ -86,7 +86,7 @@ public class BlackJackTest {
     }
 
     @Test
-    void testprepare_deck() {
+    void testPrepareDeck() {
         List<Card> deck = blackJack.prepare_deck();
         assertNotNull(deck);
         assertEquals(52, deck.size());
@@ -102,8 +102,7 @@ public class BlackJackTest {
 
     @Test
     void testScanValidInput() {
-        Scanner scanner = new Scanner("1\n0\n");
-        blackJack.in = scanner;
+        blackJack.in = new Scanner("1\n0\n");
 
         assertTrue(blackJack.scan());
         assertFalse(blackJack.scan());
@@ -111,8 +110,7 @@ public class BlackJackTest {
 
     @Test
     void testScanInvalidInput() {
-        Scanner scanner = new Scanner("3\nabc\n1\n");
-        blackJack.in = scanner;
+        blackJack.in = new Scanner("3\nabc\n1\n");
 
         assertTrue(blackJack.scan());
     }
@@ -138,16 +136,174 @@ public class BlackJackTest {
     }
 
     @Test
-    public void testMainGame() {
+    public void testGame() {
 
         blackJack.in = new Scanner("0\n0\n");
         InputStream originalIn = System.in;
 
-            User user = new User();
-            Dealer dealer = new Dealer();
-            blackJack.playRound(testDeck, user, dealer);
+        User user = new User();
+        Dealer dealer = new Dealer();
+        blackJack.playRound(testDeck, user, dealer);
 
-            assertTrue(user.wins > 0 || dealer.wins > 0);
+        assertTrue(user.wins > 0 || dealer.wins > 0);
 
+    }
+
+    @Test
+    public void testAFC() {
+
+        blackJack.in = new Scanner("0\n1\n");
+        InputStream originalIn = System.in;
+
+        try {
+            assertFalse(blackJack.askForContinue());
+            assertTrue(blackJack.askForContinue());
+        } finally {
+            System.setIn(originalIn);
+        }
+
+    }
+
+    @Test
+    public void testDetWin() {
+
+        User user = new User();
+        Dealer dealer = new Dealer();
+
+        user.score = 0;
+        dealer.score = 0;
+
+        outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        blackJack.determineWinner(user, dealer);
+
+        String expectedOutput = "Game over. Dead heat.\n";
+        String actualOutput = outContent.toString().replace("\r", "");
+
+        assertEquals(expectedOutput.trim(), actualOutput.trim());
+
+        user.score = 0;
+        dealer.score = 1;
+
+        outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        blackJack.determineWinner(user, dealer);
+
+        expectedOutput = "Game over. You lose.\n";
+        actualOutput = outContent.toString().replace("\r", "");
+
+        assertEquals(expectedOutput.trim(), actualOutput.trim());
+
+        user.score = 1;
+        dealer.score = 0;
+
+        outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        blackJack.determineWinner(user, dealer);
+
+        expectedOutput = "Game over. You win.\n";
+        actualOutput = outContent.toString().replace("\r", "");
+
+        assertEquals(expectedOutput.trim(), actualOutput.trim());
+
+    }
+
+    @Test
+    public void testUTurn() {
+
+        User user = new User();
+        Dealer dealer = new Dealer();
+
+        testDeck = new ArrayList<Card>();
+        testDeck.add(new Card("", 21, ""));
+        user.take_card(testDeck, true);
+
+        assertTrue(blackJack.userTurn(user, dealer, testDeck));
+
+
+        user = new User();
+        dealer = new Dealer();
+
+        testDeck = new ArrayList<Card>();
+        testDeck.add(new Card("", 22, ""));
+        user.take_card(testDeck, true);
+
+        assertTrue(blackJack.userTurn(user, dealer, testDeck));
+
+
+        user = new User();
+        dealer = new Dealer();
+
+        testDeck = new ArrayList<>();
+        testDeck.add(new Card("", 12, ""));
+        testDeck.add(new Card("", 10, ""));
+        testDeck.add(new Card("", 10, ""));
+        user.take_card(testDeck, true);
+
+        blackJack.in = new Scanner("1\n1\n");
+
+        assertTrue(blackJack.userTurn(user, dealer, testDeck));
+
+
+        user = new User();
+        dealer = new Dealer();
+
+        testDeck = new ArrayList<>();
+        testDeck.add(new Card("", 2, ""));
+        testDeck.add(new Card("", 2, ""));
+        testDeck.add(new Card("", 2, ""));
+        outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        user.take_card(testDeck, true);
+
+        blackJack.in = new Scanner("1\n0\n");
+
+        assertFalse(blackJack.userTurn(user, dealer, testDeck));
+
+    }
+
+    @Test
+    public void testDTurn() {
+
+        User user = new User();
+        Dealer dealer = new Dealer();
+
+        testDeck = new ArrayList<>();
+        testDeck.add(new Card("", 21, ""));
+        dealer.take_card(testDeck, true);
+        blackJack.dealerTurn(user, dealer, testDeck);
+
+        assertEquals(dealer.wins, 1);
+        assertEquals(user.wins, 0);
+
+
+
+        user = new User();
+        dealer = new Dealer();
+
+        testDeck = new ArrayList<>();
+        testDeck.add(new Card("", 22, ""));
+        dealer.take_card(testDeck, true);
+        blackJack.dealerTurn(user, dealer, testDeck);
+
+        assertEquals(dealer.wins, 0);
+        assertEquals(user.wins, 1);
+
+
+
+        user = new User();
+        dealer = new Dealer();
+
+        testDeck = new ArrayList<>();
+        testDeck.add(new Card("", 10, ""));
+        testDeck.add(new Card("", 17, ""));
+        dealer.take_card(testDeck, true);
+        blackJack.dealerTurn(user, dealer, testDeck);
+
+        assertEquals(dealer.wins, 1);
+        assertEquals(user.wins, 0);
     }
 }
