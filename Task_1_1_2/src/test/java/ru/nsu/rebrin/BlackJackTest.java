@@ -25,6 +25,9 @@ public class BlackJackTest {
     private ByteArrayOutputStream outContent;
     private final PrintStream originalOut = System.out;
 
+    /**
+     * setUp.
+     */
     @BeforeEach
     public void setUp() {
         outContent = new ByteArrayOutputStream();

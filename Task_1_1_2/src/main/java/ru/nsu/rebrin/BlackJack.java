@@ -32,7 +32,7 @@ public class BlackJack {
      */
     void addCards(List<Card> deck) {
         String[] ranks = {"Two", "Three", "Four", "Five", "Six", "Seven", "Eight",
-                "Nine", "Ten", "Jack", "Queen", "King", "Ace"};
+            "Nine", "Ten", "Jack", "Queen", "King", "Ace"};
         int[] values = {2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11};
         String[] suits = {"Spades", "Hearts", "Clubs", "Diamonds"};
 
