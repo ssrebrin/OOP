@@ -1,22 +1,23 @@
 package ru.nsu.rebrin;
 
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Testing BlackJack.
+ */
 public class BlackJackTest {
 
     private BlackJack blackJack;
@@ -150,7 +151,7 @@ public class BlackJackTest {
     }
 
     @Test
-    public void testAFC() {
+    public void testAfc() {
 
         blackJack.in = new Scanner("0\n1\n");
         InputStream originalIn = System.in;
@@ -212,14 +213,14 @@ public class BlackJackTest {
     }
 
     @Test
-    public void testUTurn() {
+    public void testUsTurn() {
 
         User user = new User();
-        Dealer dealer = new Dealer();
 
         testDeck = new ArrayList<Card>();
         testDeck.add(new Card("", 21, ""));
         user.take_card(testDeck, true);
+        Dealer dealer = new Dealer();
 
         assertTrue(blackJack.userTurn(user, dealer, testDeck));
 
@@ -266,14 +267,15 @@ public class BlackJackTest {
     }
 
     @Test
-    public void testDTurn() {
+    public void testDealTurn() {
 
-        User user = new User();
         Dealer dealer = new Dealer();
 
         testDeck = new ArrayList<>();
         testDeck.add(new Card("", 21, ""));
         dealer.take_card(testDeck, true);
+
+        User user = new User();
         blackJack.dealerTurn(user, dealer, testDeck);
 
         assertEquals(dealer.wins, 1);

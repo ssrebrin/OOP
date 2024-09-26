@@ -31,7 +31,8 @@ public class BlackJack {
      * @param deck the deck to which cards will be added
      */
     void addCards(List<Card> deck) {
-        String[] ranks = {"Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King", "Ace"};
+        String[] ranks = {"Two", "Three", "Four", "Five", "Six", "Seven", "Eight",
+                "Nine", "Ten", "Jack", "Queen", "King", "Ace"};
         int[] values = {2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11};
         String[] suits = {"Spades", "Hearts", "Clubs", "Diamonds"};
 
@@ -116,7 +117,9 @@ public class BlackJack {
         user.show_hand(true);
         dealer.show_hand(false);
 
-        if (userTurn(user, dealer, deck)) return askForContinue();
+        if (userTurn(user, dealer, deck)) {
+            return askForContinue();
+        }
 
         dealerTurn(user, dealer, deck);
 
