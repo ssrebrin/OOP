@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 public class BlackJack {
 
     Scanner in = new Scanner(System.in);
+    int playerNum = 1;
 
     /**
      * Create the deck and shuffle it.
@@ -31,59 +32,15 @@ public class BlackJack {
      * @param deck the deck to which cards will be added
      */
     void addCards(List<Card> deck) {
-        {
-            deck.add(new Card("Two", 2, "Spades"));
-            deck.add(new Card("Two", 2, "Hearts"));
-            deck.add(new Card("Two", 2, "Clubs"));
-            deck.add(new Card("Two", 2, "Diamonds"));
-            deck.add(new Card("Three", 3, "Spades"));
-            deck.add(new Card("Three", 3, "Hearts"));
-            deck.add(new Card("Three", 3, "Clubs"));
-            deck.add(new Card("Three", 3, "Diamonds"));
-            deck.add(new Card("Four", 4, "Spades"));
-            deck.add(new Card("Four", 4, "Hearts"));
-            deck.add(new Card("Four", 4, "Clubs"));
-            deck.add(new Card("Four", 4, "Diamonds"));
-            deck.add(new Card("Five", 5, "Spades"));
-            deck.add(new Card("Five", 5, "Hearts"));
-            deck.add(new Card("Five", 5, "Clubs"));
-            deck.add(new Card("Five", 5, "Diamonds"));
-            deck.add(new Card("Six", 6, "Spades"));
-            deck.add(new Card("Six", 6, "Hearts"));
-            deck.add(new Card("Six", 6, "Clubs"));
-            deck.add(new Card("Six", 6, "Diamonds"));
-            deck.add(new Card("Seven", 7, "Spades"));
-            deck.add(new Card("Seven", 7, "Hearts"));
-            deck.add(new Card("Seven", 7, "Clubs"));
-            deck.add(new Card("Seven", 7, "Diamonds"));
-            deck.add(new Card("Eight", 8, "Spades"));
-            deck.add(new Card("Eight", 8, "Hearts"));
-            deck.add(new Card("Eight", 8, "Clubs"));
-            deck.add(new Card("Eight", 8, "Diamonds"));
-            deck.add(new Card("Nine", 9, "Spades"));
-            deck.add(new Card("Nine", 9, "Hearts"));
-            deck.add(new Card("Nine", 9, "Clubs"));
-            deck.add(new Card("Nine", 9, "Diamonds"));
-            deck.add(new Card("Ten", 10, "Spades"));
-            deck.add(new Card("Ten", 10, "Hearts"));
-            deck.add(new Card("Ten", 10, "Clubs"));
-            deck.add(new Card("Ten", 10, "Diamonds"));
-            deck.add(new Card("Jack", 10, "Spades"));
-            deck.add(new Card("Jack", 10, "Hearts"));
-            deck.add(new Card("Jack", 10, "Clubs"));
-            deck.add(new Card("Jack", 10, "Diamonds"));
-            deck.add(new Card("Queen", 10, "Spades"));
-            deck.add(new Card("Queen", 10, "Hearts"));
-            deck.add(new Card("Queen", 10, "Clubs"));
-            deck.add(new Card("Queen", 10, "Diamonds"));
-            deck.add(new Card("King", 10, "Spades"));
-            deck.add(new Card("King", 10, "Hearts"));
-            deck.add(new Card("King", 10, "Clubs"));
-            deck.add(new Card("King", 10, "Diamonds"));
-            deck.add(new Card("Ace", 11, "Spades"));
-            deck.add(new Card("Ace", 11, "Hearts"));
-            deck.add(new Card("Ace", 11, "Clubs"));
-            deck.add(new Card("Ace", 11, "Diamonds"));
+        String[] ranks = {"Two", "Three", "Four", "Five", "Six", "Seven", "Eight",
+                "Nine", "Ten", "Jack", "Queen", "King", "Ace"};
+        int[] values = {2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11};
+        String[] suits = {"Spades", "Hearts", "Clubs", "Diamonds"};
+
+        for (int i = 0; i < ranks.length; i++) {
+            for (String suit : suits) {
+                deck.add(new Card(ranks[i], values[i], suit, new int[]{0}));
+            }
         }
     }
 
@@ -152,14 +109,14 @@ public class BlackJack {
         dealer.clear_hand(deck);
         shuffle(deck);
 
-        user.take_card(deck, true);
-        user.take_card(deck, true);
-        dealer.take_card(deck, true);
-        dealer.take_card(deck, false);
+        user.take_card(deck, new int[]{0, 1});
+        user.take_card(deck, new int[]{0, 1});
+        dealer.take_card(deck, new int[]{0, 1});
+        dealer.take_card(deck, new int[]{0});
         dealer.points();
 
-        user.show_hand(true);
-        dealer.show_hand(false);
+        user.show_hand(true, playerNum);
+        dealer.show_hand(false, playerNum);
 
         if (userTurn(user, dealer, deck)) {
             return askForContinue();
@@ -201,11 +158,11 @@ public class BlackJack {
 
             if (scan()) {
                 System.out.print("You take a card ");
-                user.take_card(deck, true).show(false);
+                user.take_card(deck, new int[]{0, 1}).show(false, playerNum);
                 sleep(1);
                 System.out.println();
-                user.show_hand(true);
-                dealer.show_hand(false);
+                user.show_hand(true, playerNum);
+                dealer.show_hand(false, playerNum);
                 sleep(1);
             } else {
                 break;
@@ -224,14 +181,14 @@ public class BlackJack {
     void dealerTurn(User user, Dealer dealer, List<Card> deck) {
         System.out.println("Dealer move\n------------");
         sleep(1);
-        System.out.print("The dealer reveals a close card");
+        System.out.print("The dealer reveals a close card ");
         sleep(1);
-        dealer.hand.get(dealer.hand.size() - 1).open();
-        dealer.hand.get(dealer.hand.size() - 1).show(false);
+        dealer.hand.get(dealer.hand.size() - 1).open(new int[]{0, 1});
+        dealer.hand.get(dealer.hand.size() - 1).show(false, playerNum);
         System.out.println();
 
-        user.show_hand(true);
-        dealer.show_hand(true);
+        user.show_hand(true, playerNum);
+        dealer.show_hand(true, playerNum);
 
         while (true) {
             dealer.points();
@@ -256,11 +213,11 @@ public class BlackJack {
 
             sleep(2);
             System.out.print("Dealer takes a card ");
-            dealer.take_card(deck, true).show(false);
+            dealer.take_card(deck, new int[]{0, 1}).show(false, playerNum);
             sleep(2);
             System.out.println();
-            user.show_hand(true);
-            dealer.show_hand(true);
+            user.show_hand(true, playerNum);
+            dealer.show_hand(true, playerNum);
             sleep(1);
         }
     }

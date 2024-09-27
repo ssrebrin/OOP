@@ -1,10 +1,12 @@
 package ru.nsu.rebrin;
 
+import java.util.Arrays;
+
 /**
  * Card class.
  */
 public class Card {
-    public boolean open;
+    public int[] openn;
     public String suit;
     public int meaning;
     public String value;
@@ -16,11 +18,11 @@ public class Card {
      * @param meaning - meaning
      * @param value   - value
      */
-    public Card(String suit, int meaning, String value) {
+    public Card(String suit, int meaning, String value, int[] openn) {
         this.meaning = meaning;
         this.suit = suit;
         this.value = value;
-        this.open = false;
+        this.openn = openn;
     }
 
     /**
@@ -40,21 +42,15 @@ public class Card {
         Card other = (Card) obj;
         return meaning == other.meaning
                 && suit.equals(other.suit)
-                && value.equals(other.value);
+                && value.equals(other.value)
+                && Arrays.equals(openn, other.openn);
     }
 
     /**
      * Open card.
      */
-    public void open() {
-        this.open = true;
-    }
-
-    /**
-     * Close card.
-     */
-    public void close() {
-        this.open = false;
+    public void open(int[] openn) {
+        this.openn = openn;
     }
 
     /**
@@ -62,16 +58,18 @@ public class Card {
      *
      * @param flag - for ace
      */
-    public void show(boolean flag) {
-        if (this.open) {
-            if (meaning == 11 && flag) {
-                System.out.print(suit + " " + value + " (1)");
-            } else {
-                System.out.print(suit + " " + value + " (" + meaning + ")");
+    public void show(boolean flag, int player) {
+        for (int i : this.openn) {
+            if (i == player) {
+                if (meaning == 11 && flag) {
+                    System.out.print(suit + " " + value + " (1)");
+                } else {
+                    System.out.print(suit + " " + value + " (" + meaning + ")");
+                }
+                return;
             }
-        } else {
-            System.out.print("<Close card>");
         }
+        System.out.print("<Close card>");
     }
 
 }

@@ -15,17 +15,13 @@ public class Player {
      * Player take a card.
      *
      * @param deck - deck
-     * @param open - true if card should be face down
+     * @param players - Players who can see the card
      * @return - taken card
      */
-    public Card take_card(List<Card> deck, boolean open) {
+    public Card take_card(List<Card> deck, int[] players) {
         Card card = deck.get(deck.size() - 1);
         deck.remove(deck.size() - 1);
-        if (open) {
-            card.open();
-        } else {
-            card.close();
-        }
+        card.openn = players;
         this.hand.add(card);
         return card;
     }

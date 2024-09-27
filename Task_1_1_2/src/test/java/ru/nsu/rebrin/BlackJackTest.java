@@ -12,6 +12,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -34,60 +35,16 @@ public class BlackJackTest {
         System.setOut(new PrintStream(outContent));
         blackJack = new BlackJack();
 
+        String[] ranks = {"Two", "Three", "Four", "Five", "Six", "Seven", "Eight",
+                "Nine", "Ten", "Jack", "Queen", "King", "Ace"};
+        int[] values = {2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11};
+        String[] suits = {"Spades", "Hearts", "Clubs", "Diamonds"};
+
         testDeck = new ArrayList<>(52);
-        {
-            testDeck.add(new Card("Two", 2, "Spades"));
-            testDeck.add(new Card("Two", 2, "Hearts"));
-            testDeck.add(new Card("Two", 2, "Clubs"));
-            testDeck.add(new Card("Two", 2, "Diamonds"));
-            testDeck.add(new Card("Three", 3, "Spades"));
-            testDeck.add(new Card("Three", 3, "Hearts"));
-            testDeck.add(new Card("Three", 3, "Clubs"));
-            testDeck.add(new Card("Three", 3, "Diamonds"));
-            testDeck.add(new Card("Four", 4, "Spades"));
-            testDeck.add(new Card("Four", 4, "Hearts"));
-            testDeck.add(new Card("Four", 4, "Clubs"));
-            testDeck.add(new Card("Four", 4, "Diamonds"));
-            testDeck.add(new Card("Five", 5, "Spades"));
-            testDeck.add(new Card("Five", 5, "Hearts"));
-            testDeck.add(new Card("Five", 5, "Clubs"));
-            testDeck.add(new Card("Five", 5, "Diamonds"));
-            testDeck.add(new Card("Six", 6, "Spades"));
-            testDeck.add(new Card("Six", 6, "Hearts"));
-            testDeck.add(new Card("Six", 6, "Clubs"));
-            testDeck.add(new Card("Six", 6, "Diamonds"));
-            testDeck.add(new Card("Seven", 7, "Spades"));
-            testDeck.add(new Card("Seven", 7, "Hearts"));
-            testDeck.add(new Card("Seven", 7, "Clubs"));
-            testDeck.add(new Card("Seven", 7, "Diamonds"));
-            testDeck.add(new Card("Eight", 8, "Spades"));
-            testDeck.add(new Card("Eight", 8, "Hearts"));
-            testDeck.add(new Card("Eight", 8, "Clubs"));
-            testDeck.add(new Card("Eight", 8, "Diamonds"));
-            testDeck.add(new Card("Nine", 9, "Spades"));
-            testDeck.add(new Card("Nine", 9, "Hearts"));
-            testDeck.add(new Card("Nine", 9, "Clubs"));
-            testDeck.add(new Card("Nine", 9, "Diamonds"));
-            testDeck.add(new Card("Ten", 10, "Spades"));
-            testDeck.add(new Card("Ten", 10, "Hearts"));
-            testDeck.add(new Card("Ten", 10, "Clubs"));
-            testDeck.add(new Card("Ten", 10, "Diamonds"));
-            testDeck.add(new Card("Jack", 10, "Spades"));
-            testDeck.add(new Card("Jack", 10, "Hearts"));
-            testDeck.add(new Card("Jack", 10, "Clubs"));
-            testDeck.add(new Card("Jack", 10, "Diamonds"));
-            testDeck.add(new Card("Queen", 10, "Spades"));
-            testDeck.add(new Card("Queen", 10, "Hearts"));
-            testDeck.add(new Card("Queen", 10, "Clubs"));
-            testDeck.add(new Card("Queen", 10, "Diamonds"));
-            testDeck.add(new Card("King", 10, "Spades"));
-            testDeck.add(new Card("King", 10, "Hearts"));
-            testDeck.add(new Card("King", 10, "Clubs"));
-            testDeck.add(new Card("King", 10, "Diamonds"));
-            testDeck.add(new Card("Ace", 11, "Spades"));
-            testDeck.add(new Card("Ace", 11, "Hearts"));
-            testDeck.add(new Card("Ace", 11, "Clubs"));
-            testDeck.add(new Card("Ace", 11, "Diamonds"));
+        for (int i = 0; i < ranks.length; i++) {
+            for (String suit : suits) {
+                testDeck.add(new Card(ranks[i], values[i], suit, new int[]{}));
+            }
         }
     }
 
@@ -124,8 +81,8 @@ public class BlackJackTest {
     @Test
     void testUserPointsCalculation() {
         User user = new User();
-        user.take_card(testDeck, true);
-        user.take_card(testDeck, true);
+        user.take_card(testDeck, new int[]{});
+        user.take_card(testDeck, new int[]{});
         user.points();
 
         assertTrue(user.score > 0);
@@ -134,8 +91,8 @@ public class BlackJackTest {
     @Test
     void testDealerPointsCalculation() {
         Dealer dealer = new Dealer();
-        dealer.take_card(testDeck, true);
-        dealer.take_card(testDeck, true);
+        dealer.take_card(testDeck, new int[]{});
+        dealer.take_card(testDeck, new int[]{});
         dealer.points();
 
         assertTrue(dealer.score > 0);
@@ -223,8 +180,8 @@ public class BlackJackTest {
         User user = new User();
 
         testDeck = new ArrayList<Card>();
-        testDeck.add(new Card("", 21, ""));
-        user.take_card(testDeck, true);
+        testDeck.add(new Card("", 21, "", new int[]{}));
+        user.take_card(testDeck, new int[]{});
         Dealer dealer = new Dealer();
 
         assertTrue(blackJack.userTurn(user, dealer, testDeck));
@@ -234,8 +191,8 @@ public class BlackJackTest {
         dealer = new Dealer();
 
         testDeck = new ArrayList<Card>();
-        testDeck.add(new Card("", 22, ""));
-        user.take_card(testDeck, true);
+        testDeck.add(new Card("", 22, "", new int[]{}));
+        user.take_card(testDeck, new int[]{});
 
         assertTrue(blackJack.userTurn(user, dealer, testDeck));
 
@@ -244,10 +201,10 @@ public class BlackJackTest {
         dealer = new Dealer();
 
         testDeck = new ArrayList<>();
-        testDeck.add(new Card("", 12, ""));
-        testDeck.add(new Card("", 10, ""));
-        testDeck.add(new Card("", 10, ""));
-        user.take_card(testDeck, true);
+        testDeck.add(new Card("", 12, "", new int[]{}));
+        testDeck.add(new Card("", 10, "", new int[]{}));
+        testDeck.add(new Card("", 10, "", new int[]{}));
+        user.take_card(testDeck, new int[]{});
 
         blackJack.in = new Scanner("1\n1\n");
 
@@ -258,12 +215,12 @@ public class BlackJackTest {
         dealer = new Dealer();
 
         testDeck = new ArrayList<>();
-        testDeck.add(new Card("", 2, ""));
-        testDeck.add(new Card("", 2, ""));
-        testDeck.add(new Card("", 2, ""));
+        testDeck.add(new Card("", 2, "", new int[]{}));
+        testDeck.add(new Card("", 2, "", new int[]{}));
+        testDeck.add(new Card("", 2, "", new int[]{}));
         outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
-        user.take_card(testDeck, true);
+        user.take_card(testDeck, new int[]{});
 
         blackJack.in = new Scanner("1\n0\n");
 
@@ -277,8 +234,8 @@ public class BlackJackTest {
         Dealer dealer = new Dealer();
 
         testDeck = new ArrayList<>();
-        testDeck.add(new Card("", 21, ""));
-        dealer.take_card(testDeck, true);
+        testDeck.add(new Card("", 21, "", new int[]{}));
+        dealer.take_card(testDeck, new int[]{});
 
         User user = new User();
         blackJack.dealerTurn(user, dealer, testDeck);
@@ -291,8 +248,8 @@ public class BlackJackTest {
         dealer = new Dealer();
 
         testDeck = new ArrayList<>();
-        testDeck.add(new Card("", 22, ""));
-        dealer.take_card(testDeck, true);
+        testDeck.add(new Card("", 22, "", new int[]{}));
+        dealer.take_card(testDeck, new int[]{});
         blackJack.dealerTurn(user, dealer, testDeck);
 
         assertEquals(dealer.wins, 0);
@@ -303,9 +260,9 @@ public class BlackJackTest {
         dealer = new Dealer();
 
         testDeck = new ArrayList<>();
-        testDeck.add(new Card("", 10, ""));
-        testDeck.add(new Card("", 17, ""));
-        dealer.take_card(testDeck, true);
+        testDeck.add(new Card("", 10, "", new int[]{}));
+        testDeck.add(new Card("", 17, "", new int[]{}));
+        dealer.take_card(testDeck, new int[]{});
         blackJack.dealerTurn(user, dealer, testDeck);
 
         assertEquals(dealer.wins, 1);

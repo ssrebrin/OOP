@@ -10,7 +10,7 @@ public class User extends Player {
      *
      * @param withScore - true if with score
      */
-    public void show_hand(boolean withScore) {
+    public void show_hand(boolean withScore, int player) {
 
         boolean flag = false;
 
@@ -27,7 +27,7 @@ public class User extends Player {
         System.out.print("Your hand: ");
         System.out.print("[");
         for (Card c : this.hand) {
-            c.show(withScore && flag);
+            c.show(withScore && flag, player);
             if (c != this.hand.get(this.hand.size() - 1)) {
                 System.out.print(", ");
             }
