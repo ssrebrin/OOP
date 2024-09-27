@@ -78,7 +78,7 @@ public class BlackJack {
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Input 1 or 0.");
-                in.next(); // Очистка буфера ввода
+                in.next();
             }
         }
     }

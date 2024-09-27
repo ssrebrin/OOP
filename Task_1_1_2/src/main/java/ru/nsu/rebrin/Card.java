@@ -42,8 +42,7 @@ public class Card {
         Card other = (Card) obj;
         return meaning == other.meaning
                 && suit.equals(other.suit)
-                && value.equals(other.value)
-                && Arrays.equals(openn, other.openn);
+                && value.equals(other.value);
     }
 
     /**
