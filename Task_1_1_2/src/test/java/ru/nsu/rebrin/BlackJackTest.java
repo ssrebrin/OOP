@@ -12,6 +12,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -35,58 +36,60 @@ public class BlackJackTest {
         blackJack = new BlackJack();
 
         testDeck = new ArrayList<>(52);
-        testDeck.add(new Card("Two", 2, "Spades"));
-        testDeck.add(new Card("Two", 2, "Hearts"));
-        testDeck.add(new Card("Two", 2, "Clubs"));
-        testDeck.add(new Card("Two", 2, "Diamonds"));
-        testDeck.add(new Card("Three", 3, "Spades"));
-        testDeck.add(new Card("Three", 3, "Hearts"));
-        testDeck.add(new Card("Three", 3, "Clubs"));
-        testDeck.add(new Card("Three", 3, "Diamonds"));
-        testDeck.add(new Card("Four", 4, "Spades"));
-        testDeck.add(new Card("Four", 4, "Hearts"));
-        testDeck.add(new Card("Four", 4, "Clubs"));
-        testDeck.add(new Card("Four", 4, "Diamonds"));
-        testDeck.add(new Card("Five", 5, "Spades"));
-        testDeck.add(new Card("Five", 5, "Hearts"));
-        testDeck.add(new Card("Five", 5, "Clubs"));
-        testDeck.add(new Card("Five", 5, "Diamonds"));
-        testDeck.add(new Card("Six", 6, "Spades"));
-        testDeck.add(new Card("Six", 6, "Hearts"));
-        testDeck.add(new Card("Six", 6, "Clubs"));
-        testDeck.add(new Card("Six", 6, "Diamonds"));
-        testDeck.add(new Card("Seven", 7, "Spades"));
-        testDeck.add(new Card("Seven", 7, "Hearts"));
-        testDeck.add(new Card("Seven", 7, "Clubs"));
-        testDeck.add(new Card("Seven", 7, "Diamonds"));
-        testDeck.add(new Card("Eight", 8, "Spades"));
-        testDeck.add(new Card("Eight", 8, "Hearts"));
-        testDeck.add(new Card("Eight", 8, "Clubs"));
-        testDeck.add(new Card("Eight", 8, "Diamonds"));
-        testDeck.add(new Card("Nine", 9, "Spades"));
-        testDeck.add(new Card("Nine", 9, "Hearts"));
-        testDeck.add(new Card("Nine", 9, "Clubs"));
-        testDeck.add(new Card("Nine", 9, "Diamonds"));
-        testDeck.add(new Card("Ten", 10, "Spades"));
-        testDeck.add(new Card("Ten", 10, "Hearts"));
-        testDeck.add(new Card("Ten", 10, "Clubs"));
-        testDeck.add(new Card("Ten", 10, "Diamonds"));
-        testDeck.add(new Card("Jack", 10, "Spades"));
-        testDeck.add(new Card("Jack", 10, "Hearts"));
-        testDeck.add(new Card("Jack", 10, "Clubs"));
-        testDeck.add(new Card("Jack", 10, "Diamonds"));
-        testDeck.add(new Card("Queen", 10, "Spades"));
-        testDeck.add(new Card("Queen", 10, "Hearts"));
-        testDeck.add(new Card("Queen", 10, "Clubs"));
-        testDeck.add(new Card("Queen", 10, "Diamonds"));
-        testDeck.add(new Card("King", 10, "Spades"));
-        testDeck.add(new Card("King", 10, "Hearts"));
-        testDeck.add(new Card("King", 10, "Clubs"));
-        testDeck.add(new Card("King", 10, "Diamonds"));
-        testDeck.add(new Card("Ace", 11, "Spades"));
-        testDeck.add(new Card("Ace", 11, "Hearts"));
-        testDeck.add(new Card("Ace", 11, "Clubs"));
-        testDeck.add(new Card("Ace", 11, "Diamonds"));
+        {
+            testDeck.add(new Card("Two", 2, "Spades"));
+            testDeck.add(new Card("Two", 2, "Hearts"));
+            testDeck.add(new Card("Two", 2, "Clubs"));
+            testDeck.add(new Card("Two", 2, "Diamonds"));
+            testDeck.add(new Card("Three", 3, "Spades"));
+            testDeck.add(new Card("Three", 3, "Hearts"));
+            testDeck.add(new Card("Three", 3, "Clubs"));
+            testDeck.add(new Card("Three", 3, "Diamonds"));
+            testDeck.add(new Card("Four", 4, "Spades"));
+            testDeck.add(new Card("Four", 4, "Hearts"));
+            testDeck.add(new Card("Four", 4, "Clubs"));
+            testDeck.add(new Card("Four", 4, "Diamonds"));
+            testDeck.add(new Card("Five", 5, "Spades"));
+            testDeck.add(new Card("Five", 5, "Hearts"));
+            testDeck.add(new Card("Five", 5, "Clubs"));
+            testDeck.add(new Card("Five", 5, "Diamonds"));
+            testDeck.add(new Card("Six", 6, "Spades"));
+            testDeck.add(new Card("Six", 6, "Hearts"));
+            testDeck.add(new Card("Six", 6, "Clubs"));
+            testDeck.add(new Card("Six", 6, "Diamonds"));
+            testDeck.add(new Card("Seven", 7, "Spades"));
+            testDeck.add(new Card("Seven", 7, "Hearts"));
+            testDeck.add(new Card("Seven", 7, "Clubs"));
+            testDeck.add(new Card("Seven", 7, "Diamonds"));
+            testDeck.add(new Card("Eight", 8, "Spades"));
+            testDeck.add(new Card("Eight", 8, "Hearts"));
+            testDeck.add(new Card("Eight", 8, "Clubs"));
+            testDeck.add(new Card("Eight", 8, "Diamonds"));
+            testDeck.add(new Card("Nine", 9, "Spades"));
+            testDeck.add(new Card("Nine", 9, "Hearts"));
+            testDeck.add(new Card("Nine", 9, "Clubs"));
+            testDeck.add(new Card("Nine", 9, "Diamonds"));
+            testDeck.add(new Card("Ten", 10, "Spades"));
+            testDeck.add(new Card("Ten", 10, "Hearts"));
+            testDeck.add(new Card("Ten", 10, "Clubs"));
+            testDeck.add(new Card("Ten", 10, "Diamonds"));
+            testDeck.add(new Card("Jack", 10, "Spades"));
+            testDeck.add(new Card("Jack", 10, "Hearts"));
+            testDeck.add(new Card("Jack", 10, "Clubs"));
+            testDeck.add(new Card("Jack", 10, "Diamonds"));
+            testDeck.add(new Card("Queen", 10, "Spades"));
+            testDeck.add(new Card("Queen", 10, "Hearts"));
+            testDeck.add(new Card("Queen", 10, "Clubs"));
+            testDeck.add(new Card("Queen", 10, "Diamonds"));
+            testDeck.add(new Card("King", 10, "Spades"));
+            testDeck.add(new Card("King", 10, "Hearts"));
+            testDeck.add(new Card("King", 10, "Clubs"));
+            testDeck.add(new Card("King", 10, "Diamonds"));
+            testDeck.add(new Card("Ace", 11, "Spades"));
+            testDeck.add(new Card("Ace", 11, "Hearts"));
+            testDeck.add(new Card("Ace", 11, "Clubs"));
+            testDeck.add(new Card("Ace", 11, "Diamonds"));
+        }
     }
 
     @Test
@@ -285,7 +288,6 @@ public class BlackJackTest {
         assertEquals(user.wins, 0);
 
 
-
         user = new User();
         dealer = new Dealer();
 
@@ -296,7 +298,6 @@ public class BlackJackTest {
 
         assertEquals(dealer.wins, 0);
         assertEquals(user.wins, 1);
-
 
 
         user = new User();
