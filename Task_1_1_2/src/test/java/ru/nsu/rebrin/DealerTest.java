@@ -78,7 +78,7 @@ class DealerTest {
         deckTest.add(new Card("Ace", 11, "Diamonds", new int[]{}));
 
         dealer.take_card(deckTest, new int[]{0});
-        dealer.take_card(deckTest, new int[]{1});
+        dealer.take_card(deckTest, new int[]{0});
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
 
