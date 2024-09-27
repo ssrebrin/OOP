@@ -12,7 +12,6 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +35,7 @@ public class BlackJackTest {
         blackJack = new BlackJack();
 
         String[] ranks = {"Two", "Three", "Four", "Five", "Six", "Seven", "Eight",
-                "Nine", "Ten", "Jack", "Queen", "King", "Ace"};
+            "Nine", "Ten", "Jack", "Queen", "King", "Ace"};
         int[] values = {2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11};
         String[] suits = {"Spades", "Hearts", "Clubs", "Diamonds"};
 
