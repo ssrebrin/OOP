@@ -2,6 +2,7 @@ package ru.nsu.rebrin;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -15,7 +16,7 @@ public class CardTest {
         assertEquals(11, card.meaning);
         assertEquals("Hearts", card.suit);
         assertEquals("A", card.value);
-        assertEquals(card.openn, new int[]{0});
+        assertArrayEquals(card.openn, new int[]{0});
     }
 
     @Test
@@ -33,10 +34,10 @@ public class CardTest {
     @Test
     void testOpen() {
         Card card = new Card("Hearts", 11, "A", new int[]{});
-        assertEquals(card.openn, new int[]{});
+        assertArrayEquals(card.openn, new int[]{});
 
         card.open(new int[]{0, 1});
-        assertEquals(card.openn, new int[]{0, 1});
+        assertArrayEquals(card.openn, new int[]{0, 1});
     }
 
 }
