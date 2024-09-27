@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10};
+var data = {"i0":10,"i1":10,"i2":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -159,8 +159,8 @@ extends java.lang.Object</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#open">open</a></span></code></th>
+<td class="colFirst"><code>int[]</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#openn">openn</a></span></code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr class="altColor">
@@ -191,9 +191,10 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.String,int,java.lang.String)">Card</a></span>&#8203;(java.lang.String&nbsp;suit,
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(java.lang.String,int,java.lang.String,int%5B%5D)">Card</a></span>&#8203;(java.lang.String&nbsp;suit,
     int&nbsp;meaning,
-    java.lang.String&nbsp;value)</code></th>
+    java.lang.String&nbsp;value,
+    int[]&nbsp;openn)</code></th>
 <td class="colLast">
 <div class="block">Init.</div>
 </td>
@@ -217,29 +218,23 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#close()">close</a></span>()</code></th>
-<td class="colLast">
-<div class="block">Close card.</div>
-</td>
-</tr>
-<tr id="i1" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#equals(java.lang.Object)">equals</a></span>&#8203;(java.lang.Object&nbsp;obj)</code></th>
 <td class="colLast">
 <div class="block">Equality relation.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#open()">open</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#open(int%5B%5D)">open</a></span>&#8203;(int[]&nbsp;openn)</code></th>
 <td class="colLast">
 <div class="block">Open card.</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#show(boolean)">show</a></span>&#8203;(boolean&nbsp;flag)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#show(boolean,int)">show</a></span>&#8203;(boolean&nbsp;flag,
+    int&nbsp;player)</code></th>
 <td class="colLast">
 <div class="block">Show card.</div>
 </td>
@@ -268,13 +263,13 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Field Detail</h3>
-<a id="open">
+<a id="openn">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>open</h4>
-<pre>public&nbsp;boolean open</pre>
+<h4>openn</h4>
+<pre>public&nbsp;int[] openn</pre>
 </li>
 </ul>
 <a id="suit">
@@ -314,7 +309,7 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a id="&lt;init&gt;(java.lang.String,int,java.lang.String)">
+<a id="&lt;init&gt;(java.lang.String,int,java.lang.String,int[])">
 <!--   -->
 </a>
 <ul class="blockListLast">
@@ -322,7 +317,8 @@ extends java.lang.Object</pre>
 <h4>Card</h4>
 <pre>public&nbsp;Card&#8203;(java.lang.String&nbsp;suit,
             int&nbsp;meaning,
-            java.lang.String&nbsp;value)</pre>
+            java.lang.String&nbsp;value,
+            int[]&nbsp;openn)</pre>
 <div class="block">Init.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -360,33 +356,24 @@ extends java.lang.Object</pre>
 </dl>
 </li>
 </ul>
-<a id="open()">
+<a id="open(int[])">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
 <h4>open</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;open()</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;open&#8203;(int[]&nbsp;openn)</pre>
 <div class="block">Open card.</div>
 </li>
 </ul>
-<a id="close()">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>close</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;close()</pre>
-<div class="block">Close card.</div>
-</li>
-</ul>
-<a id="show(boolean)">
+<a id="show(boolean,int)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>show</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;show&#8203;(boolean&nbsp;flag)</pre>
+<pre class="methodSignature">public&nbsp;void&nbsp;show&#8203;(boolean&nbsp;flag,
+                 int&nbsp;player)</pre>
 <div class="block">Show card.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
