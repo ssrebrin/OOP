@@ -9,7 +9,7 @@ class Mul extends Expression {
     /**
      * Mul.
      *
-     * @param left - left
+     * @param left  - left
      * @param right - right
      */
     public Mul(Expression left, Expression right) {
@@ -66,11 +66,12 @@ class Mul extends Expression {
                 if (a2 == 0) {
                     return new Number(0);
                 }
-                if (flag == 1)
+                if (flag == 1) {
                     return right;
+                }
             } catch (IllegalArgumentException e2) {
                 right = right.simis();
-                if(flag == 1){
+                if (flag == 1) {
                     return right;
                 }
             }

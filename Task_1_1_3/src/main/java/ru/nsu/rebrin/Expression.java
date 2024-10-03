@@ -3,8 +3,10 @@ package ru.nsu.rebrin;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Objects;
 
+/**
+ * Expression class.
+ */
 public abstract class Expression {
     int ratio = 1;
     HashSet<Map<String, Integer>> vars = new HashSet<>();
@@ -46,7 +48,7 @@ public abstract class Expression {
      *
      * @param assignments - input string
      * @return - map
-     * @throws NumberFormatException - Format exception
+     * @throws NumberFormatException    - Format exception
      * @throws IllegalArgumentException - Argument exception
      */
     public Map<String, Integer> parseAssignments(String assignments)
@@ -54,7 +56,7 @@ public abstract class Expression {
         Map<String, Integer> variables = new HashMap<>();
         String[] pairs = assignments.split(";");
         for (String pair : pairs) {
-            if (pair.isEmpty()){
+            if (pair.isEmpty()) {
                 continue;
             }
             int len = 0;
@@ -69,7 +71,7 @@ public abstract class Expression {
             if (len != 2) {
                 throw new IllegalArgumentException("Неверный формат присваивания: " + pair);
             }
-            int i=0;
+            int i = 0;
             String name = parts[0].trim();
             for (String part : parts) {
                 i++;
@@ -83,8 +85,7 @@ public abstract class Expression {
             }
 
             try {
-
-                for (int ii = i;ii<parts.length;ii++) {
+                for (int ii = i; ii < parts.length; ii++) {
                     if (!parts[ii].isEmpty()) {
                         int value = Integer.parseInt(parts[ii].trim());
                         name = name.replace(" ", "");
@@ -101,7 +102,7 @@ public abstract class Expression {
     }
 
     /**
-     * Start eval
+     * Start eval.
      *
      * @param assignments - args
      * @return - number

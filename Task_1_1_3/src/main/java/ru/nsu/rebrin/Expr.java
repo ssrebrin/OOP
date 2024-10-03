@@ -2,6 +2,9 @@ package ru.nsu.rebrin;
 
 import java.util.Stack;
 
+/**
+ * Expr.
+ */
 public class Expr {
 
     /**
@@ -30,22 +33,25 @@ public class Expr {
                 case "-":
                 case "*":
                 case "/":
-                    while (!token.equals("(") && !operators.isEmpty() && precedence(token) <= precedence(operators.peek())) {
+                    while (!token.equals("(") && !operators.isEmpty()
+                            && precedence(token) <= precedence(operators.peek())) {
                         String operator = operators.pop();
-                        Expression A = operands.pop();
-                        Expression B = operands.pop();
+                        Expression aa = operands.pop();
+                        Expression bb = operands.pop();
                         switch (operator) {
                             case "+":
-                                operands.push(new Add(B, A));
+                                operands.push(new Add(bb, aa));
                                 break;
                             case "-":
-                                operands.push(new Sub(B, A));
+                                operands.push(new Sub(bb, aa));
                                 break;
                             case "*":
-                                operands.push(new Mul(B, A));
+                                operands.push(new Mul(bb, aa));
                                 break;
                             case "/":
-                                operands.push(new Div(B, A));
+                                operands.push(new Div(bb, aa));
+                                break;
+                            default:
                                 break;
                         }
                     }
@@ -53,24 +59,28 @@ public class Expr {
                     continue;
                 case ")":
                     while (!(a = operators.pop()).equals("(")) {
-                        Expression A = operands.pop();
-                        Expression B = operands.pop();
+                        Expression aa = operands.pop();
+                        Expression bb = operands.pop();
                         switch (a) {
                             case "+":
-                                operands.push(new Add(B, A));
+                                operands.push(new Add(bb, aa));
                                 break;
                             case "-":
-                                operands.push(new Sub(B, A));
+                                operands.push(new Sub(bb, aa));
                                 break;
                             case "*":
-                                operands.push(new Mul(B, A));
+                                operands.push(new Mul(bb, aa));
                                 break;
                             case "/":
-                                operands.push(new Div(B, A));
+                                operands.push(new Div(bb, aa));
+                                break;
+                            default:
                                 break;
                         }
                     }
                     continue;
+                default:
+                    break;
             }
 
             if (!token.isEmpty()) {
@@ -83,20 +93,22 @@ public class Expr {
         }
         while (!operators.isEmpty()) {
             String operator = operators.pop();
-            Expression A = operands.pop();
-            Expression B = operands.pop();
+            Expression aa = operands.pop();
+            Expression bb = operands.pop();
             switch (operator) {
                 case "+":
-                    operands.push(new Add(B, A));
+                    operands.push(new Add(bb, aa));
                     break;
                 case "-":
-                    operands.push(new Sub(B, A));
+                    operands.push(new Sub(bb, aa));
                     break;
                 case "*":
-                    operands.push(new Mul(B, A));
+                    operands.push(new Mul(bb, aa));
                     break;
                 case "/":
-                    operands.push(new Div(B, A));
+                    operands.push(new Div(bb, aa));
+                    break;
+                default:
                     break;
             }
         }
@@ -136,6 +148,6 @@ public class Expr {
         Expr main = new Expr();
         System.out.println(e.print());
         System.out.println(e.derivative("x").print());
-        System.out.println(main.parser("(1*x)*x").print());  // Убедитесь, что метода simis() нет в вызове
+        System.out.println(main.parser("(1*x)*x").print());
     }
 }

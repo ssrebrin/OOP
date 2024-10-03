@@ -8,9 +8,9 @@ class Div extends Expression {
     private Expression right;
 
     /**
-     * Div
+     * Div.
      *
-     * @param left - left
+     * @param left  - left
      * @param right - right
      */
     public Div(Expression left, Expression right) {
@@ -49,7 +49,7 @@ class Div extends Expression {
                 try {
                     left = left.simis();
                     int a1 = left.eval("");
-                    if (a1 == 0){
+                    if (a1 == 0) {
                         return new Number(0);
                     }
                 } catch (IllegalArgumentException e1) {

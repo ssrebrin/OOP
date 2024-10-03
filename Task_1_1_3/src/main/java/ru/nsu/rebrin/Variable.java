@@ -1,7 +1,5 @@
 package ru.nsu.rebrin;
 
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 
 class Variable extends Expression {
@@ -34,7 +32,8 @@ class Variable extends Expression {
     @Override
     public int steval(Map<String, Integer> variables) {
         if (!variables.containsKey(name)) {
-            throw new IllegalArgumentException("Переменная " + name + " не найдена в карте присваиваний");
+            throw new IllegalArgumentException(
+                "Переменная " + name + " не найдена в карте присваиваний");
         }
         return variables.get(name);
     }

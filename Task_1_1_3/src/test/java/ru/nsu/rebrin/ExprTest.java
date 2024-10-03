@@ -1,8 +1,12 @@
 package ru.nsu.rebrin;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.Test;
+
+/**
+ * Test
+ */
 public class ExprTest {
 
     @Test

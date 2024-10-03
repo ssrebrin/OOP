@@ -1,6 +1,6 @@
 package ru.nsu.rebrin;
 
-import java.util.*;
+import java.util.Map;
 
 
 class Add extends Expression {
@@ -10,7 +10,7 @@ class Add extends Expression {
     /**
      * Add.
      *
-     * @param left - left
+     * @param left  - left
      * @param right - right
      */
     public Add(Expression left, Expression right) {
@@ -58,12 +58,12 @@ class Add extends Expression {
                     if (a2 == 0) {
                         return left;
                     }
-                    if(flag == 1){
+                    if (flag == 1) {
                         return right;
                     }
                 } catch (IllegalArgumentException e2) {
                     right = right.simis();
-                    if (flag == 1){
+                    if (flag == 1) {
                         return right;
                     }
                 }
