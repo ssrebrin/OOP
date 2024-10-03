@@ -1,12 +1,19 @@
 package ru.nsu.rebrin;
 
+import java.util.HashSet;
 import java.util.Map;
 
 class Number extends Expression {
     private int value;
 
+    /**
+     * Number.
+     *
+     * @param value - value
+     */
     public Number(int value) {
         this.value = value;
+        this.clas = 0;
     }
 
     @Override
@@ -22,6 +29,10 @@ class Number extends Expression {
     @Override
     public int steval(Map<String, Integer> variables) {
         return value;
+    }
 
+    @Override
+    public Expression simis() {
+        return new Number(this.value);
     }
 }

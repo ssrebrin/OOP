@@ -2,8 +2,17 @@ package ru.nsu.rebrin;
 
 import java.util.Stack;
 
+/**
+ * Main func.
+ */
 public class Expr {
 
+    /**
+     * String parser.
+     *
+     * @param expr - parsing string
+     * @return - Expression class
+     */
     public Expression parser(String expr) {
         Stack<Expression> operands = new Stack<>();
         Stack<String> operators = new Stack<>();
@@ -45,18 +54,20 @@ public class Expr {
                 }
                 case ")" -> {
                     while (!(a = operators.pop()).equals("(")) {
+                        Expression A = operands.pop();
+                        Expression B = operands.pop();
                         switch (a) {
                             case "+":
-                                operands.push(new Add(operands.pop(), operands.pop()));
+                                operands.push(new Add(B, A));
                                 break;
                             case "-":
-                                operands.push(new Sub(operands.pop(), operands.pop()));
+                                operands.push(new Sub(B, A));
                                 break;
                             case "*":
-                                operands.push(new Mul(operands.pop(), operands.pop()));
+                                operands.push(new Mul(B, A));
                                 break;
                             case "/":
-                                operands.push(new Div(operands.pop(), operands.pop()));
+                                operands.push(new Div(B, A));
                                 break;
                         }
                     }
@@ -95,15 +106,26 @@ public class Expr {
         return operands.pop();
     }
 
+    /**
+     * Operator prioritization.
+     *
+     * @param operator - operator
+     * @return - Priority level
+     */
     private static int precedence(String operator) {
         return switch (operator) {
             case "*" -> 3;
             case "/" -> 2;
             case "+", "-" -> 1;
-            default -> 0; // Ошибка: неизвестный оператор
+            default -> 0;
         };
     }
 
+    /**
+     * Main.
+     *
+     * @param args - args
+     */
     public static void main(String[] args) {
         Expression e = new Div(
                 new Mul(new Variable("x"), new Variable("x")),
@@ -114,7 +136,6 @@ public class Expr {
 
         System.out.println(e.print());
         System.out.println(e.derivative("x").print());
-        System.out.println(e.eval("x=8;y=0"));
-        System.out.println(main.parser(" 2 -6*(x+1) /x*x*x").print());
+        System.out.println(main.parser("(1*x)*x").simis().print());
     }
 }

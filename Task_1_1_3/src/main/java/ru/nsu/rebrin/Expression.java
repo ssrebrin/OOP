@@ -1,15 +1,54 @@
 package ru.nsu.rebrin;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 
-abstract class Expression {
+public abstract class Expression {
+    int ratio = 1;
+    HashSet<Map<String, Integer>> vars = new HashSet<>();
+    int clas;
+
+
+    /**
+     * Print.
+     *
+     * @return - string expression
+     */
     abstract String print();
 
+    /**
+     * Derivative.
+     *
+     * @param variable - var
+     * @return - differentiated expression
+     */
     abstract Expression derivative(String variable);
 
+    /**
+     * Eval.
+     *
+     * @param assignments - Map of variables
+     * @return - result
+     */
     abstract int steval(Map<String, Integer> assignments);
 
+    /**
+     * Simplification of expression.
+     *
+     * @return - result
+     */
+    abstract Expression simis();
+
+    /**
+     * Parsing of variables for eval.
+     *
+     * @param assignments - input string
+     * @return - map
+     * @throws NumberFormatException - Format exception
+     * @throws IllegalArgumentException - Argument exception
+     */
     public Map<String, Integer> parseAssignments(String assignments)
             throws NumberFormatException, IllegalArgumentException {
         Map<String, Integer> variables = new HashMap<>();
@@ -45,8 +84,8 @@ abstract class Expression {
 
             try {
 
-                for (int ii = i;ii<pairs.length;ii++) {
-                    if (!pairs[ii].isEmpty()) {
+                for (int ii = i;ii<parts.length;ii++) {
+                    if (!parts[ii].isEmpty()) {
                         int value = Integer.parseInt(parts[ii].trim());
                         name = name.replace(" ", "");
                         variables.put(name, value);
@@ -61,6 +100,12 @@ abstract class Expression {
         return variables;
     }
 
+    /**
+     * Start eval
+     *
+     * @param assignments - args
+     * @return - number
+     */
     public int eval(String assignments) {
         return steval(parseAssignments(assignments));
     }
