@@ -113,12 +113,16 @@ public class Expr {
      * @return - Priority level
      */
     private static int precedence(String operator) {
-        return switch (operator) {
-            case "*" -> 3;
-            case "/" -> 2;
-            case "+", "-" -> 1;
-            default -> 0;
-        };
+        switch (operator) {
+            case "*":
+                return 3;
+            case "/":
+                return 2;
+            case "+", "-":
+                return 1;
+            default:
+                return 0;
+        }
     }
 
     /**
