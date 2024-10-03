@@ -2,10 +2,8 @@ package ru.nsu.rebrin;
 
 import java.util.Stack;
 
-/**
- * Main func.
- */
 public class Expr {
+
     /**
      * String parser.
      *
@@ -27,7 +25,11 @@ public class Expr {
             switch (token) {
                 case "":
                     break;
-                case "(", "+", "-", "*", "/":
+                case "(":
+                case "+":
+                case "-":
+                case "*":
+                case "/":
                     while (!token.equals("(") && !operators.isEmpty() && precedence(token) <= precedence(operators.peek())) {
                         String operator = operators.pop();
                         Expression A = operands.pop();
@@ -113,7 +115,8 @@ public class Expr {
                 return 3;
             case "/":
                 return 2;
-            case "+", "-":
+            case "+":
+            case "-":
                 return 1;
             default:
                 return 0;
@@ -133,6 +136,6 @@ public class Expr {
         Expr main = new Expr();
         System.out.println(e.print());
         System.out.println(e.derivative("x").print());
-        System.out.println(main.parser("(1*x)*x").simis().print());
+        System.out.println(main.parser("(1*x)*x").print());  // Убедитесь, что метода simis() нет в вызове
     }
 }
