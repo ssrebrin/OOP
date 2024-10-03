@@ -65,6 +65,6 @@ public class AddTest {
     @Test
     public void test4() {
         Expression e = new Expr().parser("a+b");
-        assertEquals("a+b", e.simis().print());
+        assertEquals("(a+b)", e.simis().print());
     }
 }
