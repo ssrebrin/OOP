@@ -40,18 +40,18 @@ class Div extends Expression {
     @Override
     public Expression simis() {
         try {
-            return new Number(this.eval(""));
+            return new Number(this.eval(""));//
         } catch (IllegalArgumentException w) {
             try {
                 int a = this.eval("");
-                return new Number(a);
+                return new Number(a);//
             } catch (IllegalArgumentException e) {
                 try {
                     left = left.simis();
                     int a1 = left.eval("");
                     if (a1 == 0) {
                         return new Number(0);
-                    }
+                    }//
                 } catch (IllegalArgumentException e1) {
                     left = left.simis();
                 }
@@ -60,10 +60,10 @@ class Div extends Expression {
                     right = right.simis();
                     int a2 = right.eval("");
                     if (a2 == 1) {
-                        return left;
+                        return left;//
                     }
                 } catch (IllegalArgumentException e2) {
-                    right = right.simis();
+                    right = right.simis();//
                 }
                 return new Div(left, right);
             }

@@ -8,7 +8,9 @@ import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
-
+/**
+ * Test.
+ */
 class ExpressionTest {
     private Expression parser = new Number(1);
 

@@ -1,6 +1,5 @@
 package ru.nsu.rebrin;
 
-import java.util.HashSet;
 import java.util.Map;
 
 class Number extends Expression {

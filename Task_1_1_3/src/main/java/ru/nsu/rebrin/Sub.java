@@ -1,8 +1,6 @@
 package ru.nsu.rebrin;
 
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 
 class Sub extends Expression {
     private Expression left;
