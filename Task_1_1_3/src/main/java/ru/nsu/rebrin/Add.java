@@ -41,34 +41,28 @@ class Add extends Expression {
             return new Number(this.eval(""));
         } catch (IllegalArgumentException w) {
             try {
-                int a = this.eval("");
-                return new Number(a);
-            } catch (IllegalArgumentException e) {
-                try {
-                    left = left.simis();
-                    int a1 = left.eval("");
+                left = left.simis();
+                int a1 = left.eval("");
+                if (a1 == 0) {
                     flag = 1;
-                } catch (IllegalArgumentException e1) {
-                    left = left.simis();
                 }
-
-                try {
-                    right = right.simis();
-                    int a2 = right.eval("");
-                    if (a2 == 0) {
-                        return left;
-                    }
-                    if (flag == 1) {
-                        return right;
-                    }
-                } catch (IllegalArgumentException e2) {
-                    right = right.simis();
-                    if (flag == 1) {
-                        return right;
-                    }
-                }
-                return new Add(left, right);
+            } catch (IllegalArgumentException e1) {
+                left = left.simis();
             }
+
+            try {
+                right = right.simis();
+                int a2 = right.eval("");
+                if (a2 == 0) {
+                    return left;
+                }
+            } catch (IllegalArgumentException e2) {
+                right = right.simis();
+                if (flag == 1) {
+                    return right;
+                }
+            }
+            return new Add(left, right);
         }
     }
 }

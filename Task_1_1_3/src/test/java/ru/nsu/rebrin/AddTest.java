@@ -1,10 +1,14 @@
 package ru.nsu.rebrin;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Test.
+ */
 public class AddTest {
 
     @Test
@@ -38,5 +42,29 @@ public class AddTest {
 
         int expected = 5;
         assertEquals(expected, add.steval(variables));
+    }
+
+    @Test
+    public void test1() {
+        Expression e = new Expr().parser("1+1");
+        assertEquals("2", e.simis().print());
+    }
+
+    @Test
+    public void test2() {
+        Expression e = new Expr().parser("0+a");
+        assertEquals("a", e.simis().print());
+    }
+
+    @Test
+    public void test3() {
+        Expression e = new Expr().parser("a+0");
+        assertEquals("a", e.simis().print());
+    }
+
+    @Test
+    public void test4() {
+        Expression e = new Expr().parser("a+b");
+        assertEquals("a+b", e.simis().print());
     }
 }
