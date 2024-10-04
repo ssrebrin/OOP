@@ -26,7 +26,7 @@ public class SubTest {
         Sub subtraction = new Sub(left, right);
 
         HashMap<String, Integer> variables = new HashMap<>();
-        int expected = 6; // 10 - 4
+        int expected = 6;
         assertEquals(expected, subtraction.steval(variables));
     }
 
@@ -56,7 +56,15 @@ public class SubTest {
         Expression right = new Number(5);
         Sub subtraction = new Sub(left, right);
 
-        // Упрощение: 10 - 5 = 5
         assertEquals("5", subtraction.simis().print());
+    }
+
+    @Test
+    public void testSimisNotEqual1() {
+        Expression left = new Variable("x");
+        Expression right = new Number(5);
+        Sub subtraction = new Sub(left, right);
+
+        assertEquals("(x-5)", subtraction.simis().print());
     }
 }

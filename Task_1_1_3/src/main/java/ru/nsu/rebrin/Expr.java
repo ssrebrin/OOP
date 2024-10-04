@@ -134,12 +134,12 @@ public class Expr {
                 return 0;
         }
     }
-
+    /*
     /**
      * Main.
      *
      * @param args - args
-     */
+     *
     public static void main(String[] args) {
         Expression e = new Div(
                 new Mul(new Variable("x"), new Variable("x")),
@@ -147,7 +147,7 @@ public class Expr {
         );
         Expr main = new Expr();
         System.out.println(e.print());
-        System.out.println(e.derivative("x").print());
+        System.out.println(e.derivative("x").print())
         System.out.println(main.parser("(1*x)*x").print());
-    }
+    }*/
 }
