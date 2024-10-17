@@ -8,6 +8,26 @@ import java.util.*;
 public class ListOfAdjacency implements Graph {
     List<List<Integer>> Gr = new ArrayList<>();
 
+    public ListOfAdjacency(int[][] matrix) {
+        if (matrix == null) {
+            Gr = new ArrayList<>();
+            return;
+        }
+        Gr = new ArrayList<>();
+        for (int[] ints : matrix) {
+            if(ints.length == 0){
+                Gr.add(new ArrayList<>());
+            }
+            else {
+                List<Integer> row = new ArrayList<>();
+                for (int j = 0; j < matrix[0].length; j++) {
+                    row.add(ints[j]);
+                }
+                Gr.add(row);
+            }
+        }
+    }
+
     @Override
     public void addVertex() {
         Gr.add(new ArrayList<>());
@@ -125,29 +145,41 @@ public class ListOfAdjacency implements Graph {
     public List<Integer> topologicalSort() {
         Stack<Integer> stack = new Stack<>();
         boolean[] visited = new boolean[vCount()];
+        boolean[] recStack = new boolean[vCount()]; // Для обнаружения циклов
 
+        // Для каждой вершины запускаем сортировку
         for (int i = 0; i < vCount(); i++) {
             if (!visited[i]) {
-                topo(i, visited, stack);
+                try {
+                    topo(i, visited, recStack, stack);
+                } catch (IllegalStateException e) {
+                    return Collections.emptyList(); // Возвращаем пустой список при обнаружении цикла
+                }
             }
         }
 
         List<Integer> result = new ArrayList<>();
         while (!stack.isEmpty()) {
-            result.add(stack.pop());
+            result.add(stack.pop()); // Извлекаем вершины в порядке топологической сортировки
         }
         return result;
     }
 
-    private void topo(int vertex, boolean[] visited, Stack<Integer> stack) {
+    private void topo(int vertex, boolean[] visited, boolean[] recStack, Stack<Integer> stack) {
         visited[vertex] = true;
+        recStack[vertex] = true; // Помечаем текущую вершину в рекурсивном стеке
 
-        for (int neighbor : Gr.get(vertex)) {
+        // Проходим по всем соседям текущей вершины
+        for (int neighbor : Gr.get(vertex)) { // Gr — это список смежности
             if (!visited[neighbor]) {
-                topo(neighbor, visited, stack);
+                topo(neighbor, visited, recStack, stack);
+            } else if (recStack[neighbor]) {
+                throw new IllegalStateException("Цикл обнаружен"); // Обнаружен цикл
             }
         }
 
-        stack.push(vertex);
+        recStack[vertex] = false; // Убираем вершину из рекурсивного стека
+        stack.push(vertex); // Добавляем вершину в стек результата
     }
+
 }

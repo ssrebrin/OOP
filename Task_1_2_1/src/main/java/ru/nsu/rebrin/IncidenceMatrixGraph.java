@@ -233,5 +233,36 @@ public class IncidenceMatrixGraph implements Graph {
         stack.push(vertex); // Add to the result stack
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || !(obj instanceof Graph)) return false;
+        boolean flag1 = true;
+        boolean flag2 = true;
 
+        Graph other = (Graph) obj;
+
+        // Проверка на одинаковое количество вершин и рёбер
+        if (this.vCount() != other.vCount()) return false;
+        if (this.eCount() != other.eCount()) return false;
+
+        List<List<Integer>> g1 = other.getEdges();
+        List<List<Integer>> g2 = this.getEdges();
+
+        for (int i = 0; i < g1.size(); i++) {
+            if (!Objects.equals(g1.get(i).get(0), g2.get(i).get(0)) || !Objects.equals(g1.get(i).get(1), g2.get(i).get(1))) {
+                flag1 = false;
+                break;
+            }
+        }
+
+        int s = g1.size() - 1;
+        for (int i = 0; i < g1.size(); i++) {
+            if (!Objects.equals(g1.get(s - i).get(0), g2.get(i).get(0)) || !Objects.equals(g1.get(s - i).get(1), g2.get(i).get(1))) {
+                flag2 = false;
+            }
+        }
+
+        return flag1 || flag2;
+    }
 }

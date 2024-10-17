@@ -2,6 +2,7 @@ package ru.nsu.rebrin;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -135,6 +136,23 @@ class AdjecencyMatrixGraphTest {
     }
 
     @Test
+    void testTopologicalSortWithCycle() {
+        // Create a graph with a cycle
+        int[][] cyclicGraphMatrix = {
+                {0, 1, 0, 0},
+                {0, 0, 1, 0},
+                {0, 0, 0, 1},
+                {0, 1, 0, 0}
+        };
+
+        AdjecencyMatrixGraph graph = new AdjecencyMatrixGraph(cyclicGraphMatrix);
+
+        List<Integer> sorted = graph.topologicalSort();
+
+        assertTrue(sorted.isEmpty());
+    }
+
+    @Test
     void testFile() throws IOException {
         int[][] matrix = {
                 {0, 1, 0, 0},
@@ -143,7 +161,11 @@ class AdjecencyMatrixGraphTest {
                 {0, 0, 0, 0}};
         AdjecencyMatrixGraph graph = new AdjecencyMatrixGraph(matrix);
         AdjecencyMatrixGraph graphF = new AdjecencyMatrixGraph(null);
-        graphF.readFromFile("Test.txt");
+
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource("Test.txt").getFile());
+
+        graphF.readFromFile(file.getAbsolutePath());
 
         assertTrue(graph.equals(graphF));
     }

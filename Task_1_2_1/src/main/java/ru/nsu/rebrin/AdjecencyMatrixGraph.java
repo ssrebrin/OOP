@@ -179,10 +179,15 @@ public class AdjecencyMatrixGraph implements Graph {
     public List<Integer> topologicalSort() {
         Stack<Integer> stack = new Stack<>();
         boolean[] visited = new boolean[vCount()];
+        boolean[] recStack = new boolean[vCount()]; // To detect cycles
 
         for (int i = 0; i < vCount(); i++) {
             if (!visited[i]) {
-                topo(i, visited, stack);
+                try {
+                    topo(i, visited, recStack, stack);
+                } catch (IllegalStateException e) {
+                    return Collections.emptyList(); // Return an empty list in case of a cycle
+                }
             }
         }
 
@@ -193,19 +198,24 @@ public class AdjecencyMatrixGraph implements Graph {
         return result;
     }
 
-    private void topo(int vertex, boolean[] visited, Stack<Integer> stack) {
+    private void topo(int vertex, boolean[] visited, boolean[] recStack, Stack<Integer> stack) {
         visited[vertex] = true;
+        recStack[vertex] = true; // Mark the current vertex in the recursion stack
 
         // Iterate over the neighbors using indices
         for (int i = 0; i < adjacencyMatrix.get(vertex).size(); i++) {
             if (adjacencyMatrix.get(vertex).get(i) == 1) {
                 if (!visited[i]) {
-                    topo(i, visited, stack);
+                    topo(i, visited, recStack, stack);
+                } else if (recStack[i]) {
+                    throw new IllegalStateException("Cycle detected");
                 }
             }
         }
 
-        stack.push(vertex);
+        recStack[vertex] = false; // Remove the vertex from the recursion stack
+        stack.push(vertex); // Add to the result stack
     }
+
 
 }

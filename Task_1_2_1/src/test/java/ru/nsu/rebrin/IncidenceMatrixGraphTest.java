@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -163,14 +164,18 @@ class IncidenceMatrixGraphTest {
 
     @Test
     void testFile() throws IOException {
-        int[][] m = {{1, 0, 0, 0},
-                {-1, 0, 1, 0},
-                {0, 0, -1, 1},
-                {0, 0, 0, 1}};
+        int[][] m = {{1, 0, 0},
+                {-1, 1, 0},
+                {0, -1, 1},
+                {0, 0, -1}};
         IncidenceMatrixGraph G = new IncidenceMatrixGraph(m);
         IncidenceMatrixGraph G1 = new IncidenceMatrixGraph(null);
-    G1.readFromFile("Test.txt");
-    assertTrue(G1.equals(G));
+
+        ClassLoader classLoader = getClass().getClassLoader();
+        File file = new File(classLoader.getResource("Test.txt").getFile());
+
+        G1.readFromFile(file.getAbsolutePath());
+        assertTrue(G1.equals(G));
     }
 
 }
