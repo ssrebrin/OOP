@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 class IncidenceMatrixGraphTest {
 
@@ -172,7 +173,7 @@ class IncidenceMatrixGraphTest {
         IncidenceMatrixGraph G1 = new IncidenceMatrixGraph(null);
 
         ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource("Test.txt").getFile());
+        File file = new File(Objects.requireNonNull(classLoader.getResource("Test.txt")).getFile());
 
         G1.readFromFile(file.getAbsolutePath());
         assertTrue(G1.equals(G));

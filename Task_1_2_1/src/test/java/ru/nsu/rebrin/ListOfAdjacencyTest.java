@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 class ListOfAdjacencyTest {
 
@@ -121,7 +122,7 @@ class ListOfAdjacencyTest {
         ListOfAdjacency graphF = new ListOfAdjacency(null);
 
         ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource("Test.txt").getFile());
+        File file = new File(Objects.requireNonNull(classLoader.getResource("Test.txt")).getFile());
 
         graphF.readFromFile(file.getAbsolutePath());
 
