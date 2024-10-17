@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"ru.nsu.rebrin","l":"AdjecencyMatrixGraph"},{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.rebrin","l":"Graph"},{"p":"ru.nsu.rebrin","l":"IncidenceMatrixGraph"},{"p":"ru.nsu.rebrin","l":"ListOfAdjacency"},{"p":"ru.nsu.rebrin","l":"Main"}]
