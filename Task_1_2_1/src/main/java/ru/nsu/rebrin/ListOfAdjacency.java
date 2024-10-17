@@ -3,7 +3,11 @@ package ru.nsu.rebrin;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.List;
+import java.util.Stack;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Collections;
 
 public class ListOfAdjacency implements Graph {
     List<List<Integer>> Gr = new ArrayList<>();

@@ -102,9 +102,9 @@ public class IncidenceMatrixGraph implements Graph {
         List<Integer> neighbors = new ArrayList<>();
         for (int i = 0; i < edgeCount; i++) {
             if (incidenceMatrix.get(vertex).get(i) != 0 && incidenceMatrix.get(vertex).get(i) != 2) {
-                int ii=0;
-                for(List<Integer> row : incidenceMatrix){
-                    if(row.get(i) != 0){
+                int ii = 0;
+                for (List<Integer> row : incidenceMatrix) {
+                    if (row.get(i) != 0) {
                         neighbors.add(ii);
                     }
                     ii++;

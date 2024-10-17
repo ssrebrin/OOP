@@ -1,12 +1,13 @@
 package ru.nsu.rebrin;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ListOfAdjacencyTest {
 
@@ -29,7 +30,7 @@ class ListOfAdjacencyTest {
         graph.removeVertex(1); // Remove vertex 1
         assertEquals(2, graph.vCount());
         assertEquals(List.of(), graph.getNeighbors(0)); // Vertex 0 should now point to 1 (originally 2)
-        graph.addEdge(0,1);
+        graph.addEdge(0, 1);
         assertEquals(List.of(1), graph.getNeighbors(0)); // Vertex 0 should now point to 1 (originally 2)
     }
 
