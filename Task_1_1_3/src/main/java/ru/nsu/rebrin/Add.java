@@ -16,7 +16,6 @@ class Add extends Expression {
     public Add(Expression left, Expression right) {
         this.left = left;
         this.right = right;
-        this.clas = 2;
     }
 
     @Override
@@ -30,7 +29,7 @@ class Add extends Expression {
     }
 
     @Override
-    public int steval(Map<String, Integer> variables) {
+    public Double steval(Map<String, Double> variables) {
         return left.steval(variables) + right.steval(variables);
     }
 

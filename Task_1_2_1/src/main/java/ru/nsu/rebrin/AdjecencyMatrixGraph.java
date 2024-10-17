@@ -44,14 +44,9 @@ public class AdjecencyMatrixGraph implements Graph {
         adjacencyMatrix.add(newVer);
     }
 
-    public void show() {
-        for (List<Integer> row : adjacencyMatrix) {
-            System.out.println(Arrays.toString(row.toArray()));
-        }
-    }
-
     @Override
     public void removeVertex(int vertex) {
+        verCount--;
         for (List<Integer> row : adjacencyMatrix) {
             row.remove(vertex);
         }
@@ -70,6 +65,7 @@ public class AdjecencyMatrixGraph implements Graph {
 
     @Override
     public void removeEdge(int from, int to) {
+        edgCount--;
         int currentCount = adjacencyMatrix.get(from).get(to) - 1;
         if (currentCount < 0) {
             currentCount = 0;
@@ -179,4 +175,37 @@ public class AdjecencyMatrixGraph implements Graph {
         }
         return degrees;
     }
+
+    public List<Integer> topologicalSort() {
+        Stack<Integer> stack = new Stack<>();
+        boolean[] visited = new boolean[vCount()];
+
+        for (int i = 0; i < vCount(); i++) {
+            if (!visited[i]) {
+                topo(i, visited, stack);
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        while (!stack.isEmpty()) {
+            result.add(stack.pop());
+        }
+        return result;
+    }
+
+    private void topo(int vertex, boolean[] visited, Stack<Integer> stack) {
+        visited[vertex] = true;
+
+        // Iterate over the neighbors using indices
+        for (int i = 0; i < adjacencyMatrix.get(vertex).size(); i++) {
+            if (adjacencyMatrix.get(vertex).get(i) == 1) {
+                if (!visited[i]) {
+                    topo(i, visited, stack);
+                }
+            }
+        }
+
+        stack.push(vertex);
+    }
+
 }

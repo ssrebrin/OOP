@@ -15,7 +15,6 @@ class Sub extends Expression {
     public Sub(Expression left, Expression right) {
         this.left = left;
         this.right = right;
-        this.clas = 2;
     }
 
     @Override
@@ -29,7 +28,7 @@ class Sub extends Expression {
     }
 
     @Override
-    public int steval(Map<String, Integer> variables) {
+    public Double steval(Map<String, Double> variables) {
         return left.steval(variables) - right.steval(variables);
 
     }

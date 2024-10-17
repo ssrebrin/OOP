@@ -1,5 +1,6 @@
 package ru.nsu.rebrin;
 
+import javax.swing.event.DocumentEvent;
 import java.util.Map;
 
 
@@ -31,9 +32,9 @@ class Div extends Expression {
     }
 
     @Override
-    public int steval(Map<String, Integer> variables) {
-        int a = left.steval(variables);
-        int b = right.steval(variables);
+    public Double steval(Map<String, Double> variables) {
+        Double a = left.steval(variables);
+        Double b = right.steval(variables);
         return a / b;
     }
 

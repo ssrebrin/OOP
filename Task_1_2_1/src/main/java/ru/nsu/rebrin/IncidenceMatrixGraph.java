@@ -49,14 +49,14 @@ public class IncidenceMatrixGraph implements Graph {
                     this.removeEdge(vertex, vertex);
                 } else {
                     for (int j = 0; j < incidenceMatrix.size(); j++) {
-                        if (incidenceMatrix.get(j).get(i) != 0) {
+                        if (incidenceMatrix.get(j).get(i) != 0 && j != vertex) {
                             if (incidenceMatrix.get(vertex).get(i) == 1) {
                                 this.removeEdge(vertex, j);
-                                break;
                             } else {
                                 this.removeEdge(j, vertex);
-                                break;
                             }
+                            i--;
+                            break;
                         }
                     }
                 }
@@ -102,7 +102,14 @@ public class IncidenceMatrixGraph implements Graph {
         List<Integer> neighbors = new ArrayList<>();
         for (int i = 0; i < edgeCount; i++) {
             if (incidenceMatrix.get(vertex).get(i) != 0 && incidenceMatrix.get(vertex).get(i) != 2) {
-                neighbors.add(incidenceMatrix.get(vertex).get(i));
+                int ii=0;
+                for(List<Integer> row : incidenceMatrix){
+                    if(row.get(i) != 0){
+                        neighbors.add(ii);
+                    }
+                    ii++;
+                }
+
             }
         }
 
@@ -173,5 +180,58 @@ public class IncidenceMatrixGraph implements Graph {
 
         return edges;
     }
+
+    public List<Integer> topologicalSort() {
+        Stack<Integer> stack = new Stack<>();
+        boolean[] visited = new boolean[vCount()];
+        boolean[] recStack = new boolean[vCount()]; // To detect cycles
+
+        for (int i = 0; i < vCount(); i++) {
+            if (!visited[i]) {
+                try {
+                    topologicalSortUtil(i, visited, recStack, stack);
+                } catch (IllegalStateException e) {
+                    return Collections.emptyList(); // Return an empty list in case of a cycle
+                }
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        while (!stack.isEmpty()) {
+            result.add(stack.pop());
+        }
+        return result;
+    }
+
+
+    private void topologicalSortUtil(int vertex, boolean[] visited, boolean[] recStack, Stack<Integer> stack) {
+        visited[vertex] = true;
+        recStack[vertex] = true; // Mark the current node in the recursion stack
+
+        for (int i = 0; i < edgeCount; i++) {
+            int neighbor = -1;
+            if (incidenceMatrix.get(vertex).get(i) == 1) {
+                // Find the neighbor vertex
+                for (int j = 0; j < vCount(); j++) {
+                    if (incidenceMatrix.get(j).get(i) == -1) {
+                        neighbor = j;
+                        break;
+                    }
+                }
+            }
+
+            if (neighbor != -1) {
+                if (!visited[neighbor]) {
+                    topologicalSortUtil(neighbor, visited, recStack, stack);
+                } else if (recStack[neighbor]) {
+                    throw new IllegalStateException("Cycle detected");
+                }
+            }
+        }
+
+        recStack[vertex] = false; // Remove from recursion stack
+        stack.push(vertex); // Add to the result stack
+    }
+
 
 }

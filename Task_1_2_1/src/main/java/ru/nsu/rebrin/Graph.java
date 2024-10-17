@@ -14,6 +14,6 @@ public interface Graph {
     boolean equals(Object obj);
     int eCount();
     int vCount();
-
+    public List<Integer> topologicalSort();
     List<List<Integer>> getEdges();
 }
