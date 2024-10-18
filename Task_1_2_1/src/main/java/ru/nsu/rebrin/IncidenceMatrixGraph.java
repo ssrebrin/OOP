@@ -18,6 +18,7 @@ public class IncidenceMatrixGraph implements Graph {
 
     /**
      * Matrix.
+     *
      * @param incidenceVer - array
      */
     public IncidenceMatrixGraph(int[][] incidenceVer) {
@@ -51,6 +52,7 @@ public class IncidenceMatrixGraph implements Graph {
 
     /**
      * remove.
+     *
      * @param vertex - v
      */
     @Override
@@ -78,7 +80,8 @@ public class IncidenceMatrixGraph implements Graph {
     }
 
     /**
-     * add e
+     * add e.
+     *
      * @param from - from
      * @param to - to
      */
@@ -102,6 +105,7 @@ public class IncidenceMatrixGraph implements Graph {
 
     /**
      * remove e.
+     *
      * @param from - from
      * @param to - to
      */
@@ -120,7 +124,8 @@ public class IncidenceMatrixGraph implements Graph {
     }
 
     /**
-     * get neightbors.
+     * get neighbors.
+     *
      * @param vertex - v
      * @return - list
      */
@@ -145,6 +150,7 @@ public class IncidenceMatrixGraph implements Graph {
 
     /**
      * Read file.
+     *
      * @param filename - file name
      * @throws IOException - exception
      */
@@ -170,6 +176,7 @@ public class IncidenceMatrixGraph implements Graph {
 
     /**
      * e count.
+     *
      * @return e
      */
     @Override
@@ -179,6 +186,7 @@ public class IncidenceMatrixGraph implements Graph {
 
     /**
      * v count.
+     *
      * @return - v
      */
     @Override
@@ -188,6 +196,7 @@ public class IncidenceMatrixGraph implements Graph {
 
     /**
      * Get e.
+     *
      * @return - e
      */
     @Override
@@ -228,6 +237,7 @@ public class IncidenceMatrixGraph implements Graph {
 
     /**
      * Toposort.
+     *
      * @return - list
      */
     @Override
@@ -255,6 +265,7 @@ public class IncidenceMatrixGraph implements Graph {
 
     /**
      * Helper.
+     *
      * @param vertex - v
      * @param visited - vis
      * @param recStack -stack1
@@ -291,6 +302,7 @@ public class IncidenceMatrixGraph implements Graph {
 
     /**
      * Eq.
+     * 
      * @param obj - obj
      * @return - eq
      */

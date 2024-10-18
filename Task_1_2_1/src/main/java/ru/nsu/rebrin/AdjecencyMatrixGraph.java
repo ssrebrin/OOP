@@ -19,6 +19,7 @@ public class AdjecencyMatrixGraph implements Graph {
 
     /**
      * Matrix.
+     *
      * @param matrix - m
      */
     public AdjecencyMatrixGraph(int[][] matrix) {
@@ -60,6 +61,7 @@ public class AdjecencyMatrixGraph implements Graph {
 
     /**
      * remove v.
+     *
      * @param vertex - v
      */
     @Override
@@ -73,6 +75,7 @@ public class AdjecencyMatrixGraph implements Graph {
 
     /**
      * Add e.
+     *
      * @param from - from
      * @param to - to
      */
@@ -87,6 +90,7 @@ public class AdjecencyMatrixGraph implements Graph {
 
     /**
      * Remove e.
+     *
      * @param from - from
      * @param to - to
      */
@@ -103,7 +107,8 @@ public class AdjecencyMatrixGraph implements Graph {
     }
 
     /**
-     * Get neightbors.
+     * Get neighbors.
+     *
      * @param vertex - v
      * @return - n
      */
@@ -128,6 +133,7 @@ public class AdjecencyMatrixGraph implements Graph {
 
     /**
      * Read file.
+     *
      * @param filename - file name
      * @throws IOException - exception
      */
@@ -153,6 +159,7 @@ public class AdjecencyMatrixGraph implements Graph {
 
     /**
      * E count.
+     *
      * @return - e
      */
     @Override
@@ -162,6 +169,7 @@ public class AdjecencyMatrixGraph implements Graph {
 
     /**
      * V count.
+     *
      * @return - v
      */
     @Override
@@ -171,6 +179,7 @@ public class AdjecencyMatrixGraph implements Graph {
 
     /**
      * Eq.
+     *
      * @param obj - obj
      * @return - eq
      */
@@ -209,6 +218,7 @@ public class AdjecencyMatrixGraph implements Graph {
 
     /**
      * Get e.
+     *
      * @return - list e
      */
     @Override
@@ -233,6 +243,7 @@ public class AdjecencyMatrixGraph implements Graph {
 
     /**
      * Toposort.
+     *
      * @return - list
      */
     @Override
@@ -260,6 +271,7 @@ public class AdjecencyMatrixGraph implements Graph {
 
     /**
      * Helper.
+     *
      * @param vertex - v
      * @param visited - v
      * @param recStack - s

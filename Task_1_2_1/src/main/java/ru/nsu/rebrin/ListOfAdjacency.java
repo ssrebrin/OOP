@@ -17,6 +17,7 @@ public class ListOfAdjacency implements Graph {
 
     /**
      * List.
+     *
      * @param matrix - matrix
      */
     public ListOfAdjacency(int[][] matrix) {
@@ -49,6 +50,7 @@ public class ListOfAdjacency implements Graph {
 
     /**
      * renove v.
+     *
      * @param vertex - v
      */
     @Override
@@ -72,6 +74,7 @@ public class ListOfAdjacency implements Graph {
 
     /**
      * add e.
+     *
      * @param from - from
      * @param to - to
      */
@@ -84,6 +87,7 @@ public class ListOfAdjacency implements Graph {
 
     /**
      * remove e.
+     *
      * @param from - from
      * @param to - to
      */
@@ -96,6 +100,7 @@ public class ListOfAdjacency implements Graph {
 
     /**
      * Neighbors.
+     *
      * @param vertex - v
      * @return - n
      */
@@ -114,6 +119,7 @@ public class ListOfAdjacency implements Graph {
 
     /**
      * read file.
+     *
      * @param filename - file name
      * @throws IOException - exception
      */
@@ -138,6 +144,7 @@ public class ListOfAdjacency implements Graph {
 
     /**
      * e count.
+     *
      * @return - e
      */
     @Override
@@ -151,6 +158,7 @@ public class ListOfAdjacency implements Graph {
 
     /**
      * v count.
+     *
      * @return - v
      */
     @Override
@@ -160,6 +168,7 @@ public class ListOfAdjacency implements Graph {
 
     /**
      * get edges.
+     *
      * @return - list of edges
      */
     @Override
@@ -175,6 +184,7 @@ public class ListOfAdjacency implements Graph {
 
     /**
      * eq.
+     *
      * @param obj - obj
      * @return - equals
      */
@@ -200,6 +210,7 @@ public class ListOfAdjacency implements Graph {
 
     /**
      * toposort.
+     *
      * @return - sorted graph
      */
     @Override
@@ -228,6 +239,7 @@ public class ListOfAdjacency implements Graph {
 
     /**
      * Helper.
+     *
      * @param vertex - v
      * @param visited -vis
      * @param recStack - s
