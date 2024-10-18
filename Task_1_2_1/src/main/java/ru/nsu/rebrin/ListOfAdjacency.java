@@ -4,16 +4,16 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
-import java.util.Stack;
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.ArrayList;
+import java.util.Stack;
 
 /**
  * List of adj.
  */
 public class ListOfAdjacency implements Graph {
-    List<List<Integer>> Gr = new ArrayList<>();
+    List<List<Integer>> gr = new ArrayList<>();
 
     /**
      * List.
@@ -22,30 +22,29 @@ public class ListOfAdjacency implements Graph {
      */
     public ListOfAdjacency(int[][] matrix) {
         if (matrix == null) {
-            Gr = new ArrayList<>();
+            gr = new ArrayList<>();
             return;
         }
-        Gr = new ArrayList<>();
+        gr = new ArrayList<>();
         for (int[] ints : matrix) {
-            if(ints.length == 0){
-                Gr.add(new ArrayList<>());
-            }
-            else {
+            if (ints.length == 0) {
+                gr.add(new ArrayList<>());
+            } else {
                 List<Integer> row = new ArrayList<>();
                 for (int j = 0; j < matrix[0].length; j++) {
                     row.add(ints[j]);
                 }
-                Gr.add(row);
+                gr.add(row);
             }
         }
     }
 
     /**
-     * add v
+     * add v.
      */
     @Override
-    public void addVertex() {
-        Gr.add(new ArrayList<>());
+    public void add_vertex() {
+        gr.add(new ArrayList<>());
     }
 
     /**
@@ -54,16 +53,16 @@ public class ListOfAdjacency implements Graph {
      * @param vertex - v
      */
     @Override
-    public void removeVertex(int vertex) {
+    public void remove_vertex(int vertex) {
         // Удаляем все рёбра, которые ссылаются на удаляемую вершину
-        for (List<Integer> list : Gr) {
+        for (List<Integer> list : gr) {
             list.removeIf(v -> v == vertex);
         }
         // Удаляем саму вершину
-        Gr.remove(vertex);
+        gr.remove(vertex);
 
         // Корректируем индексы, если нужно
-        for (List<Integer> list : Gr) {
+        for (List<Integer> list : gr) {
             for (int i = 0; i < list.size(); i++) {
                 if (list.get(i) > vertex) {
                     list.set(i, list.get(i) - 1);
@@ -76,12 +75,12 @@ public class ListOfAdjacency implements Graph {
      * add e.
      *
      * @param from - from
-     * @param to - to
+     * @param to   - to
      */
     @Override
-    public void addEdge(int from, int to) {
-        if (from < Gr.size() && to < Gr.size()) {
-            Gr.get(from).add(to);
+    public void add_edge(int from, int to) {
+        if (from < gr.size() && to < gr.size()) {
+            gr.get(from).add(to);
         }
     }
 
@@ -89,12 +88,12 @@ public class ListOfAdjacency implements Graph {
      * remove e.
      *
      * @param from - from
-     * @param to - to
+     * @param to   - to
      */
     @Override
-    public void removeEdge(int from, int to) {
-        if (from < Gr.size()) {
-            Gr.get(from).removeIf(v -> v == to);
+    public void remove_edge(int from, int to) {
+        if (from < gr.size()) {
+            gr.get(from).removeIf(v -> v == to);
         }
     }
 
@@ -105,12 +104,12 @@ public class ListOfAdjacency implements Graph {
      * @return - n
      */
     @Override
-    public List<Integer> getNeighbors(int vertex) {
-        List<Integer> res = new ArrayList<>(Gr.get(vertex)); // Соседи по исходящим рёбрам
+    public List<Integer> get_neighbors(int vertex) {
+        List<Integer> res = new ArrayList<>(gr.get(vertex)); // Соседи по исходящим рёбрам
 
         // Находим входящие рёбра
-        for (int i = 0; i < Gr.size(); i++) {
-            if (i != vertex && Gr.get(i).contains(vertex)) {
+        for (int i = 0; i < gr.size(); i++) {
+            if (i != vertex && gr.get(i).contains(vertex)) {
                 res.add(i); // добавляем вершины, которые ведут к vertex
             }
         }
@@ -124,19 +123,19 @@ public class ListOfAdjacency implements Graph {
      * @throws IOException - exception
      */
     @Override
-    public void readFromFile(String filename) throws IOException {
+    public void read_from_file(String filename) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String[] firstLine = br.readLine().split(" ");
             int vertexCount = Integer.parseInt(firstLine[0]);
 
             for (int i = 0; i < vertexCount; i++) {
-                this.addVertex();
+                this.add_vertex();
             }
 
             int edgeCount = Integer.parseInt(firstLine[1]);
             for (int i = 0; i < edgeCount; i++) {
                 String[] edge = br.readLine().split(" ");
-                this.addEdge(Integer.parseInt(edge[0]), Integer.parseInt(edge[1]));
+                this.add_edge(Integer.parseInt(edge[0]), Integer.parseInt(edge[1]));
             }
         }
     }
@@ -148,9 +147,9 @@ public class ListOfAdjacency implements Graph {
      * @return - e
      */
     @Override
-    public int eCount() {
+    public int e_count() {
         int edgeCount = 0;
-        for (List<Integer> list : Gr) {
+        for (List<Integer> list : gr) {
             edgeCount += list.size();
         }
         return edgeCount;
@@ -162,8 +161,8 @@ public class ListOfAdjacency implements Graph {
      * @return - v
      */
     @Override
-    public int vCount() {
-        return Gr.size();
+    public int v_count() {
+        return gr.size();
     }
 
     /**
@@ -172,10 +171,10 @@ public class ListOfAdjacency implements Graph {
      * @return - list of edges
      */
     @Override
-    public List<List<Integer>> getEdges() {
+    public List<List<Integer>> get_edges() {
         List<List<Integer>> edges = new ArrayList<>();
-        for (int i = 0; i < Gr.size(); i++) {
-            for (int to : Gr.get(i)) {
+        for (int i = 0; i < gr.size(); i++) {
+            for (int to : gr.get(i)) {
                 edges.add(List.of(i, to));
             }
         }
@@ -190,21 +189,25 @@ public class ListOfAdjacency implements Graph {
      */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || !(obj instanceof Graph)) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || !(obj instanceof Graph)) {
+            return false;
+        }
 
         Graph other = (Graph) obj;
 
         // Проверка на одинаковое количество вершин и рёбер
-        if (this.vCount() != other.vCount()) {
+        if (this.v_count() != other.v_count()) {
             return false;
         }
-        if (this.eCount() != other.eCount()) {
+        if (this.e_count() != other.e_count()) {
             return false;
         }
 
-        List<List<Integer>> g1 = other.getEdges();
-        List<List<Integer>> g2 = this.getEdges();
+        List<List<Integer>> g1 = other.get_edges();
+        List<List<Integer>> g2 = this.get_edges();
 
         g1.sort(Comparator.comparing((List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
         g2.sort(Comparator.comparing((List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
@@ -218,13 +221,13 @@ public class ListOfAdjacency implements Graph {
      * @return - sorted graph
      */
     @Override
-    public List<Integer> topologicalSort() {
+    public List<Integer> topological_sort() {
         Stack<Integer> stack = new Stack<>();
-        boolean[] visited = new boolean[vCount()];
-        boolean[] recStack = new boolean[vCount()]; // Для обнаружения циклов
+        boolean[] visited = new boolean[v_count()];
+        boolean[] recStack = new boolean[v_count()]; // Для обнаружения циклов
 
         // Для каждой вершины запускаем сортировку
-        for (int i = 0; i < vCount(); i++) {
+        for (int i = 0; i < v_count(); i++) {
             if (!visited[i]) {
                 try {
                     topo(i, visited, recStack, stack);
@@ -244,17 +247,17 @@ public class ListOfAdjacency implements Graph {
     /**
      * Helper.
      *
-     * @param vertex - v
-     * @param visited -vis
+     * @param vertex   - v
+     * @param visited  -vis
      * @param recStack - s
-     * @param stack - s
+     * @param stack    - s
      */
     private void topo(int vertex, boolean[] visited, boolean[] recStack, Stack<Integer> stack) {
         visited[vertex] = true;
         recStack[vertex] = true; // Помечаем текущую вершину в рекурсивном стеке
 
         // Проходим по всем соседям текущей вершины
-        for (int neighbor : Gr.get(vertex)) { // Gr — это список смежности
+        for (int neighbor : gr.get(vertex)) { // gr — это список смежности
             if (!visited[neighbor]) {
                 topo(neighbor, visited, recStack, stack);
             } else if (recStack[neighbor]) {

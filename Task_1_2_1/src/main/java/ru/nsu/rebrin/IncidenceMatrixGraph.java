@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Stack;
 import java.util.Comparator;
+import java.util.Stack;
 
 /**
  * Inc matrix.
@@ -42,7 +42,7 @@ public class IncidenceMatrixGraph implements Graph {
      * add v.
      */
     @Override
-    public void addVertex() {
+    public void add_vertex() {
         List<Integer> newVer = new ArrayList<>();
         for (int i = 0; i < edgeCount; i++) {
             newVer.add(0);
@@ -56,18 +56,18 @@ public class IncidenceMatrixGraph implements Graph {
      * @param vertex - v
      */
     @Override
-    public void removeVertex(int vertex) {
+    public void remove_vertex(int vertex) {
         for (int i = 0; i < edgeCount; i++) {
             if (incidenceMatrix.get(vertex).get(i) != 0) {
                 if (incidenceMatrix.get(vertex).get(i) == 2) {
-                    this.removeEdge(vertex, vertex);
+                    this.remove_edge(vertex, vertex);
                 } else {
                     for (int j = 0; j < incidenceMatrix.size(); j++) {
                         if (incidenceMatrix.get(j).get(i) != 0 && j != vertex) {
                             if (incidenceMatrix.get(vertex).get(i) == 1) {
-                                this.removeEdge(vertex, j);
+                                this.remove_edge(vertex, j);
                             } else {
-                                this.removeEdge(j, vertex);
+                                this.remove_edge(j, vertex);
                             }
                             i--;
                             break;
@@ -86,7 +86,7 @@ public class IncidenceMatrixGraph implements Graph {
      * @param to - to
      */
     @Override
-    public void addEdge(int from, int to) {
+    public void add_edge(int from, int to) {
         if (from == to) {
             incidenceMatrix.get(from).add(2);
         } else {
@@ -110,7 +110,7 @@ public class IncidenceMatrixGraph implements Graph {
      * @param to - to
      */
     @Override
-    public void removeEdge(int from, int to) {
+    public void remove_edge(int from, int to) {
 
         for (int i = 0; i < edgeCount; i++) {
             if (incidenceMatrix.get(from).get(i) != 0 && incidenceMatrix.get(to).get(i) != 0
@@ -131,7 +131,7 @@ public class IncidenceMatrixGraph implements Graph {
      * @return - list
      */
     @Override
-    public List<Integer> getNeighbors(int vertex) {
+    public List<Integer> get_neighbors(int vertex) {
         List<Integer> neighbors = new ArrayList<>();
         for (int i = 0; i < edgeCount; i++) {
             if (incidenceMatrix.get(vertex).get(i) != 0
@@ -157,21 +157,21 @@ public class IncidenceMatrixGraph implements Graph {
      * @throws IOException - exception
      */
     @Override
-    public void readFromFile(String filename) throws IOException {
+    public void read_from_file(String filename) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String[] firstLine = br.readLine().split(" ");
             int vertexCount = Integer.parseInt(firstLine[0]);
 
             incidenceMatrix = new ArrayList<>();
             for (int i = 0; i < vertexCount; i++) {
-                this.addVertex();
+                this.add_vertex();
             }
             int edge = Integer.parseInt(firstLine[1]);
             String line;
             for (int i = 0; i < edge; i++) {
                 line = br.readLine();
                 String[] eedge = line.split(" ");
-                this.addEdge(Integer.parseInt(eedge[0]), Integer.parseInt(eedge[1]));
+                this.add_edge(Integer.parseInt(eedge[0]), Integer.parseInt(eedge[1]));
             }
         }
     }
@@ -182,7 +182,7 @@ public class IncidenceMatrixGraph implements Graph {
      * @return e
      */
     @Override
-    public int eCount() {
+    public int e_count() {
         return edgeCount;
     }
 
@@ -192,7 +192,7 @@ public class IncidenceMatrixGraph implements Graph {
      * @return - v
      */
     @Override
-    public int vCount() {
+    public int v_count() {
         return incidenceMatrix.size();
     }
 
@@ -202,7 +202,7 @@ public class IncidenceMatrixGraph implements Graph {
      * @return - e
      */
     @Override
-    public List<List<Integer>> getEdges() {
+    public List<List<Integer>> get_edges() {
         List<List<Integer>> edges = new ArrayList<>();
 
         // Итерируем по количеству ребер
@@ -243,15 +243,15 @@ public class IncidenceMatrixGraph implements Graph {
      * @return - list
      */
     @Override
-    public List<Integer> topologicalSort() {
+    public List<Integer> topological_sort() {
         Stack<Integer> stack = new Stack<>();
-        boolean[] visited = new boolean[vCount()];
-        boolean[] recStack = new boolean[vCount()]; // To detect cycles
+        boolean[] visited = new boolean[v_count()];
+        boolean[] recStack = new boolean[v_count()]; // To detect cycles
 
-        for (int i = 0; i < vCount(); i++) {
+        for (int i = 0; i < v_count(); i++) {
             if (!visited[i]) {
                 try {
-                    topologicalSortUtil(i, visited, recStack, stack);
+                    topological_sort_util(i, visited, recStack, stack);
                 } catch (IllegalStateException e) {
                     return Collections.emptyList(); // Return an empty list in case of a cycle
                 }
@@ -273,7 +273,7 @@ public class IncidenceMatrixGraph implements Graph {
      * @param recStack -stack1
      * @param stack - stack2
      */
-    private void topologicalSortUtil(int vertex, boolean[] visited,
+    private void topological_sort_util(int vertex, boolean[] visited,
             boolean[] recStack, Stack<Integer> stack) {
         visited[vertex] = true;
         recStack[vertex] = true; // Mark the current node in the recursion stack
@@ -282,7 +282,7 @@ public class IncidenceMatrixGraph implements Graph {
             int neighbor = -1;
             if (incidenceMatrix.get(vertex).get(i) == 1) {
                 // Find the neighbor vertex
-                for (int j = 0; j < vCount(); j++) {
+                for (int j = 0; j < v_count(); j++) {
                     if (incidenceMatrix.get(j).get(i) == -1) {
                         neighbor = j;
                         break;
@@ -292,7 +292,7 @@ public class IncidenceMatrixGraph implements Graph {
 
             if (neighbor != -1) {
                 if (!visited[neighbor]) {
-                    topologicalSortUtil(neighbor, visited, recStack, stack);
+                    topological_sort_util(neighbor, visited, recStack, stack);
                 } else if (recStack[neighbor]) {
                     throw new IllegalStateException("Cycle detected");
                 }
@@ -314,22 +314,24 @@ public class IncidenceMatrixGraph implements Graph {
         if (this == obj) {
             return true;
         }
-        if (obj == null || !(obj instanceof Graph)) return false;
+        if (obj == null || !(obj instanceof Graph)) {
+            return false;
+        }
         boolean flag1 = true;
         boolean flag2 = true;
 
         Graph other = (Graph) obj;
 
         // Проверка на одинаковое количество вершин и рёбер
-        if (this.vCount() != other.vCount()) {
+        if (this.v_count() != other.v_count()) {
             return false;
         }
-        if (this.eCount() != other.eCount()) {
+        if (this.e_count() != other.e_count()) {
             return false;
         }
 
-        List<List<Integer>> g1 = other.getEdges();
-        List<List<Integer>> g2 = this.getEdges();
+        List<List<Integer>> g1 = other.get_edges();
+        List<List<Integer>> g2 = this.get_edges();
 
         g1.sort(Comparator.comparing((List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
         g2.sort(Comparator.comparing((List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));

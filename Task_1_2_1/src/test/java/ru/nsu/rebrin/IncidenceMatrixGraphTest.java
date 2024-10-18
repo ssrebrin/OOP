@@ -22,12 +22,12 @@ class IncidenceMatrixGraphTest {
         };
 
         IncidenceMatrixGraph graph = new IncidenceMatrixGraph(initialIncidenceMatrix);
-        graph.addVertex();
-        graph.addEdge(2, 5);
-        graph.addEdge(4, 5);
-        graph.addEdge(5, 1);
-        graph.addEdge(5, 5);
-        graph.removeEdge(5, 5);
+        graph.add_vertex();
+        graph.add_edge(2, 5);
+        graph.add_edge(4, 5);
+        graph.add_edge(5, 1);
+        graph.add_edge(5, 5);
+        graph.remove_edge(5, 5);
 
         int[][] expectedIncidenceMatrix = {
                 {1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -51,20 +51,20 @@ class IncidenceMatrixGraphTest {
     @Test
     void testAddVertex() {
         IncidenceMatrixGraph graph = new IncidenceMatrixGraph(null);
-        graph.addVertex();
-        graph.addVertex();
+        graph.add_vertex();
+        graph.add_vertex();
 
-        assertEquals(2, graph.vCount());
+        assertEquals(2, graph.v_count());
     }
 
     @Test
     void testAddEdge() {
         IncidenceMatrixGraph graph = new IncidenceMatrixGraph(null);
-        graph.addVertex();
-        graph.addVertex();
-        graph.addEdge(0, 1);
+        graph.add_vertex();
+        graph.add_vertex();
+        graph.add_edge(0, 1);
 
-        assertEquals(1, graph.eCount());
+        assertEquals(1, graph.e_count());
         // Проверяем значения в матрице инцидентности
         assertEquals(1, graph.incidenceMatrix.get(0).get(0)); // Из вершины 0
         assertEquals(-1, graph.incidenceMatrix.get(1).get(0)); // В вершину 1
@@ -73,12 +73,12 @@ class IncidenceMatrixGraphTest {
     @Test
     void testRemoveEdge() {
         IncidenceMatrixGraph graph = new IncidenceMatrixGraph(null);
-        graph.addVertex();
-        graph.addVertex();
-        graph.addEdge(0, 1);
-        graph.removeEdge(0, 1);
+        graph.add_vertex();
+        graph.add_vertex();
+        graph.add_edge(0, 1);
+        graph.remove_edge(0, 1);
 
-        assertEquals(0, graph.eCount());
+        assertEquals(0, graph.e_count());
         assertTrue(graph.incidenceMatrix.get(0).isEmpty());
         assertTrue(graph.incidenceMatrix.get(1).isEmpty());
     }
@@ -86,33 +86,33 @@ class IncidenceMatrixGraphTest {
     @Test
     void testRemoveVertex() {
         IncidenceMatrixGraph graph = new IncidenceMatrixGraph(null);
-        graph.addVertex(); // 0
-        graph.addVertex(); // 1
-        graph.addVertex(); // 2
-        graph.addEdge(0, 1);
-        graph.addEdge(1, 2);
+        graph.add_vertex(); // 0
+        graph.add_vertex(); // 1
+        graph.add_vertex(); // 2
+        graph.add_edge(0, 1);
+        graph.add_edge(1, 2);
 
-        graph.removeVertex(1);
+        graph.remove_vertex(1);
 
-        assertEquals(2, graph.vCount());
-        assertEquals(0, graph.eCount());
+        assertEquals(2, graph.v_count());
+        assertEquals(0, graph.e_count());
     }
 
     @Test
     void testGetNeighbors() {
         IncidenceMatrixGraph graph = new IncidenceMatrixGraph(null);
-        graph.addVertex(); // 0
-        graph.addVertex(); // 1
-        graph.addVertex(); // 2
-        graph.addEdge(0, 1);
-        graph.addEdge(1, 2);
-        graph.addEdge(2, 0);
+        graph.add_vertex(); // 0
+        graph.add_vertex(); // 1
+        graph.add_vertex(); // 2
+        graph.add_edge(0, 1);
+        graph.add_edge(1, 2);
+        graph.add_edge(2, 0);
 
-        List<Integer> neighborsOf0 = graph.getNeighbors(0);
+        List<Integer> neighborsOf0 = graph.get_neighbors(0);
         assertTrue(neighborsOf0.contains(1));
         assertTrue(neighborsOf0.contains(2));
 
-        List<Integer> neighborsOf1 = graph.getNeighbors(1);
+        List<Integer> neighborsOf1 = graph.get_neighbors(1);
         assertTrue(neighborsOf1.contains(0));
         assertTrue(neighborsOf1.contains(2));
     }
@@ -120,15 +120,15 @@ class IncidenceMatrixGraphTest {
     @Test
     void testTopologicalSort() {
         IncidenceMatrixGraph graph = new IncidenceMatrixGraph(null);
-        graph.addVertex(); // 0
-        graph.addVertex(); // 1
-        graph.addVertex(); // 2
-        graph.addVertex(); // 3
-        graph.addEdge(0, 1);
-        graph.addEdge(1, 2);
-        graph.addEdge(2, 3);
+        graph.add_vertex(); // 0
+        graph.add_vertex(); // 1
+        graph.add_vertex(); // 2
+        graph.add_vertex(); // 3
+        graph.add_edge(0, 1);
+        graph.add_edge(1, 2);
+        graph.add_edge(2, 3);
 
-        List<Integer> sorted = graph.topologicalSort();
+        List<Integer> sorted = graph.topological_sort();
 
         assertEquals(List.of(0, 1, 2, 3), sorted);
     }
@@ -144,9 +144,9 @@ class IncidenceMatrixGraphTest {
         };
 
         IncidenceMatrixGraph graph = new IncidenceMatrixGraph(cyclicGraphMatrix);
-        graph.addEdge(3, 1); // Introduce a cycle: 3 -> 1
+        graph.add_edge(3, 1); // Introduce a cycle: 3 -> 1
 
-        List<Integer> sorted = graph.topologicalSort();
+        List<Integer> sorted = graph.topological_sort();
 
         assertTrue(sorted.isEmpty());
     }
@@ -154,11 +154,11 @@ class IncidenceMatrixGraphTest {
     @Test
     void testGetEdges() {
         IncidenceMatrixGraph graph = new IncidenceMatrixGraph(null);
-        graph.addVertex(); // 0
-        graph.addVertex(); // 1
-        graph.addEdge(0, 1);
+        graph.add_vertex(); // 0
+        graph.add_vertex(); // 1
+        graph.add_edge(0, 1);
 
-        List<List<Integer>> edges = graph.getEdges();
+        List<List<Integer>> edges = graph.get_edges();
         assertEquals(1, edges.size());
         assertEquals(List.of(0, 1), edges.get(0));
     }
@@ -175,7 +175,7 @@ class IncidenceMatrixGraphTest {
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(Objects.requireNonNull(classLoader.getResource("Test.txt")).getFile());
 
-        G1.readFromFile(file.getAbsolutePath());
+        G1.read_from_file(file.getAbsolutePath());
         assertTrue(G1.equals(G));
     }
 

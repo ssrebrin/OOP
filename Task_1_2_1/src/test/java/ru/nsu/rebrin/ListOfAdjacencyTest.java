@@ -14,54 +14,54 @@ class ListOfAdjacencyTest {
     @Test
     void testAddVertex() {
         ListOfAdjacency graph = new ListOfAdjacency(null);
-        graph.addVertex();
-        graph.addVertex();
-        assertEquals(2, graph.vCount());
+        graph.add_vertex();
+        graph.add_vertex();
+        assertEquals(2, graph.v_count());
     }
 
     @Test
     void testRemoveVertex() {
         ListOfAdjacency graph = new ListOfAdjacency(null);
-        graph.addVertex(); // 0
-        graph.addVertex(); // 1
-        graph.addVertex(); // 2
-        graph.addEdge(0, 1);
-        graph.addEdge(1, 2);
-        graph.removeVertex(1); // Remove vertex 1
-        assertEquals(2, graph.vCount());
-        assertEquals(List.of(), graph.getNeighbors(0)); // Vertex 0 should now point to 1 (originally 2)
-        graph.addEdge(0, 1);
-        assertEquals(List.of(1), graph.getNeighbors(0)); // Vertex 0 should now point to 1 (originally 2)
+        graph.add_vertex(); // 0
+        graph.add_vertex(); // 1
+        graph.add_vertex(); // 2
+        graph.add_edge(0, 1);
+        graph.add_edge(1, 2);
+        graph.remove_vertex(1); // Remove vertex 1
+        assertEquals(2, graph.v_count());
+        assertEquals(List.of(), graph.get_neighbors(0)); // Vertex 0 should now point to 1 (originally 2)
+        graph.add_edge(0, 1);
+        assertEquals(List.of(1), graph.get_neighbors(0)); // Vertex 0 should now point to 1 (originally 2)
     }
 
     @Test
     void testAddEdge() {
         ListOfAdjacency graph = new ListOfAdjacency(null);
-        graph.addVertex(); // 0
-        graph.addVertex(); // 1
-        graph.addEdge(0, 1);
-        assertEquals(List.of(1), graph.getNeighbors(0));
+        graph.add_vertex(); // 0
+        graph.add_vertex(); // 1
+        graph.add_edge(0, 1);
+        assertEquals(List.of(1), graph.get_neighbors(0));
     }
 
     @Test
     void testRemoveEdge() {
         ListOfAdjacency graph = new ListOfAdjacency(null);
-        graph.addVertex(); // 0
-        graph.addVertex(); // 1
-        graph.addEdge(0, 1);
-        graph.removeEdge(0, 1);
-        assertEquals(0, graph.eCount());
+        graph.add_vertex(); // 0
+        graph.add_vertex(); // 1
+        graph.add_edge(0, 1);
+        graph.remove_edge(0, 1);
+        assertEquals(0, graph.e_count());
     }
 
     @Test
     void testGetNeighbors() {
         ListOfAdjacency graph = new ListOfAdjacency(null);
-        graph.addVertex(); // 0
-        graph.addVertex(); // 1
-        graph.addVertex(); // 2
-        graph.addEdge(0, 1);
-        graph.addEdge(1, 2);
-        List<Integer> neighbors = graph.getNeighbors(1);
+        graph.add_vertex(); // 0
+        graph.add_vertex(); // 1
+        graph.add_vertex(); // 2
+        graph.add_edge(0, 1);
+        graph.add_edge(1, 2);
+        List<Integer> neighbors = graph.get_neighbors(1);
         assertTrue(neighbors.contains(2));
         assertTrue(neighbors.contains(0));
     }
@@ -69,14 +69,14 @@ class ListOfAdjacencyTest {
     @Test
     void testTopologicalSort() {
         ListOfAdjacency graph = new ListOfAdjacency(null);
-        graph.addVertex(); // 0
-        graph.addVertex(); // 1
-        graph.addVertex(); // 2
-        graph.addVertex(); // 3
-        graph.addEdge(0, 1);
-        graph.addEdge(1, 2);
-        graph.addEdge(2, 3);
-        List<Integer> sorted = graph.topologicalSort();
+        graph.add_vertex(); // 0
+        graph.add_vertex(); // 1
+        graph.add_vertex(); // 2
+        graph.add_vertex(); // 3
+        graph.add_edge(0, 1);
+        graph.add_edge(1, 2);
+        graph.add_edge(2, 3);
+        List<Integer> sorted = graph.topological_sort();
         assertEquals(List.of(0, 1, 2, 3), sorted);
     }
 
@@ -92,7 +92,7 @@ class ListOfAdjacencyTest {
 
         AdjecencyMatrixGraph graph = new AdjecencyMatrixGraph(cyclicGraphMatrix);
 
-        List<Integer> sorted = graph.topologicalSort();
+        List<Integer> sorted = graph.topological_sort();
 
         assertTrue(sorted.isEmpty());
     }
@@ -100,14 +100,14 @@ class ListOfAdjacencyTest {
     @Test
     void testEquals() {
         ListOfAdjacency graph1 = new ListOfAdjacency(null);
-        graph1.addVertex();
-        graph1.addVertex();
-        graph1.addEdge(0, 1);
+        graph1.add_vertex();
+        graph1.add_vertex();
+        graph1.add_edge(0, 1);
 
         ListOfAdjacency graph2 = new ListOfAdjacency(null);
-        graph2.addVertex();
-        graph2.addVertex();
-        graph2.addEdge(0, 1);
+        graph2.add_vertex();
+        graph2.add_vertex();
+        graph2.add_edge(0, 1);
 
         assertTrue(graph1.equals(graph2));
     }
@@ -125,7 +125,7 @@ class ListOfAdjacencyTest {
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(Objects.requireNonNull(classLoader.getResource("Test.txt")).getFile());
 
-        graphF.readFromFile(file.getAbsolutePath());
+        graphF.read_from_file(file.getAbsolutePath());
 
         assertTrue(graph.equals(graphF));
     }

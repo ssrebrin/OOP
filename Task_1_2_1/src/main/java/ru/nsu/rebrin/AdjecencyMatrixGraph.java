@@ -47,7 +47,7 @@ public class AdjecencyMatrixGraph implements Graph {
      * add v.
      */
     @Override
-    public void addVertex() {
+    public void add_vertex() {
         for (List<Integer> row : adjacencyMatrix) {
             row.add(0);
         }
@@ -65,7 +65,7 @@ public class AdjecencyMatrixGraph implements Graph {
      * @param vertex - v
      */
     @Override
-    public void removeVertex(int vertex) {
+    public void remove_vertex(int vertex) {
         verCount--;
         for (List<Integer> row : adjacencyMatrix) {
             row.remove(vertex);
@@ -80,7 +80,7 @@ public class AdjecencyMatrixGraph implements Graph {
      * @param to - to
      */
     @Override
-    public void addEdge(int from, int to) {
+    public void add_edge(int from, int to) {
         edgCount++;
         int currentCount = adjacencyMatrix.get(from).get(to);
         List<Integer> newRow = adjacencyMatrix.get(from);
@@ -95,7 +95,7 @@ public class AdjecencyMatrixGraph implements Graph {
      * @param to - to
      */
     @Override
-    public void removeEdge(int from, int to) {
+    public void remove_edge(int from, int to) {
         edgCount--;
         int currentCount = adjacencyMatrix.get(from).get(to) - 1;
         if (currentCount < 0) {
@@ -113,7 +113,7 @@ public class AdjecencyMatrixGraph implements Graph {
      * @return - n
      */
     @Override
-    public List<Integer> getNeighbors(int vertex) {
+    public List<Integer> get_neighbors(int vertex) {
         List<Integer> neighbors = new ArrayList<>();
         for (int i = 0; i < adjacencyMatrix.get(vertex).size(); i++) {
             if (adjacencyMatrix.get(vertex).get(i) != 0 && i != vertex) {
@@ -139,21 +139,21 @@ public class AdjecencyMatrixGraph implements Graph {
      * @throws IOException - exception
      */
     @Override
-    public void readFromFile(String filename) throws IOException {
+    public void read_from_file(String filename) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
             String[] firstLine = br.readLine().split(" ");
             int vertexCount = Integer.parseInt(firstLine[0]);
 
             adjacencyMatrix = new ArrayList<>();
             for (int i = 0; i < vertexCount; i++) {
-                this.addVertex();
+                this.add_vertex();
             }
             int edge = Integer.parseInt(firstLine[1]);
             String line;
             for (int i = 0; i < edge; i++) {
                 line = br.readLine();
                 String[] eedge = line.split(" ");
-                this.addEdge(Integer.parseInt(eedge[0]), Integer.parseInt(eedge[1]));
+                this.add_edge(Integer.parseInt(eedge[0]), Integer.parseInt(eedge[1]));
             }
         }
     }
@@ -164,7 +164,7 @@ public class AdjecencyMatrixGraph implements Graph {
      * @return - e
      */
     @Override
-    public int eCount() {
+    public int e_count() {
         return edgCount;
     }
 
@@ -174,7 +174,7 @@ public class AdjecencyMatrixGraph implements Graph {
      * @return - v
      */
     @Override
-    public int vCount() {
+    public int v_count() {
         return verCount;
     }
 
@@ -186,23 +186,27 @@ public class AdjecencyMatrixGraph implements Graph {
      */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || !(obj instanceof Graph)) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || !(obj instanceof Graph)) {
+            return false;
+        }
         boolean flag1 = true;
         boolean flag2 = true;
 
         Graph other = (Graph) obj;
 
         // Проверка на одинаковое количество вершин и рёбер
-        if (this.vCount() != other.vCount()) {
+        if (this.v_count() != other.v_count()) {
             return false;
         }
-        if (this.eCount() != other.eCount()) {
+        if (this.e_count() != other.e_count()) {
             return false;
         }
 
-        List<List<Integer>> g1 = other.getEdges();
-        List<List<Integer>> g2 = this.getEdges();
+        List<List<Integer>> g1 = other.get_edges();
+        List<List<Integer>> g2 = this.get_edges();
 
         g1.sort(Comparator.comparing((List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
         g2.sort(Comparator.comparing((List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
@@ -216,7 +220,7 @@ public class AdjecencyMatrixGraph implements Graph {
      * @return - list e
      */
     @Override
-    public List<List<Integer>> getEdges() {
+    public List<List<Integer>> get_edges() {
         List<List<Integer>> degrees = new ArrayList<>();
         int i = 0;
         for (List<Integer> row : adjacencyMatrix) {
@@ -241,12 +245,12 @@ public class AdjecencyMatrixGraph implements Graph {
      * @return - list
      */
     @Override
-    public List<Integer> topologicalSort() {
+    public List<Integer> topological_sort() {
         Stack<Integer> stack = new Stack<>();
-        boolean[] visited = new boolean[vCount()];
-        boolean[] recStack = new boolean[vCount()]; // To detect cycles
+        boolean[] visited = new boolean[v_count()];
+        boolean[] recStack = new boolean[v_count()]; // To detect cycles
 
-        for (int i = 0; i < vCount(); i++) {
+        for (int i = 0; i < v_count(); i++) {
             if (!visited[i]) {
                 try {
                     topo(i, visited, recStack, stack);

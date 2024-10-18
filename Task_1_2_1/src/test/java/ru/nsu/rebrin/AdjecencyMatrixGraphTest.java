@@ -18,11 +18,11 @@ class AdjecencyMatrixGraphTest {
         AdjecencyMatrixGraph graph = new AdjecencyMatrixGraph(null);
 
         // Add vertices
-        graph.addVertex();
-        graph.addVertex();
+        graph.add_vertex();
+        graph.add_vertex();
 
         // The vertex count should be 2
-        assertEquals(2, graph.vCount());
+        assertEquals(2, graph.v_count());
     }
 
     @Test
@@ -35,11 +35,11 @@ class AdjecencyMatrixGraphTest {
         AdjecencyMatrixGraph graph = new AdjecencyMatrixGraph(matrix);
 
         // Add edge from vertex 0 to vertex 1
-        graph.addEdge(0, 1);
+        graph.add_edge(0, 1);
 
         // Verify that the edge is added
         assertEquals(1, graph.adjacencyMatrix.get(0).get(1));
-        assertEquals(1, graph.eCount());
+        assertEquals(1, graph.e_count());
     }
 
     @Test
@@ -52,11 +52,11 @@ class AdjecencyMatrixGraphTest {
         AdjecencyMatrixGraph graph = new AdjecencyMatrixGraph(matrix);
 
         // Remove edge from vertex 0 to vertex 1
-        graph.removeEdge(0, 1);
+        graph.remove_edge(0, 1);
 
         // Verify that the edge is removed
         assertEquals(0, graph.adjacencyMatrix.get(0).get(1));
-        assertEquals(0, graph.eCount());
+        assertEquals(0, graph.e_count());
     }
 
     @Test
@@ -70,10 +70,10 @@ class AdjecencyMatrixGraphTest {
         AdjecencyMatrixGraph graph = new AdjecencyMatrixGraph(matrix);
 
         // Remove vertex 1
-        graph.removeVertex(1);
+        graph.remove_vertex(1);
 
         // Verify that vertex 1 is removed
-        assertEquals(2, graph.vCount());
+        assertEquals(2, graph.v_count());
         assertEquals(0, graph.adjacencyMatrix.get(0).get(1));  // Old edge between 0 and 1 should be removed
     }
 
@@ -88,14 +88,14 @@ class AdjecencyMatrixGraphTest {
         AdjecencyMatrixGraph graph = new AdjecencyMatrixGraph(matrix);
 
         // Get neighbors of vertex 0
-        List<Integer> neighbors = graph.getNeighbors(0);
+        List<Integer> neighbors = graph.get_neighbors(0);
 
         // Vertex 0 has one neighbor: vertex 1
         assertEquals(1, neighbors.size());
         assertEquals(1, neighbors.get(0));
 
         // Get neighbors of vertex 1
-        neighbors = graph.getNeighbors(1);
+        neighbors = graph.get_neighbors(1);
 
         // Vertex 1 has one neighbor: vertex 2
         assertEquals(1, neighbors.size());
@@ -113,7 +113,7 @@ class AdjecencyMatrixGraphTest {
         };
         AdjecencyMatrixGraph graph = new AdjecencyMatrixGraph(matrix);
 
-        List<Integer> sorted = graph.topologicalSort();
+        List<Integer> sorted = graph.topological_sort();
 
         assertEquals(List.of(0, 1, 2, 3), sorted);
     }
@@ -149,7 +149,7 @@ class AdjecencyMatrixGraphTest {
 
         AdjecencyMatrixGraph graph = new AdjecencyMatrixGraph(cyclicGraphMatrix);
 
-        List<Integer> sorted = graph.topologicalSort();
+        List<Integer> sorted = graph.topological_sort();
 
         assertTrue(sorted.isEmpty());
     }
@@ -167,7 +167,7 @@ class AdjecencyMatrixGraphTest {
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(Objects.requireNonNull(classLoader.getResource("Test.txt")).getFile());
 
-        graphF.readFromFile(file.getAbsolutePath());
+        graphF.read_from_file(file.getAbsolutePath());
 
         assertTrue(graph.equals(graphF));
     }

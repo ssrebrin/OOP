@@ -7,50 +7,50 @@ public interface Graph {
     /**
      * Add v.
      */
-    void addVertex();
+    void add_vertex();
 
     /**
      * Remove v.
+     *
      * @param vertex - v
      */
-    void removeVertex(int vertex);
+    void remove_vertex(int vertex);
 
     /**
      * Add e.
+     *
      * @param from - from
      * @param to - to
      */
-    void addEdge(int from, int to);
+    void add_edge(int from, int to);
 
     /**
      * Remove e.
+     *
      * @param from - from
      * @param to - to
      */
-    void removeEdge(int from, int to);
+    void remove_edge(int from, int to);
 
     /**
      * Get neighbors.
+     *
      * @param vertex - v
      * @return - neighbors
      */
-    List<Integer> getNeighbors(int vertex);
+    List<Integer> get_neighbors(int vertex);
 
     /**
      * Read from file.
+     *
      * @param filename - file name
      * @throws IOException - Exception
      */
-    void readFromFile(String filename) throws IOException;
-
-    /**
-     * To string.
-     * @return - string
-     */
-    String toString();
+    void read_from_file(String filename) throws IOException;
 
     /**
      * Equals.
+     *
      * @param obj - obj
      * @return - eq
      */
@@ -58,25 +58,29 @@ public interface Graph {
 
     /**
      * E count.
+     *
      * @return - count
      */
-    int eCount();
+    int e_count();
 
     /**
      * V count.
+     *
      * @return - count
      */
-    int vCount();
+    int v_count();
 
     /**
      * Toposort.
+     *
      * @return - List
      */
-    List<Integer> topologicalSort();
+    List<Integer> topological_sort();
 
     /**
      * Helper.
+     *
      * @return - edges
      */
-    List<List<Integer>> getEdges();
+    List<List<Integer>> get_edges();
 }
