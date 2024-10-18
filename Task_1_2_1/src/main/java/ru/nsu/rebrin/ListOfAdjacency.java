@@ -196,8 +196,12 @@ public class ListOfAdjacency implements Graph {
         Graph other = (Graph) obj;
 
         // Проверка на одинаковое количество вершин и рёбер
-        if (this.vCount() != other.vCount()) return false;
-        if (this.eCount() != other.eCount()) return false;
+        if (this.vCount() != other.vCount()) {
+            return false;
+        }
+        if (this.eCount() != other.eCount()) {
+            return false;
+        }
 
         List<List<Integer>> g1 = other.getEdges();
         List<List<Integer>> g2 = this.getEdges();
@@ -225,7 +229,7 @@ public class ListOfAdjacency implements Graph {
                 try {
                     topo(i, visited, recStack, stack);
                 } catch (IllegalStateException e) {
-                    return Collections.emptyList(); // Возвращаем пустой список при обнаружении цикла
+                    return Collections.emptyList(); // Возвращаем пустой список
                 }
             }
         }

@@ -3,11 +3,7 @@ package ru.nsu.rebrin;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * Adj matrix.
@@ -122,7 +118,8 @@ public class AdjecencyMatrixGraph implements Graph {
         }
         Collections.sort(neighbors);
         for (int i = 0; i < adjacencyMatrix.size(); i++) {
-            if (adjacencyMatrix.get(i).get(vertex) > 0 && Collections.binarySearch(neighbors, i) == 0 && i != vertex) {
+            if (adjacencyMatrix.get(i).get(vertex) > 0
+                    && Collections.binarySearch(neighbors, i) == 0 && i != vertex) {
                 neighbors.add(i);
                 Collections.sort(neighbors);
             }
@@ -193,27 +190,20 @@ public class AdjecencyMatrixGraph implements Graph {
         Graph other = (Graph) obj;
 
         // Проверка на одинаковое количество вершин и рёбер
-        if (this.vCount() != other.vCount()) return false;
-        if (this.eCount() != other.eCount()) return false;
+        if (this.vCount() != other.vCount()) {
+            return false;
+        }
+        if (this.eCount() != other.eCount()) {
+            return false;
+        }
 
         List<List<Integer>> g1 = other.getEdges();
         List<List<Integer>> g2 = this.getEdges();
 
-        for (int i = 0; i < g1.size(); i++) {
-            if (!Objects.equals(g1.get(i).get(0), g2.get(i).get(0)) || !Objects.equals(g1.get(i).get(1), g2.get(i).get(1))) {
-                flag1 = false;
-                break;
-            }
-        }
+        g1.sort(Comparator.comparing((List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
+        g2.sort(Comparator.comparing((List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
 
-        int s = g1.size() - 1;
-        for (int i = 0; i < g1.size(); i++) {
-            if (!Objects.equals(g1.get(s - i).get(0), g2.get(i).get(0)) || !Objects.equals(g1.get(s - i).get(1), g2.get(i).get(1))) {
-                flag2 = false;
-            }
-        }
-
-        return flag1 || flag2;
+        return g1.equals(g2);
     }
 
     /**

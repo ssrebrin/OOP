@@ -113,7 +113,8 @@ public class IncidenceMatrixGraph implements Graph {
     public void removeEdge(int from, int to) {
 
         for (int i = 0; i < edgeCount; i++) {
-            if (incidenceMatrix.get(from).get(i) != 0 && incidenceMatrix.get(to).get(i) != 0 && ((from == to) == (incidenceMatrix.get(from).get(i) == 2))) {
+            if (incidenceMatrix.get(from).get(i) != 0 && incidenceMatrix.get(to).get(i) != 0
+                    && ((from == to) == (incidenceMatrix.get(from).get(i) == 2))) {
                 for (List<Integer> row : incidenceMatrix) {
                     row.remove(i);
                 }
@@ -133,7 +134,8 @@ public class IncidenceMatrixGraph implements Graph {
     public List<Integer> getNeighbors(int vertex) {
         List<Integer> neighbors = new ArrayList<>();
         for (int i = 0; i < edgeCount; i++) {
-            if (incidenceMatrix.get(vertex).get(i) != 0 && incidenceMatrix.get(vertex).get(i) != 2) {
+            if (incidenceMatrix.get(vertex).get(i) != 0
+                    && incidenceMatrix.get(vertex).get(i) != 2) {
                 int ii = 0;
                 for (List<Integer> row : incidenceMatrix) {
                     if (row.get(i) != 0) {
@@ -271,7 +273,8 @@ public class IncidenceMatrixGraph implements Graph {
      * @param recStack -stack1
      * @param stack - stack2
      */
-    private void topologicalSortUtil(int vertex, boolean[] visited, boolean[] recStack, Stack<Integer> stack) {
+    private void topologicalSortUtil(int vertex, boolean[] visited,
+            boolean[] recStack, Stack<Integer> stack) {
         visited[vertex] = true;
         recStack[vertex] = true; // Mark the current node in the recursion stack
 
@@ -302,13 +305,15 @@ public class IncidenceMatrixGraph implements Graph {
 
     /**
      * Eq.
-     * 
+     *
      * @param obj - obj
      * @return - eq
      */
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
+        if (this == obj) {
+            return true;
+        }
         if (obj == null || !(obj instanceof Graph)) return false;
         boolean flag1 = true;
         boolean flag2 = true;
@@ -316,26 +321,19 @@ public class IncidenceMatrixGraph implements Graph {
         Graph other = (Graph) obj;
 
         // Проверка на одинаковое количество вершин и рёбер
-        if (this.vCount() != other.vCount()) return false;
-        if (this.eCount() != other.eCount()) return false;
+        if (this.vCount() != other.vCount()) {
+            return false;
+        }
+        if (this.eCount() != other.eCount()) {
+            return false;
+        }
 
         List<List<Integer>> g1 = other.getEdges();
         List<List<Integer>> g2 = this.getEdges();
 
-        for (int i = 0; i < g1.size(); i++) {
-            if (!Objects.equals(g1.get(i).get(0), g2.get(i).get(0)) || !Objects.equals(g1.get(i).get(1), g2.get(i).get(1))) {
-                flag1 = false;
-                break;
-            }
-        }
+        g1.sort(Comparator.comparing((List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
+        g2.sort(Comparator.comparing((List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
 
-        int s = g1.size() - 1;
-        for (int i = 0; i < g1.size(); i++) {
-            if (!Objects.equals(g1.get(s - i).get(0), g2.get(i).get(0)) || !Objects.equals(g1.get(s - i).get(1), g2.get(i).get(1))) {
-                flag2 = false;
-            }
-        }
-
-        return flag1 || flag2;
+        return g1.equals(g2);
     }
 }
