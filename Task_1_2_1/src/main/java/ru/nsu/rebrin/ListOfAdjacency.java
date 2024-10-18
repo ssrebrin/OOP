@@ -9,9 +9,16 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Collections;
 
+/**
+ * List of adj.
+ */
 public class ListOfAdjacency implements Graph {
     List<List<Integer>> Gr = new ArrayList<>();
 
+    /**
+     * List.
+     * @param matrix - matrix
+     */
     public ListOfAdjacency(int[][] matrix) {
         if (matrix == null) {
             Gr = new ArrayList<>();
@@ -32,11 +39,18 @@ public class ListOfAdjacency implements Graph {
         }
     }
 
+    /**
+     * add v
+     */
     @Override
     public void addVertex() {
         Gr.add(new ArrayList<>());
     }
 
+    /**
+     * renove v.
+     * @param vertex - v
+     */
     @Override
     public void removeVertex(int vertex) {
         // Удаляем все рёбра, которые ссылаются на удаляемую вершину
@@ -56,6 +70,11 @@ public class ListOfAdjacency implements Graph {
         }
     }
 
+    /**
+     * add e.
+     * @param from - from
+     * @param to - to
+     */
     @Override
     public void addEdge(int from, int to) {
         if (from < Gr.size() && to < Gr.size()) {
@@ -63,6 +82,11 @@ public class ListOfAdjacency implements Graph {
         }
     }
 
+    /**
+     * remove e.
+     * @param from - from
+     * @param to - to
+     */
     @Override
     public void removeEdge(int from, int to) {
         if (from < Gr.size()) {
@@ -70,6 +94,11 @@ public class ListOfAdjacency implements Graph {
         }
     }
 
+    /**
+     * Neighbors.
+     * @param vertex - v
+     * @return - n
+     */
     @Override
     public List<Integer> getNeighbors(int vertex) {
         List<Integer> res = new ArrayList<>(Gr.get(vertex)); // Соседи по исходящим рёбрам
@@ -83,6 +112,11 @@ public class ListOfAdjacency implements Graph {
         return res;
     }
 
+    /**
+     * read file.
+     * @param filename - file name
+     * @throws IOException - exception
+     */
     @Override
     public void readFromFile(String filename) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
@@ -101,6 +135,11 @@ public class ListOfAdjacency implements Graph {
         }
     }
 
+
+    /**
+     * e count.
+     * @return - e
+     */
     @Override
     public int eCount() {
         int edgeCount = 0;
@@ -110,11 +149,19 @@ public class ListOfAdjacency implements Graph {
         return edgeCount;
     }
 
+    /**
+     * v count.
+     * @return - v
+     */
     @Override
     public int vCount() {
         return Gr.size();
     }
 
+    /**
+     * get edges.
+     * @return - list of edges
+     */
     @Override
     public List<List<Integer>> getEdges() {
         List<List<Integer>> edges = new ArrayList<>();
@@ -126,6 +173,11 @@ public class ListOfAdjacency implements Graph {
         return edges;
     }
 
+    /**
+     * eq.
+     * @param obj - obj
+     * @return - equals
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -146,6 +198,11 @@ public class ListOfAdjacency implements Graph {
         return g1.equals(g2);
     }
 
+    /**
+     * toposort.
+     * @return - sorted graph
+     */
+    @Override
     public List<Integer> topologicalSort() {
         Stack<Integer> stack = new Stack<>();
         boolean[] visited = new boolean[vCount()];
@@ -169,6 +226,13 @@ public class ListOfAdjacency implements Graph {
         return result;
     }
 
+    /**
+     * Helper.
+     * @param vertex - v
+     * @param visited -vis
+     * @param recStack - s
+     * @param stack - s
+     */
     private void topo(int vertex, boolean[] visited, boolean[] recStack, Stack<Integer> stack) {
         visited[vertex] = true;
         recStack[vertex] = true; // Помечаем текущую вершину в рекурсивном стеке

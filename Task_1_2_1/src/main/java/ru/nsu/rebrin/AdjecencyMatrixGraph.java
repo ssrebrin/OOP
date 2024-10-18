@@ -3,13 +3,24 @@ package ru.nsu.rebrin;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+import java.util.Stack;
 
+/**
+ * Adj matrix.
+ */
 public class AdjecencyMatrixGraph implements Graph {
     List<List<Integer>> adjacencyMatrix;
     int verCount;
     int edgCount = 0;
 
+    /**
+     * Matrix.
+     * @param matrix - m
+     */
     public AdjecencyMatrixGraph(int[][] matrix) {
         verCount = 0;
         edgCount = 0;
@@ -31,6 +42,9 @@ public class AdjecencyMatrixGraph implements Graph {
         verCount = adjacencyMatrix.get(0).size();
     }
 
+    /**
+     * add v.
+     */
     @Override
     public void addVertex() {
         for (List<Integer> row : adjacencyMatrix) {
@@ -44,6 +58,10 @@ public class AdjecencyMatrixGraph implements Graph {
         adjacencyMatrix.add(newVer);
     }
 
+    /**
+     * remove v.
+     * @param vertex - v
+     */
     @Override
     public void removeVertex(int vertex) {
         verCount--;
@@ -53,6 +71,11 @@ public class AdjecencyMatrixGraph implements Graph {
         adjacencyMatrix.remove(vertex);
     }
 
+    /**
+     * Add e.
+     * @param from - from
+     * @param to - to
+     */
     @Override
     public void addEdge(int from, int to) {
         edgCount++;
@@ -62,7 +85,11 @@ public class AdjecencyMatrixGraph implements Graph {
         adjacencyMatrix.set(from, newRow);
     }
 
-
+    /**
+     * Remove e.
+     * @param from - from
+     * @param to - to
+     */
     @Override
     public void removeEdge(int from, int to) {
         edgCount--;
@@ -75,6 +102,11 @@ public class AdjecencyMatrixGraph implements Graph {
         adjacencyMatrix.set(from, newRow);
     }
 
+    /**
+     * Get neightbors.
+     * @param vertex - v
+     * @return - n
+     */
     @Override
     public List<Integer> getNeighbors(int vertex) {
         List<Integer> neighbors = new ArrayList<>();
@@ -94,6 +126,11 @@ public class AdjecencyMatrixGraph implements Graph {
         return neighbors;
     }
 
+    /**
+     * Read file.
+     * @param filename - file name
+     * @throws IOException - exception
+     */
     @Override
     public void readFromFile(String filename) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
@@ -114,16 +151,29 @@ public class AdjecencyMatrixGraph implements Graph {
         }
     }
 
+    /**
+     * E count.
+     * @return - e
+     */
     @Override
     public int eCount() {
         return edgCount;
     }
 
+    /**
+     * V count.
+     * @return - v
+     */
     @Override
     public int vCount() {
         return verCount;
     }
 
+    /**
+     * Eq.
+     * @param obj - obj
+     * @return - eq
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -157,6 +207,11 @@ public class AdjecencyMatrixGraph implements Graph {
         return flag1 || flag2;
     }
 
+    /**
+     * Get e.
+     * @return - list e
+     */
+    @Override
     public List<List<Integer>> getEdges() {
         List<List<Integer>> degrees = new ArrayList<>();
         int i = 0;
@@ -176,6 +231,11 @@ public class AdjecencyMatrixGraph implements Graph {
         return degrees;
     }
 
+    /**
+     * Toposort.
+     * @return - list
+     */
+    @Override
     public List<Integer> topologicalSort() {
         Stack<Integer> stack = new Stack<>();
         boolean[] visited = new boolean[vCount()];
@@ -198,6 +258,13 @@ public class AdjecencyMatrixGraph implements Graph {
         return result;
     }
 
+    /**
+     * Helper.
+     * @param vertex - v
+     * @param visited - v
+     * @param recStack - s
+     * @param stack - s
+     */
     private void topo(int vertex, boolean[] visited, boolean[] recStack, Stack<Integer> stack) {
         visited[vertex] = true;
         recStack[vertex] = true; // Mark the current vertex in the recursion stack

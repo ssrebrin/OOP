@@ -3,12 +3,23 @@ package ru.nsu.rebrin;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Stack;
+import java.util.Objects;
 
+/**
+ * Inc matrix.
+ */
 public class IncidenceMatrixGraph implements Graph {
     List<List<Integer>> incidenceMatrix;
     int edgeCount = 0;
 
+    /**
+     * Matrix.
+     * @param incidenceVer - array
+     */
     public IncidenceMatrixGraph(int[][] incidenceVer) {
         if (incidenceVer == null) {
             edgeCount = 0;
@@ -26,12 +37,9 @@ public class IncidenceMatrixGraph implements Graph {
         edgeCount = incidenceMatrix.get(0).size();
     }
 
-    public void show() {
-        for (List<Integer> row : incidenceMatrix) {
-            System.out.println(Arrays.toString(row.toArray()));
-        }
-    }
-
+    /**
+     * add v.
+     */
     @Override
     public void addVertex() {
         List<Integer> newVer = new ArrayList<>();
@@ -41,6 +49,10 @@ public class IncidenceMatrixGraph implements Graph {
         incidenceMatrix.add(newVer);
     }
 
+    /**
+     * remove.
+     * @param vertex - v
+     */
     @Override
     public void removeVertex(int vertex) {
         for (int i = 0; i < edgeCount; i++) {
@@ -65,6 +77,11 @@ public class IncidenceMatrixGraph implements Graph {
         incidenceMatrix.remove(vertex);
     }
 
+    /**
+     * add e
+     * @param from - from
+     * @param to - to
+     */
     @Override
     public void addEdge(int from, int to) {
         if (from == to) {
@@ -83,6 +100,11 @@ public class IncidenceMatrixGraph implements Graph {
         edgeCount++;
     }
 
+    /**
+     * remove e.
+     * @param from - from
+     * @param to - to
+     */
     @Override
     public void removeEdge(int from, int to) {
 
@@ -97,6 +119,11 @@ public class IncidenceMatrixGraph implements Graph {
         }
     }
 
+    /**
+     * get neightbors.
+     * @param vertex - v
+     * @return - list
+     */
     @Override
     public List<Integer> getNeighbors(int vertex) {
         List<Integer> neighbors = new ArrayList<>();
@@ -116,6 +143,11 @@ public class IncidenceMatrixGraph implements Graph {
         return neighbors;
     }
 
+    /**
+     * Read file.
+     * @param filename - file name
+     * @throws IOException - exception
+     */
     @Override
     public void readFromFile(String filename) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(filename))) {
@@ -136,16 +168,29 @@ public class IncidenceMatrixGraph implements Graph {
         }
     }
 
+    /**
+     * e count.
+     * @return e
+     */
     @Override
     public int eCount() {
         return edgeCount;
     }
 
+    /**
+     * v count.
+     * @return - v
+     */
     @Override
     public int vCount() {
         return incidenceMatrix.size();
     }
 
+    /**
+     * Get e.
+     * @return - e
+     */
+    @Override
     public List<List<Integer>> getEdges() {
         List<List<Integer>> edges = new ArrayList<>();
 
@@ -181,6 +226,11 @@ public class IncidenceMatrixGraph implements Graph {
         return edges;
     }
 
+    /**
+     * Toposort.
+     * @return - list
+     */
+    @Override
     public List<Integer> topologicalSort() {
         Stack<Integer> stack = new Stack<>();
         boolean[] visited = new boolean[vCount()];
@@ -203,7 +253,13 @@ public class IncidenceMatrixGraph implements Graph {
         return result;
     }
 
-
+    /**
+     * Helper.
+     * @param vertex - v
+     * @param visited - vis
+     * @param recStack -stack1
+     * @param stack - stack2
+     */
     private void topologicalSortUtil(int vertex, boolean[] visited, boolean[] recStack, Stack<Integer> stack) {
         visited[vertex] = true;
         recStack[vertex] = true; // Mark the current node in the recursion stack
@@ -233,6 +289,11 @@ public class IncidenceMatrixGraph implements Graph {
         stack.push(vertex); // Add to the result stack
     }
 
+    /**
+     * Eq.
+     * @param obj - obj
+     * @return - eq
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
