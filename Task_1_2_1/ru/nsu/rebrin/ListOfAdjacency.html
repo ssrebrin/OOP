@@ -183,22 +183,22 @@ implements <a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></pr
 </tr>
 <tr id="i0" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addEdge(int,int)">addEdge</a></span>&#8203;(int&nbsp;from,
-       int&nbsp;to)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#add_edge(int,int)">add_edge</a></span>&#8203;(int&nbsp;from,
+        int&nbsp;to)</code></th>
 <td class="colLast">
 <div class="block">add e.</div>
 </td>
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addVertex()">addVertex</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#add_vertex()">add_vertex</a></span>()</code></th>
 <td class="colLast">
-<div class="block">add v</div>
+<div class="block">add v.</div>
 </td>
 </tr>
 <tr id="i2" class="altColor">
 <td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#eCount()">eCount</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#e_count()">e_count</a></span>()</code></th>
 <td class="colLast">
 <div class="block">e count.</div>
 </td>
@@ -212,50 +212,50 @@ implements <a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></pr
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>java.util.List&lt;java.util.List&lt;java.lang.Integer&gt;&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getEdges()">getEdges</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#get_edges()">get_edges</a></span>()</code></th>
 <td class="colLast">
 <div class="block">get edges.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;java.lang.Integer&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getNeighbors(int)">getNeighbors</a></span>&#8203;(int&nbsp;vertex)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#get_neighbors(int)">get_neighbors</a></span>&#8203;(int&nbsp;vertex)</code></th>
 <td class="colLast">
 <div class="block">Neighbors.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#readFromFile(java.lang.String)">readFromFile</a></span>&#8203;(java.lang.String&nbsp;filename)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#read_from_file(java.lang.String)">read_from_file</a></span>&#8203;(java.lang.String&nbsp;filename)</code></th>
 <td class="colLast">
 <div class="block">read file.</div>
 </td>
 </tr>
 <tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeEdge(int,int)">removeEdge</a></span>&#8203;(int&nbsp;from,
-          int&nbsp;to)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove_edge(int,int)">remove_edge</a></span>&#8203;(int&nbsp;from,
+           int&nbsp;to)</code></th>
 <td class="colLast">
 <div class="block">remove e.</div>
 </td>
 </tr>
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeVertex(int)">removeVertex</a></span>&#8203;(int&nbsp;vertex)</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove_vertex(int)">remove_vertex</a></span>&#8203;(int&nbsp;vertex)</code></th>
 <td class="colLast">
 <div class="block">renove v.</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
 <td class="colFirst"><code>java.util.List&lt;java.lang.Integer&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#topologicalSort()">topologicalSort</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#topological_sort()">topological_sort</a></span>()</code></th>
 <td class="colLast">
 <div class="block">toposort.</div>
 </td>
 </tr>
 <tr id="i10" class="altColor">
 <td class="colFirst"><code>int</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#vCount()">vCount</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#v_count()">v_count</a></span>()</code></th>
 <td class="colLast">
 <div class="block">v count.</div>
 </td>
@@ -267,13 +267,6 @@ implements <a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></pr
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
 <code>clone, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
-</ul>
-<ul class="blockList">
-<li class="blockList"><a id="methods.inherited.from.class.ru.nsu.rebrin.Graph">
-<!--   -->
-</a>
-<h3>Methods inherited from interface&nbsp;ru.nsu.rebrin.<a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></h3>
-<code><a href="Graph.html#toString()">toString</a></code></li>
 </ul>
 </li>
 </ul>
@@ -315,83 +308,83 @@ implements <a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></pr
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="addVertex()">
+<a id="add_vertex()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>addVertex</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;addVertex()</pre>
-<div class="block">add v</div>
+<h4>add_vertex</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;add_vertex()</pre>
+<div class="block">add v.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#addVertex()">addVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></code></dd>
+<dd><code><a href="Graph.html#add_vertex()">add_vertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></code></dd>
 </dl>
 </li>
 </ul>
-<a id="removeVertex(int)">
+<a id="remove_vertex(int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>removeVertex</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;removeVertex&#8203;(int&nbsp;vertex)</pre>
+<h4>remove_vertex</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;remove_vertex&#8203;(int&nbsp;vertex)</pre>
 <div class="block">renove v.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#removeVertex(int)">removeVertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></code></dd>
+<dd><code><a href="Graph.html#remove_vertex(int)">remove_vertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>vertex</code> - - v</dd>
 </dl>
 </li>
 </ul>
-<a id="addEdge(int,int)">
+<a id="add_edge(int,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>addEdge</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;addEdge&#8203;(int&nbsp;from,
-                    int&nbsp;to)</pre>
+<h4>add_edge</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;add_edge&#8203;(int&nbsp;from,
+                     int&nbsp;to)</pre>
 <div class="block">add e.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#addEdge(int,int)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></code></dd>
+<dd><code><a href="Graph.html#add_edge(int,int)">add_edge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>from</code> - - from</dd>
 <dd><code>to</code> - - to</dd>
 </dl>
 </li>
 </ul>
-<a id="removeEdge(int,int)">
+<a id="remove_edge(int,int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>removeEdge</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;removeEdge&#8203;(int&nbsp;from,
-                       int&nbsp;to)</pre>
+<h4>remove_edge</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;remove_edge&#8203;(int&nbsp;from,
+                        int&nbsp;to)</pre>
 <div class="block">remove e.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#removeEdge(int,int)">removeEdge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></code></dd>
+<dd><code><a href="Graph.html#remove_edge(int,int)">remove_edge</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>from</code> - - from</dd>
 <dd><code>to</code> - - to</dd>
 </dl>
 </li>
 </ul>
-<a id="getNeighbors(int)">
+<a id="get_neighbors(int)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getNeighbors</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;java.lang.Integer&gt;&nbsp;getNeighbors&#8203;(int&nbsp;vertex)</pre>
+<h4>get_neighbors</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;java.lang.Integer&gt;&nbsp;get_neighbors&#8203;(int&nbsp;vertex)</pre>
 <div class="block">Neighbors.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#getNeighbors(int)">getNeighbors</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></code></dd>
+<dd><code><a href="Graph.html#get_neighbors(int)">get_neighbors</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>vertex</code> - - v</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
@@ -399,18 +392,18 @@ implements <a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></pr
 </dl>
 </li>
 </ul>
-<a id="readFromFile(java.lang.String)">
+<a id="read_from_file(java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>readFromFile</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;readFromFile&#8203;(java.lang.String&nbsp;filename)
-                  throws java.io.IOException</pre>
+<h4>read_from_file</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;read_from_file&#8203;(java.lang.String&nbsp;filename)
+                    throws java.io.IOException</pre>
 <div class="block">read file.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#readFromFile(java.lang.String)">readFromFile</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></code></dd>
+<dd><code><a href="Graph.html#read_from_file(java.lang.String)">read_from_file</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>filename</code> - - file name</dd>
 <dt><span class="throwsLabel">Throws:</span></dt>
@@ -418,49 +411,49 @@ implements <a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></pr
 </dl>
 </li>
 </ul>
-<a id="eCount()">
+<a id="e_count()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>eCount</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;eCount()</pre>
+<h4>e_count</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;e_count()</pre>
 <div class="block">e count.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#eCount()">eCount</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></code></dd>
+<dd><code><a href="Graph.html#e_count()">e_count</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>- e</dd>
 </dl>
 </li>
 </ul>
-<a id="vCount()">
+<a id="v_count()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>vCount</h4>
-<pre class="methodSignature">public&nbsp;int&nbsp;vCount()</pre>
+<h4>v_count</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;v_count()</pre>
 <div class="block">v count.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#vCount()">vCount</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></code></dd>
+<dd><code><a href="Graph.html#v_count()">v_count</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>- v</dd>
 </dl>
 </li>
 </ul>
-<a id="getEdges()">
+<a id="get_edges()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>getEdges</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;java.util.List&lt;java.lang.Integer&gt;&gt;&nbsp;getEdges()</pre>
+<h4>get_edges</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;java.util.List&lt;java.lang.Integer&gt;&gt;&nbsp;get_edges()</pre>
 <div class="block">get edges.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#getEdges()">getEdges</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></code></dd>
+<dd><code><a href="Graph.html#get_edges()">get_edges</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>- list of edges</dd>
 </dl>
@@ -486,17 +479,17 @@ implements <a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></pr
 </dl>
 </li>
 </ul>
-<a id="topologicalSort()">
+<a id="topological_sort()">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>topologicalSort</h4>
-<pre class="methodSignature">public&nbsp;java.util.List&lt;java.lang.Integer&gt;&nbsp;topologicalSort()</pre>
+<h4>topological_sort</h4>
+<pre class="methodSignature">public&nbsp;java.util.List&lt;java.lang.Integer&gt;&nbsp;topological_sort()</pre>
 <div class="block">toposort.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#topologicalSort()">topologicalSort</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></code></dd>
+<dd><code><a href="Graph.html#topological_sort()">topological_sort</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>- sorted graph</dd>
 </dl>
