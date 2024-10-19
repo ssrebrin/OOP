@@ -164,7 +164,7 @@ public class AdjecencyMatrixGraph implements Graph {
      * @return - e
      */
     @Override
-    public int e_count() {
+    public int ecount() {
         return edgCount;
     }
 
@@ -174,7 +174,7 @@ public class AdjecencyMatrixGraph implements Graph {
      * @return - v
      */
     @Override
-    public int v_count() {
+    public int vcount() {
         return verCount;
     }
 
@@ -198,18 +198,20 @@ public class AdjecencyMatrixGraph implements Graph {
         Graph other = (Graph) obj;
 
         // Проверка на одинаковое количество вершин и рёбер
-        if (this.v_count() != other.v_count()) {
+        if (this.vcount() != other.vcount()) {
             return false;
         }
-        if (this.e_count() != other.e_count()) {
+        if (this.ecount() != other.ecount()) {
             return false;
         }
 
         List<List<Integer>> g1 = other.get_edges();
         List<List<Integer>> g2 = this.get_edges();
 
-        g1.sort(Comparator.comparing((List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
-        g2.sort(Comparator.comparing((List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
+        g1.sort(Comparator.comparing(
+            (List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
+        g2.sort(Comparator.comparing(
+            (List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
 
         return g1.equals(g2);
     }
@@ -247,15 +249,15 @@ public class AdjecencyMatrixGraph implements Graph {
     @Override
     public List<Integer> topological_sort() {
         Stack<Integer> stack = new Stack<>();
-        boolean[] visited = new boolean[v_count()];
-        boolean[] recStack = new boolean[v_count()]; // To detect cycles
+        boolean[] visited = new boolean[vcount()];
+        boolean[] recStack = new boolean[vcount()]; // To detect cycles
 
-        for (int i = 0; i < v_count(); i++) {
+        for (int i = 0; i < vcount(); i++) {
             if (!visited[i]) {
                 try {
                     topo(i, visited, recStack, stack);
                 } catch (IllegalStateException e) {
-                    return Collections.emptyList(); // Return an empty list in case of a cycle
+                    return Collections.emptyList();
                 }
             }
         }

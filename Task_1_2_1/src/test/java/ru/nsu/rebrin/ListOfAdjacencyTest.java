@@ -16,7 +16,7 @@ class ListOfAdjacencyTest {
         ListOfAdjacency graph = new ListOfAdjacency(null);
         graph.add_vertex();
         graph.add_vertex();
-        assertEquals(2, graph.v_count());
+        assertEquals(2, graph.vcount());
     }
 
     @Test
@@ -28,7 +28,7 @@ class ListOfAdjacencyTest {
         graph.add_edge(0, 1);
         graph.add_edge(1, 2);
         graph.remove_vertex(1); // Remove vertex 1
-        assertEquals(2, graph.v_count());
+        assertEquals(2, graph.vcount());
         assertEquals(List.of(), graph.get_neighbors(0)); // Vertex 0 should now point to 1 (originally 2)
         graph.add_edge(0, 1);
         assertEquals(List.of(1), graph.get_neighbors(0)); // Vertex 0 should now point to 1 (originally 2)
@@ -50,7 +50,7 @@ class ListOfAdjacencyTest {
         graph.add_vertex(); // 1
         graph.add_edge(0, 1);
         graph.remove_edge(0, 1);
-        assertEquals(0, graph.e_count());
+        assertEquals(0, graph.ecount());
     }
 
     @Test
@@ -84,10 +84,10 @@ class ListOfAdjacencyTest {
     void testTopologicalSortWithCycle() {
         // Create a graph with a cycle
         int[][] cyclicGraphMatrix = {
-                {1},
-                {2},
-                {3},
-                {1}
+            {1},
+            {2},
+            {3},
+            {1}
         };
 
         AdjecencyMatrixGraph graph = new AdjecencyMatrixGraph(cyclicGraphMatrix);
@@ -115,15 +115,16 @@ class ListOfAdjacencyTest {
     @Test
     void testFile() throws IOException {
         int[][] matrix = {
-                {1},
-                {2},
-                {3},
-                {}};
+            {1},
+            {2},
+            {3},
+            {}};
         ListOfAdjacency graph = new ListOfAdjacency(matrix);
         ListOfAdjacency graphF = new ListOfAdjacency(null);
 
         ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(Objects.requireNonNull(classLoader.getResource("Test.txt")).getFile());
+        File file = new File(Objects.requireNonNull(
+            classLoader.getResource("Test.txt")).getFile());
 
         graphF.read_from_file(file.getAbsolutePath());
 

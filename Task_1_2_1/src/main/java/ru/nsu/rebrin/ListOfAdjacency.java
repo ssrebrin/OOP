@@ -3,10 +3,10 @@ package ru.nsu.rebrin;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Collections;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -147,7 +147,7 @@ public class ListOfAdjacency implements Graph {
      * @return - e
      */
     @Override
-    public int e_count() {
+    public int ecount() {
         int edgeCount = 0;
         for (List<Integer> list : gr) {
             edgeCount += list.size();
@@ -161,7 +161,7 @@ public class ListOfAdjacency implements Graph {
      * @return - v
      */
     @Override
-    public int v_count() {
+    public int vcount() {
         return gr.size();
     }
 
@@ -199,18 +199,20 @@ public class ListOfAdjacency implements Graph {
         Graph other = (Graph) obj;
 
         // Проверка на одинаковое количество вершин и рёбер
-        if (this.v_count() != other.v_count()) {
+        if (this.vcount() != other.vcount()) {
             return false;
         }
-        if (this.e_count() != other.e_count()) {
+        if (this.ecount() != other.ecount()) {
             return false;
         }
 
         List<List<Integer>> g1 = other.get_edges();
         List<List<Integer>> g2 = this.get_edges();
 
-        g1.sort(Comparator.comparing((List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
-        g2.sort(Comparator.comparing((List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
+        g1.sort(Comparator.comparing(
+            (List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
+        g2.sort(Comparator.comparing(
+            (List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
 
         return g1.equals(g2);
     }
@@ -223,11 +225,11 @@ public class ListOfAdjacency implements Graph {
     @Override
     public List<Integer> topological_sort() {
         Stack<Integer> stack = new Stack<>();
-        boolean[] visited = new boolean[v_count()];
-        boolean[] recStack = new boolean[v_count()]; // Для обнаружения циклов
+        boolean[] visited = new boolean[vcount()];
+        boolean[] recStack = new boolean[vcount()]; // Для обнаружения циклов
 
         // Для каждой вершины запускаем сортировку
-        for (int i = 0; i < v_count(); i++) {
+        for (int i = 0; i < vcount(); i++) {
             if (!visited[i]) {
                 try {
                     topo(i, visited, recStack, stack);

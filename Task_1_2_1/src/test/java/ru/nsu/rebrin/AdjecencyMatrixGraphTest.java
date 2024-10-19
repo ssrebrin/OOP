@@ -22,15 +22,15 @@ class AdjecencyMatrixGraphTest {
         graph.add_vertex();
 
         // The vertex count should be 2
-        assertEquals(2, graph.v_count());
+        assertEquals(2, graph.vcount());
     }
 
     @Test
     void testAddEdge() {
         // Create a graph with a 2x2 matrix
         int[][] matrix = {
-                {0, 0},
-                {0, 0}
+            {0, 0},
+            {0, 0}
         };
         AdjecencyMatrixGraph graph = new AdjecencyMatrixGraph(matrix);
 
@@ -39,15 +39,15 @@ class AdjecencyMatrixGraphTest {
 
         // Verify that the edge is added
         assertEquals(1, graph.adjacencyMatrix.get(0).get(1));
-        assertEquals(1, graph.e_count());
+        assertEquals(1, graph.ecount());
     }
 
     @Test
     void testRemoveEdge() {
         // Create a graph with a 2x2 matrix
         int[][] matrix = {
-                {0, 1},
-                {0, 0}
+            {0, 1},
+            {0, 0}
         };
         AdjecencyMatrixGraph graph = new AdjecencyMatrixGraph(matrix);
 
@@ -56,16 +56,16 @@ class AdjecencyMatrixGraphTest {
 
         // Verify that the edge is removed
         assertEquals(0, graph.adjacencyMatrix.get(0).get(1));
-        assertEquals(0, graph.e_count());
+        assertEquals(0, graph.ecount());
     }
 
     @Test
     void testRemoveVertex() {
         // Create a graph with a 3x3 matrix
         int[][] matrix = {
-                {0, 1, 0},
-                {0, 0, 0},
-                {1, 0, 0}
+            {0, 1, 0},
+            {0, 0, 0},
+            {1, 0, 0}
         };
         AdjecencyMatrixGraph graph = new AdjecencyMatrixGraph(matrix);
 
@@ -73,7 +73,7 @@ class AdjecencyMatrixGraphTest {
         graph.remove_vertex(1);
 
         // Verify that vertex 1 is removed
-        assertEquals(2, graph.v_count());
+        assertEquals(2, graph.vcount());
         assertEquals(0, graph.adjacencyMatrix.get(0).get(1));  // Old edge between 0 and 1 should be removed
     }
 
@@ -81,9 +81,9 @@ class AdjecencyMatrixGraphTest {
     void testGetNeighbors() {
         // Create a graph with a 3x3 matrix
         int[][] matrix = {
-                {0, 1, 0},
-                {0, 0, 1},
-                {0, 0, 0}
+            {0, 1, 0},
+            {0, 0, 1},
+            {0, 0, 0}
         };
         AdjecencyMatrixGraph graph = new AdjecencyMatrixGraph(matrix);
 
@@ -106,10 +106,10 @@ class AdjecencyMatrixGraphTest {
     void testTopologicalSort() {
         // Create a Directed Acyclic Graph (DAG)
         int[][] matrix = {
-                {0, 1, 0, 0},
-                {0, 0, 1, 0},
-                {0, 0, 0, 1},
-                {0, 0, 0, 0}
+            {0, 1, 0, 0},
+            {0, 0, 1, 0},
+            {0, 0, 0, 1},
+            {0, 0, 0, 0}
         };
         AdjecencyMatrixGraph graph = new AdjecencyMatrixGraph(matrix);
 
@@ -121,16 +121,16 @@ class AdjecencyMatrixGraphTest {
     @Test
     void testGraphEquality() {
         int[][] matrix1 = {
-                {0, 1, 0},
-                {0, 0, 1},
-                {1, 0, 0}
+            {0, 1, 0},
+            {0, 0, 1},
+            {1, 0, 0}
         };
         AdjecencyMatrixGraph graph1 = new AdjecencyMatrixGraph(matrix1);
 
         int[][] matrix2 = {
-                {0, 1, 0},
-                {0, 0, 1},
-                {1, 0, 0}
+            {0, 1, 0},
+            {0, 0, 1},
+            {1, 0, 0}
         };
         AdjecencyMatrixGraph graph2 = new AdjecencyMatrixGraph(matrix2);
 
@@ -141,10 +141,10 @@ class AdjecencyMatrixGraphTest {
     void testTopologicalSortWithCycle() {
         // Create a graph with a cycle
         int[][] cyclicGraphMatrix = {
-                {0, 1, 0, 0},
-                {0, 0, 1, 0},
-                {0, 0, 0, 1},
-                {0, 1, 0, 0}
+            {0, 1, 0, 0},
+            {0, 0, 1, 0},
+            {0, 0, 0, 1},
+            {0, 1, 0, 0}
         };
 
         AdjecencyMatrixGraph graph = new AdjecencyMatrixGraph(cyclicGraphMatrix);
@@ -157,10 +157,10 @@ class AdjecencyMatrixGraphTest {
     @Test
     void testFile() throws IOException {
         int[][] matrix = {
-                {0, 1, 0, 0},
-                {0, 0, 1, 0},
-                {0, 0, 0, 1},
-                {0, 0, 0, 0}};
+            {0, 1, 0, 0},
+            {0, 0, 1, 0},
+            {0, 0, 0, 1},
+            {0, 0, 0, 0}};
         AdjecencyMatrixGraph graph = new AdjecencyMatrixGraph(matrix);
         AdjecencyMatrixGraph graphF = new AdjecencyMatrixGraph(null);
 

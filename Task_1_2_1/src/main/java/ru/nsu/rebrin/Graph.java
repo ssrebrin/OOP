@@ -61,14 +61,14 @@ public interface Graph {
      *
      * @return - count
      */
-    int e_count();
+    int ecount();
 
     /**
      * V count.
      *
      * @return - count
      */
-    int v_count();
+    int vcount();
 
     /**
      * Toposort.
