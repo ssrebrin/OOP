@@ -15,7 +15,6 @@ class Mul extends Expression {
     public Mul(Expression left, Expression right) {
         this.left = left;
         this.right = right;
-        this.clas = 3;
     }
 
     @Override
@@ -32,7 +31,7 @@ class Mul extends Expression {
     }
 
     @Override
-    public int steval(Map<String, Integer> variables) {
+    public Double steval(Map<String, Double> variables) {
         return left.steval(variables) * right.steval(variables);
 
     }

@@ -124,9 +124,9 @@ public class Expr {
     private static int precedence(String operator) {
         switch (operator) {
             case "*":
-                return 3;
-            case "/":
                 return 2;
+            case "/":
+                return 3;
             case "+":
             case "-":
                 return 1;
@@ -134,12 +134,11 @@ public class Expr {
                 return 0;
         }
     }
-    /*
     /**
      * Main.
      *
      * @param args - args
-     *
+     */
     public static void main(String[] args) {
         Expression e = new Div(
                 new Mul(new Variable("x"), new Variable("x")),
@@ -147,7 +146,7 @@ public class Expr {
         );
         Expr main = new Expr();
         System.out.println(e.print());
-        System.out.println(e.derivative("x").print())
-        System.out.println(main.parser("(1*x)*x").print());
-    }*/
+        System.out.println(e.derivative("x").print());
+        System.out.println(main.parser("5/3*3").eval(""));
+    }
 }

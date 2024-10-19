@@ -22,11 +22,11 @@ class ExpressionTest {
         expected.put("y", 5);
         expected.put("z", 15);
 
-        Map<String, Integer> result = null;
+        Map<String, Double> result = null;
         try {
             result = parser.parseAssignments(assignments);
         } catch (IllegalArgumentException e) {
-            fail("Не должно было быть исключения", e);
+            fail("Пупупу", e);
         }
 
         assertEquals(expected, result);
@@ -37,11 +37,11 @@ class ExpressionTest {
         String assignments = "";
         Map<String, Integer> expected = new HashMap<>();
 
-        Map<String, Integer> result = null;
+        Map<String, Double> result = null;
         try {
             result = parser.parseAssignments(assignments);
         } catch (IllegalArgumentException e) {
-            fail("Не должно было быть исключения", e);
+            fail("Пупупу", e);
         }
 
         assertEquals(expected, result);
@@ -91,11 +91,11 @@ class ExpressionTest {
         expected.put("y", 5);
         expected.put("z", 15);
 
-        Map<String, Integer> result = null;
+        Map<String, Double> result = null;
         try {
             result = parser.parseAssignments(assignments);
         } catch (IllegalArgumentException e) {
-            fail("Не должно было быть исключения", e);
+            fail("Пупупу", e);
         }
 
         assertEquals(expected, result);
