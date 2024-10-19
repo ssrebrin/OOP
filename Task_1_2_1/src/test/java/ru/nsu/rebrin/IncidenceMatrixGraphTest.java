@@ -169,15 +169,15 @@ class IncidenceMatrixGraphTest {
             {-1, 1, 0},
             {0, -1, 1},
             {0, 0, -1}};
-        IncidenceMatrixGraph G = new IncidenceMatrixGraph(m);
-        IncidenceMatrixGraph G1 = new IncidenceMatrixGraph(null);
+        IncidenceMatrixGraph g = new IncidenceMatrixGraph(m);
+        IncidenceMatrixGraph g1 = new IncidenceMatrixGraph(null);
 
         ClassLoader classLoader = getClass().getClassLoader();
         File file = new File(Objects.requireNonNull(
             classLoader.getResource("Test.txt")).getFile());
 
-        G1.read_from_file(file.getAbsolutePath());
-        assertTrue(G1.equals(G));
+        g1.read_from_file(file.getAbsolutePath());
+        assertTrue(g1.equals(g));
     }
 
 }

@@ -29,9 +29,9 @@ class ListOfAdjacencyTest {
         graph.add_edge(1, 2);
         graph.remove_vertex(1); // Remove vertex 1
         assertEquals(2, graph.vcount());
-        assertEquals(List.of(), graph.get_neighbors(0)); // Vertex 0 should now point to 1 (originally 2)
+        assertEquals(List.of(), graph.get_neighbors(0));
         graph.add_edge(0, 1);
-        assertEquals(List.of(1), graph.get_neighbors(0)); // Vertex 0 should now point to 1 (originally 2)
+        assertEquals(List.of(1), graph.get_neighbors(0));
     }
 
     @Test

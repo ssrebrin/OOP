@@ -74,7 +74,7 @@ class AdjecencyMatrixGraphTest {
 
         // Verify that vertex 1 is removed
         assertEquals(2, graph.vcount());
-        assertEquals(0, graph.adjacencyMatrix.get(0).get(1));  // Old edge between 0 and 1 should be removed
+        assertEquals(0, graph.adjacencyMatrix.get(0).get(1));
     }
 
     @Test
@@ -165,7 +165,8 @@ class AdjecencyMatrixGraphTest {
         AdjecencyMatrixGraph graphF = new AdjecencyMatrixGraph(null);
 
         ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(Objects.requireNonNull(classLoader.getResource("Test.txt")).getFile());
+        File file = new File(Objects.requireNonNull(
+                classLoader.getResource("Test.txt")).getFile());
 
         graphF.read_from_file(file.getAbsolutePath());
 

@@ -3,6 +3,9 @@ package ru.nsu.rebrin;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Graph.
+ */
 public interface Graph {
     /**
      * Add v.
