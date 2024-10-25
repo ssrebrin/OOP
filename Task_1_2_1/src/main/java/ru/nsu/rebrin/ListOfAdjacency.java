@@ -142,6 +142,26 @@ public class ListOfAdjacency implements Graph {
 
 
     /**
+     * To string.
+     *
+     * @return string.
+     */
+    @Override
+    public String to_string() {
+        StringBuilder res = new StringBuilder();
+        int ii = 0;
+        for (List<Integer> row : gr) {
+            res.append(ii++).append(": ");
+            for (Integer i : row) {
+                res.append(i);
+                res.append(' ');
+            }
+            res.append('\n');
+        }
+        return res.toString();
+    }
+
+    /**
      * e count.
      *
      * @return - e
@@ -210,9 +230,9 @@ public class ListOfAdjacency implements Graph {
         List<List<Integer>> g2 = this.get_edges();
 
         g1.sort(Comparator.comparing(
-            (List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
+                (List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
         g2.sort(Comparator.comparing(
-            (List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
+                (List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
 
         return g1.equals(g2);
     }

@@ -171,5 +171,6 @@ class AdjecencyMatrixGraphTest {
         graphF.read_from_file(file.getAbsolutePath());
 
         assertTrue(graph.equals(graphF));
+        assertEquals(graphF.to_string(),"0 1 0 0 \n0 0 1 0 \n0 0 0 1 \n0 0 0 0 \n");
     }
 }

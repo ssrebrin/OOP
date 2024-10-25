@@ -177,6 +177,24 @@ public class IncidenceMatrixGraph implements Graph {
     }
 
     /**
+     * To string.
+     *
+     * @return string.
+     */
+    @Override
+    public String to_string() {
+        StringBuilder res = new StringBuilder();
+        for (List<Integer> row : incidenceMatrix) {
+            for (Integer i : row) {
+                res.append(i);
+                res.append(' ');
+            }
+            res.append('\n');
+        }
+        return res.toString();
+    }
+
+    /**
      * e count.
      *
      * @return e

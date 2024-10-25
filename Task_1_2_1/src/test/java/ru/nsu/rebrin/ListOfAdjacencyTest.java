@@ -129,5 +129,6 @@ class ListOfAdjacencyTest {
         graphF.read_from_file(file.getAbsolutePath());
 
         assertTrue(graph.equals(graphF));
+        assertEquals(graphF.to_string(), "0: 1 \n1: 2 \n2: 3 \n3: \n");
     }
 }
