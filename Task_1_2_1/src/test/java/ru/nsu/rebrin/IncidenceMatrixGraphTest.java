@@ -178,7 +178,7 @@ class IncidenceMatrixGraphTest {
 
         g1.read_from_file(file.getAbsolutePath());
         assertTrue(g1.equals(g));
-        assertEquals(g1.to_string(), "1 0 0 \n-1 1 0 \n0 0 -1 \n");
+        assertEquals(g1.to_string(), "1 0 0 \n-1 1 0 \n0 -1 1 \n0 0 -1 \n");
     }
 
 }
