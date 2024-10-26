@@ -57,6 +57,9 @@ public class IncidenceMatrixGraph implements Graph {
      */
     @Override
     public void remove_vertex(int vertex) {
+        if (vertex >= this.vcount()){
+            throw new IndexOutOfBoundsException("Vertex index out of bounds: " + vertex);
+        }
         for (int i = 0; i < edgeCount; i++) {
             if (incidenceMatrix.get(vertex).get(i) != 0) {
                 if (incidenceMatrix.get(vertex).get(i) == 2) {
@@ -77,6 +80,16 @@ public class IncidenceMatrixGraph implements Graph {
             }
         }
         incidenceMatrix.remove(vertex);
+    }
+
+    /**
+     * Hashcode.
+     *
+     * @return - code
+     */
+    @Override
+    public int hashCode() {
+        return get_edges().hashCode();
     }
 
     /**
@@ -182,7 +195,7 @@ public class IncidenceMatrixGraph implements Graph {
      * @return string.
      */
     @Override
-    public String to_string() {
+    public String toString() {
         StringBuilder res = new StringBuilder();
         for (List<Integer> row : incidenceMatrix) {
             for (Integer i : row) {

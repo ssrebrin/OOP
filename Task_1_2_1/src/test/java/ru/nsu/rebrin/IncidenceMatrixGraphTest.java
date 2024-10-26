@@ -1,13 +1,12 @@
 package ru.nsu.rebrin;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class IncidenceMatrixGraphTest {
 
@@ -178,7 +177,8 @@ class IncidenceMatrixGraphTest {
 
         g1.read_from_file(file.getAbsolutePath());
         assertTrue(g1.equals(g));
-        assertEquals(g1.to_string(), "1 0 0 \n-1 1 0 \n0 -1 1 \n0 0 -1 \n");
+        assertEquals(g1.hashCode(),g.hashCode());
+        assertEquals(g1.toString(), "1 0 0 \n-1 1 0 \n0 -1 1 \n0 0 -1 \n");
     }
 
 }

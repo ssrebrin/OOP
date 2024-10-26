@@ -54,7 +54,9 @@ public class ListOfAdjacency implements Graph {
      */
     @Override
     public void remove_vertex(int vertex) {
-        // Удаляем все рёбра, которые ссылаются на удаляемую вершину
+        if (vertex >= gr.size()){
+            throw new IndexOutOfBoundsException("Vertex index out of bounds: " + vertex);
+        }
         for (List<Integer> list : gr) {
             list.removeIf(v -> v == vertex);
         }
@@ -147,7 +149,7 @@ public class ListOfAdjacency implements Graph {
      * @return string.
      */
     @Override
-    public String to_string() {
+    public String toString() {
         StringBuilder res = new StringBuilder();
         int ii = 0;
         for (List<Integer> row : gr) {
@@ -235,6 +237,16 @@ public class ListOfAdjacency implements Graph {
                 (List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
 
         return g1.equals(g2);
+    }
+
+    /**
+     * Hashcode.
+     *
+     * @return - code
+     */
+    @Override
+    public int hashCode() {
+        return get_edges().hashCode();
     }
 
     /**

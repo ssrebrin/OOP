@@ -60,12 +60,25 @@ public class AdjecencyMatrixGraph implements Graph {
     }
 
     /**
+     * Hashcode.
+     *
+     * @return - code
+     */
+    @Override
+    public int hashCode() {
+        return get_edges().hashCode();
+    }
+
+    /**
      * remove v.
      *
      * @param vertex - v
      */
     @Override
     public void remove_vertex(int vertex) {
+        if (vertex >= this.vcount()){
+            throw new IndexOutOfBoundsException("Vertex index out of bounds: " + vertex);
+        }
         verCount--;
         for (List<Integer> row : adjacencyMatrix) {
             row.remove(vertex);
@@ -247,7 +260,7 @@ public class AdjecencyMatrixGraph implements Graph {
      * @return string.
      */
     @Override
-    public String to_string() {
+    public String toString() {
         StringBuilder res = new StringBuilder();
         for (List<Integer> row : adjacencyMatrix) {
             for (Integer i : row) {

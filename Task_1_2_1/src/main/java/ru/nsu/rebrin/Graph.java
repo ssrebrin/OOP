@@ -87,10 +87,4 @@ public interface Graph {
      */
     List<List<Integer>> get_edges();
 
-    /**
-     * To String.
-     *
-     * @return - string
-     */
-    String to_string();
 }
