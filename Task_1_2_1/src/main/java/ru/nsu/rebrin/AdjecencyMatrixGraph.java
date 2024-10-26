@@ -76,7 +76,7 @@ public class AdjecencyMatrixGraph implements Graph {
      */
     @Override
     public void remove_vertex(int vertex) {
-        if (vertex >= this.vcount()){
+        if (vertex >= this.vcount()) {
             throw new IndexOutOfBoundsException("Vertex index out of bounds: " + vertex);
         }
         verCount--;
@@ -90,7 +90,7 @@ public class AdjecencyMatrixGraph implements Graph {
      * Add e.
      *
      * @param from - from
-     * @param to - to
+     * @param to   - to
      */
     @Override
     public void add_edge(int from, int to) {
@@ -105,7 +105,7 @@ public class AdjecencyMatrixGraph implements Graph {
      * Remove e.
      *
      * @param from - from
-     * @param to - to
+     * @param to   - to
      */
     @Override
     public void remove_edge(int from, int to) {
@@ -222,9 +222,9 @@ public class AdjecencyMatrixGraph implements Graph {
         List<List<Integer>> g2 = this.get_edges();
 
         g1.sort(Comparator.comparing(
-            (List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
+                (List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
         g2.sort(Comparator.comparing(
-            (List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
+                (List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
 
         return g1.equals(g2);
     }
@@ -304,10 +304,10 @@ public class AdjecencyMatrixGraph implements Graph {
     /**
      * Helper.
      *
-     * @param vertex - v
-     * @param visited - v
+     * @param vertex   - v
+     * @param visited  - v
      * @param recStack - s
-     * @param stack - s
+     * @param stack    - s
      */
     private void topo(int vertex, boolean[] visited, boolean[] recStack, Stack<Integer> stack) {
         visited[vertex] = true;

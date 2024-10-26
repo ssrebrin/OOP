@@ -54,7 +54,7 @@ public class ListOfAdjacency implements Graph {
      */
     @Override
     public void remove_vertex(int vertex) {
-        if (vertex >= gr.size()){
+        if (vertex >= gr.size()) {
             throw new IndexOutOfBoundsException("Vertex index out of bounds: " + vertex);
         }
         for (List<Integer> list : gr) {

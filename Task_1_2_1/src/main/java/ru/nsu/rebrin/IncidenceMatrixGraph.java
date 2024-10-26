@@ -57,7 +57,7 @@ public class IncidenceMatrixGraph implements Graph {
      */
     @Override
     public void remove_vertex(int vertex) {
-        if (vertex >= this.vcount()){
+        if (vertex >= this.vcount()) {
             throw new IndexOutOfBoundsException("Vertex index out of bounds: " + vertex);
         }
         for (int i = 0; i < edgeCount; i++) {
@@ -96,7 +96,7 @@ public class IncidenceMatrixGraph implements Graph {
      * add e.
      *
      * @param from - from
-     * @param to - to
+     * @param to   - to
      */
     @Override
     public void add_edge(int from, int to) {
@@ -120,7 +120,7 @@ public class IncidenceMatrixGraph implements Graph {
      * remove e.
      *
      * @param from - from
-     * @param to - to
+     * @param to   - to
      */
     @Override
     public void remove_edge(int from, int to) {
@@ -299,13 +299,13 @@ public class IncidenceMatrixGraph implements Graph {
     /**
      * Helper.
      *
-     * @param vertex - v
-     * @param visited - vis
+     * @param vertex   - v
+     * @param visited  - vis
      * @param recStack -stack1
-     * @param stack - stack2
+     * @param stack    - stack2
      */
     private void topological_sort_util(int vertex, boolean[] visited,
-            boolean[] recStack, Stack<Integer> stack) {
+                                       boolean[] recStack, Stack<Integer> stack) {
         visited[vertex] = true;
         recStack[vertex] = true; // Mark the current node in the recursion stack
 
@@ -365,9 +365,9 @@ public class IncidenceMatrixGraph implements Graph {
         List<List<Integer>> g2 = this.get_edges();
 
         g1.sort(Comparator.comparing(
-            (List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
+                (List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
         g2.sort(Comparator.comparing(
-            (List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
+                (List<Integer> e) -> e.get(0)).thenComparing(e -> e.get(1)));
 
         return g1.equals(g2);
     }
