@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -225,13 +225,20 @@ implements <a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></pr
 </td>
 </tr>
 <tr id="i6" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hashCode()">hashCode</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Hashcode.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#read_from_file(java.lang.String)">read_from_file</a></span>&#8203;(java.lang.String&nbsp;filename)</code></th>
 <td class="colLast">
 <div class="block">Read file.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove_edge(int,int)">remove_edge</a></span>&#8203;(int&nbsp;from,
            int&nbsp;to)</code></th>
@@ -239,18 +246,11 @@ implements <a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></pr
 <div class="block">remove e.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove_vertex(int)">remove_vertex</a></span>&#8203;(int&nbsp;vertex)</code></th>
 <td class="colLast">
 <div class="block">remove.</div>
-</td>
-</tr>
-<tr id="i9" class="rowColor">
-<td class="colFirst"><code>java.lang.String</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#to_string()">to_string</a></span>()</code></th>
-<td class="colLast">
-<div class="block">To string.</div>
 </td>
 </tr>
 <tr id="i10" class="altColor">
@@ -261,6 +261,13 @@ implements <a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></pr
 </td>
 </tr>
 <tr id="i11" class="rowColor">
+<td class="colFirst"><code>java.lang.String</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
+<td class="colLast">
+<div class="block">To string.</div>
+</td>
+</tr>
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#vcount()">vcount</a></span>()</code></th>
 <td class="colLast">
@@ -273,7 +280,7 @@ implements <a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></pr
 <!--   -->
 </a>
 <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
-<code>clone, finalize, getClass, hashCode, notify, notifyAll, toString, wait, wait, wait</code></li>
+<code>clone, finalize, getClass, notify, notifyAll, wait, wait, wait</code></li>
 </ul>
 </li>
 </ul>
@@ -342,6 +349,22 @@ implements <a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></pr
 <dd><code><a href="Graph.html#remove_vertex(int)">remove_vertex</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></code></dd>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>vertex</code> - - v</dd>
+</dl>
+</li>
+</ul>
+<a id="hashCode()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>hashCode</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;hashCode()</pre>
+<div class="block">Hashcode.</div>
+<dl>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>hashCode</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>- code</dd>
 </dl>
 </li>
 </ul>
@@ -418,17 +441,17 @@ implements <a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></pr
 </dl>
 </li>
 </ul>
-<a id="to_string()">
+<a id="toString()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>to_string</h4>
-<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;to_string()</pre>
+<h4>toString</h4>
+<pre class="methodSignature">public&nbsp;java.lang.String&nbsp;toString()</pre>
 <div class="block">To string.</div>
 <dl>
-<dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
-<dd><code><a href="Graph.html#to_string()">to_string</a></code>&nbsp;in interface&nbsp;<code><a href="Graph.html" title="interface in ru.nsu.rebrin">Graph</a></code></dd>
+<dt><span class="overrideSpecifyLabel">Overrides:</span></dt>
+<dd><code>toString</code>&nbsp;in class&nbsp;<code>java.lang.Object</code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>string.</dd>
 </dl>
