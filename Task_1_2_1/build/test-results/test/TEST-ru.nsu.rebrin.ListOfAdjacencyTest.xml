@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.nsu.rebrin.ListOfAdjacencyTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2024-10-26T07:35:48" hostname="DESKTOP-U6FIPIN" time="0.04">
+  <properties/>
+  <testcase name="testTopologicalSortWithCycle()" classname="ru.nsu.rebrin.ListOfAdjacencyTest" time="0.002"/>
+  <testcase name="testAddEdge()" classname="ru.nsu.rebrin.ListOfAdjacencyTest" time="0.009"/>
+  <testcase name="testFile()" classname="ru.nsu.rebrin.ListOfAdjacencyTest" time="0.003"/>
+  <testcase name="testRemoveVertex()" classname="ru.nsu.rebrin.ListOfAdjacencyTest" time="0.003"/>
+  <testcase name="testRemoveEdge()" classname="ru.nsu.rebrin.ListOfAdjacencyTest" time="0.002"/>
+  <testcase name="testAddVertex()" classname="ru.nsu.rebrin.ListOfAdjacencyTest" time="0.001"/>
+  <testcase name="testEquals()" classname="ru.nsu.rebrin.ListOfAdjacencyTest" time="0.002"/>
+  <testcase name="testGetNeighbors()" classname="ru.nsu.rebrin.ListOfAdjacencyTest" time="0.002"/>
+  <testcase name="testTopologicalSort()" classname="ru.nsu.rebrin.ListOfAdjacencyTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

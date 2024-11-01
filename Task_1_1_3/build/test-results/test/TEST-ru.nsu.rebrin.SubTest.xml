@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.nsu.rebrin.SubTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2024-10-04T06:14:35" hostname="DESKTOP-U6FIPIN" time="0.229">
+  <properties/>
+  <testcase name="testDerivative()" classname="ru.nsu.rebrin.SubTest" time="0.171"/>
+  <testcase name="testPrint()" classname="ru.nsu.rebrin.SubTest" time="0.005"/>
+  <testcase name="testSimisNotEqual1()" classname="ru.nsu.rebrin.SubTest" time="0.015"/>
+  <testcase name="testSimisEqual()" classname="ru.nsu.rebrin.SubTest" time="0.003"/>
+  <testcase name="testSimisNotEqual()" classname="ru.nsu.rebrin.SubTest" time="0.005"/>
+  <testcase name="testSteval()" classname="ru.nsu.rebrin.SubTest" time="0.003"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

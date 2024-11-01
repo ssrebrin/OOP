@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7c99732c-6424-4feb-a38b-5aab604f2ded" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ssrebrin&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:ssrebrin/OOP.git&quot;,
+    &quot;accountId&quot;: &quot;70cc2cda-0418-48fb-9d47-8252143a517b&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2n8aaqIaJjlEnmJWLUSxgTRdaYl" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Coverage&quot;,
+    &quot;Gradle.AdjacencyMatrixGraphTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AdjecencyMatrixGraphTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build Task_1_2_1.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.IncidenceMatrixGraphTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ListOfAdjacencyTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Task_1_2_1 [:ru.nsu.rebrin.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Tests in 'ru.nsu.rebrin'.executor&quot;: &quot;Coverage&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#5 on Task__1__2__1&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Asus/Desktop/OOPworkspace/OOP/Task_1_2_1&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Asus\Desktop\OOPworkspace\OOP\Task_1_2_1\src\test\java\ru\nsu\rebrin" />
+      <recent name="C:\Users\Asus\Desktop\OOPworkspace\OOP\Task_1_2_1\src\test\resources" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="ru.nsu.rebrin" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.Tests in 'ru.nsu.rebrin'">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ru.nsu.rebrin.Main" />
+      <module name="Task_1_2_1.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.nsu.rebrin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tests in 'ru.nsu.rebrin'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;ru.nsu.rebrin.*&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.Tests in 'ru.nsu.rebrin'" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7c99732c-6424-4feb-a38b-5aab604f2ded" name="Changes" comment="" />
+      <created>1728357227664</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1728357227664</updated>
+      <workItem from="1728357228896" duration="55000" />
+      <workItem from="1728385590715" duration="996000" />
+      <workItem from="1728395481519" duration="278000" />
+      <workItem from="1728395769551" duration="37000" />
+      <workItem from="1728395825637" duration="4852000" />
+      <workItem from="1728440327134" duration="7862000" />
+      <workItem from="1728462115080" duration="13576000" />
+      <workItem from="1728526649325" duration="4054000" />
+      <workItem from="1728541380532" duration="2987000" />
+      <workItem from="1728573537122" duration="4732000" />
+      <workItem from="1728625344980" duration="9211000" />
+      <workItem from="1728709057035" duration="1373000" />
+      <workItem from="1728900559848" duration="2124000" />
+      <workItem from="1729082232817" duration="9534000" />
+      <workItem from="1729130678435" duration="5352000" />
+      <workItem from="1729145234065" duration="15971000" />
+      <workItem from="1729217215661" duration="3652000" />
+      <workItem from="1729230482181" duration="8779000" />
+      <workItem from="1729348446124" duration="1750000" />
+      <workItem from="1729840200849" duration="3000" />
+      <workItem from="1729840221577" duration="15000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/nsu/rebrin/IncidenceMatrixGraph.java</url>
+          <line>67</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ru/nsu/rebrin/AdjecencyMatrixGraphTest.java</url>
+          <line>151</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Task_1_2_1$IncidenceMatrixGraphTest.ic" NAME="IncidenceMatrixGraphTest Coverage Results" MODIFIED="1729134346488" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/Task_1_2_1$Tests_in__ru_nsu_rebrin_.ic" NAME="Tests in 'ru.nsu.rebrin' Coverage Results" MODIFIED="1729928144801" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/Task_1_2_1$Main.ic" NAME="Main Coverage Results" MODIFIED="1729088413653" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>ru.nsu.rebrin.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Task_1_2_1$ListOfAdjacencyTest.ic" NAME="ListOfAdjacencyTest Coverage Results" MODIFIED="1729146705209" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/Task_1_2_1$AdjecencyMatrixGraphTest.ic" NAME="AdjecencyMatrixGraphTest Coverage Results" MODIFIED="1729145850927" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+  </component>
+</project>
