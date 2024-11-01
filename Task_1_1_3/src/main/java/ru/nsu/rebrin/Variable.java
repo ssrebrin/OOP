@@ -12,7 +12,6 @@ class Variable extends Expression {
      */
     public Variable(String name) {
         this.name = name;
-        this.clas = 1;
     }
 
     @Override
@@ -30,7 +29,7 @@ class Variable extends Expression {
     }
 
     @Override
-    public int steval(Map<String, Integer> variables) {
+    public Double steval(Map<String, Double> variables) {
         if (!variables.containsKey(name)) {
             throw new IllegalArgumentException(
                 "Переменная " + name + " не найдена в карте присваиваний");

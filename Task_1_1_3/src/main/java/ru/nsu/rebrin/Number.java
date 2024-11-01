@@ -12,7 +12,6 @@ class Number extends Expression {
      */
     public Number(int value) {
         this.value = value;
-        this.clas = 0;
     }
 
     @Override
@@ -26,8 +25,8 @@ class Number extends Expression {
     }
 
     @Override
-    public int steval(Map<String, Integer> variables) {
-        return value;
+    public Double steval(Map<String, Double> variables) {
+        return (Double)(double)value;
     }
 
     @Override
