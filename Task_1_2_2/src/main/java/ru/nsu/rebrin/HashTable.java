@@ -4,7 +4,6 @@ import java.util.ConcurrentModificationException;
 import java.util.NoSuchElementException;
 import java.util.List;
 import java.util.LinkedList;
-import java.util.Iterator;
 import java.util.Objects;
 
 public class HashTable<K, V> {
@@ -24,6 +23,53 @@ public class HashTable<K, V> {
     }
 
     /**
+     * HashTableIterator.
+     */
+    public class HashTableIterator {
+        private int expectedModCount = modCount;
+        private int currentBucket = 0;
+        private int currentInd = -1;
+
+        /**
+         * Next.
+         *
+         * @return - next
+         */
+        public boolean hasNext() {
+            if (expectedModCount != modCount) {
+                throw new ConcurrentModificationException();
+            }
+
+            while (currentBucket < table.length) {
+                if (currentInd + 1 < table[currentBucket].size()) {
+                    return true;
+                }
+                currentBucket++;
+                currentInd = -1;
+            }
+            return false;
+        }
+
+        /**
+         * Next.
+         *
+         * @return - next
+         */
+        public Entry<K, V> next() {
+            if (expectedModCount != modCount) {
+                throw new ConcurrentModificationException();
+            }
+
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+
+            currentInd++;
+            return table[currentBucket].get(currentInd);
+        }
+    }
+
+    /**
      * hash.
      *
      * @param key - key
@@ -33,7 +79,12 @@ public class HashTable<K, V> {
         return Math.abs(key.hashCode() % table.length);
     }
 
-    // Добавление пары ключ-значение
+    /**
+     * add.
+     *
+     * @param key - key
+     * @param value - val
+     */
     public void put(K key, V value) {
         int index = hash(key);
         for (Entry<K, V> entry : table[index]) {
@@ -71,11 +122,10 @@ public class HashTable<K, V> {
      */
     public void remove(K key) {
         int index = hash(key);
-        Iterator<Entry<K, V>> iterator = table[index].iterator();
-        while (iterator.hasNext()) {
-            Entry<K, V> entry = iterator.next();
-            if (entry.key.equals(key)) {
-                iterator.remove();
+        List<Entry<K, V>> bucket = table[index];
+        for (int i = 0; i < bucket.size(); i++) {
+            if (bucket.get(i).key.equals(key)) {
+                bucket.remove(i);
                 size--;
                 modCount++;
                 return;
@@ -120,36 +170,10 @@ public class HashTable<K, V> {
     /**
      * iteration.
      *
-     * @return - iterator
+     * @return - HashTableIterator
      */
-    public Iterator<Entry<K, V>> iterator() {
-        return new Iterator<>() {
-            int expectedModCount = modCount;
-            int currentBucket = 0;
-            Iterator<Entry<K, V>> bucketIterator = table[0].iterator();
-
-            @Override
-            public boolean hasNext() {
-                if (expectedModCount != modCount) {
-                    throw new ConcurrentModificationException();
-                }
-                while (currentBucket < table.length && !bucketIterator.hasNext()) {
-                    currentBucket++;
-                    if (currentBucket < table.length) {
-                        bucketIterator = table[currentBucket].iterator();
-                    }
-                }
-                return currentBucket < table.length;
-            }
-
-            @Override
-            public Entry<K, V> next() {
-                if (expectedModCount != modCount) {
-                    throw new ConcurrentModificationException();
-                }
-                return bucketIterator.next();
-            }
-        };
+    public HashTableIterator iterator() {
+        return new HashTableIterator();
     }
 
     /**
@@ -194,7 +218,7 @@ public class HashTable<K, V> {
      * @param <K> - key
      * @param <V> - val
      */
-    private static class Entry<K, V> {
+    static class Entry<K, V> {
         K key;
         V value;
 
