@@ -183,7 +183,9 @@ public class HashTable<K, V> {
      * @return - true or false
      */
     public boolean equals(HashTable<K, V> other) {
-        if (this.size != other.size) return false;
+        if (this.size != other.size) {
+            return false;
+        }
         for (List<Entry<K, V>> bucket : table) {
             for (Entry<K, V> entry : bucket) {
                 if (!Objects.equals(entry.value, other.get(entry.key))) {
@@ -207,7 +209,9 @@ public class HashTable<K, V> {
                 sb.append(entry.key).append("=").append(entry.value).append(", ");
             }
         }
-        if (sb.length() > 1) sb.setLength(sb.length() - 2);
+        if (sb.length() > 1) {
+            sb.setLength(sb.length() - 2);
+        }
         sb.append("}");
         return sb.toString();
     }
