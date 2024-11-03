@@ -82,7 +82,7 @@ public class HashTable<K, V> {
     /**
      * add.
      *
-     * @param key - key
+     * @param key   - key
      * @param value - val
      */
     public void put(K key, V value) {
@@ -136,7 +136,7 @@ public class HashTable<K, V> {
     /**
      * Update val.
      *
-     * @param key - key
+     * @param key    - key
      * @param newVal - newVal
      */
     public void update(K key, V newVal) {
