@@ -1,10 +1,16 @@
 package ru.nsu.rebrin;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ConcurrentModificationException;
 import java.util.NoSuchElementException;
+import org.junit.jupiter.api.Test;
 
 public class HashTableTest {
 
@@ -29,10 +35,13 @@ public class HashTableTest {
 
         assertEquals(11, hashTable.get("one"));
 
-        Exception exception = assertThrows(NoSuchElementException.class, () -> {
+        // Проверяем, что update выбрасывает исключение для отсутствующего ключа "two"
+        try {
             hashTable.update("two", 22);
-        });
-        assertEquals("Key not found", exception.getMessage());
+            fail("Expected NoSuchElementException to be thrown");
+        } catch (NoSuchElementException e) {
+            assertEquals("Key not found", e.getMessage());
+        }
     }
 
     @Test
