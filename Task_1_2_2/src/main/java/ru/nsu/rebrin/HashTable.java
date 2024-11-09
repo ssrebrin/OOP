@@ -1,11 +1,17 @@
 package ru.nsu.rebrin;
 
 import java.util.ConcurrentModificationException;
-import java.util.NoSuchElementException;
-import java.util.List;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
+/**
+ * HashTable.
+ *
+ * @param <K> - key
+ * @param <V> - value
+ */
 public class HashTable<K, V> {
     final int capacity = 16;
     List<Entry<K, V>>[] table;
@@ -217,7 +223,7 @@ public class HashTable<K, V> {
     }
 
     /**
-     * Single pair
+     * Single pair.
      *
      * @param <K> - key
      * @param <V> - val
