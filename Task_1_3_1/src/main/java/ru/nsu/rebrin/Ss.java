@@ -7,13 +7,13 @@ import java.util.List;
 /**
  * SubString finder.
  */
-public class ss {
+public class Ss {
     List<List<Integer>> table;
 
     /**
-     * ss
+     * ss.
      */
-    ss(){
+    Ss() {
         table = new ArrayList<>();
     }
 
@@ -30,10 +30,10 @@ public class ss {
     /**
      * Find.
      *
-     * @param res - res
+     * @param res    - res
      * @param subStr - subStr
      * @param letter - letter
-     * @param ind - ind
+     * @param ind    - ind
      */
     void find(List<Integer> res, String subStr, char letter, int ind) {
         if (letter == subStr.charAt(0)) {

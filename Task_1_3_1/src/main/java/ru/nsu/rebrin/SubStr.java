@@ -13,21 +13,21 @@ public class SubStr {
      * @param subString - ss
      * @return - array of index
      */
-    static int[] SubString(String path, String subString) {
+    static int[] sub_string(String path, String subString) {
 
         if (subString.isEmpty()){
             return new int[0];
         }
 
-        int BUFFER_SIZE = 1000;
+        int buff_size = 1000;
         char[] buff = new char[1000];
         List<Integer> res = new ArrayList<>();
-        ss table = new ss();
+        Ss table = new Ss();
 
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             int i = 0;
 
-            br.read(buff, 0, BUFFER_SIZE);
+            br.read(buff, 0, buff_size);
 
             for (char a : buff) {
                 table.find(res, subString, a, i);

@@ -19,7 +19,7 @@ public class SubStrTest {
         }
 
         // Perform the test
-        int[] result = SubStr.SubString(testFile.getPath(), "bcd");
+        int[] result = SubStr.sub_string(testFile.getPath(), "bcd");
         assertArrayEquals(new int[]{1}, result);
 
         // Clean up
@@ -35,7 +35,7 @@ public class SubStrTest {
         }
 
         // Perform the test
-        int[] result = SubStr.SubString(testFile.getPath(), "aaa");
+        int[] result = SubStr.sub_string(testFile.getPath(), "aaa");
         assertArrayEquals(new int[]{0, 1, 2, 3, 4}, result);
 
         // Clean up
@@ -51,7 +51,7 @@ public class SubStrTest {
         }
 
         // Perform the test
-        int[] result = SubStr.SubString(testFile.getPath(), "anything");
+        int[] result = SubStr.sub_string(testFile.getPath(), "anything");
         assertArrayEquals(new int[0], result);
 
         // Clean up
@@ -67,7 +67,7 @@ public class SubStrTest {
         }
 
         // Perform the test with an empty substring
-        int[] result = SubStr.SubString(testFile.getPath(), "");
+        int[] result = SubStr.sub_string(testFile.getPath(), "");
         assertArrayEquals(new int[0], result);
 
         // Clean up
