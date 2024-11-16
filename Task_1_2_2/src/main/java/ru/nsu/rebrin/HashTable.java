@@ -13,10 +13,11 @@ import java.util.Objects;
  * @param <V> - value
  */
 public class HashTable<K, V> {
-    final int capacity = 16;
-    List<Entry<K, V>>[] table;
+    int capacity = 16;
+    private List<Entry<K, V>>[] table;
     int size = 0;
     int modCount = 0;
+    int elem = 0;
 
     /**
      * HashTable.
@@ -103,7 +104,31 @@ public class HashTable<K, V> {
         table[index].add(new Entry<>(key, value));
         size++;
         modCount++;
+        elem ++;
+        if (elem * 0.7 >= capacity){
+            resize();
+        }
     }
+
+    private void resize() {
+        int newCapacity = table.length * 2;
+
+        List<Entry<K, V>>[] newTable = new List[newCapacity];
+        for (int i = 0; i < newCapacity; i++) {
+            newTable[i] = new LinkedList<>();
+        }
+
+        for (List<Entry<K, V>> bucket : table) {
+            for (Entry<K, V> entry : bucket) {
+                int newIndex = Math.abs(entry.key.hashCode() % newCapacity);
+                newTable[newIndex].add(entry);
+            }
+        }
+
+        table = newTable;
+        modCount++;
+    }
+
 
     /**
      * Get val.
@@ -118,7 +143,7 @@ public class HashTable<K, V> {
                 return entry.value;
             }
         }
-        return null;
+        throw new NoSuchElementException("Key not found");
     }
 
     /**
@@ -134,6 +159,7 @@ public class HashTable<K, V> {
                 bucket.remove(i);
                 size--;
                 modCount++;
+                elem--;
                 return;
             }
         }
