@@ -37,11 +37,14 @@ public class SubStr {
             byte[] byteBuffer = new byte[buffSize];
             int bytesRead;
             int i = 0;
-
+            int ind = 0;
             while ((bytesRead = fis.read(byteBuffer)) != -1) {
                 for (int j = 0; j < bytesRead; j++) {
-                    table.find(res, subBytes, byteBuffer[j], i);
+                    table.find(res, subBytes, byteBuffer[j], i, ind);
                     i++;
+                    if ((byteBuffer[j] & 0b11000000) != 0b10000000) {
+                        ind++;
+                    }
                 }
             }
         } catch (IOException ex) {

@@ -56,7 +56,7 @@ public class SubStrTest {
 
         int[] expectedIndices = new int[1000];
         for (int i = 0; i < 1000; i++) {
-            expectedIndices[i] = i * 12 + 7;
+            expectedIndices[i] = i * 10 + 7;
         }
 
         int[] result = SubStr.sub_string(testFile.getPath(), substring);
