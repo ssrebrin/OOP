@@ -17,8 +17,8 @@ public class SubStrTest {
         File testFile = Paths.get(getClass().getClassLoader().getResource("test.txt").toURI()).toFile();
 
         // Perform the test
-        int[] result = SubStr.sub_string(testFile.getPath(), "bcd");
-        assertArrayEquals(new int[]{1}, result);
+        Long[] result = SubStr.sub_string(testFile.getPath(), "bcd");
+        assertArrayEquals(new Long[]{(long) 1}, result);
     }
 
     @Test
@@ -26,8 +26,8 @@ public class SubStrTest {
         File testFile = Paths.get(getClass().getClassLoader().getResource("test1.txt").toURI()).toFile();
 
         // Perform the test
-        int[] result = SubStr.sub_string(testFile.getPath(), "aaa");
-        assertArrayEquals(new int[]{0, 1, 2, 3, 4}, result);
+        Long[] result = SubStr.sub_string(testFile.getPath(), "aaa");
+        assertArrayEquals(new Long[]{(long) 0, (long) 1, (long) 2, (long) 3, (long) 4}, result);
     }
 
     @Test
@@ -35,8 +35,8 @@ public class SubStrTest {
         File testFile = Paths.get(getClass().getClassLoader().getResource("test2.txt").toURI()).toFile();
 
         // Perform the test
-        int[] result = SubStr.sub_string(testFile.getPath(), "anything");
-        assertArrayEquals(new int[0], result);
+        Long[] result = SubStr.sub_string(testFile.getPath(), "anything");
+        assertArrayEquals(new Long[0], result);
     }
 
     @Test
@@ -44,8 +44,8 @@ public class SubStrTest {
         File testFile = Paths.get(getClass().getClassLoader().getResource("test.txt").toURI()).toFile();
 
         // Perform the test with an empty substring
-        int[] result = SubStr.sub_string(testFile.getPath(), "");
-        assertArrayEquals(new int[0], result);
+        Long[] result = SubStr.sub_string(testFile.getPath(), "");
+        assertArrayEquals(new Long[0], result);
     }
 
     @Test
@@ -54,12 +54,12 @@ public class SubStrTest {
 
         String substring = "мир";
 
-        int[] expectedIndices = new int[1000];
+        Long[] expectedIndices = new Long[1000];
         for (int i = 0; i < 1000; i++) {
-            expectedIndices[i] = i * 10 + 7;
+            expectedIndices[i] = (long) (i * 10 + 7);
         }
 
-        int[] result = SubStr.sub_string(testFile.getPath(), substring);
+        Long[] result = SubStr.sub_string(testFile.getPath(), substring);
         assertArrayEquals(expectedIndices, result);
     }
 
@@ -67,8 +67,8 @@ public class SubStrTest {
     public void testFindRusSubstring1() throws IOException, URISyntaxException {
         File testFile = Paths.get(getClass().getClassLoader().getResource("testR2.txt").toURI()).toFile();
 
-        int[] result = SubStr.sub_string(testFile.getPath(), "аб");
+        Long[] result = SubStr.sub_string(testFile.getPath(), "аб");
         System.out.println(Arrays.toString(result));
-        assertArrayEquals(new int[]{0, 6}, result);
+        assertArrayEquals(new Long[]{(long) 0, (long) 6}, result);
     }
 }

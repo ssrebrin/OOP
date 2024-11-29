@@ -19,19 +19,17 @@ public class SubStr {
      * @param subString substr
      * @return arr of inds
      */
-    static int[] sub_string(String path, String subString) {
+    static Long[] sub_string(String path, String subString) {
 
         if (subString.isEmpty()) {
-            return new int[0];
+            return new Long[0];
         }
 
         int buffSize = 950;
-        List<Integer> res = new ArrayList<>();
+        List<Long> res = new ArrayList<>();
         Ss table = new Ss();
 
         byte[] subBytes = subString.getBytes(StandardCharsets.UTF_8);
-
-        //System.out.println(Arrays.toString(subBytes));
 
         try (FileInputStream fis = new FileInputStream(path)) {
             byte[] byteBuffer = new byte[buffSize];
@@ -40,7 +38,7 @@ public class SubStr {
             int ind = 0;
             while ((bytesRead = fis.read(byteBuffer)) != -1) {
                 for (int j = 0; j < bytesRead; j++) {
-                    table.find(res, subBytes, byteBuffer[j], i, ind);
+                    table.find(res, subBytes, byteBuffer[j], (long)i, (long)ind);
                     i++;
                     if ((byteBuffer[j] & 0b11000000) != 0b10000000) {
                         ind++;
@@ -51,6 +49,7 @@ public class SubStr {
             System.out.println(ex.getMessage());
         }
 
-        return res.stream().mapToInt(Integer::intValue).toArray();
+        return res.toArray(new Long[0]);
     }
+
 }

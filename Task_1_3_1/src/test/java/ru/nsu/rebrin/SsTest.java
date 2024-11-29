@@ -11,21 +11,21 @@ class SsTest {
     @Test
     void test() {
         Ss t = new Ss();
-        List<Integer> res = new ArrayList<>();
-        t.find(res, "ab".getBytes(), (byte) 'a', 0, 0);
-        t.find(res, "ab".getBytes(), (byte) 'b', 1, 1);
-        assertEquals(res, List.of(0));
+        List<Long> res = new ArrayList<>();
+        t.find(res, "ab".getBytes(), (byte) 'a', (long) 0, (long) 0);
+        t.find(res, "ab".getBytes(), (byte) 'b', (long) 1, (long) 1);
+        assertEquals(res, List.of((long) 0));
     }
 
     @Test
     void test1() {
         Ss t = new Ss();
-        List<Integer> res = new ArrayList<>();
-        t.find(res, "aaa".getBytes(), (byte) 'a', 0, 0);
-        t.find(res, "aaa".getBytes(), (byte) 'a', 1, 1);
-        t.find(res, "aaa".getBytes(), (byte) 'a', 2, 2);
-        t.find(res, "aaa".getBytes(), (byte) 'a', 3, 3);
-        t.find(res, "aaa".getBytes(), (byte) 'b', 4, 4);
-        assertEquals(res, List.of(0, 1));
+        List<Long> res = new ArrayList<>();
+        t.find(res, "aaa".getBytes(), (byte) 'a', (long) 0, (long) 0);
+        t.find(res, "aaa".getBytes(), (byte) 'a', (long) 1, (long) 1);
+        t.find(res, "aaa".getBytes(), (byte) 'a', (long) 2, (long) 2);
+        t.find(res, "aaa".getBytes(), (byte) 'a', (long) 3, (long) 3);
+        t.find(res, "aaa".getBytes(), (byte) 'b', (long) 4, (long) 4);
+        assertEquals(res, List.of((long) 0, (long) 1));
     }
 }

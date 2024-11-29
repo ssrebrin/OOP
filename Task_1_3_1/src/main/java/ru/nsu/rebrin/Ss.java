@@ -8,7 +8,7 @@ import java.util.List;
  * Substring finder.
  */
 public class Ss {
-    List<List<Integer>> table;
+    List<List<Long>> table;
 
     /**
      * Constructor for Ss.
@@ -24,7 +24,7 @@ public class Ss {
      * @param num   the number
      * @param index ind
      */
-    void add(int ind, int num, int index) {
+    void add(Long ind, Long num, Long index) {
         table.add(new ArrayList<>(Arrays.asList(ind, num, index)));
     }
 
@@ -37,17 +37,17 @@ public class Ss {
      * @param ind    ind
      * @param index  index of utf
      */
-    void find(List<Integer> res, byte[] subStr, byte letter, int ind, int index) {
+    void find(List<Long> res, byte[] subStr, byte letter, Long ind, Long index) {
         if (letter == subStr[0]) {
-            add(ind, 0, index);
+            add(ind, (long)0, index);
         }
 
         var iterator = table.iterator();
 
         while (iterator.hasNext()) {
-            List<Integer> pair = iterator.next();
+            List<Long> pair = iterator.next();
 
-            if (subStr[pair.get(1)] == letter) {
+            if (subStr[pair.get(1).intValue()] == letter) {
                 if (pair.get(1) + 1 == subStr.length) {
                     res.add(pair.get(2));
                     iterator.remove();
