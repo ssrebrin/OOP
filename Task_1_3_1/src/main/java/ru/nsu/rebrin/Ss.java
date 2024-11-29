@@ -5,53 +5,55 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * SubString finder.
+ * Substring finder.
  */
 public class Ss {
     List<List<Integer>> table;
 
     /**
-     * ss.
+     * Constructor for Ss.
      */
     Ss() {
         table = new ArrayList<>();
     }
 
     /**
-     * Add to table.
+     * Adds an element to the table.
      *
-     * @param ind - ind
-     * @param num - num
+     * @param ind the index
+     * @param num the number
      */
     void add(int ind, int num) {
         table.add(new ArrayList<>(Arrays.asList(ind, num)));
     }
 
     /**
-     * Find.
+     * Finds the substring by bytes.
      *
-     * @param res    - res
-     * @param subStr - subStr
-     * @param letter - letter
-     * @param ind    - ind
+     * @param res    res
+     * @param subStr substr
+     * @param letter letter
+     * @param ind    ind
      */
-    void find(List<Integer> res, String subStr, char letter, int ind) {
-        if (letter == subStr.charAt(0)) {
+    void find(List<Integer> res, byte[] subStr, byte letter, int ind) {
+        if (letter == subStr[0]) {
             add(ind, 0);
         }
 
-        var iterator = table.iterator(); // Используем итератор для обхода списка
+        var iterator = table.iterator();
 
         while (iterator.hasNext()) {
             List<Integer> pair = iterator.next();
 
-            if (subStr.charAt(pair.get(1)) == letter) {
-                if (pair.get(1) + 1 == subStr.length()) {
-                    res.add(pair.get(0));  // Добавляем начальный индекс найденной подстроки
-                    iterator.remove();     // Удаляем элемент через итератор
+            if (subStr[pair.get(1)] == letter) {
+                if (pair.get(1) + 1 == subStr.length) {
+                    res.add(pair.get(0));
+                    iterator.remove();
                 } else {
-                    pair.set(1, pair.get(1) + 1); // Увеличиваем значение второго элемента
+                    pair.set(1, pair.get(1) + 1);
                 }
+            } else {
+                iterator.remove();
             }
         }
     }

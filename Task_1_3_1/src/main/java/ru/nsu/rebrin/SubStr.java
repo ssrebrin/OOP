@@ -1,9 +1,10 @@
 package ru.nsu.rebrin;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -14,9 +15,9 @@ public class SubStr {
     /**
      * Find substring.
      *
-     * @param path      - path
-     * @param subString - ss
-     * @return - array of index
+     * @param path      path
+     * @param subString substr
+     * @return arr of inds
      */
     static int[] sub_string(String path, String subString) {
 
@@ -24,19 +25,24 @@ public class SubStr {
             return new int[0];
         }
 
-        int buffSize = 1000;
-        char[] buff = new char[1000];
+        int buffSize = 950;
         List<Integer> res = new ArrayList<>();
         Ss table = new Ss();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+        byte[] subBytes = subString.getBytes(StandardCharsets.UTF_8);
+
+        //System.out.println(Arrays.toString(subBytes));
+
+        try (FileInputStream fis = new FileInputStream(path)) {
+            byte[] byteBuffer = new byte[buffSize];
+            int bytesRead;
             int i = 0;
 
-            br.read(buff, 0, buffSize);
-
-            for (char a : buff) {
-                table.find(res, subString, a, i);
-                i++;
+            while ((bytesRead = fis.read(byteBuffer)) != -1) {
+                for (int j = 0; j < bytesRead; j++) {
+                    table.find(res, subBytes, byteBuffer[j], i);
+                    i++;
+                }
             }
         } catch (IOException ex) {
             System.out.println(ex.getMessage());

@@ -12,8 +12,8 @@ class SsTest {
     void test() {
         Ss t = new Ss();
         List<Integer> res = new ArrayList<>();
-        t.find(res, "ab", 'a', 0);
-        t.find(res, "ab", 'b', 1);
+        t.find(res, "ab".getBytes(), (byte) 'a', 0);
+        t.find(res, "ab".getBytes(), (byte) 'b', 1);
         assertEquals(res, List.of(0));
     }
 
@@ -21,11 +21,11 @@ class SsTest {
     void test1() {
         Ss t = new Ss();
         List<Integer> res = new ArrayList<>();
-        t.find(res, "aaa", 'a', 0);
-        t.find(res, "aaa", 'a', 1);
-        t.find(res, "aaa", 'a', 2);
-        t.find(res, "aaa", 'a', 3);
-        t.find(res, "aaa", 'b', 4);
+        t.find(res, "aaa".getBytes(), (byte) 'a', 0);
+        t.find(res, "aaa".getBytes(), (byte) 'a', 1);
+        t.find(res, "aaa".getBytes(), (byte) 'a', 2);
+        t.find(res, "aaa".getBytes(), (byte) 'a', 3);
+        t.find(res, "aaa".getBytes(), (byte) 'b', 4);
         assertEquals(res, List.of(0, 1));
     }
 }
