@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.rebrin","l":"CourseResult"},{"p":"ru.nsu.rebrin","l":"CourseType"},{"p":"ru.nsu.rebrin","l":"Grade"},{"p":"ru.nsu.rebrin","l":"RecordBook"},{"p":"ru.nsu.rebrin","l":"Student"}]
