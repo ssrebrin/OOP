@@ -7,14 +7,14 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Paths;
 import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 
 public class SubStrTest {
 
     @Test
     public void testFindSubstringInNonEmptyFile() throws IOException, URISyntaxException {
-        File testFile = Paths.get(getClass().getClassLoader().getResource("test.txt").toURI()).toFile();
+        File testFile = Paths.get(getClass().getClassLoader().
+                getResource("test.txt").toURI()).toFile();
 
         // Perform the test
         Long[] result = SubStr.sub_string(testFile.getPath(), "bcd");
@@ -23,7 +23,8 @@ public class SubStrTest {
 
     @Test
     public void testFindRepeatedSubstring() throws IOException, URISyntaxException {
-        File testFile = Paths.get(getClass().getClassLoader().getResource("test1.txt").toURI()).toFile();
+        File testFile = Paths.get(getClass().getClassLoader().
+                getResource("test1.txt").toURI()).toFile();
 
         // Perform the test
         Long[] result = SubStr.sub_string(testFile.getPath(), "aaa");
@@ -32,7 +33,8 @@ public class SubStrTest {
 
     @Test
     public void testEmptyFile() throws IOException, URISyntaxException {
-        File testFile = Paths.get(getClass().getClassLoader().getResource("test2.txt").toURI()).toFile();
+        File testFile = Paths.get(getClass().getClassLoader().
+                getResource("test2.txt").toURI()).toFile();
 
         // Perform the test
         Long[] result = SubStr.sub_string(testFile.getPath(), "anything");
@@ -41,7 +43,8 @@ public class SubStrTest {
 
     @Test
     public void testEmptySubstring() throws IOException, URISyntaxException {
-        File testFile = Paths.get(getClass().getClassLoader().getResource("test.txt").toURI()).toFile();
+        File testFile = Paths.get(getClass().getClassLoader().
+                getResource("test.txt").toURI()).toFile();
 
         // Perform the test with an empty substring
         Long[] result = SubStr.sub_string(testFile.getPath(), "");
@@ -50,7 +53,8 @@ public class SubStrTest {
 
     @Test
     public void testFindLongRusSubstring() throws IOException, URISyntaxException {
-        File testFile = Paths.get(getClass().getClassLoader().getResource("longRusText.txt").toURI()).toFile();
+        File testFile = Paths.get(getClass().getClassLoader().
+                getResource("longRusText.txt").toURI()).toFile();
 
         String substring = "мир";
 
@@ -65,7 +69,8 @@ public class SubStrTest {
 
     @Test
     public void testFindRusSubstring1() throws IOException, URISyntaxException {
-        File testFile = Paths.get(getClass().getClassLoader().getResource("testR2.txt").toURI()).toFile();
+        File testFile = Paths.get(getClass().getClassLoader().
+                getResource("testR2.txt").toURI()).toFile();
 
         Long[] result = SubStr.sub_string(testFile.getPath(), "аб");
         System.out.println(Arrays.toString(result));

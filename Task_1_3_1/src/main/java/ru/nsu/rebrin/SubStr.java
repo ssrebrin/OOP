@@ -38,7 +38,7 @@ public class SubStr {
             int ind = 0;
             while ((bytesRead = fis.read(byteBuffer)) != -1) {
                 for (int j = 0; j < bytesRead; j++) {
-                    table.find(res, subBytes, byteBuffer[j], (long)i, (long)ind);
+                    table.find(res, subBytes, byteBuffer[j], (long) i, (long) ind);
                     i++;
                     if ((byteBuffer[j] & 0b11000000) != 0b10000000) {
                         ind++;

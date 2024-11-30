@@ -39,7 +39,7 @@ public class Ss {
      */
     void find(List<Long> res, byte[] subStr, byte letter, Long ind, Long index) {
         if (letter == subStr[0]) {
-            add(ind, (long)0, index);
+            add(ind, (long) 0, index);
         }
 
         var iterator = table.iterator();
