@@ -3,7 +3,7 @@ package ru.nsu.rebrin;
 /**
  * Represents a student.
  */
-class Student {
+public class Student {
     private final String name;
     private boolean isBudget;
     private final RecordBook recordBook;

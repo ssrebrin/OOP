@@ -3,7 +3,7 @@ package ru.nsu.rebrin;
 /**
  * Represents the result of a course.
  */
-class CourseResult {
+public class CourseResult {
     private final String courseName;
     private final CourseType courseType;
     private final Grade grade;

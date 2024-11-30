@@ -3,7 +3,7 @@ package ru.nsu.rebrin;
 /**
  * Represents a grade.
  */
-enum Grade {
+public enum Grade {
     EXCELLENT("Excellent", 5),
     GOOD("Good", 4),
     SATISFACTORY("Satisfactory", 3),

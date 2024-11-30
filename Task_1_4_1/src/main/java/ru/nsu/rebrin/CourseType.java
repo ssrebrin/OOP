@@ -3,7 +3,7 @@ package ru.nsu.rebrin;
 /**
  * Represents the type of a course.
  */
-enum CourseType {
+public enum CourseType {
     EXAM("Exam"),
     CREDIT("Credit"),
     DIFFERENTIATED_CREDIT("Differentiated Credit");

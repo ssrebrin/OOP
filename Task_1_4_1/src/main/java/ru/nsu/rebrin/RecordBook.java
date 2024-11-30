@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Record book.
  */
-class RecordBook {
+public class RecordBook {
     private final List<CourseResult> results = new ArrayList<>();
     private Grade qualificationWorkGrade;
 
