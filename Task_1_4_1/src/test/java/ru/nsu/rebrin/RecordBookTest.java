@@ -108,7 +108,7 @@ class RecordBookTest {
 
         // Test printAverageGrade
         student.printAverageGrade();
-        assertEquals("Average grade: 4,60\n", outContent.toString().replace("\r\n", "\n"));
+        assertEquals("Average grade: 4.60\n", outContent.toString().replace("\r\n", "\n"));
         outContent.reset();
 
         // Test checkRedDiploma
