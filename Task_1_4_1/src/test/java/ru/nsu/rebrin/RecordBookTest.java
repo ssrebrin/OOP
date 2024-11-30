@@ -1,11 +1,12 @@
 package ru.nsu.rebrin;
 
-import org.junit.jupiter.api.Test;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 class RecordBookTest {
     private Student student;
@@ -21,15 +22,19 @@ class RecordBookTest {
         assertEquals(CourseType.EXAM, course.getCourseType());
 
         recordBook.addCourseResult(new CourseResult("Physics", CourseType.EXAM, Grade.GOOD));
-        recordBook.addCourseResult(new CourseResult("History", CourseType.EXAM, Grade.SATISFACTORY));
-        recordBook.addCourseResult(new CourseResult("English", CourseType.DIFFERENTIATED_CREDIT, Grade.EXCELLENT));
-        recordBook.addCourseResult(new CourseResult("Chemistry", CourseType.EXAM, Grade.EXCELLENT));
-        recordBook.addCourseResult(new CourseResult("Programming", CourseType.EXAM, Grade.EXCELLENT));
+        recordBook.addCourseResult(
+                new CourseResult("History", CourseType.EXAM, Grade.SATISFACTORY));
+        recordBook.addCourseResult(
+                new CourseResult("English", CourseType.DIFFERENTIATED_CREDIT, Grade.EXCELLENT));
+        recordBook.addCourseResult(
+                new CourseResult("Chemistry", CourseType.EXAM, Grade.EXCELLENT));
+        recordBook.addCourseResult(
+                new CourseResult("Programming", CourseType.EXAM, Grade.EXCELLENT));
         recordBook.setGrade(Grade.EXCELLENT);
 
         assertEquals(Grade.EXCELLENT, recordBook.getGrade());
 
-        double expectedAverage = (5 + 4 + 3 + 5 + 5 + 5) / 6.0; // (Excellent, Good, Satisfactory, Excellent, Excellent, Excellent)
+        double expectedAverage = (5 + 4 + 3 + 5 + 5 + 5) / 6.0;
         assertEquals(expectedAverage, recordBook.calculateAverageGrade(), 0.01);
     }
 
@@ -38,13 +43,19 @@ class RecordBookTest {
         student = new Student("John Doe", false); // Student on a paid basis
         RecordBook recordBook = student.getRecordBook();
 
-        recordBook.addCourseResult(new CourseResult("Algorithms", CourseType.EXAM, Grade.EXCELLENT));
-        recordBook.addCourseResult(new CourseResult("Data Structures", CourseType.EXAM, Grade.EXCELLENT));
-        recordBook.addCourseResult(new CourseResult("Operating Systems", CourseType.EXAM, Grade.EXCELLENT));
-        recordBook.addCourseResult(new CourseResult("Databases", CourseType.EXAM, Grade.EXCELLENT));
-        recordBook.addCourseResult(new CourseResult("Machine Learning", CourseType.EXAM, Grade.EXCELLENT));
+        recordBook.addCourseResult(
+                new CourseResult("Algorithms", CourseType.EXAM, Grade.EXCELLENT));
+        recordBook.addCourseResult(
+                new CourseResult("Data Structures", CourseType.EXAM, Grade.EXCELLENT));
+        recordBook.addCourseResult(
+                new CourseResult("Operating Systems", CourseType.EXAM, Grade.EXCELLENT));
+        recordBook.addCourseResult(
+                new CourseResult("Databases", CourseType.EXAM, Grade.EXCELLENT));
+        recordBook.addCourseResult(
+                new CourseResult("Machine Learning", CourseType.EXAM, Grade.EXCELLENT));
 
-        assertTrue(recordBook.canGetIncreasedScholarship(), "Student should be eligible for an increased scholarship.");
+        assertTrue(recordBook.canGetIncreasedScholarship(),
+                "Student should be eligible for an increased scholarship.");
     }
 
     @Test
@@ -55,12 +66,17 @@ class RecordBookTest {
         recordBook.addCourseResult(new CourseResult("Math", CourseType.EXAM, Grade.EXCELLENT));
         recordBook.addCourseResult(new CourseResult("Physics", CourseType.EXAM, Grade.GOOD));
         recordBook.addCourseResult(new CourseResult("History", CourseType.EXAM, Grade.EXCELLENT));
-        recordBook.addCourseResult(new CourseResult("English", CourseType.DIFFERENTIATED_CREDIT, Grade.GOOD));
-        recordBook.addCourseResult(new CourseResult("Chemistry", CourseType.EXAM, Grade.EXCELLENT));
-        recordBook.addCourseResult(new CourseResult("Programming", CourseType.EXAM, Grade.EXCELLENT));
+        recordBook.addCourseResult(
+                new CourseResult("English", CourseType.DIFFERENTIATED_CREDIT, Grade.GOOD));
+        recordBook.addCourseResult(
+                new CourseResult("Chemistry", CourseType.EXAM, Grade.EXCELLENT));
+        recordBook.addCourseResult(
+                new CourseResult("Programming", CourseType.EXAM, Grade.EXCELLENT));
         recordBook.addCourseResult(new CourseResult("Biology", CourseType.EXAM, Grade.GOOD));
-        recordBook.addCourseResult(new CourseResult("Geography", CourseType.EXAM, Grade.EXCELLENT));
-        recordBook.addCourseResult(new CourseResult("Art", CourseType.DIFFERENTIATED_CREDIT, Grade.GOOD));
+        recordBook.addCourseResult(
+                new CourseResult("Geography", CourseType.EXAM, Grade.EXCELLENT));
+        recordBook.addCourseResult(
+                new CourseResult("Art", CourseType.DIFFERENTIATED_CREDIT, Grade.GOOD));
         recordBook.addCourseResult(new CourseResult("Sports", CourseType.EXAM, Grade.EXCELLENT));
 
         student.checkAndTransferToBudget();
@@ -75,9 +91,12 @@ class RecordBookTest {
         recordBook.addCourseResult(new CourseResult("Math", CourseType.EXAM, Grade.EXCELLENT));
         recordBook.addCourseResult(new CourseResult("Physics", CourseType.EXAM, Grade.GOOD));
         recordBook.addCourseResult(new CourseResult("History", CourseType.EXAM, Grade.GOOD));
-        recordBook.addCourseResult(new CourseResult("English", CourseType.DIFFERENTIATED_CREDIT, Grade.EXCELLENT));
-        recordBook.addCourseResult(new CourseResult("Chemistry", CourseType.EXAM, Grade.EXCELLENT));
-        recordBook.addCourseResult(new CourseResult("Programming", CourseType.EXAM, Grade.EXCELLENT));
+        recordBook.addCourseResult(
+                new CourseResult("English", CourseType.DIFFERENTIATED_CREDIT, Grade.EXCELLENT));
+        recordBook.addCourseResult(
+                new CourseResult("Chemistry", CourseType.EXAM, Grade.EXCELLENT));
+        recordBook.addCourseResult(
+                new CourseResult("Programming", CourseType.EXAM, Grade.EXCELLENT));
         recordBook.setGrade(Grade.EXCELLENT);
 
         assertFalse(recordBook.canGetRed());
@@ -100,26 +119,34 @@ class RecordBookTest {
         student = new Student("John Doe", false);
 
         RecordBook recordBook = student.getRecordBook();
-        recordBook.addCourseResult(new CourseResult("Math", CourseType.EXAM, Grade.EXCELLENT));
-        recordBook.addCourseResult(new CourseResult("Physics", CourseType.EXAM, Grade.GOOD));
-        recordBook.addCourseResult(new CourseResult("History", CourseType.EXAM, Grade.EXCELLENT));
-        recordBook.addCourseResult(new CourseResult("English", CourseType.DIFFERENTIATED_CREDIT, Grade.GOOD));
-        recordBook.addCourseResult(new CourseResult("Programming", CourseType.EXAM, Grade.EXCELLENT));
+        recordBook.addCourseResult(
+                new CourseResult("Math", CourseType.EXAM, Grade.EXCELLENT));
+        recordBook.addCourseResult(
+                new CourseResult("Physics", CourseType.EXAM, Grade.GOOD));
+        recordBook.addCourseResult(
+                new CourseResult("History", CourseType.EXAM, Grade.EXCELLENT));
+        recordBook.addCourseResult(
+                new CourseResult("English", CourseType.DIFFERENTIATED_CREDIT, Grade.GOOD));
+        recordBook.addCourseResult(
+                new CourseResult("Programming", CourseType.EXAM, Grade.EXCELLENT));
 
         // Test printAverageGrade
         student.printAverageGrade();
-        assertEquals("Average grade: 4,60\n", outContent.toString().replace("\r\n", "\n"));
+        assertEquals("Average grade: 4.60\n",
+                outContent.toString().replace("\r\n", "\n"));
         outContent.reset();
 
         // Test checkRedDiploma
         recordBook.setGrade(Grade.EXCELLENT);
         student.checkRedDiploma();
-        assertEquals("John Doe is not eligible for a red diploma.\n", outContent.toString().replace("\r\n", "\n"));
+        assertEquals("John Doe is not eligible for a red diploma.\n",
+                outContent.toString().replace("\r\n", "\n"));
         outContent.reset();
 
         // Test checkIncreasedScholarship
         student.checkIncreasedScholarship();
-        assertEquals("John Doe is not eligible for an increased scholarship.\n", outContent.toString().replace("\r\n", "\n"));
+        assertEquals("John Doe is not eligible for an increased scholarship.\n",
+                outContent.toString().replace("\r\n", "\n"));
         System.setOut(originalOut);
     }
 }
