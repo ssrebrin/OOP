@@ -1,12 +1,12 @@
 package ru.nsu.rebrin;
 
-import java.util.Arrays;
 import java.lang.Thread;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * Non prim number
+ * Non prim number.
  */
 public class SimpleDimple {
     /**

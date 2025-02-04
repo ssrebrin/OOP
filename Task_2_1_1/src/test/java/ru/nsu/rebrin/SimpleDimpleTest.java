@@ -1,8 +1,8 @@
 package ru.nsu.rebrin;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -64,7 +64,8 @@ class SimpleDimpleTest {
             startTime = System.nanoTime();
             boolean result2 = sd.notAllPrime2(array, thCount);
             endTime = System.nanoTime();
-            System.out.println("Parallel time with " + thCount + " threads: " + (endTime - startTime) + " ns");
+            System.out.println("Parallel time with "
+                    + thCount + " threads: " + (endTime - startTime) + " ns");
         }
 
         startTime = System.nanoTime();
