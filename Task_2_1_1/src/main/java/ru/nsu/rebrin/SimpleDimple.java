@@ -72,23 +72,23 @@ public class SimpleDimple {
     /**
      * thCount threads.
      *
-     * @param arr - array
+     * @param arr     - array
      * @param thCount - thread count
      * @return - bool
      */
     public boolean notAllPrime2(int[] arr, int thCount) {
         AtomicBoolean flag = new AtomicBoolean(false);
 
-        int size = (int)Math.ceil((double)arr.length / thCount);
+        int size = (int) Math.ceil((double) arr.length / thCount);
         Thread[] t = new Thread[thCount];
         for (int i = 0; i < thCount; i++) {
-            int start = i*size;
+            int start = i * size;
             int end = Math.min(start + size, arr.length);
             t[i] = new Thread(new Thread2(arr, start, end, flag));
             t[i].start();
         }
 
-        for(Thread i : t){
+        for (Thread i : t) {
             try {
                 i.join();
             } catch (InterruptedException e) {
@@ -105,7 +105,7 @@ public class SimpleDimple {
      * @param arr - array
      * @return - bool
      */
-    public boolean notAllPrime3(int[] arr){
+    public boolean notAllPrime3(int[] arr) {
         return Arrays.stream(arr).parallel().anyMatch(num -> !isPr(num));
     }
 
@@ -143,8 +143,8 @@ public class SimpleDimple {
          *
          * @param array - array
          * @param start - start
-         * @param end - end
-         * @param flag - flag which we will change
+         * @param end   - end
+         * @param flag  - flag which we will change
          */
         public Thread2(int[] array, int start, int end, AtomicBoolean flag) {
             this.array = array;
@@ -157,9 +157,9 @@ public class SimpleDimple {
          * Run.
          */
         @Override
-        public void run(){
-            for(int i=start;i<end;i++){
-                if(!isPr(array[i])){
+        public void run() {
+            for (int i = start; i < end; i++) {
+                if (!isPr(array[i])) {
                     flag.set(true);
                 }
             }
