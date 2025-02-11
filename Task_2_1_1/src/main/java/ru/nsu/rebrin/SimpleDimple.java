@@ -15,7 +15,7 @@ public class SimpleDimple {
      * @param args - args
      */
     public static void main(String[] args) {
-        int[] array = generateLargeArray(1000000); // Генерация большого массива
+        int[] array = generateLargeArray(1000000);
         SimpleDimple sd = new SimpleDimple();
 
         // Последовательное выполнение
@@ -48,7 +48,7 @@ public class SimpleDimple {
         Random rand = new Random();
         int[] array = new int[size];
         for (int i = 0; i < size; i++) {
-            array[i] = rand.nextInt(1000000) + 1; // Генерация чисел от 1 до 1000000
+            array[i] = rand.nextInt(1000000) + 1;
         }
         return array;
     }
