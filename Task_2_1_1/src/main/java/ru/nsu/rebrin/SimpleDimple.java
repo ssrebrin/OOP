@@ -23,9 +23,7 @@ public class SimpleDimple {
         boolean result1 = sd.notAllPrime1(array);
         long endTime = System.nanoTime();
         System.out.println("" + (endTime - startTime));
-
-        int[] threadCounts = {2, 4, 8, 16};
-        for (int thCount : threadCounts) {
+        for (int thCount =2;thCount<30;thCount++) {
             startTime = System.nanoTime();
             boolean result2 = sd.notAllPrime2(array, thCount);
             endTime = System.nanoTime();
@@ -48,8 +46,9 @@ public class SimpleDimple {
         Random rand = new Random();
         int[] array = new int[size];
         for (int i = 0; i < size; i++) {
-            array[i] = rand.nextInt(1000000) + 1;
+            array[i] = 1000003;
         }
+        array[size-1] = 6;
         return array;
     }
 
@@ -60,13 +59,13 @@ public class SimpleDimple {
      * @return - bool
      */
     public static boolean notAllPrime1(int[] arr) {
-
+        boolean res = false;
         for (int i : arr) {
             if (!isPr(i)) {
-                return true;
+                res = true;
             }
         }
-        return false;
+        return res;
     }
 
     /**
