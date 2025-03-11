@@ -54,7 +54,8 @@ class PizzeriaTest {
         Pizzeria pizzeria = Pizzeria.fromJson(configFile);
         pizzeria.order();
         pizzeria.order();
-        assertEquals(2, pizzeria.queueCook.size(), "Queue cook size should be 2 after two orders");
+        assertEquals(2, pizzeria.queueCook.size(),
+            "Queue cook size should be 2 after two orders");
     }
 
     @Test
@@ -101,7 +102,8 @@ class PizzeriaTest {
             pizzeria.cookerThreads.get(0).interrupt();
         }
 
-        assertEquals(0, pizzeria.queueCook.size(), "Queue cook should be empty after interruption");
+        assertEquals(0, pizzeria.queueCook.size(),
+            "Queue cook should be empty after interruption");
     }
 
     @Test
@@ -110,6 +112,7 @@ class PizzeriaTest {
             pizzeria.delivererThreads.get(0).interrupt();
         }
 
-        assertEquals(0, pizzeria.queueDeliv.size(), "Queue deliver should be empty after interruption");
+        assertEquals(0, pizzeria.queueDeliv.size(),
+            "Queue deliver should be empty after interruption");
     }
 }

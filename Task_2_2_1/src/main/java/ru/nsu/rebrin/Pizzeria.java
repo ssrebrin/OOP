@@ -4,14 +4,13 @@ import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
-import javax.json.stream.JsonParsingException;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+
 /**
  * Pizzeria class.
  */
@@ -30,8 +29,8 @@ public class Pizzeria {
     /**
      * Init.
      *
-     * @param cookingTime      - List with cookers cooking time
-     * @param deliverTime      - List with deliverers time
+     * @param cookingTime       - List with cookers cooking time
+     * @param deliverTime       - List with deliverers time
      * @param warehouseCapacity - Максимальная вместимость склада
      */
     public Pizzeria(List<Integer> cookingTime, List<Integer> deliverTime, int warehouseCapacity) {

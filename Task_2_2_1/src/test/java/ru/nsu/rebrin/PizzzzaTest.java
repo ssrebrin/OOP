@@ -41,10 +41,14 @@ public class PizzzzaTest {
         // Проверка вывода
         String output = outputStream.toString();
         assertTrue(output.contains("Order"), "Test failed: 'Order' message not found");
-        assertTrue(output.contains("1 COOKED"), "Test failed: 'Cooked pizza 1' message not found");
-        assertTrue(output.contains("1 DELIVERED"), "Test failed: 'Delivered pizza 1' message not found");
-        assertTrue(output.contains("Pizzeria closed."), "Test failed: 'Pizzeria closed.' message not found");
-        assertTrue(output.contains("All threads have finished."), "Test failed: 'All threads have finished.' message not found");
+        assertTrue(output.contains("1 COOKED"),
+            "Test failed: 'Cooked pizza 1' message not found");
+        assertTrue(output.contains("1 DELIVERED"),
+            "Test failed: 'Delivered pizza 1' message not found");
+        assertTrue(output.contains("Pizzeria closed."),
+            "Test failed: 'Pizzeria closed.' message not found");
+        assertTrue(output.contains("All threads have finished."),
+            "Test failed: 'All threads have finished.' message not found");
 
         // Ожидаем завершения потока
         thread.join();
