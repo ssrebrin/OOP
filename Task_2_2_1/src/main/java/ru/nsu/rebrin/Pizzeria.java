@@ -1,15 +1,16 @@
 package ru.nsu.rebrin;
 
-import javax.json.Json;
-import javax.json.JsonArray;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+
 
 /**
  * Pizzeria class.
@@ -132,7 +133,7 @@ public class Pizzeria {
      *
      * @return - pizza id
      */
-    private int getFromQC() {
+    private int getFromQuC() {
         synchronized (lock) { // Синхронизация на объекте lock
             while (queueCook.isEmpty()) {
                 if (!open.get()) {
@@ -156,7 +157,7 @@ public class Pizzeria {
      *
      * @param id - pizza id
      */
-    private void setToQD(int id) {
+    private void setToQuD(int id) {
         synchronized (lock) { // Синхронизация на объекте lock
             while (queueDeliv.size() >= warehouseCapacity) {
                 try {
@@ -175,7 +176,7 @@ public class Pizzeria {
      *
      * @return - pizza id
      */
-    private int getFromQD() {
+    private int getFromQuD() {
         synchronized (lock) { // Синхронизация на объекте lock
             while (queueDeliv.isEmpty()) {
                 if (deliveryFinished.get()) {
@@ -209,11 +210,11 @@ public class Pizzeria {
         @Override
         public void run() {
             while (open.get()) {
-                int pizza = getFromQC();
+                int pizza = getFromQuC();
                 if (pizza != 0) {
                     try {
                         Thread.sleep(this.cookingTime);
-                        setToQD(pizza);
+                        setToQuD(pizza);
                         System.out.println(pizza + " COOKED"); // Вывод состояния заказа
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
@@ -236,7 +237,7 @@ public class Pizzeria {
         @Override
         public void run() {
             while (open.get() || !deliveryFinished.get()) {
-                int pizza = getFromQD();
+                int pizza = getFromQuD();
                 if (pizza != 0) {
                     try {
                         Thread.sleep(deliveringTime);
@@ -250,7 +251,7 @@ public class Pizzeria {
     }
 
     /**
-     * Reading JSON
+     * Reading JSON.
      *
      * @param configFile - path to JSON
      * @return Pizzeria
@@ -262,7 +263,8 @@ public class Pizzeria {
         int warehouseCapacity = 0;
 
         // Используем ClassLoader для чтения файла из ресурсов
-        try (InputStream inputStream = Pizzeria.class.getClassLoader().getResourceAsStream(configFile);
+        try (InputStream inputStream =
+                 Pizzeria.class.getClassLoader().getResourceAsStream(configFile);
              JsonReader reader = Json.createReader(inputStream)) {
             if (inputStream == null) {
                 throw new FileNotFoundException("Config file not found: " + configFile);

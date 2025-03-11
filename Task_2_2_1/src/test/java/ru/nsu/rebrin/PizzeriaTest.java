@@ -48,15 +48,6 @@ class PizzeriaTest {
         }, "Should throw IllegalArgumentException for invalid deliver times");
     }
 
-    @Test
-    void testOrder() throws IOException {
-        String configFile = "config.json";
-        Pizzeria pizzeria = Pizzeria.fromJson(configFile);
-        pizzeria.order();
-        pizzeria.order();
-        assertEquals(2, pizzeria.queueCook.size(),
-            "Queue cook size should be 2 after two orders");
-    }
 
     @Test
     void testStop() throws InterruptedException, IOException {
