@@ -2,12 +2,12 @@ package ru.nsu.rebrin;
 
 import java.io.IOException;
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -87,7 +87,7 @@ class PizzeriaTest {
     }
 
     @Test
-    void testGetFromQuCInterrupted() throws InterruptedException {
+    void testGetFromQuCoInterrupted() throws InterruptedException {
         if (!pizzeria.cookerThreads.isEmpty()) {
             pizzeria.cookerThreads.get(0).interrupt();
         }
@@ -97,7 +97,7 @@ class PizzeriaTest {
     }
 
     @Test
-    void testGetFromQuDInterrupted() throws InterruptedException {
+    void testGetFromQuDeInterrupted() throws InterruptedException {
         if (!pizzeria.delivererThreads.isEmpty()) {
             pizzeria.delivererThreads.get(0).interrupt();
         }
