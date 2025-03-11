@@ -1,88 +1,98 @@
 package ru.nsu.rebrin;
 
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+import javax.json.stream.JsonParsingException;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicBoolean;
-
+/**
+ * Pizzeria class.
+ */
 public class Pizzeria {
-    private AtomicBoolean open = new AtomicBoolean(true);
-    private int deliverers;
-    private int cookers;
-    private int warehouse_cup;
-    private int pizza_counter;
-    private List<Integer> queue_cook = new ArrayList<>();
-    private List<Integer> queue_deliv = new ArrayList<>();
+    private final Object lock = new Object();
+    AtomicBoolean open = new AtomicBoolean(true);
+    private AtomicBoolean deliveryFinished = new AtomicBoolean(false); // Флаг завершения доставки
+    private int pizzaCounter;
+    private final int warehouseCapacity; // Максимальная вместимость склада
+    List<Integer> queueCook = new ArrayList<>();
+    List<Integer> queueDeliv = new ArrayList<>();
 
-    private List<Thread> cookerThreads = new ArrayList<>();
-    private List<Thread> delivererThreads = new ArrayList<>();
+    List<Thread> cookerThreads = new ArrayList<>();
+    List<Thread> delivererThreads = new ArrayList<>();
 
-    public Pizzeria(int deliverers, int cookers, int warehouse_cup, List<Integer> cooking_time, List<Integer> deliver_time) {
-        this.deliverers = deliverers;
-        this.cookers = cookers;
-        this.warehouse_cup = warehouse_cup;
-        this.pizza_counter = 1;
+    /**
+     * Init.
+     *
+     * @param cookingTime      - List with cookers cooking time
+     * @param deliverTime      - List with deliverers time
+     * @param warehouseCapacity - Максимальная вместимость склада
+     */
+    public Pizzeria(List<Integer> cookingTime, List<Integer> deliverTime, int warehouseCapacity) {
+        if (cookingTime == null || cookingTime.isEmpty()) {
+            throw new IllegalArgumentException("Cooking time list cannot be null or empty");
+        }
+        if (deliverTime == null || deliverTime.isEmpty()) {
+            throw new IllegalArgumentException("Deliver time list cannot be null or empty");
+        }
+        if (warehouseCapacity <= 0) {
+            throw new IllegalArgumentException("Warehouse capacity must be greater than 0");
+        }
+
+        this.warehouseCapacity = warehouseCapacity;
+        this.pizzaCounter = 1;
 
         // Запуск поваров
-        for (int i : cooking_time) {
+        for (int i : cookingTime) {
             Thread cookerThread = new Thread(new Cooker(i));
             cookerThreads.add(cookerThread);
             cookerThread.start();
         }
 
         // Запуск доставщиков
-        for (int i : deliver_time) {
+        for (int i : deliverTime) {
             Thread delivererThread = new Thread(new Deliver(i));
             delivererThreads.add(delivererThread);
             delivererThread.start();
         }
     }
 
-    public static void main(String[] args) {
-        List<Integer> t = List.of(3000, 3000, 3000, 3000, 3000);
-        List<Integer> tt = List.of(5000, 5000, 5000, 5000, 5000);
+    /**
+     * Get open status.
+     *
+     * @return - true or false
+     */
+    public boolean isOpen() {
+        return open.get();
+    }
 
-        Pizzeria pizza = new Pizzeria(3, 3, 5, t, tt);
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Write");
-
-        while (pizza.open.get()) {
-            String userInput = scanner.nextLine();
-            if ("order".equals(userInput)) {
-                System.out.println("Order");
-                pizza.order();
-            } else if ("stop".equals(userInput)) {
-                pizza.stop();
-                break; // Выход из цикла после остановки
-            } else if ("order2".equals(userInput)) {
-                System.out.println("Order");
-                pizza.order();
-                pizza.order();
-            } else if ("order6".equals(userInput)) {
-                System.out.println("Order");
-                pizza.order();
-                pizza.order();
-                pizza.order();
-                pizza.order();
-                pizza.order();
-                pizza.order();
-            }
+    /**
+     * Make order.
+     */
+    public void order() {
+        synchronized (lock) { // Синхронизация на объекте lock
+            int orderId = pizzaCounter++;
+            queueCook.add(orderId);
+            System.out.println(orderId + " ORDER_RECEIVED"); // Вывод состояния заказа
+            lock.notifyAll(); // Уведомляем все потоки, синхронизированные на lock
         }
-
-        // Закрываем Scanner
-        scanner.close();
     }
 
-    public synchronized void order() {
-        queue_cook.add(pizza_counter++);
-        System.out.println("Order received. Queue size: " + queue_cook.size());
-        notifyAll();
-    }
-
-    public synchronized void stop() {
-        open.set(false);
-        System.out.println("Pizzeria closed.");
-        notifyAll(); // Будим все потоки, чтобы они могли завершиться
+    /**
+     * Stop the pizzeria.
+     */
+    public void stop() {
+        synchronized (lock) { // Синхронизация на объекте lock
+            open.set(false);
+            System.out.println("Pizzeria closed.");
+            lock.notifyAll(); // Будим все потоки, синхронизированные на lock
+        }
 
         // Ожидаем завершения всех потоков поваров
         for (Thread cookerThread : cookerThreads) {
@@ -91,6 +101,19 @@ public class Pizzeria {
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
+        }
+
+        // Ожидаем, пока все заказы будут доставлены
+        synchronized (lock) {
+            while (!queueDeliv.isEmpty()) {
+                try {
+                    lock.wait(); // Ждём, пока очередь доставки не станет пустой
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+            deliveryFinished.set(true); // Устанавливаем флаг завершения доставки
+            lock.notifyAll(); // Будим все потоки доставщиков
         }
 
         // Ожидаем завершения всех потоков доставщиков
@@ -105,51 +128,76 @@ public class Pizzeria {
         System.out.println("All threads have finished.");
     }
 
-    private synchronized int get_from_q_c() {
-        while (queue_cook.isEmpty()) {
-            if (!open.get()) return 0;
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+    private int getFromQC() {
+        synchronized (lock) { // Синхронизация на объекте lock
+            while (queueCook.isEmpty()) {
+                if (!open.get()) {
+                    return 0; // Завершаем работу, если пиццерия закрыта
+                }
+                try {
+                    lock.wait(); // Ожидаем новых заказов
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    if (!open.get()) {
+                        return 0; // Завершаем работу при прерывании, если пиццерия закрыта
+                    }
+                }
             }
+            return queueCook.remove(0);
         }
-        return queue_cook.remove(0);
     }
 
-    private synchronized void add_to_q_d(int id) {
-        queue_deliv.add(id);
-        notifyAll();
+    private void setToQD(int id) {
+        synchronized (lock) { // Синхронизация на объекте lock
+            while (queueDeliv.size() >= warehouseCapacity) {
+                try {
+                    lock.wait(); // Ждём, пока место на складе не освободится
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+            queueDeliv.add(id);
+            lock.notifyAll(); // Уведомляем все потоки, синхронизированные на lock
+        }
     }
 
-    private synchronized int get_from_q_d() {
-        while (queue_deliv.isEmpty()) {
-            if (!open.get()) return 0;
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+    private int getFromQD() {
+        synchronized (lock) { // Синхронизация на объекте lock
+            while (queueDeliv.isEmpty()) {
+                if (deliveryFinished.get()) {
+                    return 0; // Завершаем работу, если доставка завершена
+                }
+                try {
+                    lock.wait(); // Ожидаем новых заказов
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    if (deliveryFinished.get()) {
+                        return 0; // Завершаем работу при прерывании, если доставка завершена
+                    }
+                }
             }
+            int pizza = queueDeliv.remove(0);
+            lock.notifyAll(); // Уведомляем поваров, что место на складе освободилось
+            return pizza;
         }
-        return queue_deliv.remove(0);
     }
 
     private class Cooker implements Runnable {
-        private final int cooking_time;
+        private final int cookingTime;
 
-        private Cooker(int cooking_time) {
-            this.cooking_time = cooking_time;
+        private Cooker(int cookingTime) {
+            this.cookingTime = cookingTime;
         }
 
         @Override
         public void run() {
             while (open.get()) {
-                int pizza = get_from_q_c();
+                int pizza = getFromQC();
                 if (pizza != 0) {
                     try {
-                        Thread.sleep(this.cooking_time);
-                        System.out.println("Cooked pizza " + pizza);
-                        add_to_q_d(pizza);
+                        Thread.sleep(this.cookingTime);
+                        setToQD(pizza);
+                        System.out.println(pizza + " COOKED"); // Вывод состояния заказа
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
                     }
@@ -159,20 +207,20 @@ public class Pizzeria {
     }
 
     private class Deliver implements Runnable {
-        private final int delivering_time;
+        private final int deliveringTime;
 
-        private Deliver(int delivering_time) {
-            this.delivering_time = delivering_time;
+        private Deliver(int deliveringTime) {
+            this.deliveringTime = deliveringTime;
         }
 
         @Override
         public void run() {
-            while (open.get()) {
-                int pizza = get_from_q_d();
+            while (open.get() || !deliveryFinished.get()) {
+                int pizza = getFromQD();
                 if (pizza != 0) {
                     try {
-                        Thread.sleep(delivering_time);
-                        System.out.println("Delivered pizza " + pizza);
+                        Thread.sleep(deliveringTime);
+                        System.out.println(pizza + " DELIVERED"); // Вывод состояния заказа
                     } catch (InterruptedException e) {
                         Thread.currentThread().interrupt();
                     }
@@ -180,4 +228,43 @@ public class Pizzeria {
             }
         }
     }
+
+    /**
+     * Reading JSON
+     *
+     * @param configFile - path to JSON
+     * @return Pizzeria
+     * @throws IOException reading error
+     */
+    public static Pizzeria fromJson(String configFile) throws IOException {
+        List<Integer> cookingTime = new ArrayList<>();
+        List<Integer> deliverTime = new ArrayList<>();
+        int warehouseCapacity = 0;
+
+        // Используем ClassLoader для чтения файла из ресурсов
+        try (InputStream inputStream = Pizzeria.class.getClassLoader().getResourceAsStream(configFile);
+             JsonReader reader = Json.createReader(inputStream)) {
+            if (inputStream == null) {
+                throw new FileNotFoundException("Config file not found: " + configFile);
+            }
+
+            JsonObject config = reader.readObject();
+
+            JsonArray cookingTimeArray = config.getJsonArray("cookingTime");
+            for (int i = 0; i < cookingTimeArray.size(); i++) {
+                cookingTime.add(cookingTimeArray.getInt(i));
+            }
+
+            JsonArray deliverTimeArray = config.getJsonArray("deliverTime");
+            for (int i = 0; i < deliverTimeArray.size(); i++) {
+                deliverTime.add(deliverTimeArray.getInt(i));
+            }
+
+            warehouseCapacity = config.getInt("warehouseCapacity", 5); // Значение по умолчанию 5
+        }
+
+        return new Pizzeria(cookingTime, deliverTime, warehouseCapacity);
+    }
+
+
 }
