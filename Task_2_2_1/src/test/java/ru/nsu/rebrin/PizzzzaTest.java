@@ -10,6 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * PizzzzaTest class.
+ */
 public class PizzzzaTest {
 
     @Test
@@ -17,7 +20,7 @@ public class PizzzzaTest {
         // Подготовка данных
         List<Integer> cookingTimes = List.of(100, 100, 100);
         List<Integer> deliveryTimes = List.of(200, 200, 200);
-        Pizzeria pizzeria = new Pizzeria(cookingTimes, deliveryTimes, 5); // Устанавливаем вместимость склада
+        Pizzeria pizzeria = new Pizzeria(cookingTimes, deliveryTimes, 5);
 
         // Эмуляция ввода пользователя
         String input = "order" + System.lineSeparator() + "stop" + System.lineSeparator();

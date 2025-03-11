@@ -153,7 +153,7 @@ public class Pizzeria {
     }
 
     /**
-     * Set to Delivery queue
+     * Set to Delivery queue.
      *
      * @param id - pizza id
      */
