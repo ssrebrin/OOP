@@ -1,6 +1,5 @@
 package ru.nsu.rebrin;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -56,11 +55,7 @@ public class Pizzzza {
         }
     }
 
-/*    *//**
-     * Main method.
-     *
-     * @param args - command line arguments
-     *//*
+/*
     public static void main(String[] args) {
         try {
             // Чтение конфигурации из JSON-файла

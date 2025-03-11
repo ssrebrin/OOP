@@ -128,6 +128,11 @@ public class Pizzeria {
         System.out.println("All threads have finished.");
     }
 
+    /**
+     * Get from cooker queue.
+     *
+     * @return - pizza id
+     */
     private int getFromQC() {
         synchronized (lock) { // Синхронизация на объекте lock
             while (queueCook.isEmpty()) {
@@ -147,6 +152,11 @@ public class Pizzeria {
         }
     }
 
+    /**
+     * Set to Delivery queue
+     *
+     * @param id - pizza id
+     */
     private void setToQD(int id) {
         synchronized (lock) { // Синхронизация на объекте lock
             while (queueDeliv.size() >= warehouseCapacity) {
@@ -161,6 +171,11 @@ public class Pizzeria {
         }
     }
 
+    /**
+     * Get from delivery queue.
+     *
+     * @return - pizza id
+     */
     private int getFromQD() {
         synchronized (lock) { // Синхронизация на объекте lock
             while (queueDeliv.isEmpty()) {
@@ -182,6 +197,9 @@ public class Pizzeria {
         }
     }
 
+    /**
+     * Cooker class.
+     */
     private class Cooker implements Runnable {
         private final int cookingTime;
 
@@ -206,6 +224,9 @@ public class Pizzeria {
         }
     }
 
+    /**
+     * Deliver class.
+     */
     private class Deliver implements Runnable {
         private final int deliveringTime;
 
