@@ -56,11 +56,11 @@ public class Pizzzza {
         }
     }
 
-    /**
+/*    *//**
      * Main method.
      *
      * @param args - command line arguments
-     */
+     *//*
     public static void main(String[] args) {
         try {
             // Чтение конфигурации из JSON-файла
@@ -75,5 +75,5 @@ public class Pizzzza {
             System.err.println("Failed to read configuration: " + e.getMessage());
             e.printStackTrace();
         }
-    }
+    }*/
 }
