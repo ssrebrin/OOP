@@ -98,8 +98,8 @@ public class Pizzeria {
      * Stop the pizzeria.
      */
     public void stop() {
-            open.set(false);
-            System.out.println("Pizzeria closed.");
+        open.set(false);
+        System.out.println("Pizzeria closed.");
 
         // Ожидаем завершения всех потоков поваров
         for (Thread cookerThread : cookerThreads) {
