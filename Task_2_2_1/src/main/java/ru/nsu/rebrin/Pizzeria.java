@@ -11,21 +11,19 @@ import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 
-
 /**
  * Pizzeria class.
  */
 public class Pizzeria {
     private final Object lock = new Object();
-    AtomicBoolean open = new AtomicBoolean(true);
-    private AtomicBoolean deliveryFinished = new AtomicBoolean(false); // Флаг завершения доставки
+    private final AtomicBoolean open = new AtomicBoolean(true);
+    private final AtomicBoolean deliveryFinished = new AtomicBoolean(false); // Флаг завершения доставки
     private int pizzaCounter;
     private final int warehouseCapacity; // Максимальная вместимость склада
-    List<Integer> queueCook = new ArrayList<>();
-    List<Integer> queueDeliv = new ArrayList<>();
-
-    List<Thread> cookerThreads = new ArrayList<>();
-    List<Thread> delivererThreads = new ArrayList<>();
+    final List<Integer> queueCook = new ArrayList<>();
+    final List<Integer> queueDeliv = new ArrayList<>();
+    final List<Thread> cookerThreads = new ArrayList<>();
+    final List<Thread> delivererThreads = new ArrayList<>();
 
     /**
      * Init.
@@ -49,15 +47,17 @@ public class Pizzeria {
         this.pizzaCounter = 1;
 
         // Запуск поваров
-        for (int i : cookingTime) {
-            Thread cookerThread = new Thread(new Cooker(i));
+        for (int time : cookingTime) {
+            Cooker cooker = new Cooker(time, this);
+            Thread cookerThread = new Thread(cooker);
             cookerThreads.add(cookerThread);
             cookerThread.start();
         }
 
         // Запуск доставщиков
-        for (int i : deliverTime) {
-            Thread delivererThread = new Thread(new Deliver(i));
+        for (int time : deliverTime) {
+            Deliver deliverer = new Deliver(time, this);
+            Thread delivererThread = new Thread(deliverer);
             delivererThreads.add(delivererThread);
             delivererThread.start();
         }
@@ -70,6 +70,15 @@ public class Pizzeria {
      */
     public boolean isOpen() {
         return open.get();
+    }
+
+    /**
+     * Check if delivery is finished.
+     *
+     * @return - true or false
+     */
+    public boolean isDeliveryFinished() {
+        return deliveryFinished.get();
     }
 
     /**
@@ -133,9 +142,9 @@ public class Pizzeria {
      *
      * @return - pizza id
      */
-    private int getFromQuC() {
+    int getFromQuC() {
         synchronized (lock) { // Синхронизация на объекте lock
-            while (queueCook.isEmpty()) {
+            while (this.open.get() && queueCook.isEmpty()) {
                 if (!open.get()) {
                     return 0; // Завершаем работу, если пиццерия закрыта
                 }
@@ -157,9 +166,9 @@ public class Pizzeria {
      *
      * @param id - pizza id
      */
-    private void setToQuD(int id) {
+    void setToQuD(int id) {
         synchronized (lock) { // Синхронизация на объекте lock
-            while (queueDeliv.size() >= warehouseCapacity) {
+            while (this.open.get() && queueDeliv.size() >= warehouseCapacity) {
                 try {
                     lock.wait(); // Ждём, пока место на складе не освободится
                 } catch (InterruptedException e) {
@@ -176,9 +185,9 @@ public class Pizzeria {
      *
      * @return - pizza id
      */
-    private int getFromQuD() {
+    int getFromQuD() {
         synchronized (lock) { // Синхронизация на объекте lock
-            while (queueDeliv.isEmpty()) {
+            while (this.open.get() && queueDeliv.isEmpty()) {
                 if (deliveryFinished.get()) {
                     return 0; // Завершаем работу, если доставка завершена
                 }
@@ -198,59 +207,6 @@ public class Pizzeria {
     }
 
     /**
-     * Cooker class.
-     */
-    private class Cooker implements Runnable {
-        private final int cookingTime;
-
-        private Cooker(int cookingTime) {
-            this.cookingTime = cookingTime;
-        }
-
-        @Override
-        public void run() {
-            while (open.get()) {
-                int pizza = getFromQuC();
-                if (pizza != 0) {
-                    try {
-                        Thread.sleep(this.cookingTime);
-                        setToQuD(pizza);
-                        System.out.println(pizza + " COOKED"); // Вывод состояния заказа
-                    } catch (InterruptedException e) {
-                        Thread.currentThread().interrupt();
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * Deliver class.
-     */
-    private class Deliver implements Runnable {
-        private final int deliveringTime;
-
-        private Deliver(int deliveringTime) {
-            this.deliveringTime = deliveringTime;
-        }
-
-        @Override
-        public void run() {
-            while (open.get() || !deliveryFinished.get()) {
-                int pizza = getFromQuD();
-                if (pizza != 0) {
-                    try {
-                        Thread.sleep(deliveringTime);
-                        System.out.println(pizza + " DELIVERED"); // Вывод состояния заказа
-                    } catch (InterruptedException e) {
-                        Thread.currentThread().interrupt();
-                    }
-                }
-            }
-        }
-    }
-
-    /**
      * Reading JSON.
      *
      * @param configFile - path to JSON
@@ -264,7 +220,7 @@ public class Pizzeria {
 
         // Используем ClassLoader для чтения файла из ресурсов
         try (InputStream inputStream =
-                 Pizzeria.class.getClassLoader().getResourceAsStream(configFile);
+                     Pizzeria.class.getClassLoader().getResourceAsStream(configFile);
              JsonReader reader = Json.createReader(inputStream)) {
             if (inputStream == null) {
                 throw new FileNotFoundException("Config file not found: " + configFile);
@@ -287,6 +243,4 @@ public class Pizzeria {
 
         return new Pizzeria(cookingTime, deliverTime, warehouseCapacity);
     }
-
-
 }
