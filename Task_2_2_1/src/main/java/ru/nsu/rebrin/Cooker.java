@@ -1,14 +1,26 @@
 package ru.nsu.rebrin;
 
+/**
+ * Cooker.
+ */
 public class Cooker implements Runnable {
     private final int cookingTime;
     private final Pizzeria pizzeria;
 
+    /**
+     * Init.
+     *
+     * @param cookingTime - cookingTime
+     * @param pizzeria - pizzeria
+     */
     public Cooker(int cookingTime, Pizzeria pizzeria) {
         this.cookingTime = cookingTime;
         this.pizzeria = pizzeria;
     }
 
+    /**
+     * Run.
+     */
     @Override
     public void run() {
         while (pizzeria.isOpen()) {

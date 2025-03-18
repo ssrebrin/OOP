@@ -16,8 +16,8 @@ import javax.json.JsonReader;
  */
 public class Pizzeria {
     private final Object lock = new Object();
-    private final AtomicBoolean open = new AtomicBoolean(true);
-    private final AtomicBoolean deliveryFinished = new AtomicBoolean(false); // Флаг завершения доставки
+    final AtomicBoolean open = new AtomicBoolean(true);
+    private final AtomicBoolean deliveryFinished = new AtomicBoolean(false);
     private int pizzaCounter;
     private final int warehouseCapacity; // Максимальная вместимость склада
     final List<Integer> queueCook = new ArrayList<>();
@@ -32,7 +32,8 @@ public class Pizzeria {
      * @param deliverTime       - List with deliverers time
      * @param warehouseCapacity - Максимальная вместимость склада
      */
-    public Pizzeria(List<Integer> cookingTime, List<Integer> deliverTime, int warehouseCapacity) {
+    public Pizzeria(List<Integer> cookingTime,
+            List<Integer> deliverTime, int warehouseCapacity) {
         if (cookingTime == null || cookingTime.isEmpty()) {
             throw new IllegalArgumentException("Cooking time list cannot be null or empty");
         }
@@ -88,7 +89,7 @@ public class Pizzeria {
         synchronized (lock) { // Синхронизация на объекте lock
             int orderId = pizzaCounter++;
             queueCook.add(orderId);
-            System.out.println(orderId + " ORDER_RECEIVED"); // Вывод состояния заказа
+            System.out.println(orderId + " ORDER_RECEIVED");
             lock.notifyAll(); // Уведомляем все потоки, синхронизированные на lock
         }
     }
@@ -97,11 +98,8 @@ public class Pizzeria {
      * Stop the pizzeria.
      */
     public void stop() {
-        synchronized (lock) { // Синхронизация на объекте lock
             open.set(false);
             System.out.println("Pizzeria closed.");
-            lock.notifyAll(); // Будим все потоки, синхронизированные на lock
-        }
 
         // Ожидаем завершения всех потоков поваров
         for (Thread cookerThread : cookerThreads) {
@@ -143,21 +141,19 @@ public class Pizzeria {
      * @return - pizza id
      */
     int getFromQuC() {
-        synchronized (lock) { // Синхронизация на объекте lock
-            while (this.open.get() && queueCook.isEmpty()) {
-                if (!open.get()) {
-                    return 0; // Завершаем работу, если пиццерия закрыта
-                }
+        synchronized (lock) {
+            while (open.get() && queueCook.isEmpty()) {
                 try {
-                    lock.wait(); // Ожидаем новых заказов
+                    lock.wait();
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
-                    if (!open.get()) {
-                        return 0; // Завершаем работу при прерывании, если пиццерия закрыта
-                    }
+                    return 0; // Завершаем работу при прерывании
                 }
             }
-            return queueCook.remove(0);
+            if (!queueCook.isEmpty()) {
+                return queueCook.remove(0);
+            }
+            return 0; // Если пиццерия закрылась и список пуст, возвращаем 0
         }
     }
 
@@ -186,23 +182,19 @@ public class Pizzeria {
      * @return - pizza id
      */
     int getFromQuD() {
-        synchronized (lock) { // Синхронизация на объекте lock
-            while (this.open.get() && queueDeliv.isEmpty()) {
-                if (deliveryFinished.get()) {
-                    return 0; // Завершаем работу, если доставка завершена
-                }
+        synchronized (lock) {
+            while (open.get() && queueDeliv.isEmpty()) {
                 try {
-                    lock.wait(); // Ожидаем новых заказов
+                    lock.wait();
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
-                    if (deliveryFinished.get()) {
-                        return 0; // Завершаем работу при прерывании, если доставка завершена
-                    }
+                    return 0; // Завершаем работу при прерывании
                 }
             }
-            int pizza = queueDeliv.remove(0);
-            lock.notifyAll(); // Уведомляем поваров, что место на складе освободилось
-            return pizza;
+            if (!queueDeliv.isEmpty()) {
+                return queueDeliv.remove(0);
+            }
+            return 0; // Если пиццерия закрылась и список пуст, возвращаем 0
         }
     }
 
