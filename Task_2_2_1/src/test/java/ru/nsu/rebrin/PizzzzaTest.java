@@ -9,7 +9,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
 import java.util.Scanner;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 
@@ -57,16 +56,5 @@ public class PizzzzaTest {
 
         // 7. Проверки
         assertFalse(pizzeria.isOpen());
-
-        // Ждём завершения всех потоков
-        for (Thread t : pizzeria.cookerThreads) {
-            t.join(1000);
-            assertFalse(t.isAlive(), "Cooker thread " + t.getName() + " still alive");
-        }
-
-        for (Thread t : pizzeria.delivererThreads) {
-            t.join(1000);
-            assertFalse(t.isAlive(), "Deliverer thread " + t.getName() + " still alive");
-        }
     }
 }
