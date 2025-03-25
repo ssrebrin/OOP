@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.13'  // Плагин для JavaFX
+}
+
+javafx {
+    version = "17"  // Версия JavaFX
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.media' ]  // Необходимые модули
+}
+
+group = 'ru.nsu.rebrin'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'javax.json:javax.json-api:1.1.4'
+    implementation 'org.glassfish:javax.json:1.1.4'
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+application {
+    mainClass = 'ru.nsu.rebrin.SnakeGame'  // Главный класс
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+    }
+}
