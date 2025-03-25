@@ -52,9 +52,6 @@ public class PizzzzaTest {
             Thread.sleep(200); // Увеличили интервал проверки
         }
 
-        // 6. Гарантированное завершение
-        thread.join(3000); // Даём 3 секунды на завершение
-
         // 7. Проверки
         assertFalse(pizzeria.isOpen());
 
