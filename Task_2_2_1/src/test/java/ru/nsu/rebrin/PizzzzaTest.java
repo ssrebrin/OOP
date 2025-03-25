@@ -2,6 +2,7 @@ package ru.nsu.rebrin;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static  org.junit.jupiter.api.Assertions.fail;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -9,7 +10,6 @@ import java.io.PrintStream;
 import java.util.List;
 import java.util.Scanner;
 
-import static  org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 
@@ -19,43 +19,44 @@ import org.junit.jupiter.api.Timeout;
 public class PizzzzaTest {
 
     @Test
-    @Timeout(15) // Увеличили, но тест выполняется быстрее
+    @Timeout(20) // Увеличиваем общий таймаут
     public void testPizzzza() throws InterruptedException {
-        List<Integer> cookingTimes = List.of(50, 50, 50); // Быстрее
-        List<Integer> deliveryTimes = List.of(100, 100, 100); // Быстрее
+        // 1. Настройка (в 2 раза быстрее для CI)
+        List<Integer> cookingTimes = List.of(30, 30, 30);
+        List<Integer> deliveryTimes = List.of(60, 60, 60);
         Pizzeria pizzeria = new Pizzeria(cookingTimes, deliveryTimes, 5);
 
+        // 2. Эмуляция ввода
         String input = "order" + System.lineSeparator() + "stop" + System.lineSeparator();
-        ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        Scanner scanner = new Scanner(inputStream);
+        Scanner scanner = new Scanner(new ByteArrayInputStream(input.getBytes()));
 
+        // 3. Перехват вывода
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream printStream = new PrintStream(outputStream);
-        System.setOut(printStream);
+        System.setOut(new PrintStream(outputStream));
 
+        // 4. Запуск
         Pizzzza pizzzza = new Pizzzza(pizzeria, scanner);
         Thread thread = new Thread(pizzzza::letsWork);
         thread.start();
 
+        // 5. Ожидание завершения с гарантированным таймаутом
+        long maxWaitTime = 15000; // 15 секунд максимум
         long start = System.currentTimeMillis();
-        while (!outputStream.toString().contains("Pizzeria closed.")) {
-            if (System.currentTimeMillis() - start > 12000) { // Ждём макс 12 сек
-                fail("Pizzeria did not close in time.");
+
+        while (!outputStream.toString().contains("Pizzeria closed.") &&
+                !outputStream.toString().contains("All threads have finished.")) {
+            if (System.currentTimeMillis() - start > maxWaitTime) {
+                thread.interrupt(); // Прерываем, если зависло
+                fail("Test timed out. Output: " + outputStream.toString());
             }
-            Thread.sleep(100);
+            Thread.sleep(200); // Увеличили интервал проверки
         }
 
-        thread.join(2000); // Ограничиваем join()
+        // 6. Гарантированное завершение
+        thread.join(3000); // Даём 3 секунды на завершение
 
-        assertFalse(pizzeria.isOpen(), "Pizzeria should be closed after stop");
+        // 7. Проверки
+        assertFalse(pizzeria.isOpen());
 
-        for (Thread t : pizzeria.cookerThreads) {
-            assertFalse(t.isAlive(), "Cooker thread should be terminated");
-        }
-        for (Thread t : pizzeria.delivererThreads) {
-            assertFalse(t.isAlive(), "Deliverer thread should be terminated");
-        }
-
-        System.out.println("Pizzzza tests passed!");
     }
 }

@@ -1,5 +1,6 @@
 package ru.nsu.rebrin;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -54,8 +55,7 @@ public class Pizzzza {
             }
         }
     }
-}
-/*
+
     public static void main(String[] args) {
         try {
             // Чтение конфигурации из JSON-файла
@@ -70,4 +70,5 @@ public class Pizzzza {
             System.err.println("Failed to read configuration: " + e.getMessage());
             e.printStackTrace();
         }
-    }*/
+    }
+}
