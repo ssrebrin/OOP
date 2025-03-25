@@ -58,7 +58,7 @@ class PizzeriaTest {
 
         Thread stopThread = new Thread(() -> {
             try {
-                Thread.sleep(500);
+                Thread.sleep(200); // Сокращаем ожидание
                 pizzeria.stop();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -66,7 +66,7 @@ class PizzeriaTest {
         });
         stopThread.start();
 
-        stopThread.join();
+        stopThread.join(2000); // Ждём максимум 1 сек
         assertFalse(pizzeria.isOpen(), "Pizzeria should be closed after stop");
     }
 
