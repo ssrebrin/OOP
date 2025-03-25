@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a24d02e4-cc18-47e3-a3d9-be53db84fdcd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Task_1_3_1/src/test/resources/testR.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_3_1/src/main/java/ru/nsu/rebrin/SubStr.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Task_1_3_1/src/main/java/ru/nsu/rebrin/SubStr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_3_1/src/test/java/ru/nsu/rebrin/SubStrTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_3_1/src/test/java/ru/nsu/rebrin/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Task_1_3_1/src/test/resources/test.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_3_1/src/test/java/ru/nsu/rebrin/test1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Task_1_3_1/src/test/resources/test1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Task_1_3_1/src/test/java/ru/nsu/rebrin/test2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Task_1_3_1/src/test/resources/test2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task_2_1_1/src/main/java/ru/nsu/rebrin/SimpleDimple.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Task_2_1_1/src/main/java/ru/nsu/rebrin/SimpleDimple.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task_2_1_1/src/main/resources/Книга1.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Task_2_1_1/src/main/resources/Книга1.xlsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +55,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "#7 on Task__1__3__1",
+    "git-widget-placeholder": "#10 on Task__2__2__1",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/Asus/Desktop/P2/OOP/Task_1_2_2",
     "project.structure.last.edited": "Modules",
