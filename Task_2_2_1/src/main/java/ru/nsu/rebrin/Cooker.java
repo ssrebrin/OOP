@@ -1,5 +1,8 @@
 package ru.nsu.rebrin;
 
+/**
+ * Cooker.
+ */
 public class Cooker implements Runnable {
     private final int cookingTime;
     private final DeliveryQueue cookQueue;
@@ -15,6 +18,9 @@ public class Cooker implements Runnable {
         this.cookQueue = cookQueue;
     }
 
+    /**
+     * Run.
+     */
     @Override
     public void run() {
         while (cookQueue.isOpen()) {

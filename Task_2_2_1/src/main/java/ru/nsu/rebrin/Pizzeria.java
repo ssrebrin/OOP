@@ -178,8 +178,10 @@ public class Pizzeria implements DeliveryQueue {
         List<Integer> deliverTime = new ArrayList<>();
         int warehouseCapacity = 0;
 
-        try (InputStream inputStream = Pizzeria.class.getClassLoader().getResourceAsStream(configFile);
-             JsonReader reader = Json.createReader(inputStream)) {
+        try (InputStream inputStream = Pizzeria.class.getClassLoader().
+                getResourceAsStream(configFile);
+
+            JsonReader reader = Json.createReader(inputStream)) {
             if (inputStream == null) {
                 throw new FileNotFoundException("Config file not found: " + configFile);
             }

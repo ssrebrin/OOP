@@ -2,8 +2,14 @@ package ru.nsu.rebrin;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * CookQ.
+ */
 public interface CookQueue {
 
+    /**
+     * Open.
+     */
     AtomicBoolean open = new AtomicBoolean(true);
 
     /**
@@ -23,16 +29,17 @@ public interface CookQueue {
 
     /**
      * Open.
+     *
      * @return - true or false
      */
-    default boolean isOpen(){
+    default boolean isOpen() {
         return open.get();
     }
 
     /**
      * Close.
      */
-    default void close(){
+    default void close() {
         open.set(false);
     }
 }

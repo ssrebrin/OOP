@@ -1,5 +1,8 @@
 package ru.nsu.rebrin;
 
+/**
+ * Deliver.
+ */
 public class Deliver implements Runnable {
     private final int deliveringTime;
     private final DeliveryQueue deliveryQueue;

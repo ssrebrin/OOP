@@ -1,5 +1,8 @@
 package ru.nsu.rebrin;
 
+/**
+ * DelivQ.
+ */
 public interface DeliveryQueue extends CookQueue{
     /**
      * Get from q.
