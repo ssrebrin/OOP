@@ -147,21 +147,19 @@ public class Pizzeria implements DeliveryQueue {
             }
         }
         System.out.println("Pizzeria stopped.");
-        synchronized (lock) {
-            while (!queueDeliv.isEmpty()) {
-                try {
-                    lock.wait();
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
+        while (!queueDeliv.isEmpty()) {
+            try {
+                lock.wait();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
             }
-            deliveryFinished.set(true);
-            lock.notifyAll();
         }
+        deliveryFinished.set(true);
+        lock.notifyAll();
         System.out.println("Pizzeria closedededed.");
         for (Thread delivererThread : delivererThreads) {
             try {
-                delivererThread.join(mx+1000);
+                delivererThread.join();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
