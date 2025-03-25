@@ -52,8 +52,21 @@ public class PizzzzaTest {
             Thread.sleep(200); // Увеличили интервал проверки
         }
 
+        // 6. Гарантированное завершение
+        thread.join(3000); // Даём 3 секунды на завершение
+
         // 7. Проверки
         assertFalse(pizzeria.isOpen());
 
+        // Ждём завершения всех потоков
+        for (Thread t : pizzeria.cookerThreads) {
+            t.join(1000);
+            assertFalse(t.isAlive(), "Cooker thread " + t.getName() + " still alive");
+        }
+
+        for (Thread t : pizzeria.delivererThreads) {
+            t.join(1000);
+            assertFalse(t.isAlive(), "Deliverer thread " + t.getName() + " still alive");
+        }
     }
 }

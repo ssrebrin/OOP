@@ -142,7 +142,7 @@ public class Pizzeria implements DeliveryQueue {
                 Thread.currentThread().interrupt();
             }
         }
-
+        System.out.println("Pizzeria stopped.");
         synchronized (lock) {
             while (!queueDeliv.isEmpty()) {
                 try {
@@ -154,7 +154,7 @@ public class Pizzeria implements DeliveryQueue {
             deliveryFinished.set(true);
             lock.notifyAll();
         }
-
+        System.out.println("Pizzeria closedededed.");
         for (Thread delivererThread : delivererThreads) {
             try {
                 delivererThread.join();

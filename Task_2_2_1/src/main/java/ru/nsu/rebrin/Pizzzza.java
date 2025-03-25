@@ -56,8 +56,7 @@ public class Pizzzza {
         }
     }
 
-}
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
         try {
             // Чтение конфигурации из JSON-файла
             Pizzeria pizzeria = Pizzeria.fromJson("config.json");
@@ -71,4 +70,5 @@ public class Pizzzza {
             System.err.println("Failed to read configuration: " + e.getMessage());
             e.printStackTrace();
         }
-    }*/
+    }
+}
