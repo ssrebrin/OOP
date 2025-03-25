@@ -72,6 +72,7 @@ public class Pizzeria implements DeliveryQueue {
             if (!queueCook.isEmpty()) {
                 return queueCook.remove(0);
             }
+            lock.notifyAll();
             return 0;
         }
     }
@@ -96,6 +97,7 @@ public class Pizzeria implements DeliveryQueue {
                 lock.wait();
             }
             if (!queueDeliv.isEmpty()) {
+                lock.notifyAll();
                 return queueDeliv.remove(0);
             }
             return 0;
@@ -107,7 +109,7 @@ public class Pizzeria implements DeliveryQueue {
         synchronized (lock) {
             while (isOpen() && queueDeliv.size() >= warehouseCapacity) {
                 try {
-                    lock.wait(1000);
+                    lock.wait();
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
@@ -126,6 +128,7 @@ public class Pizzeria implements DeliveryQueue {
             int orderId = pizzaCounter++;
             addToQueue(orderId);
             System.out.println(orderId + " ORDER_RECEIVED");
+            lock.notifyAll();
         }
     }
 
