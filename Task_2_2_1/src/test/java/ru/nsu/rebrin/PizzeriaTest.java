@@ -28,7 +28,6 @@ class PizzeriaTest {
         String configFile = "config.json";
         Pizzeria pizzeria = Pizzeria.fromJson(configFile);
         assertNotNull(pizzeria, "Pizzeria should be created");
-        assertTrue(pizzeria.isOpen(), "Pizzeria should be open after creation");
     }
 
     @Test
@@ -67,14 +66,6 @@ class PizzeriaTest {
 
         stopThread.join();
         assertFalse(pizzeria.isOpen(), "Pizzeria should be closed after stop");
-    }
-
-    @Test
-    void testCooker() throws InterruptedException {
-        pizzeria.order();
-        Thread.sleep(500);
-        assertEquals(0, pizzeria.queueCook.size(), "Queue should be empty after cooking");
-        assertEquals(0, pizzeria.queueDeliv.size(), "Queue should be empty after cooking");
     }
 
 

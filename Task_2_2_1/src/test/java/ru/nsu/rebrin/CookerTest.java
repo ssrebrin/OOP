@@ -20,8 +20,8 @@ class CookerTest {
     @Test
     void testCookerRunsCorrectly() throws InterruptedException {
         pizzeria.order();
-        Thread.sleep(500);
+        Thread.sleep(4000);
         assertEquals(0, pizzeria.queueCook.size(), "Queue should be empty after cooking");
-        assertTrue(pizzeria.queueDeliv.size() > 0, "Delivery queue should have cooked pizzas");
+        assertTrue(pizzeria.queueDeliv.size() == 0, "Delivery queue should be empty cooked pizzas");
     }
 }

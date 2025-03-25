@@ -1,37 +1,31 @@
 package ru.nsu.rebrin;
 
-/**
- * Deliver class.
- */
 public class Deliver implements Runnable {
     private final int deliveringTime;
-    private final Pizzeria pizzeria;
+    private final DeliveryQueue deliveryQueue;
 
     /**
      * Init.
      *
-     * @param deliveringTime - deliveringTime
-     * @param pizzeria - pizzeria
+     * @param deliveringTime - dt
+     * @param deliveryQueue - dq
      */
-    public Deliver(int deliveringTime, Pizzeria pizzeria) {
+    public Deliver(int deliveringTime, DeliveryQueue deliveryQueue) {
         this.deliveringTime = deliveringTime;
-        this.pizzeria = pizzeria;
+        this.deliveryQueue = deliveryQueue;
     }
 
-    /**
-     * Run.
-     */
     @Override
     public void run() {
-        while (pizzeria.isOpen() || !pizzeria.isDeliveryFinished()) {
-            int pizza = pizzeria.getFromQuD();
-            if (pizza != 0) {
-                try {
+        while (deliveryQueue.isOpen() || !deliveryQueue.isDeliveryFinished()) {
+            try {
+                int pizza = deliveryQueue.getFromDeliveryQueue();
+                if (pizza != 0) {
                     Thread.sleep(deliveringTime);
-                    System.out.println(pizza + " DELIVERED"); // Вывод состояния заказа
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
+                    System.out.println(pizza + " DELIVERED");
                 }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
             }
         }
     }

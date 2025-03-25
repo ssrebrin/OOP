@@ -14,12 +14,11 @@ import javax.json.JsonReader;
 /**
  * Pizzeria class.
  */
-public class Pizzeria {
+public class Pizzeria implements DeliveryQueue {
     private final Object lock = new Object();
-    final AtomicBoolean open = new AtomicBoolean(true);
     private final AtomicBoolean deliveryFinished = new AtomicBoolean(false);
     private int pizzaCounter;
-    private final int warehouseCapacity; // Максимальная вместимость склада
+    private final int warehouseCapacity;
     final List<Integer> queueCook = new ArrayList<>();
     final List<Integer> queueDeliv = new ArrayList<>();
     final List<Thread> cookerThreads = new ArrayList<>();
@@ -32,8 +31,7 @@ public class Pizzeria {
      * @param deliverTime       - List with deliverers time
      * @param warehouseCapacity - Максимальная вместимость склада
      */
-    public Pizzeria(List<Integer> cookingTime,
-            List<Integer> deliverTime, int warehouseCapacity) {
+    public Pizzeria(List<Integer> cookingTime, List<Integer> deliverTime, int warehouseCapacity) {
         if (cookingTime == null || cookingTime.isEmpty()) {
             throw new IllegalArgumentException("Cooking time list cannot be null or empty");
         }
@@ -64,33 +62,69 @@ public class Pizzeria {
         }
     }
 
-    /**
-     * Get open status.
-     *
-     * @return - true or false
-     */
-    public boolean isOpen() {
-        return open.get();
+    @Override
+    public int getFromQueue() throws InterruptedException {
+        synchronized (lock) {
+            while (isOpen() && queueCook.isEmpty()) {
+                lock.wait();
+            }
+            if (!queueCook.isEmpty()) {
+                return queueCook.remove(0);
+            }
+            return 0;
+        }
     }
 
-    /**
-     * Check if delivery is finished.
-     *
-     * @return - true or false
-     */
+    @Override
+    public void addToQueue(int orderId) {
+        synchronized (lock) {
+            queueCook.add(orderId);
+            lock.notifyAll();
+        }
+    }
+
+    @Override
     public boolean isDeliveryFinished() {
         return deliveryFinished.get();
+    }
+
+    @Override
+    public int getFromDeliveryQueue() throws InterruptedException {
+        synchronized (lock) {
+            while (isOpen() && queueDeliv.isEmpty()) {
+                lock.wait();
+            }
+            if (!queueDeliv.isEmpty()) {
+                return queueDeliv.remove(0);
+            }
+            return 0;
+        }
+    }
+
+    @Override
+    public void addToDeliveryQueue(int orderId) {
+        synchronized (lock) {
+            while (isOpen() && queueDeliv.size() >= warehouseCapacity) {
+                try {
+                    lock.wait();
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+            queueDeliv.add(orderId);
+            System.out.println(queueDeliv);
+            lock.notifyAll();
+        }
     }
 
     /**
      * Make order.
      */
     public void order() {
-        synchronized (lock) { // Синхронизация на объекте lock
+        synchronized (lock) {
             int orderId = pizzaCounter++;
-            queueCook.add(orderId);
+            addToQueue(orderId);
             System.out.println(orderId + " ORDER_RECEIVED");
-            lock.notifyAll(); // Уведомляем все потоки, синхронизированные на lock
         }
     }
 
@@ -98,104 +132,38 @@ public class Pizzeria {
      * Stop the pizzeria.
      */
     public void stop() {
-        open.set(false);
+        close();
         System.out.println("Pizzeria closed.");
 
-        // Ожидаем завершения всех потоков поваров
         for (Thread cookerThread : cookerThreads) {
             try {
-                cookerThread.join(); // Ждём завершения потока
+                cookerThread.join();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
         }
 
-        // Ожидаем, пока все заказы будут доставлены
         synchronized (lock) {
             while (!queueDeliv.isEmpty()) {
                 try {
-                    lock.wait(); // Ждём, пока очередь доставки не станет пустой
+                    lock.wait();
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
             }
-            deliveryFinished.set(true); // Устанавливаем флаг завершения доставки
-            lock.notifyAll(); // Будим все потоки доставщиков
+            deliveryFinished.set(true);
+            lock.notifyAll();
         }
 
-        // Ожидаем завершения всех потоков доставщиков
         for (Thread delivererThread : delivererThreads) {
             try {
-                delivererThread.join(); // Ждём завершения потока
+                delivererThread.join();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
         }
 
         System.out.println("All threads have finished.");
-    }
-
-    /**
-     * Get from cooker queue.
-     *
-     * @return - pizza id
-     */
-    int getFromQuC() {
-        synchronized (lock) {
-            while (open.get() && queueCook.isEmpty()) {
-                try {
-                    lock.wait();
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    return 0; // Завершаем работу при прерывании
-                }
-            }
-            if (!queueCook.isEmpty()) {
-                return queueCook.remove(0);
-            }
-            return 0; // Если пиццерия закрылась и список пуст, возвращаем 0
-        }
-    }
-
-    /**
-     * Set to Delivery queue.
-     *
-     * @param id - pizza id
-     */
-    void setToQuD(int id) {
-        synchronized (lock) { // Синхронизация на объекте lock
-            while (this.open.get() && queueDeliv.size() >= warehouseCapacity) {
-                try {
-                    lock.wait(); // Ждём, пока место на складе не освободится
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                }
-            }
-            queueDeliv.add(id);
-            lock.notifyAll(); // Уведомляем все потоки, синхронизированные на lock
-        }
-    }
-
-    /**
-     * Get from delivery queue.
-     *
-     * @return - pizza id
-     */
-    int getFromQuD() {
-        synchronized (lock) {
-            while (open.get() && queueDeliv.isEmpty()) {
-                try {
-                    lock.wait();
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    return 0; // Завершаем работу при прерывании
-                }
-            }
-            if (!queueDeliv.isEmpty()) {
-                return queueDeliv.remove(0);
-            }
-            return 0; // Если пиццерия закрылась и список пуст, возвращаем 0
-        }
     }
 
     /**
@@ -210,9 +178,7 @@ public class Pizzeria {
         List<Integer> deliverTime = new ArrayList<>();
         int warehouseCapacity = 0;
 
-        // Используем ClassLoader для чтения файла из ресурсов
-        try (InputStream inputStream =
-                     Pizzeria.class.getClassLoader().getResourceAsStream(configFile);
+        try (InputStream inputStream = Pizzeria.class.getClassLoader().getResourceAsStream(configFile);
              JsonReader reader = Json.createReader(inputStream)) {
             if (inputStream == null) {
                 throw new FileNotFoundException("Config file not found: " + configFile);
@@ -230,7 +196,7 @@ public class Pizzeria {
                 deliverTime.add(deliverTimeArray.getInt(i));
             }
 
-            warehouseCapacity = config.getInt("warehouseCapacity", 5); // Значение по умолчанию 5
+            warehouseCapacity = config.getInt("warehouseCapacity", 5);
         }
 
         return new Pizzeria(cookingTime, deliverTime, warehouseCapacity);
