@@ -11,8 +11,6 @@ import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.json.JsonReader;
 
-import static java.lang.Math.max;
-
 /**
  * Pizzeria class.
  */
@@ -61,7 +59,6 @@ public class Pizzeria implements DeliveryQueue {
             Deliver deliverer = new Deliver(time, this);
             Thread delivererThread = new Thread(deliverer);
             delivererThreads.add(delivererThread);
-            mx = max(mx, time);
             delivererThread.start();
         }
     }
@@ -110,7 +107,7 @@ public class Pizzeria implements DeliveryQueue {
         synchronized (lock) {
             while (isOpen() && queueDeliv.size() >= warehouseCapacity) {
                 try {
-                    lock.wait();
+                    lock.wait(1000);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
@@ -147,15 +144,17 @@ public class Pizzeria implements DeliveryQueue {
             }
         }
         System.out.println("Pizzeria stopped.");
-        while (!queueDeliv.isEmpty()) {
-            try {
-                lock.wait();
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+        synchronized (lock) {
+            while (!queueDeliv.isEmpty()) {
+                try {
+                    lock.wait();
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
             }
+            deliveryFinished.set(true);
+            lock.notifyAll();
         }
-        deliveryFinished.set(true);
-        lock.notifyAll();
         System.out.println("Pizzeria closedededed.");
         for (Thread delivererThread : delivererThreads) {
             try {

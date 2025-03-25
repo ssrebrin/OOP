@@ -42,8 +42,8 @@ public class PizzzzaTest {
         long maxWaitTime = 15000; // 15 секунд максимум
         long start = System.currentTimeMillis();
 
-        while (!outputStream.toString().contains("Pizzeria closed.") &&
-                !outputStream.toString().contains("All threads have finished.")) {
+        while (!outputStream.toString().contains("Pizzeria closed.")
+                && !outputStream.toString().contains("All threads have finished.")) {
             if (System.currentTimeMillis() - start > maxWaitTime) {
                 thread.interrupt(); // Прерываем, если зависло
                 fail("Test timed out. Output: " + outputStream.toString());
