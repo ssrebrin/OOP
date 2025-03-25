@@ -8,7 +8,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * Non prim number.
  */
-public class SimpleDimple {
+public class SimpleDimpleA {
     /**
      * Generate stats.
      *
@@ -74,7 +74,7 @@ public class SimpleDimple {
      * @return - bool
      */
     public boolean notAllPrime2(int[] arr, int thCount) {
-        boolean flag = false;
+        AtomicBoolean flag = new AtomicBoolean(false);
 
         int size = (int) Math.ceil((double) arr.length / thCount);
         Thread[] t = new Thread[thCount];
@@ -93,7 +93,7 @@ public class SimpleDimple {
                 break;
             }
         }
-        return flag;
+        return flag.get();
     }
 
     /**
@@ -133,7 +133,7 @@ public class SimpleDimple {
         private int[] array;
         private int start;
         private int end;
-        private boolean flag;
+        private AtomicBoolean flag;
 
         /**
          * Init.
@@ -143,7 +143,7 @@ public class SimpleDimple {
          * @param end   - end
          * @param flag  - flag which we will change
          */
-        public Thread2(int[] array, int start, int end, boolean flag) {
+        public Thread2(int[] array, int start, int end, AtomicBoolean flag) {
             this.array = array;
             this.start = start;
             this.end = end;
@@ -157,7 +157,7 @@ public class SimpleDimple {
         public void run() {
             for (int i = start; i < end; i++) {
                 if (!isPr(array[i])) {
-                    flag = true;
+                    flag.set(true);
                 }
             }
         }
