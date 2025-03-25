@@ -9,6 +9,7 @@ import java.io.PrintStream;
 import java.util.List;
 import java.util.Scanner;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 /**
  * PizzzzaTest class.
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.Test;
 public class PizzzzaTest {
 
     @Test
+    @Timeout(20)
     public void testPizzzza() throws InterruptedException {
         // Подготовка данных
         List<Integer> cookingTimes = List.of(100, 100, 100);

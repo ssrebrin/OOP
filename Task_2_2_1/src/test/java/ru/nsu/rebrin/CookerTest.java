@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.IOException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 class CookerTest {
 
@@ -18,6 +19,7 @@ class CookerTest {
     }
 
     @Test
+    @Timeout(10)
     void testCookerRunsCorrectly() throws InterruptedException {
         pizzeria.order();
         Thread.sleep(4000);

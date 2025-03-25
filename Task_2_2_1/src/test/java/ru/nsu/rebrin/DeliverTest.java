@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.IOException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 class DeliverTest {
 
@@ -17,6 +18,7 @@ class DeliverTest {
     }
 
     @Test
+    @Timeout(10)
     void testDeliveryRunsCorrectly() throws InterruptedException {
         pizzeria.order();
         Thread.sleep(500);

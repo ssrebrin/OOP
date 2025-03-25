@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 class PizzeriaTest {
 
@@ -48,6 +49,7 @@ class PizzeriaTest {
 
 
     @Test
+    @Timeout(10)
     void testStop() throws InterruptedException, IOException {
         String configFile = "config.json";
         Pizzeria pizzeria = Pizzeria.fromJson(configFile);
@@ -70,6 +72,7 @@ class PizzeriaTest {
 
 
     @Test
+    @Timeout(10)
     void testDeliveryFinished() throws InterruptedException {
         pizzeria.order();
         Thread.sleep(500);

@@ -178,8 +178,8 @@ public class Pizzeria implements DeliveryQueue {
         List<Integer> deliverTime = new ArrayList<>();
         int warehouseCapacity = 0;
 
-        try (InputStream inputStream = Pizzeria.class.getClassLoader().
-                getResourceAsStream(configFile);
+        try (InputStream inputStream = Pizzeria.class.getClassLoader()
+                .getResourceAsStream(configFile);
 
             JsonReader reader = Json.createReader(inputStream)) {
             if (inputStream == null) {
