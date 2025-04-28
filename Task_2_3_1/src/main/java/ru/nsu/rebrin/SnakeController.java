@@ -14,11 +14,12 @@ public class SnakeController extends Application {
     SnakeModel model;
     SnakeView view;
     Timeline timeline;
+    Scene scene;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/startScreen.fxml"));
-        Scene scene = new Scene(loader.load());
+        scene = new Scene(loader.load());
 
         // Получаем контроллер начального экрана
         StartScreenController startScreenController = loader.getController();
