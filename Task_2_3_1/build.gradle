@@ -2,12 +2,18 @@ plugins {
     id 'java'
     id 'jacoco'
     id 'application'
-    id 'org.openjfx.javafxplugin' version '0.0.13'
+    id 'org.openjfx.javafxplugin' version '0.1.0' // Обновлено до 0.1.0
 }
 
 javafx {
     version = "17"
     modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.media' ]
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
 
 group = 'ru.nsu.rebrin'
@@ -22,8 +28,8 @@ dependencies {
     implementation 'org.glassfish:javax.json:1.1.4'
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
-    testImplementation 'org.testfx:testfx-junit5:4.0.16-alpha'
-    testImplementation 'org.testfx:testfx-core:4.0.16-alpha'
+    testImplementation 'org.testfx:testfx-junit5:4.0.17' // Обновлено
+    testImplementation 'org.testfx:testfx-core:4.0.17'  // Обновлено
     testImplementation 'org.testfx:openjfx-monocle:17.0.10'
 }
 
@@ -34,14 +40,14 @@ test {
             '-Dtestfx.headless=true',
             '-Dglass.platform=Monocle',
             '-Dmonocle.platform=Headless',
-            '-Dtestfx.verbose=true', // Включает подробные логи TestFX
-            '-Dprism.verbose=true'   // Включает подробные логи JavaFX Prism
+            '-Dtestfx.verbose=true',
+            '-Dprism.verbose=true'
     ]
     testLogging {
-        events "PASSED", "FAILED", "SKIPPED" // Выводит статус каждого теста
-        showExceptions true                 // Показывает исключения
-        showStackTraces true                // Показывает полный стек вызовов
-        exceptionFormat "FULL"              // Полный формат исключений
+        events "PASSED", "FAILED", "SKIPPED"
+        showExceptions true
+        showStackTraces true
+        exceptionFormat "FULL"
     }
 }
 
