@@ -7,6 +7,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -19,13 +20,18 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-@Disabled("JavaFX tests don't run properly in headless environments")
+//@Disabled("JavaFX tests don't run properly in headless environments")
 @ExtendWith(ApplicationExtension.class)
 class SnakeControllerTest {
 
     private SnakeController controller;
     private SnakeModel model;
     private Scene scene;
+
+    @BeforeAll
+    static void setHeadless() {
+        System.setProperty("java.awt.headless", "true");
+    }
 
     @BeforeEach
     void setUp() throws Exception {
