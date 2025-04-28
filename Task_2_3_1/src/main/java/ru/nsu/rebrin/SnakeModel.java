@@ -360,4 +360,8 @@ public class SnakeModel {
     public void setPaused(boolean paused) { this.paused = paused; }
     public void setDirection(Direction direction) { this.direction = direction; }
     public int getLength() { return snake.size(); }
-}
+    public void setRunning(boolean a) {
+        running = a;
+    }
+    public void setWin(boolean w) { this.win = w; }
+ }
