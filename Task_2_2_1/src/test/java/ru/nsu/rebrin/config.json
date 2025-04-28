@@ -1,5 +1,0 @@
-{
-  "cookingTime": [3000, 3000, 3000, 3000, 3000],
-  "deliverTime": [5000, 5000, 5000, 5000, 5000],
-  "warehouseCapacity": 10
-}
