@@ -24,15 +24,20 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'org.testfx:testfx-junit5:4.0.16-alpha'
     testImplementation 'org.testfx:testfx-core:4.0.16-alpha'
+    testImplementation 'org.testfx:openjfx-monocle:jdk-17+1'
 }
 
 test {
     useJUnitPlatform()
-    jvmArgs += [
-            '--add-opens', 'javafx.graphics/javafx.stage=ALL-UNNAMED',
-            '--add-opens', 'javafx.graphics/com.sun.javafx.application=ALL-UNNAMED'
-    ]
-    jvmArgs '--add-opens=javafx.graphics/com.sun.javafx=ALL-UNNAMED'
+    test {
+        jvmArgs = [
+                '--add-modules', 'javafx.controls,javafx.fxml',
+                '-Dtestfx.headless=true',
+                '-Dglass.platform=Monocle',
+                '-Dmonocle.platform=Headless'
+        ]
+    }
+
 }
 
 application {
