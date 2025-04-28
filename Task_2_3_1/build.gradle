@@ -24,7 +24,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'org.testfx:testfx-junit5:4.0.16-alpha'
     testImplementation 'org.testfx:testfx-core:4.0.16-alpha'
-    testImplementation 'org.testfx:openjfx-monocle:8u202-b07'
+    testImplementation 'org.testfx:openjfx-monocle:17.0.10'
 }
 
 test {
