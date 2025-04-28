@@ -1,33 +1,22 @@
 package ru.nsu.rebrin;
 
-import javafx.application.Platform;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.paint.Color;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import java.util.LinkedList;
-import java.util.List;
-
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.testfx.framework.junit5.ApplicationExtension;
+import org.testfx.framework.junit5.Start;
+import javafx.scene.canvas.Canvas;
+import javafx.stage.Stage;
 import static org.junit.jupiter.api.Assertions.*;
 
-
-//@Disabled("JavaFX tests don't run properly in headless environments")
+@ExtendWith(ApplicationExtension.class)
 public class SnakeViewTest {
 
     private SnakeView view;
     private SnakeModel model;
 
-    @BeforeAll
-    static void initJavaFX() {
-        Platform.startup(() -> {});
-    }
-
-    @BeforeEach
-    void setUp() {
-        view = new SnakeView(10, 10);  // поле 10х10
+    @Start
+    void start(Stage stage) {
+        view = new SnakeView(10, 10);
         model = new SnakeModel();
         model.width = 10;
         model.height = 10;
@@ -43,31 +32,21 @@ public class SnakeViewTest {
 
     @Test
     void testRenderDoesNotCrash() {
-        Platform.runLater(() -> {
-            // Добавим одну точку змеи
-            model.initSnake();
-
-            assertDoesNotThrow(() -> view.render(model));
-        });
+        model.initSnake();
+        assertDoesNotThrow(() -> view.render(model));
     }
 
     @Test
     void testRenderGameOverScreenDoesNotCrash() {
-        Platform.runLater(() -> {
-            model.setRunning(false);
-            model.setWin(false);
-
-            assertDoesNotThrow(() -> view.render(model));
-        });
+        model.setRunning(false);
+        model.setWin(false);
+        assertDoesNotThrow(() -> view.render(model));
     }
 
     @Test
     void testRenderWinScreenDoesNotCrash() {
-        Platform.runLater(() -> {
-            model.setRunning(false);
-            model.setWin(true);
-
-            assertDoesNotThrow(() -> view.render(model));
-        });
+        model.setRunning(false);
+        model.setWin(true);
+        assertDoesNotThrow(() -> view.render(model));
     }
 }
