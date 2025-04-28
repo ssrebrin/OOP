@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-@Disabled("JavaFX tests don't run properly in headless environments")
+//@Disabled("JavaFX tests don't run properly in headless environments")
 @ExtendWith(ApplicationExtension.class)
 class SnakeControllerTest {
 

@@ -13,7 +13,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-@Disabled("JavaFX tests don't run properly in headless environments")
+//@Disabled("JavaFX tests don't run properly in headless environments")
 public class SnakeViewTest {
 
     private SnakeView view;
