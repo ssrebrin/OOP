@@ -7,12 +7,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class SnakeModelTest {
+import java.util.List;
+
+public class SnakesModelTest {
     private SnakeModel snakeModel;
 
     @BeforeEach
     void setUp() {
         snakeModel = new SnakeModel();
+        snakeModel.initSnake();
     }
 
     @Test
@@ -29,7 +32,8 @@ public class SnakeModelTest {
     void testCollisionWithWall() {
         snakeModel.setPaused(false);
         snakeModel.setDirection(SnakeModel.Direction.LEFT);
-        for (int i = 0; i < SnakeModel.WIDTH / 2 + 1; i++) {
+        snakeModel.update();
+        for (int i = 0; i < snakeModel.width / 2 + 1; i++) {
             snakeModel.update();
         }
         assertFalse(snakeModel.isRunning());
@@ -38,12 +42,23 @@ public class SnakeModelTest {
     @Test
     void testEatApple() throws InterruptedException {
         int initialLength = snakeModel.getLength();
-        for(int i = 0;i<snakeModel.HEIGHT*snakeModel.WIDTH - 4;i++) {
+        for(int i = 0; i<snakeModel.height *snakeModel.width - 4; i++) {
             snakeModel.spawnApple();
         }
         snakeModel.setPaused(false);
         snakeModel.update();
-
         assertTrue(snakeModel.getLength() > initialLength);
+        snakeModel.setDirection(SnakeModel.Direction.DOWN);
+        snakeModel.update();
+        snakeModel.setDirection(SnakeModel.Direction.LEFT);
+        snakeModel.update();
+        snakeModel.update();
+        snakeModel.update();
+        snakeModel.setDirection(SnakeModel.Direction.UP);
+        snakeModel.update();
+        snakeModel.setDirection(SnakeModel.Direction.RIGHT);
+        snakeModel.update();
+        snakeModel.setDirection(SnakeModel.Direction.DOWN);
+        assertFalse(snakeModel.isPaused());
     }
 }

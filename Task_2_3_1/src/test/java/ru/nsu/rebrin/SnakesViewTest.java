@@ -9,21 +9,22 @@ import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
-class SnakeViewTest extends ApplicationTest {
+class SnakesViewTest extends ApplicationTest {
     private SnakeView snakeView;
     private SnakeModel snakeModel;
 
     @Override
     public void start(Stage stage) {
         snakeModel = new SnakeModel();
-        snakeView = new SnakeView(SnakeModel.WIDTH, SnakeModel.HEIGHT);
+        snakeModel.initSnake();
+        snakeView = new SnakeView(snakeModel.width, snakeModel.height);
     }
 
     @Test
     void testCanvasSize() {
         Canvas canvas = snakeView.getCanvas();
-        assertEquals(SnakeModel.WIDTH * 20, canvas.getWidth());
-        assertEquals(SnakeModel.HEIGHT * 20, canvas.getHeight());
+        assertEquals(snakeModel.width * 20, canvas.getWidth());
+        assertEquals(snakeModel.height * 20, canvas.getHeight());
     }
 
     @Test
