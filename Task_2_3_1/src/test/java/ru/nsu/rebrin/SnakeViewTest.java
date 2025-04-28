@@ -17,6 +17,7 @@ public class SnakeViewTest {
     @BeforeAll
     static void setHeadless() {
         System.setProperty("java.awt.headless", "true");
+        System.setProperty("prism.order", "sw");
     }
 
     @BeforeEach

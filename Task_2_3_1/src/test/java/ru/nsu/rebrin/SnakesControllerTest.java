@@ -28,6 +28,7 @@ class SnakeControllerTest {
     static void setHeadless() {
         // Для работы в headless окружении
         System.setProperty("java.awt.headless", "true");
+        System.setProperty("prism.order", "sw");
     }
 
     @BeforeEach
