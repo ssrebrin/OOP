@@ -2,12 +2,12 @@ plugins {
     id 'java'
     id 'jacoco'
     id 'application'
-    id 'org.openjfx.javafxplugin' version '0.0.13'  // Плагин для JavaFX
+    id 'org.openjfx.javafxplugin' version '0.0.13'
 }
 
 javafx {
-    version = "17"  // Версия JavaFX
-    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.media' ]  // Необходимые модули
+    version = "17"
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.media' ]
 }
 
 group = 'ru.nsu.rebrin'
@@ -24,24 +24,21 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testImplementation 'org.testfx:testfx-junit5:4.0.16-alpha'
     testImplementation 'org.testfx:testfx-core:4.0.16-alpha'
-    testImplementation 'org.testfx:openjfx-monocle:jdk-17+1'
+    testImplementation 'org.testfx:openjfx-monocle:8u202-b07'
 }
 
 test {
     useJUnitPlatform()
-    test {
-        jvmArgs = [
-                '--add-modules', 'javafx.controls,javafx.fxml',
-                '-Dtestfx.headless=true',
-                '-Dglass.platform=Monocle',
-                '-Dmonocle.platform=Headless'
-        ]
-    }
-
+    jvmArgs = [
+            '--add-modules', 'javafx.controls,javafx.fxml',
+            '-Dtestfx.headless=true',
+            '-Dglass.platform=Monocle',
+            '-Dmonocle.platform=Headless'
+    ]
 }
 
 application {
-    mainClass = 'ru.nsu.rebrin.SnakeController'  // Главный класс
+    mainClass = 'ru.nsu.rebrin.SnakeController'
 }
 
 jacocoTestReport {
@@ -49,4 +46,3 @@ jacocoTestReport {
         xml.required = true
     }
 }
-
