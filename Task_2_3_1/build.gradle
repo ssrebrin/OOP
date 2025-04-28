@@ -2,18 +2,12 @@ plugins {
     id 'java'
     id 'jacoco'
     id 'application'
-    id 'org.openjfx.javafxplugin' version '0.1.0' // Обновлено до 0.1.0
+    id 'org.openjfx.javafxplugin' version '0.0.13'  // Плагин для JavaFX
 }
 
 javafx {
-    version = "17"
-    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.media' ]
-}
-
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
-    }
+    version = "17"  // Версия JavaFX
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.media' ]  // Необходимые модули
 }
 
 group = 'ru.nsu.rebrin'
@@ -28,31 +22,20 @@ dependencies {
     implementation 'org.glassfish:javax.json:1.1.4'
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
-    testImplementation 'org.testfx:testfx-junit5:4.0.17' // Обновлено
-    testImplementation 'org.testfx:testfx-core:4.0.17'  // Обновлено
-    testImplementation 'org.testfx:openjfx-monocle:17.0.10'
+    testImplementation 'org.testfx:testfx-junit5:4.0.16-alpha'
+    testImplementation 'org.testfx:testfx-core:4.0.16-alpha'
 }
 
 test {
     useJUnitPlatform()
-    jvmArgs = [
-            '--add-modules', 'javafx.controls,javafx.fxml',
-            '-Dtestfx.headless=true',
-            '-Dglass.platform=Monocle',
-            '-Dmonocle.platform=Headless',
-            '-Dtestfx.verbose=true',
-            '-Dprism.verbose=true'
+    jvmArgs += [
+            '--add-opens', 'javafx.graphics/javafx.stage=ALL-UNNAMED',
+            '--add-opens', 'javafx.graphics/com.sun.javafx.application=ALL-UNNAMED'
     ]
-    testLogging {
-        events "PASSED", "FAILED", "SKIPPED"
-        showExceptions true
-        showStackTraces true
-        exceptionFormat "FULL"
-    }
 }
 
 application {
-    mainClass = 'ru.nsu.rebrin.SnakeController'
+    mainClass = 'ru.nsu.rebrin.SnakeController'  // Главный класс
 }
 
 jacocoTestReport {
