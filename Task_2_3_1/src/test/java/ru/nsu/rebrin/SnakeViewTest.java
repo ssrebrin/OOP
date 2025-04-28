@@ -3,6 +3,7 @@ package ru.nsu.rebrin;
 import javafx.application.Platform;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.paint.Color;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,11 @@ public class SnakeViewTest {
 
     private SnakeView view;
     private SnakeModel model;
+
+    @BeforeAll
+    static void initJavaFX() {
+        Platform.startup(() -> {});
+    }
 
     @BeforeEach
     void setUp() {
