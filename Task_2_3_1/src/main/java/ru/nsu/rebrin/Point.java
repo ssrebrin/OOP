@@ -23,10 +23,4 @@ public final class Point {
     public int hashCode() {
         return Objects.hash(x, y);
     }
-
-    public boolean isCollision(int height, int width) {
-        System.out.println(height);
-        System.out.println(width);
-        return x < 0 || x >= width || y < 0 || y >= height;
-    }
 }

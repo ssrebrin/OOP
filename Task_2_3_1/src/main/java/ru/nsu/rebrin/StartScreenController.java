@@ -7,10 +7,22 @@ import javafx.scene.control.TextField;
 public class StartScreenController {
 
     @FXML
-    private TextField widthField, heightField, winField, initLenField, cntAppleField, cntStupidSnakes, cntSmartSnakes;
+    TextField widthField;
+    @FXML
+    TextField heightField;
+    @FXML
+    TextField winField;
+    @FXML
+    TextField initLenField;
+    @FXML
+    TextField cntAppleField;
+    @FXML
+    TextField cntStupidSnakes;
+    @FXML
+    TextField cntSmartSnakes;
 
     @FXML
-    private Button startButton;
+    Button startButton;
 
     public SnakeModel getSettings() {
         int width = parseOrDefault(widthField.getText(), 20);

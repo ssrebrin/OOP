@@ -5,7 +5,7 @@ import java.util.List;
 
 public class SmartSnakes extends Snakes {
     public SmartSnakes(List<Point> starts) {
-        super(); // вызываем пустой конструктор, если есть
+        super();
         snakes = new LinkedList<>();
         for (Point p : starts) {
             snakes.add(new SmartSnake(p));
