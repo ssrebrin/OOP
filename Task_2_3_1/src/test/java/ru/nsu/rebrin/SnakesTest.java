@@ -1,52 +1,50 @@
 package ru.nsu.rebrin;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class SnakesTest {
 
-    @Test
-    void testCollisionWithHeadKillsSnake() {
-        Point p1 = new Point(1, 1);
-        Snakes snakes = new Snakes(List.of(p1));
-        boolean result = snakes.collis(p1);
-        assertTrue(result);
-        assertFalse(snakes.snakes.get(0).alive);
+    Point p1 = new Point(1, 1);
+    Point p2 = new Point(2, 2);
+    Point p3 = new Point(3, 3);
+    Snakes snakes;
+
+    @BeforeEach
+    void setup() {
+        snakes = new Snakes(List.of(p1, p2));
     }
 
     @Test
-    void testCollisionWithBodyReturnsTrue() {
-        Snake snake = new Snake(new Point(0, 0));
-        snake.points.add(new Point(0, 1));
-        snake.points.add(new Point(0, 2));
-        Snakes snakes = new Snakes();
-        snakes.snakes.add(snake);
-
-        assertTrue(snakes.collis(new Point(0, 2)));
-        assertTrue(snake.alive);
+    void testInitialization() {
+        assertEquals(2, snakes.snakes.size());
+        assertEquals(p1, snakes.snakes.get(0).points.getFirst());
     }
 
     @Test
-    void testCheckSelfKillsSnakeOnSelfCollision() {
-        Snake snake = new Snake(new Point(0, 0));
-        snake.points.add(new Point(0, 1));
-        snake.points.add(new Point(0, 0)); // loops back
+    void testSelfCollisionKillsSnake() {
+        Snake s = new Snake(new Point(0, 0));
+        s.points.add(new Point(0, 1));
+        s.points.add(new Point(0, 0)); // head collides with body
+        snakes = new Snakes();
+        snakes.snakes.add(s);
 
-        Snakes snakes = new Snakes();
-        snakes.snakes.add(snake);
         snakes.checkSelf();
 
-        assertFalse(snake.alive);
+        assertFalse(s.alive);
     }
 
     @Test
-    void testCheckSelvesKillsOnHeadToHead() {
-        Snake s1 = new Snake(new Point(0, 0));
-        Snake s2 = new Snake(new Point(0, 0));
-        Snakes snakes = new Snakes();
+    void testCollisionWithOtherSnakeHead() {
+        Snake s1 = new Snake(new Point(5, 5));
+        Snake s2 = new Snake(new Point(5, 5)); // same head
+
+        snakes = new Snakes();
         snakes.snakes.addAll(List.of(s1, s2));
 
         snakes.checkSelves();
@@ -56,45 +54,87 @@ class SnakesTest {
     }
 
     @Test
-    void testCheckOthersKillsOnCollision() {
-        Snake s1 = new Snake(new Point(0, 0));
-        Snake s2 = new Snake(new Point(0, 0));
+    void testCollisionWithOtherSnakeBody() {
+        Snake s1 = new Snake(new Point(5, 5));
+        s1.points.add(new Point(4, 5));
+        s1.points.add(new Point(3, 5));
 
-        Snakes main = new Snakes();
-        Snakes others = new Snakes();
-        main.snakes.add(s1);
-        others.snakes.add(s2);
+        Snake s2 = new Snake(new Point(4, 5)); // head hits body of s1
 
-        main.checkOthers(others);
+        snakes = new Snakes();
+        snakes.snakes.addAll(List.of(s1, s2));
 
-        assertFalse(s1.alive);
+        snakes.checkSelves();
+
+        assertTrue(s1.alive);
         assertFalse(s2.alive);
     }
 
     @Test
-    void testCheckListKillsOnBodyHit() {
-        Snake s = new Snake(new Point(0, 0));
-        s.points.add(new Point(1, 1));
-        s.points.add(new Point(2, 2));
+    void testCheckOthersKillsCollidingSnakes() {
+        Snake s1 = new Snake(new Point(7, 7));
+        s1.points.add(new Point(6, 7));
 
-        Snakes snakes = new Snakes();
+        Snake s2 = new Snake(new Point(6, 7));
+
+        Snakes others = new Snakes();
+        others.snakes.add(s2);
+
+        snakes = new Snakes();
+        snakes.snakes.add(s1);
+
+        others.checkOthers(snakes);
+
+        assertFalse(s2.alive);
+        assertTrue(s1.alive);
+    }
+
+    @Test
+    void testCheckListKillsSnake() {
+        Snake s = new Snake(new Point(1, 2));
+        snakes = new Snakes();
         snakes.snakes.add(s);
-        snakes.checkList(List.of(new Point(9, 9), new Point(2, 2)));
+
+        List<Point> enemyBody = List.of(new Point(9, 9), new Point(1, 2)); // matches head
+
+        snakes.checkList(enemyBody);
 
         assertFalse(s.alive);
     }
 
     @Test
-    void testCheckAppleIncrementsCounter() {
-        Snake s = new Snake(new Point(0, 0));
-        s.points.add(new Point(0, 1));
+    void testCollisOnHead() {
+        Point hit = snakes.snakes.get(0).points.getFirst();
+        boolean result = snakes.collis(hit);
+        assertTrue(result);
+        assertFalse(snakes.snakes.get(0).alive);
+    }
 
-        List<Point> apples = List.of(new Point(0, 1));
-
-        Snakes snakes = new Snakes();
+    @Test
+    void testCollisOnBodyOnly() {
+        Snake s = new Snake(new Point(5, 5));
+        s.points.add(new Point(5, 6));
+        s.points.add(new Point(5, 7));
         snakes.snakes.add(s);
-        int eaten = snakes.checkApple(apples);
 
-        assertEquals(1, eaten);
+        boolean result = snakes.collis(new Point(5, 7));
+        assertTrue(result);
+        assertTrue(s.alive); // alive because only head collisions kill
+    }
+
+    @Test
+    void testCheckAppleEaten() {
+        Snake s = new Snake(new Point(4, 4));
+        s.prevTail = new Point(3, 4); // needed to grow
+
+        snakes = new Snakes();
+        snakes.snakes.add(s);
+
+        List<Point> apples = new LinkedList<>(List.of(new Point(4, 4), new Point(1, 1)));
+
+        int result = snakes.checkApple(apples);
+
+        assertEquals(1, result);
+        assertEquals(1, apples.size()); // one apple removed
     }
 }
