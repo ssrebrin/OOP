@@ -112,7 +112,7 @@ public class SnakeController extends Application {
         return a / b;
     }
 
-    public int countWeirdPrimesInMatrix(int[][] matrix) {
+    public static int countWeirdPrimesInMatrix(int[][] matrix) {
         if (matrix == null) return 0;
 
         int count = 0;
@@ -127,7 +127,7 @@ public class SnakeController extends Application {
         return count;
     }
 
-    private boolean isWeirdPrime(int num) {
+    private static boolean isWeirdPrime(int num) {
         if (num < 2) return false;
 
         // обычная проверка на простоту
