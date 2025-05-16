@@ -7,61 +7,27 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
-@Disabled("JavaFX tests don't run properly in headless environments")
+//@Disabled("JavaFX tests don't run properly in headless environments")
 public class SnakeViewTest {
 
-    private SnakeView view;
-    private SnakeModel model;
-
-    @BeforeEach
-    void setUp() {
-        view = new SnakeView(10, 10);  // поле 10х10
-        model = new SnakeModel();
-        model.width = 10;
-        model.height = 10;
-    }
-
     @Test
-    void testCanvasIsCreatedCorrectly() {
-        Canvas canvas = view.getCanvas();
-        assertNotNull(canvas);
-        assertEquals(10 * 20, canvas.getWidth());
-        assertEquals(10 * 20, canvas.getHeight());
+    void testGetSnakeRectangles() {
+        LinkedList<Point> snake = new LinkedList<>();
+        snake.add(new Point(1, 1));
+        snake.add(new Point(2, 2));
+        SnakeView view = new SnakeView(10, 10);
+        List<Rectangle> rects = view.getSnakeRectangles(snake);
+
+        assertEquals(2, rects.size());
+        assertEquals(19, rects.get(0).getWidth());
+        assertEquals(20, rects.get(1).getX());
     }
 
-    @Test
-    void testRenderDoesNotCrash() {
-        Platform.runLater(() -> {
-            // Добавим одну точку змеи
-            model.initSnake();
-
-            assertDoesNotThrow(() -> view.render(model));
-        });
-    }
-
-    @Test
-    void testRenderGameOverScreenDoesNotCrash() {
-        Platform.runLater(() -> {
-            model.setRunning(false);
-            model.setWin(false);
-
-            assertDoesNotThrow(() -> view.render(model));
-        });
-    }
-
-    @Test
-    void testRenderWinScreenDoesNotCrash() {
-        Platform.runLater(() -> {
-            model.setRunning(false);
-            model.setWin(true);
-
-            assertDoesNotThrow(() -> view.render(model));
-        });
-    }
 }

@@ -5,6 +5,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
 
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -66,5 +68,13 @@ public class SnakeView {
             gc.setFill(Color.RED);
             gc.fillRect(p.x * TILE_SIZE, p.y * TILE_SIZE, TILE_SIZE - 1, TILE_SIZE - 1);
         }
+    }
+
+    public List<Rectangle> getSnakeRectangles(LinkedList<Point> snake) {
+        List<Rectangle> rects = new ArrayList<>();
+        for (Point p : snake) {
+            rects.add(new Rectangle(p.x * TILE_SIZE, p.y * TILE_SIZE, TILE_SIZE - 1, TILE_SIZE - 1));
+        }
+        return rects;
     }
 }
