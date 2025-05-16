@@ -3,6 +3,7 @@ package ru.nsu.rebrin;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import static ru.nsu.rebrin.SettingsParser.parseOrDefault;
 
 public class StartScreenController {
 
@@ -44,15 +45,6 @@ public class StartScreenController {
         model.initSnake();
 
         return model;
-    }
-
-
-    private int parseOrDefault(String text, int defaultValue) {
-        try {
-            return Integer.parseInt(text);
-        } catch (NumberFormatException e) {
-            return defaultValue;
-        }
     }
 
     // Устанавливаем обработчик кнопки старта

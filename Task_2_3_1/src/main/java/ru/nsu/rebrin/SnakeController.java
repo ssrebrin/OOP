@@ -83,7 +83,7 @@ public class SnakeController extends Application {
 
     void setupGameLoop() {
         if (timeline != null) {
-            timeline.stop(); // Останавливаем предыдущий, если он был
+            timeline.stop();
         }
 
         timeline = new Timeline(new KeyFrame(Duration.millis(200), e -> {
