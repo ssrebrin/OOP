@@ -17,18 +17,16 @@ public class SmartSnake extends Snake {
         Point head = points.getFirst();
         List<SnakeModel.Direction> possibleMoves = List.of(SnakeModel.Direction.UP, SnakeModel.Direction.DOWN, SnakeModel.Direction.LEFT, SnakeModel.Direction.RIGHT);
 
-        // Сначала определяем куда можно безопасно двигаться
         SnakeModel.Direction bestMove = null;
         int bestDistance = Integer.MAX_VALUE;
         boolean avoidPot = false;
 
         for (SnakeModel.Direction dir : possibleMoves) {
             if (!canMove(dir, height, width, danger)) continue;
-            if (isReverse(dir)) continue; // запрещаем разворот назад
+            if (isReverse(dir)) continue;
 
             Point next = nextPoint(head, dir);
 
-            // Проверка на яблоко
             int distanceToNearestApple = distanceToNearest(next, apples);
 
             boolean nextInPot = containsPoint(pot, next);

@@ -100,4 +100,127 @@ class SnakeTest {
         snake.changeDir(new Point(2, 2), new Point(2, 0)); // вверх
         assertEquals(SnakeModel.Direction.UP, snake.direction);
     }
+    @Test
+    void testChangeDirPrefersVerticalWhenEqualDistance() {
+        Snake snake = new Snake(new Point(2, 2));
+        snake.direction = SnakeModel.Direction.RIGHT;
+
+        Point head = new Point(2, 2);
+        Point target = new Point(2, 4); // ниже головы
+
+        snake.changeDir(head, target);
+        assertEquals(SnakeModel.Direction.DOWN, snake.direction);
+    }
+
+    @Test
+    void testChangeDirAvoidsReverseUpToDown() {
+        Snake snake = new Snake(new Point(2, 2));
+        snake.direction = SnakeModel.Direction.UP;
+
+        Point head = new Point(2, 2);
+        Point target = new Point(2, 4); // вниз
+
+        snake.changeDir(head, target);
+        assertNotEquals(SnakeModel.Direction.DOWN, snake.direction);
+    }
+
+    @Test
+    void testChangeDirAvoidsReverseDownToUP() {
+        Snake snake = new Snake(new Point(2, 2));
+        snake.direction = SnakeModel.Direction.DOWN;
+
+        Point head = new Point(2, 2);
+        Point target = new Point(2, 1); // вниз
+
+        snake.changeDir(head, target);
+        assertNotEquals(SnakeModel.Direction.UP, snake.direction);
+    }
+
+    @Test
+    void testChangeDirAvoidsReverseLeftToRight() {
+        Snake snake = new Snake(new Point(5, 5));
+        snake.direction = SnakeModel.Direction.LEFT;
+
+        Point target = new Point(6, 5);
+
+        snake.changeDir(new Point(5, 5), target);
+        // нельзя поворачивать направо (реверс), fallback будет вниз
+        assertNotEquals(SnakeModel.Direction.RIGHT, snake.direction);
+    }
+
+    @Test
+    void testChangeDirAvoidsReverseRightToLeft() {
+        Snake snake = new Snake(new Point(5, 5));
+        snake.direction = SnakeModel.Direction.RIGHT;
+
+        Point target = new Point(4, 5);
+
+        snake.changeDir(new Point(5, 5), target);
+        // нельзя поворачивать направо (реверс), fallback будет вниз
+        assertNotEquals(SnakeModel.Direction.LEFT, snake.direction);
+    }
+
+    @Test
+    void testNearChoosesFirstIfDistancesEqual() {
+        Snake snake = new Snake(new Point(0, 0));
+        Point apple1 = new Point(1, 0);
+        Point apple2 = new Point(0, 1);
+
+        Point nearest = snake.near(new Point(0, 0), List.of(apple1, apple2));
+        // оба на расстоянии 1, должен вернуть первый
+        assertEquals(apple1, nearest);
+    }
+
+    @Test
+    void testMoveDoesNotGrowIfNoAppleEaten() {
+        Snake snake = new Snake(new Point(4, 4));
+        snake.move(10, 10, List.of(), List.of(), List.of());
+
+        // Длина не изменилась
+        assertEquals(1, snake.points.size());
+    }
+
+    @Test
+    void testMoveUpdatesPrevTailCorrectly() {
+        Snake snake = new Snake(new Point(4, 4));
+        snake.move(10, 10, List.of(), List.of(), List.of());
+
+        assertEquals(new Point(4, 4), snake.prevTail);
+    }
+
+    @Test
+    void testEatMultipleApplesOneEaten() {
+        Snake snake = new Snake(new Point(5, 5));
+        snake.prevTail = new Point(4, 5);
+        List<Point> apples = new LinkedList<>(List.of(new Point(3, 3), new Point(5, 5), new Point(6, 6)));
+
+        boolean eaten = snake.eatApple(apples);
+        assertTrue(eaten);
+        assertEquals(2, snake.points.size());
+        assertFalse(apples.contains(new Point(5, 5)));
+    }
+
+    @Test
+    void testReviveDoesNotClearDeathTimeIfTooSoon() throws InterruptedException {
+        Snake snake = new Snake(new Point(5, 5));
+        snake.die();
+
+        long beforeRevive = snake.deathTime;
+        Thread.sleep(1000); // меньше cd
+        snake.revive(new Point(1, 1));
+        assertEquals(beforeRevive, snake.deathTime);
+    }
+
+    @Test
+    void testDirectionUnchangedIfAppleNullOrEmpty() {
+        Snake snake = new Snake(new Point(2, 2));
+        snake.direction = SnakeModel.Direction.UP;
+
+        snake.move(10, 10, null, List.of(), List.of());
+        assertEquals(SnakeModel.Direction.UP, snake.direction);
+
+        snake.move(10, 10, List.of(), List.of(), List.of());
+        assertEquals(SnakeModel.Direction.UP, snake.direction);
+    }
+
 }

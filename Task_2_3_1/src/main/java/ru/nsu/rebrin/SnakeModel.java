@@ -199,7 +199,7 @@ public class SnakeModel {
             if (s == snakee) {
                 if (s.points.size() >= 3) {
                     for (Point point : s.points.subList(3, s.points.size())) {
-                        if (point.equals(d.get(0))) {
+                        if (point.equals(d.get(0)) || point.equals(d.get(1)) || point.equals(d.get(2))) {
                             danger.add(point);
                         }
                     }
@@ -208,7 +208,7 @@ public class SnakeModel {
 
             if (s.points.size() > 1) {
                 for (Point point : s.points) {
-                    if (point.equals(d.get(0))) {
+                    if (point.equals(d.get(0)) || point.equals(d.get(1)) || point.equals(d.get(2))) {
                         danger.add(point);
                     }
                 }
@@ -235,7 +235,7 @@ public class SnakeModel {
             if (s == snakee) {
                 if (s.points.size() >= 3) {
                     for (Point point : s.points.subList(3, s.points.size())) {
-                        if (point.equals(d.get(0))) {
+                        if (point.equals(d.get(0)) || point.equals(d.get(1))) {
                             danger.add(point);
                         }
                     }
@@ -248,7 +248,7 @@ public class SnakeModel {
             }
             if (s.points.size() > 1) {
                 for (Point point : s.points.subList(1, s.points.size())) {
-                    if (point.equals(d.get(0))) {
+                    if (point.equals(d.get(0)) || point.equals(d.get(1))) {
                         danger.add(point);
                     }
                 }

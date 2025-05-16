@@ -84,6 +84,7 @@ public class Snake {
                     return;
                 } else {
                     direction = SnakeModel.Direction.LEFT;
+                    return;
                 }
             } else {
                 if (direction != SnakeModel.Direction.UP) {
@@ -91,6 +92,7 @@ public class Snake {
                     return;
                 } else {
                     direction = SnakeModel.Direction.LEFT;
+                    return;
                 }
 
             }
@@ -102,6 +104,7 @@ public class Snake {
                     return;
                 } else {
                     direction = SnakeModel.Direction.DOWN;
+                    return;
                 }
             } else {
                 if (direction != SnakeModel.Direction.LEFT) {
@@ -109,6 +112,7 @@ public class Snake {
                     return;
                 } else {
                     direction = SnakeModel.Direction.DOWN;
+                    return;
                 }
             }
         }
@@ -137,6 +141,7 @@ public class Snake {
 
     }
 
+    
     public boolean eatApple(List<Point> apple) {
         Point head = points.getFirst();
         Iterator<Point> iterator = apple.iterator();

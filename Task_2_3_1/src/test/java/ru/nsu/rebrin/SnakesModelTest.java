@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 
-@Disabled("JavaFX tests don't run properly in headless environments")
+//@Disabled("JavaFX tests don't run properly in headless environments")
 public class SnakesModelTest {
     private SnakeModel snakeModel;
 
