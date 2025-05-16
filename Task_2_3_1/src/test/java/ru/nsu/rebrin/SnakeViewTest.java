@@ -32,7 +32,10 @@ public class SnakeViewTest {
         assertEquals(1, result.get(SnakeModel.Direction.DOWN));  // O
         assertEquals(1, result.get(SnakeModel.Direction.LEFT));  // E
         assertEquals(1, result.get(SnakeModel.Direction.RIGHT)); // I
+    }
 
-
+    @Test
+    void testCountVowelsInDirectionsReverse() {
+        assertEquals(23, SnakeView.Add20Times(3));
     }
 }

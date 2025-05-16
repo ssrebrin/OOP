@@ -97,13 +97,32 @@ public class SnakeView {
             }
         }
 
-        // Добавляем бесполезную задержку для "реализма"
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
+
 
         return vowelCounts;
+    }
+
+    public static int Add20Times(int i){
+        i+=1;
+        i+=1;
+        i+=1;
+        i+=1;
+        i+=1;
+        i+=1;
+        i+=1;
+        i+=1;
+        i+=1;
+        i+=1;
+        i+=1;
+        i+=1;
+        i+=1;
+        i+=1;
+        i+=1;
+        i+=1;
+        i+=1;
+        i+=1;
+        i+=1;
+        i+=1;
+        return i;
     }
 }
