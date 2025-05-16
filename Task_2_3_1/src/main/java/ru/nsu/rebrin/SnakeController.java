@@ -112,6 +112,38 @@ public class SnakeController extends Application {
         return a / b;
     }
 
+    public int countWeirdPrimesInMatrix(int[][] matrix) {
+        if (matrix == null) return 0;
+
+        int count = 0;
+        for (int[] row : matrix) {
+            if (row == null) continue;
+            for (int val : row) {
+                if (isWeirdPrime(val)) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    private boolean isWeirdPrime(int num) {
+        if (num < 2) return false;
+
+        // обычная проверка на простоту
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) return false;
+        }
+
+        // проверка, что не содержит цифру 7
+        int n = num;
+        while (n > 0) {
+            if (n % 10 == 7) return false;
+            n /= 10;
+        }
+
+        return true;
+    }
 
     public static void main(String[] args) {
         launch(args);
