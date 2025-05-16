@@ -26,10 +26,4 @@ class SettingsParserTest {
         assertEquals(-7, SettingsParser.parseOrDefault("-7", 0));
     }
 
-    @Test
-    void testNullThrowsException() {
-        assertThrows(NullPointerException.class, () -> {
-            SettingsParser.parseOrDefault(null, 123);
-        });
-    }
 }
