@@ -3,7 +3,6 @@ package ru.nsu.rebrin;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import static ru.nsu.rebrin.SettingsParser.parseOrDefault;
 
 public class StartScreenController {
 
@@ -26,13 +25,13 @@ public class StartScreenController {
     Button startButton;
 
     public SnakeModel getSettings() {
-        int width = parseOrDefault(widthField.getText(), 20);
-        int height = parseOrDefault(heightField.getText(), 20);
-        int win = parseOrDefault(winField.getText(), 10);
-        int initLen = parseOrDefault(initLenField.getText(), 1);
-        int cntApple = parseOrDefault(cntAppleField.getText(), 3);
-        int cntStupid = parseOrDefault(cntStupidSnakes.getText(), 0);
-        int cntSmart = parseOrDefault(cntSmartSnakes.getText(), 0);
+        int width = SettingsParser.parseOrDefault(widthField.getText(), 20);
+        int height = SettingsParser.parseOrDefault(heightField.getText(), 20);
+        int win = SettingsParser.parseOrDefault(winField.getText(), 10);
+        int initLen = SettingsParser.parseOrDefault(initLenField.getText(), 1);
+        int cntApple = SettingsParser.parseOrDefault(cntAppleField.getText(), 3);
+        int cntStupid = SettingsParser.parseOrDefault(cntStupidSnakes.getText(), 0);
+        int cntSmart = SettingsParser.parseOrDefault(cntSmartSnakes.getText(), 0);
 
         SnakeModel model = new SnakeModel();
         model.width = width;
