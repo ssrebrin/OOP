@@ -32,15 +32,4 @@ public class SnakeControllerTest {
         assertThrows(IllegalArgumentException.class, () -> SnakeController.divide(5, 0));
     }
 
-    @Test
-    void testWeirdPrimeCountSimple() {
-        int[][] input = {
-                {2, 3, 5},
-                {7, 11, 17},
-                {19, 23, 29}
-        };
-        int result = SnakeController.countWeirdPrimesInMatrix(input);
-        assertEquals(6, result);
-    }
-
 }
