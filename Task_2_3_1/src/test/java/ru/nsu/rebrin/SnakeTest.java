@@ -223,4 +223,100 @@ class SnakeTest {
         assertEquals(SnakeModel.Direction.UP, snake.direction);
     }
 
+    @Test
+    void verticalUpAllowed() {
+        Snake snake = new Snake(new Point(5, 5));
+        snake.direction = SnakeModel.Direction.RIGHT;
+        snake.changeDir(new Point(5, 5), new Point(5, 4));
+        assertEquals(SnakeModel.Direction.UP, snake.direction);
+    }
+
+    @Test
+    void verticalUpBlockedGoesLeft() {
+        Snake snake = new Snake(new Point(5, 5));
+        snake.direction = SnakeModel.Direction.DOWN;
+        snake.changeDir(new Point(5, 5), new Point(5, 4));
+        assertEquals(SnakeModel.Direction.LEFT, snake.direction);
+    }
+
+    @Test
+    void verticalDownAllowed() {
+        Snake snake = new Snake(new Point(5, 5));
+        snake.direction = SnakeModel.Direction.RIGHT;
+        snake.changeDir(new Point(5, 4), new Point(5, 5));
+        assertEquals(SnakeModel.Direction.DOWN, snake.direction);
+    }
+
+    @Test
+    void verticalDownBlockedGoesLeft() {
+        Snake snake = new Snake(new Point(5, 4));
+        snake.direction = SnakeModel.Direction.UP;
+        snake.changeDir(new Point(5, 4), new Point(5, 5));
+        assertEquals(SnakeModel.Direction.LEFT, snake.direction);
+    }
+
+    @Test
+    void horizontalLeftAllowed() {
+        Snake snake = new Snake(new Point(5, 5));
+        snake.direction = SnakeModel.Direction.UP;
+        snake.changeDir(new Point(5, 5), new Point(4, 5));
+        assertEquals(SnakeModel.Direction.LEFT, snake.direction);
+    }
+
+    @Test
+    void horizontalLeftBlockedGoesDown() {
+        Snake snake = new Snake(new Point(5, 5));
+        snake.direction = SnakeModel.Direction.RIGHT;
+        snake.changeDir(new Point(5, 5), new Point(4, 5));
+        assertEquals(SnakeModel.Direction.DOWN, snake.direction);
+    }
+
+    @Test
+    void horizontalRightAllowed() {
+        Snake snake = new Snake(new Point(4, 5));
+        snake.direction = SnakeModel.Direction.UP;
+        snake.changeDir(new Point(4, 5), new Point(5, 5));
+        assertEquals(SnakeModel.Direction.RIGHT, snake.direction);
+    }
+
+    @Test
+    void horizontalRightBlockedGoesDown() {
+        Snake snake = new Snake(new Point(4, 5));
+        snake.direction = SnakeModel.Direction.LEFT;
+        snake.changeDir(new Point(4, 5), new Point(5, 5));
+        assertEquals(SnakeModel.Direction.DOWN, snake.direction);
+    }
+
+    @Test
+    void diagonalLeftPreference() {
+        Snake snake = new Snake(new Point(5, 5));
+        snake.direction = SnakeModel.Direction.RIGHT;
+        snake.changeDir(new Point(5, 5), new Point(4, 4));
+        assertEquals(SnakeModel.Direction.UP, snake.direction);
+    }
+
+    @Test
+    void diagonalRightPreference() {
+        Snake snake = new Snake(new Point(4, 4));
+        snake.direction = SnakeModel.Direction.LEFT;
+        snake.changeDir(new Point(4, 4), new Point(5, 5));
+        assertEquals(SnakeModel.Direction.DOWN, snake.direction);
+    }
+
+    @Test
+    void diagonalUpPreference() {
+        Snake snake = new Snake(new Point(4, 4));
+        snake.direction = SnakeModel.Direction.DOWN;
+        snake.changeDir(new Point(4, 4), new Point(5, 3));
+        assertEquals(SnakeModel.Direction.RIGHT, snake.direction);
+    }
+
+    @Test
+    void diagonalDownPreference() {
+        Snake snake = new Snake(new Point(5, 3));
+        snake.direction = SnakeModel.Direction.UP;
+        snake.changeDir(new Point(5, 3), new Point(4, 4));
+        assertEquals(SnakeModel.Direction.LEFT, snake.direction);
+    }
+
 }
