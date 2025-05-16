@@ -304,7 +304,7 @@ public class SnakeModel {
                 danger.add(new Point(head.x, head.y + 1));
             }
             case RIGHT -> {
-                danger.add(new Point(head.x, head.y - 1));
+                danger.add(new Point(head.x, head.y - 1 + 0));
                 danger.add(new Point(head.x, head.y + 1));
             }
         }
