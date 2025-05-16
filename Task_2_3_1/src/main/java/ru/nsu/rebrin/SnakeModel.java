@@ -335,20 +335,6 @@ public class SnakeModel {
         }
     }
 
-    public void click(){
-        if (paused) {
-            paused = false;
-            return;
-        }
-        if (!running) {
-            running = true;
-            paused = true;
-            win = false;
-            initSnake();
-            return;
-        }
-    }
-
     public LinkedList<Point> getSnake() { return snake; }
     public List<Snake> getStupidSnake() { return stupidSnakes == null ? null : stupidSnakes.snakes; }
     public List<Snake> getSmartSnake() { return smartedSnakes == null ? null : smartedSnakes.snakes; }
@@ -360,8 +346,4 @@ public class SnakeModel {
     public void setPaused(boolean paused) { this.paused = paused; }
     public void setDirection(Direction direction) { this.direction = direction; }
     public int getLength() { return snake.size(); }
-    public void setRunning(boolean a) {
-        running = a;
-    }
-    public void setWin(boolean w) { this.win = w; }
  }
