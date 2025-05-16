@@ -5,6 +5,35 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class StartScreenControllerTest {
+    @Test
+    void testSimplePalindrome() {
+        assertTrue(StartScreenController.isPalindrome("madam"));
+    }
+
+    @Test
+    void testPalindromeWithSpacesAndCase() {
+        assertTrue(StartScreenController.isPalindrome("A man a plan a canal Panama"));
+    }
+
+    @Test
+    void testNotPalindrome() {
+        assertFalse(StartScreenController.isPalindrome("hello"));
+    }
+
+    @Test
+    void testEmptyString() {
+        assertTrue(StartScreenController.isPalindrome(""));
+    }
+
+    @Test
+    void testNullInput() {
+        assertFalse(StartScreenController.isPalindrome(null));
+    }
+
+    @Test
+    void testPalindromeWithSymbols() {
+        assertTrue(StartScreenController.isPalindrome("Was it a car or a cat I saw?"));
+    }
 
     @Test
     void testValidInteger() {

@@ -33,6 +33,12 @@ public class StartScreenController {
         int cntStupid = parseOrDefault(cntStupidSnakes.getText(), 0);
         int cntSmart = parseOrDefault(cntSmartSnakes.getText(), 0);
 
+        String a = "aaa";
+        if (isPalindrome(a)){
+            width = width + 1 - 1;
+        }
+
+
         SnakeModel model = new SnakeModel();
         model.width = width;
         model.height = height;
