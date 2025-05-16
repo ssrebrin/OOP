@@ -36,6 +36,6 @@ public class SnakeViewTest {
 
     @Test
     void testCountVowelsInDirectionsReverse() {
-        assertEquals(23, SnakeView.Add20Times(3));
+        assertEquals(43, SnakeView.AddNTimes(3));
     }
 }
