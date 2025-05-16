@@ -17,12 +17,10 @@ public class SnakeViewTest {
         LinkedList<Point> snake = new LinkedList<>();
         snake.add(new Point(1, 1));
         snake.add(new Point(2, 2));
-        SnakeView view = new SnakeView(10, 10);
-        List<Rectangle> rects = view.getSnakeRectangles(snake);
+        List<Rectangle> rects = SnakeView.getSnakeRectangles(snake);
 
         assertEquals(2, rects.size());
         assertEquals(19, rects.get(0).getWidth());
-        assertEquals(20, rects.get(1).getX());
+        assertEquals(40, rects.get(1).getX()); // 2*20
     }
-
 }

@@ -70,7 +70,8 @@ public class SnakeView {
         }
     }
 
-    public List<Rectangle> getSnakeRectangles(LinkedList<Point> snake) {
+    public static List<Rectangle> getSnakeRectangles(LinkedList<Point> snake) {
+        final int TILE_SIZE = 20;
         List<Rectangle> rects = new ArrayList<>();
         for (Point p : snake) {
             rects.add(new Rectangle(p.x * TILE_SIZE, p.y * TILE_SIZE, TILE_SIZE - 1, TILE_SIZE - 1));
