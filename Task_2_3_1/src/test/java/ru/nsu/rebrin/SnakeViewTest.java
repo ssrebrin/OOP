@@ -26,14 +26,13 @@ public class SnakeViewTest {
     }
     @Test
     void testCountVowelsInDirections() {
-        SnakeView view = new SnakeView(10, 10);
-        Map<SnakeModel.Direction, Integer> result = view.countVowelsInDirections();
+        Map<SnakeModel.Direction, Integer> result = SnakeView.countVowelsInDirections();
 
         assertEquals(1, result.get(SnakeModel.Direction.UP));    // U
         assertEquals(1, result.get(SnakeModel.Direction.DOWN));  // O
         assertEquals(1, result.get(SnakeModel.Direction.LEFT));  // E
         assertEquals(1, result.get(SnakeModel.Direction.RIGHT)); // I
 
-        
+
     }
 }
