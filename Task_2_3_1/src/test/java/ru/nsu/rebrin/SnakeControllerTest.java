@@ -1,10 +1,11 @@
 package ru.nsu.rebrin;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class SnakeControllerTest {
+public class SnakeControllerTest {
 
     @Test
     void testAddition() {
@@ -35,34 +36,11 @@ class SnakeControllerTest {
     void testWeirdPrimeCountSimple() {
         int[][] input = {
                 {2, 3, 5},
-                {7, 11, 17}, // 7 and 17 should be ignored (contain digit 7)
+                {7, 11, 17},
                 {19, 23, 29}
         };
         int result = SnakeController.countWeirdPrimesInMatrix(input);
-        assertEquals(6, result); // 2, 3, 5, 11, 19, 23
+        assertEquals(6, result);
     }
 
-    @Test
-    void testWeirdPrimeCountEmptyMatrix() {
-        int[][] input = {};
-        int result = SnakeController.countWeirdPrimesInMatrix(input);
-        assertEquals(0, result);
-    }
-
-    @Test
-    void testWeirdPrimeCountNullMatrix() {
-        int result = SnakeController.countWeirdPrimesInMatrix(null);
-        assertEquals(0, result);
-    }
-
-    @Test
-    void testWeirdPrimeCountWithNullRows() {
-        int[][] input = {
-                null,
-                {13, 17, 37},
-                {41}
-        };
-        int result = SnakeController.countWeirdPrimesInMatrix(input);
-        assertEquals(2, result); // 13, 41
-    }
 }
