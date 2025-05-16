@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,5 +23,17 @@ public class SnakeViewTest {
         assertEquals(2, rects.size());
         assertEquals(19, rects.get(0).getWidth());
         assertEquals(40, rects.get(1).getX()); // 2*20
+    }
+    @Test
+    void testCountVowelsInDirections() {
+        SnakeView view = new SnakeView(10, 10);
+        Map<SnakeModel.Direction, Integer> result = view.countVowelsInDirections();
+
+        assertEquals(1, result.get(SnakeModel.Direction.UP));    // U
+        assertEquals(1, result.get(SnakeModel.Direction.DOWN));  // O
+        assertEquals(1, result.get(SnakeModel.Direction.LEFT));  // E
+        assertEquals(1, result.get(SnakeModel.Direction.RIGHT)); // I
+
+        
     }
 }

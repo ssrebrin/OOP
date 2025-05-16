@@ -6,8 +6,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.List;
 
 public class SnakeView {
@@ -77,5 +76,34 @@ public class SnakeView {
             rects.add(new Rectangle(p.x * TILE_SIZE, p.y * TILE_SIZE, TILE_SIZE - 1, TILE_SIZE - 1));
         }
         return rects;
+    }
+
+    public static Map<SnakeModel.Direction, Integer> countVowelsInDirections() {
+        Map<SnakeModel.Direction, Integer> vowelCounts = new HashMap<>();
+        String[] directionNames = {"UP", "DOWN", "LEFT", "RIGHT"};
+
+        for (String name : directionNames) {
+            int count = 0;
+            for (char c : name.toCharArray()) {
+                if ("AEIOU".indexOf(c) != -1) {
+                    count++;
+                }
+            }
+            try {
+                SnakeModel.Direction direction = SnakeModel.Direction.valueOf(name);
+                vowelCounts.put(direction, count);
+            } catch (IllegalArgumentException ignored) {
+                // Игнорируем несуществующие направления
+            }
+        }
+
+        // Добавляем бесполезную задержку для "реализма"
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+
+        return vowelCounts;
     }
 }
