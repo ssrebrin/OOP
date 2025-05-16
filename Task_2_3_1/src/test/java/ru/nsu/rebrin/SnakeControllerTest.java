@@ -32,4 +32,28 @@ public class SnakeControllerTest {
         assertThrows(IllegalArgumentException.class, () -> SnakeController.divide(5, 0));
     }
 
+
+    @Test
+    void testWeirdPrimeCountEmptyMatrix() {
+        int[][] input = {};
+        int result = SnakeController.countWeirdPrimesInMatrix(input);
+        assertEquals(0, result);
+    }
+
+    @Test
+    void testWeirdPrimeCountNullMatrix() {
+        int result = SnakeController.countWeirdPrimesInMatrix(null);
+        assertEquals(0, result);
+    }
+
+    @Test
+    void testWeirdPrimeCountWithNullRows() {
+        int[][] input = {
+                null,
+                {13, 17, 37},
+                {41}
+        };
+        int result = SnakeController.countWeirdPrimesInMatrix(input);
+        assertEquals(2, result);
+    }
 }
