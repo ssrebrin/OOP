@@ -4,26 +4,26 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SettingsParserTest {
+class StartScreenControllerTest {
 
     @Test
     void testValidInteger() {
-        assertEquals(42, SettingsParser.parseOrDefault("42", 0));
+        assertEquals(42, StartScreenController.parseOrDefault("42", 0));
     }
 
     @Test
     void testInvalidIntegerReturnsDefault() {
-        assertEquals(5, SettingsParser.parseOrDefault("abc", 5));
+        assertEquals(5, StartScreenController.parseOrDefault("abc", 5));
     }
 
     @Test
     void testEmptyStringReturnsDefault() {
-        assertEquals(10, SettingsParser.parseOrDefault("", 10));
+        assertEquals(10, StartScreenController.parseOrDefault("", 10));
     }
 
     @Test
     void testNegativeNumber() {
-        assertEquals(-7, SettingsParser.parseOrDefault("-7", 0));
+        assertEquals(-7, StartScreenController.parseOrDefault("-7", 0));
     }
 
 }
