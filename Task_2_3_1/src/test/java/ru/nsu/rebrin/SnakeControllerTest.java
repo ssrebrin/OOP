@@ -33,40 +33,36 @@ class SnakeControllerTest {
 
     @Test
     void testWeirdPrimeCountSimple() {
-        SnakeController controller = new SnakeController();
         int[][] input = {
                 {2, 3, 5},
                 {7, 11, 17}, // 7 and 17 should be ignored (contain digit 7)
                 {19, 23, 29}
         };
-        int result = controller.countWeirdPrimesInMatrix(input);
+        int result = SnakeController.countWeirdPrimesInMatrix(input);
         assertEquals(6, result); // 2, 3, 5, 11, 19, 23
     }
 
     @Test
     void testWeirdPrimeCountEmptyMatrix() {
-        SnakeController controller = new SnakeController();
         int[][] input = {};
-        int result = controller.countWeirdPrimesInMatrix(input);
+        int result = SnakeController.countWeirdPrimesInMatrix(input);
         assertEquals(0, result);
     }
 
     @Test
     void testWeirdPrimeCountNullMatrix() {
-        SnakeController controller = new SnakeController();
-        int result = controller.countWeirdPrimesInMatrix(null);
+        int result = SnakeController.countWeirdPrimesInMatrix(null);
         assertEquals(0, result);
     }
 
     @Test
     void testWeirdPrimeCountWithNullRows() {
-        SnakeController controller = new SnakeController();
         int[][] input = {
                 null,
                 {13, 17, 37},
                 {41}
         };
-        int result = controller.countWeirdPrimesInMatrix(input);
+        int result = SnakeController.countWeirdPrimesInMatrix(input);
         assertEquals(2, result); // 13, 41
     }
 }
