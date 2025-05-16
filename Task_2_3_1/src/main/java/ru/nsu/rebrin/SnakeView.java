@@ -101,48 +101,4 @@ public class SnakeView {
 
         return vowelCounts;
     }
-
-    public static int AddNTimes(int i){
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        i+=1;
-        return i;
-    }
 }
