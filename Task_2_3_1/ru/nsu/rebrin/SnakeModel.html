@@ -76,6 +76,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">SnakeModel</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">The SnakeModel class handles the game logic for the Snake game,
+ including movement, collision detection, apple spawning, and AI snakes.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -90,7 +92,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>static enum&nbsp;</code></div>
 <div class="col-second even-row-color"><code><a href="SnakeModel.Direction.html" class="type-name-link" title="enum class in ru.nsu.rebrin">SnakeModel.Direction</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Enum representing possible movement directions for the snake.</div>
+</div>
 </div>
 </section>
 </li>
@@ -120,7 +124,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#click()" class="member-name-link">click</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Handles user click — starts, pauses, or resets the game depending on state.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getApple()" class="member-name-link">getApple</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -129,13 +135,17 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFreeRandomPoints(int)" class="member-name-link">getFreeRandomPoints</a><wbr>(int&nbsp;count)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns a list of random free positions not occupied by any object.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getLength()" class="member-name-link">getLength</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNexts(ru.nsu.rebrin.Snake)" class="member-name-link">getNexts</a><wbr>(<a href="Snake.html" title="class in ru.nsu.rebrin">Snake</a>&nbsp;snake)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns a list of points in front and to the sides of the snake's head based on its direction.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Snake.html" title="class in ru.nsu.rebrin">Snake</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSmartSnake()" class="member-name-link">getSmartSnake</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
@@ -145,39 +155,50 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Snake.html" title="class in ru.nsu.rebrin">Snake</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getStupidSnake()" class="member-name-link">getStupidSnake</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getT(ru.nsu.rebrin.Snake)" class="member-name-link">getT</a><wbr>(<a href="Snake.html" title="class in ru.nsu.rebrin">Snake</a>&nbsp;snake)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#initSnake()" class="member-name-link">initSnake</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#initSnake()" class="member-name-link">initSnake</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Initializes the main snake, apples, and AI snakes.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isPaused()" class="member-name-link">isPaused</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isPaused()" class="member-name-link">isPaused</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isRunning()" class="member-name-link">isRunning</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isRunning()" class="member-name-link">isRunning</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isWin()" class="member-name-link">isWin</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDirection(ru.nsu.rebrin.SnakeModel.Direction)" class="member-name-link">setDirection</a><wbr>(<a href="SnakeModel.Direction.html" title="enum class in ru.nsu.rebrin">SnakeModel.Direction</a>&nbsp;direction)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isWin()" class="member-name-link">isWin</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPaused(boolean)" class="member-name-link">setPaused</a><wbr>(boolean&nbsp;paused)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setDirection(ru.nsu.rebrin.SnakeModel.Direction)" class="member-name-link">setDirection</a><wbr>(<a href="SnakeModel.Direction.html" title="enum class in ru.nsu.rebrin">SnakeModel.Direction</a>&nbsp;direction)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the desired direction for the main snake.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setRunning(boolean)" class="member-name-link">setRunning</a><wbr>(boolean&nbsp;a)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPaused(boolean)" class="member-name-link">setPaused</a><wbr>(boolean&nbsp;paused)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the pause state of the game.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setWin(boolean)" class="member-name-link">setWin</a><wbr>(boolean&nbsp;w)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setRunning(boolean)" class="member-name-link">setRunning</a><wbr>(boolean&nbsp;a)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the running state of the game.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#spawnApple()" class="member-name-link">spawnApple</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setWin(boolean)" class="member-name-link">setWin</a><wbr>(boolean&nbsp;w)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the win state.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#update()" class="member-name-link">update</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#spawnApple()" class="member-name-link">spawnApple</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Spawns a new apple at a free location.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#update()" class="member-name-link">update</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Updates the game state, moves the snakes, handles collisions and apple consumption.</div>
+</div>
 </div>
 </div>
 </div>
@@ -213,120 +234,188 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="initSnake()">
 <h3>initSnake</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">initSnake</span>()</div>
+<div class="block">Initializes the main snake, apples, and AI snakes.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="getFreeRandomPoints(int)">
 <h3>getFreeRandomPoints</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;</span>&nbsp;<span class="element-name">getFreeRandomPoints</span><wbr><span class="parameters">(int&nbsp;count)</span></div>
+<div class="block">Returns a list of random free positions not occupied by any object.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>count</code> - number of free points to find</dd>
+<dt>Returns:</dt>
+<dd>list of available points</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="update()">
 <h3>update</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">update</span>()</div>
+<div class="block">Updates the game state, moves the snakes, handles collisions and apple consumption.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="getNexts(ru.nsu.rebrin.Snake)">
 <h3>getNexts</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;</span>&nbsp;<span class="element-name">getNexts</span><wbr><span class="parameters">(<a href="Snake.html" title="class in ru.nsu.rebrin">Snake</a>&nbsp;snake)</span></div>
-</section>
-</li>
-<li>
-<section class="detail" id="getT(ru.nsu.rebrin.Snake)">
-<h3>getT</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;</span>&nbsp;<span class="element-name">getT</span><wbr><span class="parameters">(<a href="Snake.html" title="class in ru.nsu.rebrin">Snake</a>&nbsp;snake)</span></div>
+<div class="block">Returns a list of points in front and to the sides of the snake's head based on its direction.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>snake</code> - the snake</dd>
+<dt>Returns:</dt>
+<dd>list of next possible positions</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="spawnApple()">
 <h3>spawnApple</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">spawnApple</span>()</div>
+<div class="block">Spawns a new apple at a free location.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="click()">
 <h3>click</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">click</span>()</div>
+<div class="block">Handles user click — starts, pauses, or resets the game depending on state.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="getSnake()">
 <h3>getSnake</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/LinkedList.html" title="class or interface in java.util" class="external-link">LinkedList</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;</span>&nbsp;<span class="element-name">getSnake</span>()</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>current list of points occupied by the main snake</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getStupidSnake()">
 <h3>getStupidSnake</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Snake.html" title="class in ru.nsu.rebrin">Snake</a>&gt;</span>&nbsp;<span class="element-name">getStupidSnake</span>()</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>list of stupid snakes or null if not initialized</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getSmartSnake()">
 <h3>getSmartSnake</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Snake.html" title="class in ru.nsu.rebrin">Snake</a>&gt;</span>&nbsp;<span class="element-name">getSmartSnake</span>()</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>list of smart snakes or null if not initialized</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getApple()">
 <h3>getApple</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;</span>&nbsp;<span class="element-name">getApple</span>()</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>list of apple positions</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="isRunning()">
 <h3>isRunning</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isRunning</span>()</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>whether the game is currently running</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="isWin()">
 <h3>isWin</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isWin</span>()</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true if player has won</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="isPaused()">
 <h3>isPaused</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isPaused</span>()</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>true if game is paused</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getDirection()">
 <h3>getDirection</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="SnakeModel.Direction.html" title="enum class in ru.nsu.rebrin">SnakeModel.Direction</a></span>&nbsp;<span class="element-name">getDirection</span>()</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>current confirmed direction</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setPaused(boolean)">
 <h3>setPaused</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setPaused</span><wbr><span class="parameters">(boolean&nbsp;paused)</span></div>
+<div class="block">Sets the pause state of the game.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>paused</code> - true to pause the game</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setDirection(ru.nsu.rebrin.SnakeModel.Direction)">
 <h3>setDirection</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setDirection</span><wbr><span class="parameters">(<a href="SnakeModel.Direction.html" title="enum class in ru.nsu.rebrin">SnakeModel.Direction</a>&nbsp;direction)</span></div>
+<div class="block">Sets the desired direction for the main snake.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>direction</code> - new direction</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getLength()">
 <h3>getLength</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getLength</span>()</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>current length of the snake</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setRunning(boolean)">
 <h3>setRunning</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setRunning</span><wbr><span class="parameters">(boolean&nbsp;a)</span></div>
+<div class="block">Sets the running state of the game.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>a</code> - true if the game should be running</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setWin(boolean)">
 <h3>setWin</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setWin</span><wbr><span class="parameters">(boolean&nbsp;w)</span></div>
+<div class="block">Sets the win state.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>w</code> - true if the player has won</dd>
+</dl>
 </section>
 </li>
 </ul>

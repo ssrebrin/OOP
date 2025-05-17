@@ -80,6 +80,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Snake</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Represents a snake in the game, handling movement, growth, and life states.
+ Manages direction changes, apple consumption, death, and revival mechanics.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -107,7 +109,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.rebrin.Point)" class="member-name-link">Snake</a><wbr>(<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&nbsp;p)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Constructs a snake with initial head position.</div>
+</div>
 </div>
 </section>
 </li>
@@ -124,20 +128,27 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#die()" class="member-name-link">die</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Kills the snake and starts revival timer.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#eatApple(java.util.List)" class="member-name-link">eatApple</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;apple)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Attempts to eat an apple at head position.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#move(int,int,java.util.List,java.util.List,java.util.List)" class="member-name-link">move</a><wbr>(int&nbsp;height,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#move(int,int,java.util.List,java.util.List)" class="member-name-link">move</a><wbr>(int&nbsp;height,
  int&nbsp;width,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;apples,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;danger,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;pot)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;danger)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Moves the snake one cell in current direction.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#revive(ru.nsu.rebrin.Point)" class="member-name-link">revive</a><wbr>(<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&nbsp;p)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Revives the snake after cooldown period.</div>
+</div>
 </div>
 </div>
 </div>
@@ -173,6 +184,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(ru.nsu.rebrin.Point)">
 <h3>Snake</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Snake</span><wbr><span class="parameters">(<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&nbsp;p)</span></div>
+<div class="block">Constructs a snake with initial head position.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>p</code> - Starting point for the snake's head</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -184,31 +200,51 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="move(int,int,java.util.List,java.util.List,java.util.List)">
+<section class="detail" id="move(int,int,java.util.List,java.util.List)">
 <h3>move</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">move</span><wbr><span class="parameters">(int&nbsp;height,
  int&nbsp;width,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;apples,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;danger,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;pot)</span></div>
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;danger)</span></div>
+<div class="block">Moves the snake one cell in current direction.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>height</code> - Grid height (for boundary checks)</dd>
+<dd><code>width</code> - Grid width (for boundary checks)</dd>
+<dd><code>apples</code> - List of available apples</dd>
+<dd><code>danger</code> - List of dangerous obstacles</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="revive(ru.nsu.rebrin.Point)">
 <h3>revive</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">revive</span><wbr><span class="parameters">(<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&nbsp;p)</span></div>
+<div class="block">Revives the snake after cooldown period.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>p</code> - Revival position</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="die()">
 <h3>die</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">die</span>()</div>
+<div class="block">Kills the snake and starts revival timer.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="eatApple(java.util.List)">
 <h3>eatApple</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">eatApple</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;apple)</span></div>
+<div class="block">Attempts to eat an apple at head position.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>apple</code> - Mutable list of apples</dd>
+<dt>Returns:</dt>
+<dd>true if apple was consumed</dd>
+</dl>
 </section>
 </li>
 </ul>

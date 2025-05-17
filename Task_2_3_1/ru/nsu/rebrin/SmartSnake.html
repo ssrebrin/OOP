@@ -78,6 +78,8 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">SmartSnake</span>
 <span class="extends-implements">extends <a href="Snake.html" title="class in ru.nsu.rebrin">Snake</a></span></div>
+<div class="block">A smarter implementation of a Snake that chooses the safest and shortest path to an apple
+ while avoiding dangerous areas and self-collision.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -99,7 +101,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.rebrin.Point)" class="member-name-link">SmartSnake</a><wbr>(<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&nbsp;start)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Creates a smart snake starting at the specified point.</div>
+</div>
 </div>
 </section>
 </li>
@@ -115,12 +119,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#move(int,int,java.util.List,java.util.List,java.util.List)" class="member-name-link">move</a><wbr>(int&nbsp;height,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#move(int,int,java.util.List,java.util.List)" class="member-name-link">move</a><wbr>(int&nbsp;height,
  int&nbsp;width,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;apples,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;danger,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;pot)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;danger)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Moves the snake according to the current state of the board, attempting to find
+ the safest and most efficient path to the nearest apple while avoiding danger zones and self-collision.</div>
+</div>
 </div>
 </div>
 </div>
@@ -145,6 +151,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(ru.nsu.rebrin.Point)">
 <h3>SmartSnake</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">SmartSnake</span><wbr><span class="parameters">(<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&nbsp;start)</span></div>
+<div class="block">Creates a smart snake starting at the specified point.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>start</code> - the starting point of the snake</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -156,16 +167,22 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="move(int,int,java.util.List,java.util.List,java.util.List)">
+<section class="detail" id="move(int,int,java.util.List,java.util.List)">
 <h3>move</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">move</span><wbr><span class="parameters">(int&nbsp;height,
  int&nbsp;width,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;apples,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;danger,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;pot)</span></div>
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;danger)</span></div>
+<div class="block">Moves the snake according to the current state of the board, attempting to find
+ the safest and most efficient path to the nearest apple while avoiding danger zones and self-collision.</div>
 <dl class="notes">
 <dt>Overrides:</dt>
-<dd><code><a href="Snake.html#move(int,int,java.util.List,java.util.List,java.util.List)">move</a></code>&nbsp;in class&nbsp;<code><a href="Snake.html" title="class in ru.nsu.rebrin">Snake</a></code></dd>
+<dd><code><a href="Snake.html#move(int,int,java.util.List,java.util.List)">move</a></code>&nbsp;in class&nbsp;<code><a href="Snake.html" title="class in ru.nsu.rebrin">Snake</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>height</code> - the height of the board</dd>
+<dd><code>width</code> - the width of the board</dd>
+<dd><code>apples</code> - the list of apple positions</dd>
+<dd><code>danger</code> - the list of dangerous positions to avoid</dd>
 </dl>
 </section>
 </li>

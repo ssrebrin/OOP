@@ -80,6 +80,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Snakes</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Manages a list of snakes and their interactions.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -92,9 +93,13 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">Snakes</a>()</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Constructs an empty snake list</div>
+</div>
 <div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.util.List)" class="member-name-link">Snakes</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;starts)</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Constructs snakes from given starting points.</div>
+</div>
 </div>
 </section>
 </li>
@@ -111,22 +116,34 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#checkApple(java.util.List)" class="member-name-link">checkApple</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;apple)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks if any snakes ate apples.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#checkList(java.util.List)" class="member-name-link">checkList</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;snakess)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks if any snake's head collided with a list of points.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#checkOthers(ru.nsu.rebrin.Snakes)" class="member-name-link">checkOthers</a><wbr>(<a href="Snakes.html" title="class in ru.nsu.rebrin">Snakes</a>&nbsp;snakess)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks for collisions with snakes from another group.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#checkSelf()" class="member-name-link">checkSelf</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks if any snake collided with itself.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#checkSelves()" class="member-name-link">checkSelves</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks for collisions between all snakes.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#collis(ru.nsu.rebrin.Point)" class="member-name-link">collis</a><wbr>(<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&nbsp;p)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Checks if the given point collides with any snake.</div>
+</div>
 </div>
 </div>
 </div>
@@ -148,12 +165,18 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;()">
 <h3>Snakes</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Snakes</span>()</div>
+<div class="block">Constructs an empty snake list</div>
 </section>
 </li>
 <li>
 <section class="detail" id="&lt;init&gt;(java.util.List)">
 <h3>Snakes</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Snakes</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;starts)</span></div>
+<div class="block">Constructs snakes from given starting points.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>starts</code> - list of starting points for each snake</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -168,36 +191,62 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="collis(ru.nsu.rebrin.Point)">
 <h3>collis</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">collis</span><wbr><span class="parameters">(<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&nbsp;p)</span></div>
+<div class="block">Checks if the given point collides with any snake.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>p</code> - the point to check</dd>
+<dt>Returns:</dt>
+<dd>true if a collision occurred</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="checkSelf()">
 <h3>checkSelf</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">checkSelf</span>()</div>
+<div class="block">Checks if any snake collided with itself.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="checkSelves()">
 <h3>checkSelves</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">checkSelves</span>()</div>
+<div class="block">Checks for collisions between all snakes.</div>
 </section>
 </li>
 <li>
 <section class="detail" id="checkOthers(ru.nsu.rebrin.Snakes)">
 <h3>checkOthers</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">checkOthers</span><wbr><span class="parameters">(<a href="Snakes.html" title="class in ru.nsu.rebrin">Snakes</a>&nbsp;snakess)</span></div>
+<div class="block">Checks for collisions with snakes from another group.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>snakess</code> - another group of snakes</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="checkList(java.util.List)">
 <h3>checkList</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">checkList</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;snakess)</span></div>
+<div class="block">Checks if any snake's head collided with a list of points.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>snakess</code> - list of points</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="checkApple(java.util.List)">
 <h3>checkApple</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">checkApple</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;apple)</span></div>
+<div class="block">Checks if any snakes ate apples.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>apple</code> - list of apple positions</dd>
+<dt>Returns:</dt>
+<dd>number of apples eaten</dd>
+</dl>
 </section>
 </li>
 </ul>
