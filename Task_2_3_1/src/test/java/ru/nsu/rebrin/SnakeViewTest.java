@@ -1,16 +1,13 @@
 package ru.nsu.rebrin;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.awt.*;
+import java.awt.Rectangle;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-
-//@Disabled("JavaFX tests don't run properly in headless environments")
 public class SnakeViewTest {
 
     @Test
