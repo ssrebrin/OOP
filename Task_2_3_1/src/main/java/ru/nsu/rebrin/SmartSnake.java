@@ -9,7 +9,7 @@ import java.util.List;
 public class SmartSnake extends Snake {
 
     /**
-     * Creates a smart snake starting at the specified point.
+     * Creates a smart snake starting at the specified point. 
      *
      * @param start the starting point of the snake
      */
