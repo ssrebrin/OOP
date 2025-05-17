@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Test.
+ */
 public class SnakeViewTest {
 
     @Test
@@ -21,6 +24,7 @@ public class SnakeViewTest {
         assertEquals(19, rects.get(0).getWidth());
         assertEquals(40, rects.get(1).getX()); // 2*20
     }
+
     @Test
     void testCountVowelsInDirections() {
         Map<SnakeModel.Direction, Integer> result = SnakeView.countVowelsInDirections();

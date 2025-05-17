@@ -14,7 +14,7 @@ public class SnakeModel {
     /**
      * Enum representing possible movement directions for the snake.
      */
-    public enum Direction {UP, DOWN, LEFT, RIGHT}
+    public enum Direction { UP, DOWN, LEFT, RIGHT }
 
     int width = 20;
     int height = 15;
@@ -61,7 +61,6 @@ public class SnakeModel {
      * @return list of available points
      */
     public List<Point> getFreeRandomPoints(int count) {
-        List<Point> freePoints = new LinkedList<>();
         List<Point> occupied = new LinkedList<>(snake);
         occupied.addAll(apple);
         if (stupidSnakes != null) {
@@ -75,6 +74,7 @@ public class SnakeModel {
             }
         }
 
+        List<Point> freePoints = new LinkedList<>();
         int attempts = 0;
         while (freePoints.size() < count && attempts < 1000) {
             Point candidate = new Point(random.nextInt(width), random.nextInt(height));
@@ -91,14 +91,16 @@ public class SnakeModel {
      * Updates the game state, moves the snakes, handles collisions and apple consumption.
      */
     public void update() {
-        if (!running || paused) return;
+        if (!running || paused) {
+            return;
+        }
 
         Point head = snake.getFirst();
         Point newHead = switch (direction) {
-            case UP -> new Point(head.x, head.y - 1);
-            case DOWN -> new Point(head.x, head.y + 1);
-            case LEFT -> new Point(head.x - 1, head.y);
-            case RIGHT -> new Point(head.x + 1, head.y);
+            case UP -> new Point(head.xCoord, head.yCoord - 1);
+            case DOWN -> new Point(head.xCoord, head.yCoord + 1);
+            case LEFT -> new Point(head.xCoord - 1, head.yCoord);
+            case RIGHT -> new Point(head.xCoord + 1, head.yCoord);
         };
 
         if (isCollision(newHead)) {
@@ -161,10 +163,14 @@ public class SnakeModel {
         smartedSnakes.checkOthers(stupidSnakes);
 
         int cnt = stupidSnakes.checkApple(apple);
-        for (int i = 0; i < cnt; i++) spawnApple();
+        for (int i = 0; i < cnt; i++) {
+            spawnApple();
+        }
 
         cnt = smartedSnakes.checkApple(apple);
-        for (int i = 0; i < cnt; i++) spawnApple();
+        for (int i = 0; i < cnt; i++) {
+            spawnApple();
+        }
 
         curDirection = direction;
     }
@@ -193,16 +199,22 @@ public class SnakeModel {
         }
 
         for (Snake s : allSnakes) {
-            if (!s.alive || s.points.isEmpty()) continue;
+            if (!s.alive || s.points.isEmpty()) {
+                continue;
+            }
 
             if (s == snakee && s.points.size() >= 3) {
                 for (Point point : s.points.subList(3, s.points.size())) {
-                    if (d.contains(point)) danger.add(point);
+                    if (d.contains(point)) {
+                        danger.add(point);
+                    }
                 }
             }
 
             for (Point point : s.points) {
-                if (d.contains(point)) danger.add(point);
+                if (d.contains(point)) {
+                    danger.add(point);
+                }
             }
         }
 
@@ -210,7 +222,7 @@ public class SnakeModel {
     }
 
     /**
-     * Returns a list of points in front and to the sides of the snake's head based on its direction.
+     * Returns a list of points in front and to the sides of the snake's head based on its dir.
      *
      * @param snake the snake
      * @return list of next possible positions
@@ -219,26 +231,30 @@ public class SnakeModel {
         List<Point> danger = new LinkedList<>();
         Point head = snake.points.getFirst();
 
+        int i = 0;
         switch (snake.direction) {
             case UP -> {
-                danger.add(new Point(head.x, head.y - 1));
-                danger.add(new Point(head.x + 1, head.y));
-                danger.add(new Point(head.x - 1, head.y));
+                danger.add(new Point(head.xCoord, head.yCoord - 1));
+                danger.add(new Point(head.xCoord + 1, head.yCoord));
+                danger.add(new Point(head.xCoord - 1, head.yCoord));
             }
             case DOWN -> {
-                danger.add(new Point(head.x, head.y + 1));
-                danger.add(new Point(head.x + 1, head.y));
-                danger.add(new Point(head.x - 1, head.y));
+                danger.add(new Point(head.xCoord, head.yCoord + 1));
+                danger.add(new Point(head.xCoord + 1, head.yCoord));
+                danger.add(new Point(head.xCoord - 1, head.yCoord));
             }
             case LEFT -> {
-                danger.add(new Point(head.x - 1, head.y));
-                danger.add(new Point(head.x, head.y - 1));
-                danger.add(new Point(head.x, head.y + 1));
+                danger.add(new Point(head.xCoord - 1, head.yCoord));
+                danger.add(new Point(head.xCoord, head.yCoord - 1));
+                danger.add(new Point(head.xCoord, head.yCoord + 1));
             }
             case RIGHT -> {
-                danger.add(new Point(head.x + 1, head.y));
-                danger.add(new Point(head.x, head.y - 1));
-                danger.add(new Point(head.x, head.y + 1));
+                danger.add(new Point(head.xCoord + 1, head.yCoord));
+                danger.add(new Point(head.xCoord, head.yCoord - 1));
+                danger.add(new Point(head.xCoord, head.yCoord + 1));
+            }
+            default -> {
+                i=0;
             }
         }
 
@@ -252,7 +268,7 @@ public class SnakeModel {
      * @return true if collision with wall, false otherwise
      */
     private boolean isCollision(Point point) {
-        return point.x < 0 || point.x >= width || point.y < 0 || point.y >= height;
+        return point.xCoord < 0 || point.xCoord >= width || point.yCoord < 0 || point.yCoord >= height;
     }
 
     /**
@@ -296,9 +312,8 @@ public class SnakeModel {
         }
     }
 
-    // Getters and setters with JavaDoc
-
     /**
+     * Sets the running state of the game.
      * @return current list of points occupied by the main snake
      */
     public LinkedList<Point> getSnake() {
@@ -306,6 +321,7 @@ public class SnakeModel {
     }
 
     /**
+     * Sets the running state of the game.
      * @return list of stupid snakes or null if not initialized
      */
     public List<Snake> getStupidSnake() {
@@ -313,6 +329,7 @@ public class SnakeModel {
     }
 
     /**
+     * Sets the running state of the game.
      * @return list of smart snakes or null if not initialized
      */
     public List<Snake> getSmartSnake() {
@@ -320,6 +337,7 @@ public class SnakeModel {
     }
 
     /**
+     * Sets the running state of the game.
      * @return list of apple positions
      */
     public List<Point> getApple() {
@@ -327,6 +345,7 @@ public class SnakeModel {
     }
 
     /**
+     * Sets the running state of the game.
      * @return whether the game is currently running
      */
     public boolean isRunning() {
@@ -334,6 +353,7 @@ public class SnakeModel {
     }
 
     /**
+     * Sets the running state of the game.
      * @return true if player has won
      */
     public boolean isWin() {
@@ -341,6 +361,7 @@ public class SnakeModel {
     }
 
     /**
+     * Sets the running state of the game.
      * @return true if game is paused
      */
     public boolean isPaused() {
@@ -348,6 +369,7 @@ public class SnakeModel {
     }
 
     /**
+     * Sets the running state of the game.
      * @return current confirmed direction
      */
     public Direction getDirection() {
@@ -373,6 +395,7 @@ public class SnakeModel {
     }
 
     /**
+     * Sets the running state of the game.
      * @return current length of the snake
      */
     public int getLength() {

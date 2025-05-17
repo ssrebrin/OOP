@@ -34,27 +34,16 @@ public class StartScreenController {
      * @return initialized SnakeModel based on user input or default values
      */
     public SnakeModel getSettings() {
-        int width = parseOrDefault(widthField.getText(), 20);
-        int height = parseOrDefault(heightField.getText(), 20);
-        int win = parseOrDefault(winField.getText(), 10);
-        int initLen = parseOrDefault(initLenField.getText(), 1);
-        int cntApple = parseOrDefault(cntAppleField.getText(), 3);
-        int cntStupid = parseOrDefault(cntStupidSnakes.getText(), 0);
-        int cntSmart = parseOrDefault(cntSmartSnakes.getText(), 0);
-
-        String a = "aaa";
-        if (isPalindrome(a)) {
-            width = width + 1 - 1;
-        }
 
         SnakeModel model = new SnakeModel();
-        model.width = width;
-        model.height = height;
-        model.winn = win;
-        model.snakeLength = initLen;
-        model.appleCount = cntApple;
-        model.smart = cntSmart;
-        model.stupid = cntStupid;
+
+        model.width = parseOrDefault(widthField.getText(), 20);
+        model.height = parseOrDefault(heightField.getText(), 20);
+        model.winn = parseOrDefault(winField.getText(), 10);
+        model.snakeLength = parseOrDefault(initLenField.getText(), 1);
+        model.appleCount = parseOrDefault(cntAppleField.getText(), 3);
+        model.smart = parseOrDefault(cntStupidSnakes.getText(), 0);
+        model.stupid = parseOrDefault(cntSmartSnakes.getText(), 0);
         model.initSnake();
 
         return model;
@@ -62,6 +51,7 @@ public class StartScreenController {
 
     /**
      * Parses integer from string or returns default value if parsing fails.
+     *
      * @param text input string to parse
      * @param defaultValue value to return if parsing fails
      * @return parsed integer or defaultValue
@@ -76,11 +66,14 @@ public class StartScreenController {
 
     /**
      * Checks if a string is a palindrome, ignoring case and non-alphanumeric characters.
+     *
      * @param input string to check
      * @return true if input is palindrome, false otherwise
      */
     public static boolean isPalindrome(String input) {
-        if (input == null) return false;
+        if (input == null) {
+            return false;
+        }
 
         String cleaned = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
         int len = cleaned.length();
@@ -95,6 +88,7 @@ public class StartScreenController {
 
     /**
      * Sets the action to be executed when the start button is pressed.
+     *
      * @param startAction Runnable action to run on button click
      */
     public void setStartButtonAction(Runnable startAction) {

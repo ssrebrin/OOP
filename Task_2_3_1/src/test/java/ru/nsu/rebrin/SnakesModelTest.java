@@ -7,6 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Test.
+ */
 public class SnakesModelTest {
     private SnakeModel snakeModel;
 
@@ -39,10 +42,10 @@ public class SnakesModelTest {
 
     @Test
     void testEatApple() throws InterruptedException {
-        int initialLength = snakeModel.getLength();
-        for(int i = 0; i<snakeModel.height *snakeModel.width - 4; i++) {
+        for (int i = 0; i < snakeModel.height * snakeModel.width - 4; i++) {
             snakeModel.spawnApple();
         }
+        int initialLength = snakeModel.getLength();
         snakeModel.setPaused(false);
         snakeModel.update();
         assertTrue(snakeModel.getLength() > initialLength);

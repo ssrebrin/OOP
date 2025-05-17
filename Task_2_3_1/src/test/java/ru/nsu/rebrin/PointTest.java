@@ -64,7 +64,7 @@ class PointTest {
     @Test
     void testFieldsAreFinal() {
         Point p = new Point(10, 20);
-        assertEquals(10, p.x);
-        assertEquals(20, p.y);
+        assertEquals(10, p.xCoord);
+        assertEquals(20, p.yCoord);
     }
 }

@@ -10,7 +10,7 @@ public class Snakes {
     List<Snake> snakes;
 
     /**
-     * Constructs an empty snake list
+     * Constructs an empty snake list.
      */
     public Snakes() {
         snakes = new LinkedList<>();
@@ -18,6 +18,7 @@ public class Snakes {
 
     /**
      * Constructs snakes from given starting points.
+     *
      * @param starts list of starting points for each snake
      */
     public Snakes(List<Point> starts) {
@@ -29,6 +30,7 @@ public class Snakes {
 
     /**
      * Checks if the given point collides with any snake.
+     *
      * @param p the point to check
      * @return true if a collision occurred
      */
@@ -103,6 +105,7 @@ public class Snakes {
 
     /**
      * Checks for collisions with snakes from another group.
+     *
      * @param snakess another group of snakes
      */
     public void checkOthers(Snakes snakess) {
@@ -133,6 +136,7 @@ public class Snakes {
 
     /**
      * Checks if any snake's head collided with a list of points.
+     *
      * @param snakess list of points
      */
     public void checkList(List<Point> snakess) {
@@ -154,10 +158,11 @@ public class Snakes {
 
     /**
      * Checks if any snakes ate apples.
+     *
      * @param apple list of apple positions
      * @return number of apples eaten
      */
-    public int checkApple(List<Point> apple){
+    public int checkApple(List<Point> apple) {
         int cnt = 0;
         for (Snake snake : snakes) {
             if (snake.alive && snake.eatApple(apple)) {

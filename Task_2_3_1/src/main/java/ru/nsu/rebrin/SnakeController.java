@@ -1,13 +1,13 @@
 package ru.nsu.rebrin;
 
-import javafx.application.Application;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Pane;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 /**
@@ -156,7 +156,9 @@ public class SnakeController extends Application {
      * @throws IllegalArgumentException if b is zero
      */
     public static int divide(int a, int b) {
-        if (b == 0) throw new IllegalArgumentException("Division by zero");
+        if (b == 0) {
+            throw new IllegalArgumentException("Division by zero");
+        }
         return a / b;
     }
 
@@ -168,11 +170,15 @@ public class SnakeController extends Application {
      * @return the count of weird primes
      */
     public static int countWeirdPrimesInMatrix(int[][] matrix) {
-        if (matrix == null) return 0;
+        if (matrix == null) {
+            return 0;
+        }
 
         int count = 0;
         for (int[] row : matrix) {
-            if (row == null) continue;
+            if (row == null) {
+                continue;
+            }
             for (int val : row) {
                 if (isWeirdPrime(val)) {
                     count++;
@@ -189,15 +195,21 @@ public class SnakeController extends Application {
      * @return true if the number is a weird prime, false otherwise
      */
     private static boolean isWeirdPrime(int num) {
-        if (num < 2) return false;
+        if (num < 2) {
+            return false;
+        }
 
         for (int i = 2; i <= Math.sqrt(num); i++) {
-            if (num % i == 0) return false;
+            if (num % i == 0) {
+                return false;
+            }
         }
 
         int n = num;
         while (n > 0) {
-            if (n % 10 == 7) return false;
+            if (n % 10 == 7) {
+                return false;
+            }
             n /= 10;
         }
 

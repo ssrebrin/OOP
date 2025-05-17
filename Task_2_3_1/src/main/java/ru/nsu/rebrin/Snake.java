@@ -43,10 +43,10 @@ public class Snake {
             changeDir(head, near);
         }
         Point newHead = switch (direction) {
-            case UP -> new Point(head.x, head.y - 1);
-            case DOWN -> new Point(head.x, head.y + 1);
-            case LEFT -> new Point(head.x - 1, head.y);
-            case RIGHT -> new Point(head.x + 1, head.y);
+            case UP -> new Point(head.xCoord, head.yCoord - 1);
+            case DOWN -> new Point(head.xCoord, head.yCoord + 1);
+            case LEFT -> new Point(head.xCoord - 1, head.yCoord);
+            case RIGHT -> new Point(head.xCoord + 1, head.yCoord);
         };
         points.addFirst(newHead);
         prevTail = points.removeLast();
@@ -80,7 +80,7 @@ public class Snake {
      * Calculates Manhattan distance between two points.
      */
     private int distance(Point a, Point b) {
-        return Math.abs(a.x - b.x) + Math.abs(a.y - b.y); // Манхэттенское расстояние
+        return Math.abs(a.xCoord - b.xCoord) + Math.abs(a.yCoord - b.yCoord); // Манхэттенское расстояние
     }
 
     /**
@@ -112,8 +112,8 @@ public class Snake {
      * Adjusts direction toward nearest apple.
      */
     void changeDir(Point head, Point near) {
-        if (head.x == near.x) {
-            if (head.y - near.y > 0) {
+        if (head.xCoord == near.xCoord) {
+            if (head.yCoord - near.yCoord > 0) {
                 if (direction != SnakeModel.Direction.DOWN) {
                     direction = SnakeModel.Direction.UP;
                     return;
@@ -132,8 +132,8 @@ public class Snake {
 
             }
         }
-        if (head.y == near.y) {
-            if (head.x - near.x > 0) {
+        if (head.yCoord == near.yCoord) {
+            if (head.xCoord - near.xCoord > 0) {
                 if (direction != SnakeModel.Direction.RIGHT) {
                     direction = SnakeModel.Direction.LEFT;
                     return;
@@ -151,7 +151,7 @@ public class Snake {
                 }
             }
         }
-        if (head.x - near.x > 0) {
+        if (head.xCoord - near.xCoord > 0) {
             if (direction != SnakeModel.Direction.RIGHT) {
                 direction = SnakeModel.Direction.LEFT;
                 return;
@@ -162,7 +162,7 @@ public class Snake {
                 return;
             }
         }
-        if (head.y - near.y > 0) {
+        if (head.yCoord - near.yCoord > 0) {
             if (direction != SnakeModel.Direction.DOWN) {
                 direction = SnakeModel.Direction.UP;
                 return;

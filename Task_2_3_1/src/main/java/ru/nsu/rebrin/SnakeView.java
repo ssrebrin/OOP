@@ -24,6 +24,7 @@ public class SnakeView {
 
     /**
      * Creates a SnakeView with specified grid width and height.
+     *
      * @param width grid width in tiles
      * @param height grid height in tiles
      */
@@ -34,6 +35,7 @@ public class SnakeView {
 
     /**
      * Returns the canvas where the game is drawn.
+     *
      * @return the game canvas
      */
     public Canvas getCanvas() {
@@ -42,6 +44,7 @@ public class SnakeView {
 
     /**
      * Renders the current game state from the model.
+     *
      * @param model the snake game model
      */
     public void render(SnakeModel model) {
@@ -76,18 +79,20 @@ public class SnakeView {
 
     /**
      * Draws a snake on the canvas.
+     *
      * @param snake list of points representing snake body
      * @param color color to draw the snake
      */
     private void drawSnake(LinkedList<Point> snake, Color color) {
         gc.setFill(color);
         for (Point p : snake) {
-            gc.fillRect(p.x * TILE_SIZE, p.y * TILE_SIZE, TILE_SIZE - 1, TILE_SIZE - 1);
+            gc.fillRect(p.xCoord * TILE_SIZE, p.yCoord * TILE_SIZE, TILE_SIZE - 1, TILE_SIZE - 1);
         }
     }
 
     /**
      * Draws apples on the canvas.
+     *
      * @param apple list of apple positions
      */
     private void drawApple(List<Point> apple) {
@@ -96,12 +101,13 @@ public class SnakeView {
         }
         for (Point p : apple) {
             gc.setFill(Color.RED);
-            gc.fillRect(p.x * TILE_SIZE, p.y * TILE_SIZE, TILE_SIZE - 1, TILE_SIZE - 1);
+            gc.fillRect(p.xCoord * TILE_SIZE, p.yCoord * TILE_SIZE, TILE_SIZE - 1, TILE_SIZE - 1);
         }
     }
 
     /**
      * Converts a snake's points into rectangles for collision or drawing.
+     *
      * @param snake list of points representing snake body
      * @return list of rectangles representing snake segments
      */
@@ -109,13 +115,14 @@ public class SnakeView {
         final int TILE_SIZE = 20;
         List<Rectangle> rects = new ArrayList<>();
         for (Point p : snake) {
-            rects.add(new Rectangle(p.x * TILE_SIZE, p.y * TILE_SIZE, TILE_SIZE - 1, TILE_SIZE - 1));
+            rects.add(new Rectangle(p.xCoord * TILE_SIZE, p.yCoord * TILE_SIZE, TILE_SIZE - 1, TILE_SIZE - 1));
         }
         return rects;
     }
 
     /**
      * Counts vowels in the string representation of each direction.
+     *
      * @return map of direction to vowel count
      */
     public static Map<SnakeModel.Direction, Integer> countVowelsInDirections() {

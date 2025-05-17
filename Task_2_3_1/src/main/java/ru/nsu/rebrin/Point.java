@@ -2,19 +2,22 @@ package ru.nsu.rebrin;
 
 import java.util.Objects;
 
+/**
+ * Point.
+ */
 public final class Point {
-    final int x;
-    final int y;
+    final int xCoord;
+    final int yCoord;
 
     /**
      * Init.
      *
-     * @param x - x
-     * @param y - y
+     * @param xCoord - xCoord
+     * @param yCoord - yCoord
      */
-    public Point(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Point(int xCoord, int yCoord) {
+        this.xCoord = xCoord;
+        this.yCoord = yCoord;
     }
 
     /**
@@ -25,10 +28,14 @@ public final class Point {
      */
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Point point = (Point) o;
-        return x == point.x && y == point.y;
+        return xCoord == point.xCoord && yCoord == point.yCoord;
     }
 
     /**
@@ -38,6 +45,6 @@ public final class Point {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(x, y);
+        return Objects.hash(xCoord, yCoord);
     }
 }

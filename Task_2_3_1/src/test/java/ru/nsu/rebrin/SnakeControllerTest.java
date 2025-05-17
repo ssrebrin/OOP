@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Test.
+ */
 public class SnakeControllerTest {
 
     @Test
@@ -49,9 +52,9 @@ public class SnakeControllerTest {
     @Test
     void testWeirdPrimeCountWithNullRows() {
         int[][] input = {
-                null,
-                {13, 17, 37},
-                {41}
+            null,
+            {13, 17, 37},
+            {41}
         };
         int result = SnakeController.countWeirdPrimesInMatrix(input);
         assertEquals(2, result);

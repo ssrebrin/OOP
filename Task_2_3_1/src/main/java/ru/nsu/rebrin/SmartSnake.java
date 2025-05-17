@@ -1,6 +1,7 @@
 package ru.nsu.rebrin;
 
 import java.util.List;
+
 /**
  * A smarter implementation of a Snake that chooses the safest and shortest path to an apple
  * while avoiding dangerous areas and self-collision.
@@ -18,7 +19,7 @@ public class SmartSnake extends Snake {
 
     /**
      * Moves the snake according to the current state of the board, attempting to find
-     * the safest and most efficient path to the nearest apple while avoiding danger zones and self-collision.
+     * the safest and most efficient path to the nearest apple while avoiding.
      *
      * @param height the height of the board
      * @param width  the width of the board
@@ -31,9 +32,9 @@ public class SmartSnake extends Snake {
 
         Point head = points.getFirst();
 
-        System.out.print("[" + head.x + ", " + head.y + "]");
+        System.out.print("[" + head.xCoord + ", " + head.yCoord + "]");
         for (Point i : danger) {
-            System.out.print(i.x + " " + i.y + "  ");
+            System.out.print(i.xCoord + " " + i.yCoord + "  ");
         }
 
         List<SnakeModel.Direction> possibleMoves = List.of(
@@ -57,9 +58,9 @@ public class SmartSnake extends Snake {
             int distance = distanceToNearest(next, apples);
             boolean inPot = containsPoint(danger, next);
 
-            if (bestMove == null ||
-                    (!inPot && bestInPot) || // prefer safer options
-                    (inPot == bestInPot && distance < bestDistance)) {
+            if (bestMove == null
+                || (!inPot && bestInPot)
+                || (inPot == bestInPot && distance < bestDistance)) {
 
                 bestMove = dir;
                 bestDistance = distance;
@@ -92,7 +93,7 @@ public class SmartSnake extends Snake {
         if (bestMove != null) {
             direction = bestMove;
             Point newHead = nextPoint(head, direction);
-            System.out.println(" Moving to " + newHead.x + " " + newHead.y);
+            System.out.println(" Moving to " + newHead.xCoord + " " + newHead.yCoord);
             points.addFirst(newHead);
             prevTail = points.removeLast();
         }
@@ -108,9 +109,15 @@ public class SmartSnake extends Snake {
      * @return true if the position is valid and safe to move into, false otherwise
      */
     private boolean canMoveTo(Point next, int height, int width, List<Point> danger) {
-        if (!isInside(next, height, width)) return false;
-        if (containsPoint(danger, next)) return false;
-        if (points.contains(next)) return false;
+        if (!isInside(next, height, width)) {
+            return false;
+        }
+        if (containsPoint(danger, next)) {
+            return false;
+        }
+        if (points.contains(next)) {
+            return false;
+        }
         return true;
     }
 
@@ -123,7 +130,7 @@ public class SmartSnake extends Snake {
      * @return true if inside the board, false otherwise
      */
     private boolean isInside(Point p, int height, int width) {
-        return p.x >= 0 && p.x < width && p.y >= 0 && p.y < height;
+        return p.xCoord >= 0 && p.xCoord < width && p.yCoord >= 0 && p.yCoord < height;
     }
 
     /**
@@ -139,9 +146,15 @@ public class SmartSnake extends Snake {
         Point head = points.getFirst();
         Point next = nextPoint(head, dir);
 
-        if (next.x < 0 || next.x >= width || next.y < 0 || next.y >= height) return false;
-        if (containsPoint(danger, next)) return false;
-        if (points.contains(next)) return false;
+        if (next.xCoord < 0 || next.xCoord >= width || next.yCoord < 0 || next.yCoord >= height) {
+            return false;
+        }
+        if (containsPoint(danger, next)) {
+            return false;
+        }
+        if (points.contains(next)) {
+            return false;
+        }
 
         return true;
     }
@@ -160,6 +173,7 @@ public class SmartSnake extends Snake {
             case DOWN: return newDir == SnakeModel.Direction.UP;
             case LEFT: return newDir == SnakeModel.Direction.RIGHT;
             case RIGHT: return newDir == SnakeModel.Direction.LEFT;
+            default:;
         }
         return false;
     }
@@ -173,10 +187,11 @@ public class SmartSnake extends Snake {
      */
     private Point nextPoint(Point p, SnakeModel.Direction dir) {
         switch (dir) {
-            case UP: return new Point(p.x, p.y - 1);
-            case DOWN: return new Point(p.x, p.y + 1);
-            case LEFT: return new Point(p.x - 1, p.y);
-            case RIGHT: return new Point(p.x + 1, p.y);
+            case UP: return new Point(p.xCoord, p.yCoord - 1);
+            case DOWN: return new Point(p.xCoord, p.yCoord + 1);
+            case LEFT: return new Point(p.xCoord - 1, p.yCoord);
+            case RIGHT: return new Point(p.xCoord + 1, p.yCoord);
+            default:;
         }
         return p; // default fallback
     }
@@ -191,7 +206,7 @@ public class SmartSnake extends Snake {
     private int distanceToNearest(Point from, List<Point> targets) {
         int minDist = Integer.MAX_VALUE;
         for (Point t : targets) {
-            int dist = Math.abs(from.x - t.x) + Math.abs(from.y - t.y);
+            int dist = Math.abs(from.xCoord - t.xCoord) + Math.abs(from.yCoord - t.yCoord);
             minDist = Math.min(minDist, dist);
         }
         return minDist == Integer.MAX_VALUE ? 0 : minDist;
@@ -206,7 +221,9 @@ public class SmartSnake extends Snake {
      */
     private boolean containsPoint(List<Point> list, Point p) {
         for (Point q : list) {
-            if (q.equals(p)) return true;
+            if (q.equals(p)) {
+                return true;
+            }
         }
         return false;
     }

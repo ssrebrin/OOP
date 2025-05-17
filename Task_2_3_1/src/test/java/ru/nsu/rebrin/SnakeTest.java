@@ -102,6 +102,7 @@ class SnakeTest {
         snake.changeDir(new Point(2, 2), new Point(2, 0)); // вверх
         assertEquals(SnakeModel.Direction.UP, snake.direction);
     }
+
     @Test
     void testChangeDirPrefersVerticalWhenEqualDistance() {
         Snake snake = new Snake(new Point(2, 2));
@@ -115,7 +116,7 @@ class SnakeTest {
     }
 
     @Test
-    void testChangeDirAvoidsReverseUpToDown() {
+    void testChangeDirAvoidsReverse() {
         Snake snake = new Snake(new Point(2, 2));
         snake.direction = SnakeModel.Direction.UP;
 
@@ -194,7 +195,8 @@ class SnakeTest {
     void testEatMultipleApplesOneEaten() {
         Snake snake = new Snake(new Point(5, 5));
         snake.prevTail = new Point(4, 5);
-        List<Point> apples = new LinkedList<>(List.of(new Point(3, 3), new Point(5, 5), new Point(6, 6)));
+        List<Point> apples = new LinkedList<>(List.of(new Point(3, 3),
+            new Point(5, 5), new Point(6, 6)));
 
         boolean eaten = snake.eatApple(apples);
         assertTrue(eaten);
