@@ -1,16 +1,25 @@
 package ru.nsu.rebrin;
 
-import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Manages a list of snakes and their interactions.
+ */
 public class Snakes {
     List<Snake> snakes;
 
+    /**
+     * Constructs an empty snake list
+     */
     public Snakes() {
         snakes = new LinkedList<>();
     }
 
+    /**
+     * Constructs snakes from given starting points.
+     * @param starts list of starting points for each snake
+     */
     public Snakes(List<Point> starts) {
         snakes = new LinkedList<>();
         for (Point p : starts) {
@@ -18,6 +27,11 @@ public class Snakes {
         }
     }
 
+    /**
+     * Checks if the given point collides with any snake.
+     * @param p the point to check
+     * @return true if a collision occurred
+     */
     public boolean collis(Point p) {
         for (Snake snake : snakes) {
             if (!snake.alive) {
@@ -38,6 +52,9 @@ public class Snakes {
         return false;
     }
 
+    /**
+     * Checks if any snake collided with itself.
+     */
     public void checkSelf() {
         for (Snake snake : snakes) {
             if (!snake.alive) {
@@ -54,6 +71,9 @@ public class Snakes {
         }
     }
 
+    /**
+     * Checks for collisions between all snakes.
+     */
     public void checkSelves() {
         for (Snake snake : snakes) {
             if (!snake.alive) {
@@ -81,6 +101,10 @@ public class Snakes {
         }
     }
 
+    /**
+     * Checks for collisions with snakes from another group.
+     * @param snakess another group of snakes
+     */
     public void checkOthers(Snakes snakess) {
         for (Snake snake : snakes) {
             if (!snake.alive) {
@@ -107,6 +131,10 @@ public class Snakes {
         }
     }
 
+    /**
+     * Checks if any snake's head collided with a list of points.
+     * @param snakess list of points
+     */
     public void checkList(List<Point> snakess) {
         for (Snake snake : snakes) {
             if (!snake.alive) {
@@ -124,6 +152,11 @@ public class Snakes {
         }
     }
 
+    /**
+     * Checks if any snakes ate apples.
+     * @param apple list of apple positions
+     * @return number of apples eaten
+     */
     public int checkApple(List<Point> apple){
         int cnt = 0;
         for (Snake snake : snakes) {

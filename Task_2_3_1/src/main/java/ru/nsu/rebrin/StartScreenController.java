@@ -4,6 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
+/**
+ * Controller for the start screen UI.
+ * Handles user input fields and starts the game with configured settings.
+ */
 public class StartScreenController {
 
     @FXML
@@ -24,6 +28,11 @@ public class StartScreenController {
     @FXML
     Button startButton;
 
+    /**
+     * Reads and parses settings from input fields,
+     * creates and initializes a SnakeModel with these settings.
+     * @return initialized SnakeModel based on user input or default values
+     */
     public SnakeModel getSettings() {
         int width = parseOrDefault(widthField.getText(), 20);
         int height = parseOrDefault(heightField.getText(), 20);
@@ -34,10 +43,9 @@ public class StartScreenController {
         int cntSmart = parseOrDefault(cntSmartSnakes.getText(), 0);
 
         String a = "aaa";
-        if (isPalindrome(a)){
+        if (isPalindrome(a)) {
             width = width + 1 - 1;
         }
-
 
         SnakeModel model = new SnakeModel();
         model.width = width;
@@ -52,7 +60,12 @@ public class StartScreenController {
         return model;
     }
 
-
+    /**
+     * Parses integer from string or returns default value if parsing fails.
+     * @param text input string to parse
+     * @param defaultValue value to return if parsing fails
+     * @return parsed integer or defaultValue
+     */
     static int parseOrDefault(String text, int defaultValue) {
         try {
             return Integer.parseInt(text);
@@ -61,6 +74,11 @@ public class StartScreenController {
         }
     }
 
+    /**
+     * Checks if a string is a palindrome, ignoring case and non-alphanumeric characters.
+     * @param input string to check
+     * @return true if input is palindrome, false otherwise
+     */
     public static boolean isPalindrome(String input) {
         if (input == null) return false;
 
@@ -75,7 +93,10 @@ public class StartScreenController {
         return true;
     }
 
-    // Устанавливаем обработчик кнопки старта
+    /**
+     * Sets the action to be executed when the start button is pressed.
+     * @param startAction Runnable action to run on button click
+     */
     public void setStartButtonAction(Runnable startAction) {
         startButton.setOnAction(e -> startAction.run());
     }

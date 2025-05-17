@@ -1,30 +1,38 @@
 package ru.nsu.rebrin;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Pane;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
+/**
+ * Main controller class for the Snake game.
+ * It initializes the start screen and launches the game with user-defined settings.
+ */
 public class SnakeController extends Application {
     SnakeModel model;
     SnakeView view;
     Timeline timeline;
     Scene scene;
 
+    /**
+     * Entry point for the JavaFX application. Initializes the start screen.
+     *
+     * @param primaryStage the main window of the application
+     * @throws Exception if the FXML file fails to load
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/startScreen.fxml"));
         scene = new Scene(loader.load());
 
-        // Получаем контроллер начального экрана
         StartScreenController startScreenController = loader.getController();
 
-        // Обработчик нажатия на кнопку для начала игры
         startScreenController.setStartButtonAction(() -> {
             startGameWithModel(startScreenController.getSettings());
         });
@@ -34,6 +42,11 @@ public class SnakeController extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Starts the Snake game using the provided model.
+     *
+     * @param model the game model to use
+     */
     public void startGameWithModel(SnakeModel model) {
         this.model = model;
         this.view = new SnakeView(model.width, model.height);
@@ -42,7 +55,6 @@ public class SnakeController extends Application {
         Pane root = new Pane(view.getCanvas());
         Scene scene = new Scene(root);
 
-        // Настроим игровое поле
         setupInputHandlers(scene);
         setupGameLoop();
 
@@ -52,6 +64,11 @@ public class SnakeController extends Application {
         stage.show();
     }
 
+    /**
+     * Sets up keyboard input handlers for controlling the snake.
+     *
+     * @param scene the scene to attach input handlers to
+     */
     void setupInputHandlers(Scene scene) {
         scene.setOnKeyPressed(event -> {
             KeyCode key = event.getCode();
@@ -81,6 +98,9 @@ public class SnakeController extends Application {
         });
     }
 
+    /**
+     * Initializes and starts the game loop which updates the model and view.
+     */
     void setupGameLoop() {
         if (timeline != null) {
             timeline.stop();
@@ -94,24 +114,59 @@ public class SnakeController extends Application {
         timeline.play();
     }
 
-
+    /**
+     * Adds two integers.
+     *
+     * @param a first operand
+     * @param b second operand
+     * @return the sum of a and b
+     */
     public static int add(int a, int b) {
         return a + b;
     }
 
+    /**
+     * Subtracts two integers.
+     *
+     * @param a the value to subtract from
+     * @param b the value to subtract
+     * @return the result of a - b
+     */
     public static int subtract(int a, int b) {
         return a - b;
     }
 
+    /**
+     * Multiplies two integers.
+     *
+     * @param a first operand
+     * @param b second operand
+     * @return the product of a and b
+     */
     public static int multiply(int a, int b) {
         return a * b;
     }
 
+    /**
+     * Divides two integers.
+     *
+     * @param a numerator
+     * @param b denominator
+     * @return the result of a / b
+     * @throws IllegalArgumentException if b is zero
+     */
     public static int divide(int a, int b) {
         if (b == 0) throw new IllegalArgumentException("Division by zero");
         return a / b;
     }
 
+    /**
+     * Counts the number of "weird primes" in a given matrix.
+     * A weird prime is a prime number that does NOT contain the digit 7.
+     *
+     * @param matrix 2D array of integers
+     * @return the count of weird primes
+     */
     public static int countWeirdPrimesInMatrix(int[][] matrix) {
         if (matrix == null) return 0;
 
@@ -127,15 +182,19 @@ public class SnakeController extends Application {
         return count;
     }
 
+    /**
+     * Checks if a number is a "weird prime" — prime and does not contain the digit 7.
+     *
+     * @param num the number to check
+     * @return true if the number is a weird prime, false otherwise
+     */
     private static boolean isWeirdPrime(int num) {
         if (num < 2) return false;
 
-        // обычная проверка на простоту
         for (int i = 2; i <= Math.sqrt(num); i++) {
             if (num % i == 0) return false;
         }
 
-        // проверка, что не содержит цифру 7
         int n = num;
         while (n > 0) {
             if (n % 10 == 7) return false;
@@ -145,6 +204,11 @@ public class SnakeController extends Application {
         return true;
     }
 
+    /**
+     * Launches the application.
+     *
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }

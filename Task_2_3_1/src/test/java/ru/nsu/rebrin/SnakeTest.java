@@ -20,7 +20,7 @@ class SnakeTest {
     @Test
     void testMoveRightWithoutApples() {
         Snake snake = new Snake(new Point(2, 2));
-        snake.move(10, 10, List.of(), List.of(), List.of());
+        snake.move(10, 10, List.of(), List.of());
         assertEquals(new Point(3, 2), snake.points.getFirst());
     }
 
@@ -29,7 +29,7 @@ class SnakeTest {
         Snake snake = new Snake(new Point(2, 2));
         List<Point> apples = List.of(new Point(2, 1)); // выше головы
 
-        snake.move(10, 10, apples, List.of(), List.of());
+        snake.move(10, 10, apples, List.of());
 
         assertEquals(SnakeModel.Direction.UP, snake.direction);
         assertEquals(new Point(2, 1), snake.points.getFirst());
@@ -174,7 +174,7 @@ class SnakeTest {
     @Test
     void testMoveDoesNotGrowIfNoAppleEaten() {
         Snake snake = new Snake(new Point(4, 4));
-        snake.move(10, 10, List.of(), List.of(), List.of());
+        snake.move(10, 10, List.of(), List.of());
 
         // Длина не изменилась
         assertEquals(1, snake.points.size());
@@ -183,7 +183,7 @@ class SnakeTest {
     @Test
     void testMoveUpdatesPrevTailCorrectly() {
         Snake snake = new Snake(new Point(4, 4));
-        snake.move(10, 10, List.of(), List.of(), List.of());
+        snake.move(10, 10, List.of(), List.of());
 
         assertEquals(new Point(4, 4), snake.prevTail);
     }
@@ -216,10 +216,10 @@ class SnakeTest {
         Snake snake = new Snake(new Point(2, 2));
         snake.direction = SnakeModel.Direction.UP;
 
-        snake.move(10, 10, null, List.of(), List.of());
+        snake.move(10, 10, null, List.of());
         assertEquals(SnakeModel.Direction.UP, snake.direction);
 
-        snake.move(10, 10, List.of(), List.of(), List.of());
+        snake.move(10, 10, List.of(), List.of());
         assertEquals(SnakeModel.Direction.UP, snake.direction);
     }
 

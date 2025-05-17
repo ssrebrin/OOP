@@ -1,11 +1,13 @@
 package ru.nsu.rebrin;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Represents a snake in the game, handling movement, growth, and life states.
+ * Manages direction changes, apple consumption, death, and revival mechanics.
+ */
 public class Snake {
 
     public SnakeModel.Direction direction = SnakeModel.Direction.RIGHT;
@@ -15,12 +17,26 @@ public class Snake {
     boolean alive = true;
     Point prevTail;
 
+    /**
+     * Constructs a snake with initial head position.
+     *
+     * @param p Starting point for the snake's head
+     */
     public Snake(Point p) {
         points = new LinkedList<>();
         points.add(p);
     }
 
-    public void move(int height, int width, List<Point> apples, List<Point> danger, List<Point> pot) {
+
+    /**
+     * Moves the snake one cell in current direction.
+     *
+     * @param height Grid height (for boundary checks)
+     * @param width Grid width (for boundary checks)
+     * @param apples List of available apples
+     * @param danger List of dangerous obstacles
+     */
+    public void move(int height, int width, List<Point> apples, List<Point> danger) {
         Point head = points.getFirst();
         Point near = near(head, apples);
         if (near != null) {
@@ -36,6 +52,11 @@ public class Snake {
         prevTail = points.removeLast();
     }
 
+    /**
+     * Finds the nearest apple to snake's head.
+     *
+     * @return Nearest apple point or null if none exist
+     */
     Point near(Point head, List<Point> apples) {
         if (apples == null || apples.isEmpty()) {
             return null;
@@ -55,10 +76,18 @@ public class Snake {
         return nearest;
     }
 
+    /**
+     * Calculates Manhattan distance between two points.
+     */
     private int distance(Point a, Point b) {
         return Math.abs(a.x - b.x) + Math.abs(a.y - b.y); // Манхэттенское расстояние
     }
 
+    /**
+     * Revives the snake after cooldown period.
+     *
+     * @param p Revival position
+     */
     public void revive(Point p) {
         if (!alive && System.currentTimeMillis() - deathTime >= cd) {
             alive = true;
@@ -67,6 +96,9 @@ public class Snake {
         }
     }
 
+    /**
+     * Kills the snake and starts revival timer.
+     */
     public void die() {
         if (!alive) {
             return;
@@ -76,6 +108,9 @@ public class Snake {
         points = new LinkedList<>();
     }
 
+    /**
+     * Adjusts direction toward nearest apple.
+     */
     void changeDir(Point head, Point near) {
         if (head.x == near.x) {
             if (head.y - near.y > 0) {
@@ -141,7 +176,12 @@ public class Snake {
 
     }
 
-    
+    /**
+     * Attempts to eat an apple at head position.
+     *
+     * @param apple Mutable list of apples
+     * @return true if apple was consumed
+     */
     public boolean eatApple(List<Point> apple) {
         Point head = points.getFirst();
         Iterator<Point> iterator = apple.iterator();

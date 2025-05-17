@@ -1,14 +1,20 @@
 package ru.nsu.rebrin;
 
+import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
-import java.awt.*;
-import java.util.*;
-import java.util.List;
-
+/**
+ * Handles rendering of snakes, apples, and game states on a canvas.
+ */
 public class SnakeView {
     private static final int TILE_SIZE = 20;
     private final Canvas canvas;
@@ -16,15 +22,28 @@ public class SnakeView {
     private final Image lose = new Image("Blood-Stain-PNG-Clipart-Background.png");
     private final Image screenWin = new Image("win.png");
 
+    /**
+     * Creates a SnakeView with specified grid width and height.
+     * @param width grid width in tiles
+     * @param height grid height in tiles
+     */
     public SnakeView(int width, int height) {
         canvas = new Canvas(width * TILE_SIZE, height * TILE_SIZE);
         gc = canvas.getGraphicsContext2D();
     }
 
+    /**
+     * Returns the canvas where the game is drawn.
+     * @return the game canvas
+     */
     public Canvas getCanvas() {
         return canvas;
     }
 
+    /**
+     * Renders the current game state from the model.
+     * @param model the snake game model
+     */
     public void render(SnakeModel model) {
         clear();
         drawApple(model.getApple());
@@ -33,7 +52,7 @@ public class SnakeView {
                 drawSnake(s.points, Color.CYAN);
             }
         }
-        if(model.getStupidSnake() != null) {
+        if (model.getStupidSnake() != null) {
             for (Snake s : model.getStupidSnake()) {
                 drawSnake(s.points, Color.BLUE);
             }
@@ -47,11 +66,19 @@ public class SnakeView {
         }
     }
 
+    /**
+     * Clears the canvas with black color.
+     */
     private void clear() {
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 
+    /**
+     * Draws a snake on the canvas.
+     * @param snake list of points representing snake body
+     * @param color color to draw the snake
+     */
     private void drawSnake(LinkedList<Point> snake, Color color) {
         gc.setFill(color);
         for (Point p : snake) {
@@ -59,6 +86,10 @@ public class SnakeView {
         }
     }
 
+    /**
+     * Draws apples on the canvas.
+     * @param apple list of apple positions
+     */
     private void drawApple(List<Point> apple) {
         if (apple == null) {
             return;
@@ -69,6 +100,11 @@ public class SnakeView {
         }
     }
 
+    /**
+     * Converts a snake's points into rectangles for collision or drawing.
+     * @param snake list of points representing snake body
+     * @return list of rectangles representing snake segments
+     */
     public static List<Rectangle> getSnakeRectangles(LinkedList<Point> snake) {
         final int TILE_SIZE = 20;
         List<Rectangle> rects = new ArrayList<>();
@@ -78,6 +114,10 @@ public class SnakeView {
         return rects;
     }
 
+    /**
+     * Counts vowels in the string representation of each direction.
+     * @return map of direction to vowel count
+     */
     public static Map<SnakeModel.Direction, Integer> countVowelsInDirections() {
         Map<SnakeModel.Direction, Integer> vowelCounts = new HashMap<>();
         String[] directionNames = {"UP", "DOWN", "LEFT", "RIGHT"};
@@ -93,11 +133,9 @@ public class SnakeView {
                 SnakeModel.Direction direction = SnakeModel.Direction.valueOf(name);
                 vowelCounts.put(direction, count);
             } catch (IllegalArgumentException ignored) {
-                // Игнорируем несуществующие направления
+                // Ignore invalid directions
             }
         }
-
-
 
         return vowelCounts;
     }
