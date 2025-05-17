@@ -97,10 +97,10 @@ public class SnakeModel {
 
         Point head = snake.getFirst();
         Point newHead = switch (direction) {
-            case UP -> new Point(head.xCoord, head.yCoord - 1);
-            case DOWN -> new Point(head.xCoord, head.yCoord + 1);
-            case LEFT -> new Point(head.xCoord - 1, head.yCoord);
-            case RIGHT -> new Point(head.xCoord + 1, head.yCoord);
+            case UP -> new Point(head.xxCoord, head.yyCoord - 1);
+            case DOWN -> new Point(head.xxCoord, head.yyCoord + 1);
+            case LEFT -> new Point(head.xxCoord - 1, head.yyCoord);
+            case RIGHT -> new Point(head.xxCoord + 1, head.yyCoord);
         };
 
         if (isCollision(newHead)) {
@@ -234,27 +234,27 @@ public class SnakeModel {
         int i = 0;
         switch (snake.direction) {
             case UP -> {
-                danger.add(new Point(head.xCoord, head.yCoord - 1));
-                danger.add(new Point(head.xCoord + 1, head.yCoord));
-                danger.add(new Point(head.xCoord - 1, head.yCoord));
+                danger.add(new Point(head.xxCoord, head.yyCoord - 1));
+                danger.add(new Point(head.xxCoord + 1, head.yyCoord));
+                danger.add(new Point(head.xxCoord - 1, head.yyCoord));
             }
             case DOWN -> {
-                danger.add(new Point(head.xCoord, head.yCoord + 1));
-                danger.add(new Point(head.xCoord + 1, head.yCoord));
-                danger.add(new Point(head.xCoord - 1, head.yCoord));
+                danger.add(new Point(head.xxCoord, head.yyCoord + 1));
+                danger.add(new Point(head.xxCoord + 1, head.yyCoord));
+                danger.add(new Point(head.xxCoord - 1, head.yyCoord));
             }
             case LEFT -> {
-                danger.add(new Point(head.xCoord - 1, head.yCoord));
-                danger.add(new Point(head.xCoord, head.yCoord - 1));
-                danger.add(new Point(head.xCoord, head.yCoord + 1));
+                danger.add(new Point(head.xxCoord - 1, head.yyCoord));
+                danger.add(new Point(head.xxCoord, head.yyCoord - 1));
+                danger.add(new Point(head.xxCoord, head.yyCoord + 1));
             }
             case RIGHT -> {
-                danger.add(new Point(head.xCoord + 1, head.yCoord));
-                danger.add(new Point(head.xCoord, head.yCoord - 1));
-                danger.add(new Point(head.xCoord, head.yCoord + 1));
+                danger.add(new Point(head.xxCoord + 1, head.yyCoord));
+                danger.add(new Point(head.xxCoord, head.yyCoord - 1));
+                danger.add(new Point(head.xxCoord, head.yyCoord + 1));
             }
             default -> {
-                i=0;
+                i = 0;
             }
         }
 
@@ -268,7 +268,8 @@ public class SnakeModel {
      * @return true if collision with wall, false otherwise
      */
     private boolean isCollision(Point point) {
-        return point.xCoord < 0 || point.xCoord >= width || point.yCoord < 0 || point.yCoord >= height;
+        return point.xxCoord < 0 || point.xxCoord >= width || point.yyCoord < 0
+            || point.yyCoord >= height;
     }
 
     /**
@@ -314,6 +315,7 @@ public class SnakeModel {
 
     /**
      * Sets the running state of the game.
+     *
      * @return current list of points occupied by the main snake
      */
     public LinkedList<Point> getSnake() {
@@ -322,6 +324,7 @@ public class SnakeModel {
 
     /**
      * Sets the running state of the game.
+     *
      * @return list of stupid snakes or null if not initialized
      */
     public List<Snake> getStupidSnake() {
@@ -330,6 +333,7 @@ public class SnakeModel {
 
     /**
      * Sets the running state of the game.
+     *
      * @return list of smart snakes or null if not initialized
      */
     public List<Snake> getSmartSnake() {
@@ -338,6 +342,7 @@ public class SnakeModel {
 
     /**
      * Sets the running state of the game.
+     *
      * @return list of apple positions
      */
     public List<Point> getApple() {
@@ -346,6 +351,7 @@ public class SnakeModel {
 
     /**
      * Sets the running state of the game.
+     *
      * @return whether the game is currently running
      */
     public boolean isRunning() {
@@ -354,6 +360,7 @@ public class SnakeModel {
 
     /**
      * Sets the running state of the game.
+     *
      * @return true if player has won
      */
     public boolean isWin() {
@@ -362,6 +369,7 @@ public class SnakeModel {
 
     /**
      * Sets the running state of the game.
+     *
      * @return true if game is paused
      */
     public boolean isPaused() {
@@ -370,6 +378,7 @@ public class SnakeModel {
 
     /**
      * Sets the running state of the game.
+     *
      * @return current confirmed direction
      */
     public Direction getDirection() {

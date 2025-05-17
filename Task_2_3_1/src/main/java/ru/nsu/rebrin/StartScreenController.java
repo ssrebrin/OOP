@@ -31,6 +31,7 @@ public class StartScreenController {
     /**
      * Reads and parses settings from input fields,
      * creates and initializes a SnakeModel with these settings.
+     *
      * @return initialized SnakeModel based on user input or default values
      */
     public SnakeModel getSettings() {

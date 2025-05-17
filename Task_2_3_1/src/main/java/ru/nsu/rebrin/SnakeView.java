@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -86,7 +85,7 @@ public class SnakeView {
     private void drawSnake(LinkedList<Point> snake, Color color) {
         gc.setFill(color);
         for (Point p : snake) {
-            gc.fillRect(p.xCoord * TILE_SIZE, p.yCoord * TILE_SIZE, TILE_SIZE - 1, TILE_SIZE - 1);
+            gc.fillRect(p.xxCoord * TILE_SIZE, p.yyCoord * TILE_SIZE, TILE_SIZE - 1, TILE_SIZE - 1);
         }
     }
 
@@ -101,7 +100,7 @@ public class SnakeView {
         }
         for (Point p : apple) {
             gc.setFill(Color.RED);
-            gc.fillRect(p.xCoord * TILE_SIZE, p.yCoord * TILE_SIZE, TILE_SIZE - 1, TILE_SIZE - 1);
+            gc.fillRect(p.xxCoord * TILE_SIZE, p.yyCoord * TILE_SIZE, TILE_SIZE - 1, TILE_SIZE - 1);
         }
     }
 
@@ -115,7 +114,8 @@ public class SnakeView {
         final int TILE_SIZE = 20;
         List<Rectangle> rects = new ArrayList<>();
         for (Point p : snake) {
-            rects.add(new Rectangle(p.xCoord * TILE_SIZE, p.yCoord * TILE_SIZE, TILE_SIZE - 1, TILE_SIZE - 1));
+            rects.add(new Rectangle(p.xxCoord * TILE_SIZE, p.yyCoord * TILE_SIZE, TILE_SIZE - 1,
+                TILE_SIZE - 1));
         }
         return rects;
     }

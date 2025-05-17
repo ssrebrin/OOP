@@ -6,18 +6,18 @@ import java.util.Objects;
  * Point.
  */
 public final class Point {
-    final int xCoord;
-    final int yCoord;
+    final int xxCoord;
+    final int yyCoord;
 
     /**
      * Init.
      *
-     * @param xCoord - xCoord
-     * @param yCoord - yCoord
+     * @param xxCoord - xxCoord
+     * @param yyCoord - yyCoord
      */
-    public Point(int xCoord, int yCoord) {
-        this.xCoord = xCoord;
-        this.yCoord = yCoord;
+    public Point(int xxCoord, int yyCoord) {
+        this.xxCoord = xxCoord;
+        this.yyCoord = yyCoord;
     }
 
     /**
@@ -35,7 +35,7 @@ public final class Point {
             return false;
         }
         Point point = (Point) o;
-        return xCoord == point.xCoord && yCoord == point.yCoord;
+        return xxCoord == point.xxCoord && yyCoord == point.yyCoord;
     }
 
     /**
@@ -45,6 +45,6 @@ public final class Point {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(xCoord, yCoord);
+        return Objects.hash(xxCoord, yyCoord);
     }
 }

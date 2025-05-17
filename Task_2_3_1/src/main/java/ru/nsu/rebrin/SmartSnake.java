@@ -28,13 +28,15 @@ public class SmartSnake extends Snake {
      */
     @Override
     public void move(int height, int width, List<Point> apples, List<Point> danger) {
-        if (points.isEmpty()) return;
+        if (points.isEmpty()) {
+            return;
+        }
 
         Point head = points.getFirst();
 
-        System.out.print("[" + head.xCoord + ", " + head.yCoord + "]");
+        System.out.print("[" + head.xxCoord + ", " + head.yyCoord + "]");
         for (Point i : danger) {
-            System.out.print(i.xCoord + " " + i.yCoord + "  ");
+            System.out.print(i.xxCoord + " " + i.yyCoord + "  ");
         }
 
         List<SnakeModel.Direction> possibleMoves = List.of(
@@ -49,11 +51,15 @@ public class SmartSnake extends Snake {
         boolean bestInPot = true; // initially prefer avoiding danger
 
         for (SnakeModel.Direction dir : possibleMoves) {
-            if (isReverse(dir)) continue;
+            if (isReverse(dir)) {
+                continue;
+            }
 
             Point next = nextPoint(head, dir);
 
-            if (!canMoveTo(next, height, width, danger)) continue;
+            if (!canMoveTo(next, height, width, danger)) {
+                continue;
+            }
 
             int distance = distanceToNearest(next, apples);
             boolean inPot = containsPoint(danger, next);
@@ -71,7 +77,9 @@ public class SmartSnake extends Snake {
         // Fallback: move in any allowed direction that is not a reverse
         if (bestMove == null) {
             for (SnakeModel.Direction dir : possibleMoves) {
-                if (isReverse(dir)) continue;
+                if (isReverse(dir)) {
+                    continue;
+                }
                 Point next = nextPoint(head, dir);
                 if (isInside(next, height, width)) {
                     bestMove = dir;
@@ -93,7 +101,7 @@ public class SmartSnake extends Snake {
         if (bestMove != null) {
             direction = bestMove;
             Point newHead = nextPoint(head, direction);
-            System.out.println(" Moving to " + newHead.xCoord + " " + newHead.yCoord);
+            System.out.println(" Moving to " + newHead.xxCoord + " " + newHead.yyCoord);
             points.addFirst(newHead);
             prevTail = points.removeLast();
         }
@@ -130,7 +138,7 @@ public class SmartSnake extends Snake {
      * @return true if inside the board, false otherwise
      */
     private boolean isInside(Point p, int height, int width) {
-        return p.xCoord >= 0 && p.xCoord < width && p.yCoord >= 0 && p.yCoord < height;
+        return p.xxCoord >= 0 && p.xxCoord < width && p.yyCoord >= 0 && p.yyCoord < height;
     }
 
     /**
@@ -146,7 +154,7 @@ public class SmartSnake extends Snake {
         Point head = points.getFirst();
         Point next = nextPoint(head, dir);
 
-        if (next.xCoord < 0 || next.xCoord >= width || next.yCoord < 0 || next.yCoord >= height) {
+        if (next.xxCoord < 0 || next.xxCoord >= width || next.yyCoord < 0 || next.yyCoord >= height) {
             return false;
         }
         if (containsPoint(danger, next)) {
@@ -166,7 +174,9 @@ public class SmartSnake extends Snake {
      * @return true if newDir is the reverse of the current direction, false otherwise
      */
     private boolean isReverse(SnakeModel.Direction newDir) {
-        if (points.size() <= 1) return false;
+        if (points.size() <= 1) {
+            return false;
+        }
 
         switch (direction) {
             case UP: return newDir == SnakeModel.Direction.DOWN;
@@ -187,10 +197,10 @@ public class SmartSnake extends Snake {
      */
     private Point nextPoint(Point p, SnakeModel.Direction dir) {
         switch (dir) {
-            case UP: return new Point(p.xCoord, p.yCoord - 1);
-            case DOWN: return new Point(p.xCoord, p.yCoord + 1);
-            case LEFT: return new Point(p.xCoord - 1, p.yCoord);
-            case RIGHT: return new Point(p.xCoord + 1, p.yCoord);
+            case UP: return new Point(p.xxCoord, p.yyCoord - 1);
+            case DOWN: return new Point(p.xxCoord, p.yyCoord + 1);
+            case LEFT: return new Point(p.xxCoord - 1, p.yyCoord);
+            case RIGHT: return new Point(p.xxCoord + 1, p.yyCoord);
             default:;
         }
         return p; // default fallback
@@ -206,7 +216,7 @@ public class SmartSnake extends Snake {
     private int distanceToNearest(Point from, List<Point> targets) {
         int minDist = Integer.MAX_VALUE;
         for (Point t : targets) {
-            int dist = Math.abs(from.xCoord - t.xCoord) + Math.abs(from.yCoord - t.yCoord);
+            int dist = Math.abs(from.xxCoord - t.xxCoord) + Math.abs(from.yyCoord - t.yyCoord);
             minDist = Math.min(minDist, dist);
         }
         return minDist == Integer.MAX_VALUE ? 0 : minDist;

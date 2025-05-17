@@ -128,7 +128,7 @@ class SnakeTest {
     }
 
     @Test
-    void testChangeDirAvoidsReverseDownToUP() {
+    void testChangeDirAvoidsReverseDown() {
         Snake snake = new Snake(new Point(2, 2));
         snake.direction = SnakeModel.Direction.DOWN;
 
