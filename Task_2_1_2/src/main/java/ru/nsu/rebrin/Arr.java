@@ -3,6 +3,9 @@ package ru.nsu.rebrin;
 import java.util.LinkedList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+/**
+ * Task to the worker.
+ */
 public class Arr {
     LinkedList<Integer> array;
     AtomicBoolean flag;

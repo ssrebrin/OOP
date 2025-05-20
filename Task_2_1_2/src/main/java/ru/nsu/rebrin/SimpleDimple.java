@@ -8,18 +8,18 @@ import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Non prim number.
+ * The answer is hasPrime - true if have non prime.
  */
 public class SimpleDimple {
     public static int PORT = 8080;
     public LinkedList<ServerSomthing> serverList = new LinkedList<>();
-    public static AtomicBoolean flag = new AtomicBoolean(false);
+    public static AtomicBoolean hasPrime = new AtomicBoolean(false);
     public LinkedList<Arr> mainArr;
     public ServerSocket server;
 
@@ -158,10 +158,10 @@ public class SimpleDimple {
         }
 
         /**
-         * Set flag.
+         * Set hasPrime.
          */
         public void setFlag() {
-            simpleDimple.flag.set(true);
+            simpleDimple.hasPrime.set(true);
         }
 
         @Override

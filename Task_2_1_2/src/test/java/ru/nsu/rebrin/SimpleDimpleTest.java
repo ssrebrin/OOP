@@ -23,7 +23,7 @@ public class SimpleDimpleTest {
         System.setOut(new PrintStream(outContent));
         executor = Executors.newFixedThreadPool(2);
         // Сбрасываем статические данные перед каждым тестом
-        sd.flag.set(false);
+        sd.hasPrime.set(false);
         sd.PORT = 0; // Сбрасываем порт, чтобы main мог выбрать новый
     }
 
@@ -117,6 +117,6 @@ public class SimpleDimpleTest {
         // Проверяем результаты
         output = outContent.toString();
         assertTrue(output.contains("Everything is done"), "Server should finish when all tasks are done");
-        assertTrue(sd.flag.get(), "Server should have found a non-prime number (6)");
+        assertTrue(sd.hasPrime.get(), "Server should have found a non-prime number (6)");
     }
 }
