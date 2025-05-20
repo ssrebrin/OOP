@@ -41,10 +41,6 @@ public class PrimeClient {
                         //System.out.println(numbers.get(i));
                         boolean isPrime = isPrime(numbers.get(i));
                         send(out, String.valueOf(isPrime));
-
-                        // Обновляем start из нового JSON
-                        //data = parseInput(input);
-                        //start = data.start;
                     }
                 }
 
@@ -60,7 +56,7 @@ public class PrimeClient {
      * @param n число для проверки
      * @return true, если число простое, иначе false
      */
-    private static boolean isPrime(int n) {
+    static boolean isPrime(int n) {
         if (n <= 1) {
             return false;
         }
@@ -84,7 +80,7 @@ public class PrimeClient {
      * @param out поток вывода
      * @param message сообщение
      */
-    private static void send(BufferedWriter out, String message) throws IOException {
+    static void send(BufferedWriter out, String message) throws IOException {
         out.write(message + "\n");
         out.flush();
     }
@@ -95,7 +91,7 @@ public class PrimeClient {
      * @param input строка JSON
      * @return распарсенные данные
      */
-    private static ParsedData parseInput(String input) {
+    static ParsedData parseInput(String input) {
         // Ожидаемый формат: {"array":[1000003,1000003,...,6],"start":0}
         List<Integer> numbers = new ArrayList<>();
         int start = 0;
@@ -120,7 +116,7 @@ public class PrimeClient {
     /**
      * Класс для хранения распарсенных данных.
      */
-    private static class ParsedData {
+    static class ParsedData {
         List<Integer> array;
         int start;
 

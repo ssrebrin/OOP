@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
@@ -16,12 +17,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * Non prim number.
  */
 public class SimpleDimple {
-    public static final int PORT = 8080;
-    public LinkedList<ServerSomthing> serverList = new LinkedList<>(); // список всех нитей
-    public static AtomicBoolean flag = new AtomicBoolean(false); // Сделали статическим
+    public static int PORT = 8080;
+    public LinkedList<ServerSomthing> serverList = new LinkedList<>();
+    public static AtomicBoolean flag = new AtomicBoolean(false);
     public LinkedList<Arr> mainArr;
-    ServerSocket server;
-
+    public ServerSocket server;
 
     /**
      * Generate stats.
@@ -29,8 +29,8 @@ public class SimpleDimple {
      * @param args - args
      */
     public static void main(String[] args) throws IOException {
-        System.out.println("SimpleDimple starting...");
-        SimpleDimple sd = new SimpleDimple();  // создаем экземпляр класса
+        System.out.println("SimpleDimple starting on port " + PORT + "...");
+        SimpleDimple sd = new SimpleDimple();
 
         int[] a = generateLargeArray(1000);
         LinkedList<Integer> array = new LinkedList<>();
@@ -48,16 +48,18 @@ public class SimpleDimple {
 
         System.out.println("Start server");
         sd.server = new ServerSocket(PORT);
+        PORT = sd.server.getLocalPort();
         try {
             while (true) {
                 float n = 0;
                 float nn = 0;
-                // Блокируется до возникновения нового соединения:
-                for(Arr arr : sd.mainArr) {
-                    if (arr.flag.get()) {n++;}
+                for (Arr arr : sd.mainArr) {
+                    if (arr.flag.get()) {
+                        n++;
+                    }
                     nn++;
                 }
-                System.out.println(n/nn/100 + "% done");
+                System.out.println(n / nn / 100 + "% done");
                 Socket socket = sd.server.accept();
                 System.out.println("Accepted connection from " + socket.getRemoteSocketAddress());
                 try {
@@ -71,6 +73,13 @@ public class SimpleDimple {
                     socket.close();
                 }
             }
+        } catch (SocketException e) {
+            Arr aaa = sd.giveArr(sd);
+            if (aaa == null) {
+                System.out.println("Everything is done");
+            } else {
+                System.out.println("ServerSocket closed, stopping accept: " + e.getMessage());
+            }
         } finally {
             sd.server.close();
         }
@@ -78,9 +87,9 @@ public class SimpleDimple {
 
     public Arr giveArr(SimpleDimple sd) throws IOException {
         boolean flag = false;
-        synchronized(Arr.class) {
+        synchronized (Arr.class) {
             for (Arr aa : sd.mainArr) {
-                if(!aa.done.get()){
+                if (!aa.done.get()) {
                     flag = true;
                 }
                 if (!aa.busy.get() && !aa.done.get()) {
@@ -90,7 +99,7 @@ public class SimpleDimple {
                 }
             }
         }
-        if(!flag) {
+        if (!flag) {
             sd.server.close();
         }
         return null;
@@ -111,14 +120,15 @@ public class SimpleDimple {
         array[size - 1] = 6;
         return array;
     }
-    
 
     public void printProcent(LinkedList<Arr> arr) {
         float n = 0;
         float nn = 0;
         // Блокируется до возникновения нового соединения:
-        for(Arr arrr : arr) {
-            if (arrr.done.get()) {n++;}
+        for (Arr arrr : arr) {
+            if (arrr.done.get()) {
+                n++;
+            }
             nn++;
         }
     }
@@ -127,7 +137,7 @@ public class SimpleDimple {
      * Thread class.
      */
     class ServerSomthing extends Thread {
-        private Socket socket;
+        public Socket socket;
         private BufferedReader in;
         private BufferedWriter out;
         private Arr arr;
@@ -139,11 +149,13 @@ public class SimpleDimple {
             simpleDimple = sd;
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+            // Устанавливаем таймаут на сокет (10 секунд)
+            socket.setSoTimeout(5000);
             start();
         }
 
         public void setFlag() {
-            flag.set(true);
+            simpleDimple.flag.set(true);
         }
 
         @Override
@@ -167,7 +179,6 @@ public class SimpleDimple {
                             break;
                         }
                         if (word.equals("true")) {
-                            //System.out.println(arr.array.get(arr.last) + " " + word);
                             arr.flag.set(true);
                             setFlag();
                             arr.last++;
@@ -186,7 +197,7 @@ public class SimpleDimple {
                     System.out.println(socket.getRemoteSocketAddress() + " done");
                     arr.busy.set(false);
                 } catch (IOException e) {
-                    if (arr.last  >= arr.array.size()) {
+                    if (arr.last >= arr.array.size()) {
                         arr.done.set(true);
                     }
                     arr.busy.set(false);

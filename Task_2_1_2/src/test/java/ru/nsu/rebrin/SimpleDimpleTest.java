@@ -1,81 +1,122 @@
 package ru.nsu.rebrin;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.io.*;
+import java.net.Socket;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import static org.junit.jupiter.api.Assertions.*;
 
+public class SimpleDimpleTest {
+    private ByteArrayOutputStream outContent;
+    private ExecutorService executor;
+    private SimpleDimple sd;
 
-class SimpleDimpleTest {
-    @Test
-    void testPrime1() {
-        int[] arr = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41};
-        assertFalse(SimpleDimple.notAllPrime1(arr));
+    @BeforeEach
+    void setUp() {
+        sd = new SimpleDimple();
+        outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        executor = Executors.newFixedThreadPool(2);
+        // Сбрасываем статические данные перед каждым тестом
+        sd.flag.set(false);
+        sd.PORT = 0; // Сбрасываем порт, чтобы main мог выбрать новый
+    }
+
+    @AfterEach
+    void tearDown() throws InterruptedException {
+        executor.shutdownNow();
+        assertTrue(executor.awaitTermination(10, TimeUnit.SECONDS), "Executor should terminate within 10 seconds");
+        System.setOut(System.out); // Восстанавливаем System.out
     }
 
     @Test
-    void testPrime2() {
-        int[] arr = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41};
-        SimpleDimple sd = new SimpleDimple();
-        assertFalse(sd.notAllPrime2(arr, 3));
+    void testGenerateLargeArray() {
+        int size = 100;
+        int[] array = sd.generateLargeArray(size);
+        assertEquals(size, array.length, "Array size should match the input size");
+        assertEquals(6, array[size - 1], "Last element should be 6");
+        for (int i = 0; i < size - 1; i++) {
+            assertEquals(1000003, array[i], "All elements except the last should be 1000003");
+        }
     }
 
     @Test
-    void testPrime3() {
-        int[] arr = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41};
-        SimpleDimple sd = new SimpleDimple();
-        assertFalse(sd.notAllPrime3(arr));
-    }
+    void testMainMethod() throws InterruptedException {
+        CountDownLatch serverReady = new CountDownLatch(1);
+        CountDownLatch clientDone = new CountDownLatch(1);
 
-    @Test
-    void testNotPrime1() {
-        int[] arr = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 4};
-        assertTrue(SimpleDimple.notAllPrime1(arr));
-    }
+        // Запускаем сервер
+        executor.submit(() -> {
+            try {
+                sd.main(new String[]{});
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
-    @Test
-    void testNotPrime2() {
-        int[] arr = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 4};
-        SimpleDimple sd = new SimpleDimple();
-        assertTrue(sd.notAllPrime2(arr, 3));
-    }
-
-    @Test
-    void testNotPrime3() {
-        int[] arr = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 4};
-        SimpleDimple sd = new SimpleDimple();
-        assertTrue(sd.notAllPrime3(arr));
-    }
-
-
-    @Test
-    public void testPerformance() {
-        SimpleDimple sd = new SimpleDimple();
-        int[] array = SimpleDimple.generateLargeArray(1000000);
-
-        long startTime = System.nanoTime();
-        boolean result1 = sd.notAllPrime1(array);
-        long endTime = System.nanoTime();
-        System.out.println("Sequential time: " + (endTime - startTime) + " ns");
-
-        int[] threadCounts = {2, 4, 8, 16};
-        for (int thCount : threadCounts) {
-            startTime = System.nanoTime();
-            boolean result2 = sd.notAllPrime2(array, thCount);
-            endTime = System.nanoTime();
-            System.out.println("Parallel time with "
-                    + thCount + " threads: " + (endTime - startTime) + " ns");
+        // Ждём, пока сервер не выведет "Start server", что означает готовность к подключению
+        long startTime = System.currentTimeMillis();
+        while (System.currentTimeMillis() - startTime < 5000) { // Ждём до 5 секунд
+            String output = outContent.toString();
+            if (output.contains("Start server")) {
+                serverReady.countDown();
+                break;
+            }
+            try {
+                Thread.sleep(100); // Проверяем каждые 100 мс
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         }
 
-        startTime = System.nanoTime();
-        boolean result3 = sd.notAllPrime3(array);
-        endTime = System.nanoTime();
-        System.out.println("ParallelStream time: " + (endTime - startTime) + " ns");
+        assertTrue(serverReady.await(0, TimeUnit.SECONDS), "Server should be ready to accept connections within 5 seconds");
 
-        assertEquals(result1, result3);
-        for (int thCount : threadCounts) {
-            assertEquals(result1, sd.notAllPrime2(array, thCount));
-        }
+        // Проверяем, что сервер запустился
+        String output = outContent.toString();
+        assertTrue(output.contains("SimpleDimple starting on port"), "Server should start");
+        assertTrue(output.contains("Start server"), "Server should print start message");
+
+
+        // Запускаем клиента после того, как сервер готов
+        executor.submit(() -> {
+            try (Socket socket = new Socket("localhost", sd.PORT)) {
+                socket.setSoTimeout(5000);
+                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+
+                while (true) {
+                    String input = in.readLine();
+                    if (input == null) break;
+
+                    PrimeClient.ParsedData data = PrimeClient.parseInput(input);
+                    for (int i = data.start; i < data.array.size(); i++) {
+                        boolean isPrime = PrimeClient.isPrime(data.array.get(i));
+                        out.write(String.valueOf(isPrime) + "\n");
+                        out.flush();
+                    }
+                    //out.write("stop\n");
+                    //out.flush();
+
+                    //if (data.array.contains(6)) break;
+                }
+                clientDone.countDown();
+            } catch (IOException e) {
+                e.printStackTrace();
+                clientDone.countDown();
+            }
+        });
+
+        // Ждём завершения клиента
+        assertTrue(clientDone.await(15, TimeUnit.SECONDS), "Client should complete within 15 seconds");
+
+        // Проверяем результаты
+        output = outContent.toString();
+        assertTrue(output.contains("Everything is done"), "Server should finish when all tasks are done");
+        assertTrue(sd.flag.get(), "Server should have found a non-prime number (6)");
     }
 }
