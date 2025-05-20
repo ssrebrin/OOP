@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Клиент для проверки чисел на простоту.
+ * Client.
  */
 public class PrimeClient {
     private static final String HOST = "localhost";
-    private static final int PORT = 8080;
+    public static int PORT = 8080;
 
     public static void main(String[] args) {
             try (Socket socket = new Socket(HOST, PORT)) {
@@ -45,16 +45,16 @@ public class PrimeClient {
                 }
 
             } catch (IOException e) {
-                System.err.println("Client error: " + e.getMessage());
+                System.out.println("Client error: " + e.getMessage());
                 e.printStackTrace();
         }
     }
 
     /**
-     * Проверяет, является ли число простым.
+     * Check if is prime.
      *
-     * @param n число для проверки
-     * @return true, если число простое, иначе false
+     * @param n in
+     * @return true or false
      */
     static boolean isPrime(int n) {
         if (n <= 1) {
@@ -75,10 +75,10 @@ public class PrimeClient {
     }
 
     /**
-     * Отправляет сообщение серверу.
+     * Send.
      *
-     * @param out поток вывода
-     * @param message сообщение
+     * @param out out
+     * @param message message
      */
     static void send(BufferedWriter out, String message) throws IOException {
         out.write(message + "\n");
@@ -86,10 +86,10 @@ public class PrimeClient {
     }
 
     /**
-     * Парсит входные данные JSON.
+     * Parsing to JSON.
      *
-     * @param input строка JSON
-     * @return распарсенные данные
+     * @param input string
+     * @return JSON
      */
     static ParsedData parseInput(String input) {
         // Ожидаемый формат: {"array":[1000003,1000003,...,6],"start":0}
@@ -114,7 +114,7 @@ public class PrimeClient {
     }
 
     /**
-     * Класс для хранения распарсенных данных.
+     * Data.
      */
     static class ParsedData {
         List<Integer> array;

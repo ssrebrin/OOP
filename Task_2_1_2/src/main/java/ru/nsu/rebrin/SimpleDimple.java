@@ -85,6 +85,13 @@ public class SimpleDimple {
         }
     }
 
+    /**
+     * Returning arr for work.
+     *
+     * @param sd - SimpleDimple
+     * @return - Arr
+     * @throws IOException - exception
+     */
     public Arr giveArr(SimpleDimple sd) throws IOException {
         boolean flag = false;
         synchronized (Arr.class) {
@@ -121,18 +128,6 @@ public class SimpleDimple {
         return array;
     }
 
-    public void printProcent(LinkedList<Arr> arr) {
-        float n = 0;
-        float nn = 0;
-        // Блокируется до возникновения нового соединения:
-        for (Arr arrr : arr) {
-            if (arrr.done.get()) {
-                n++;
-            }
-            nn++;
-        }
-    }
-
     /**
      * Thread class.
      */
@@ -143,6 +138,14 @@ public class SimpleDimple {
         private Arr arr;
         private SimpleDimple simpleDimple; // Reference to outer class
 
+        /**
+         * Init.
+         *
+         * @param ssocket - socket
+         * @param aarr - Arr
+         * @param sd - Simple Dimple
+         * @throws IOException - exc
+         */
         public ServerSomthing(Socket ssocket, Arr aarr, SimpleDimple sd) throws IOException {
             socket = ssocket;
             arr = aarr;
@@ -154,6 +157,9 @@ public class SimpleDimple {
             start();
         }
 
+        /**
+         * Set flag.
+         */
         public void setFlag() {
             simpleDimple.flag.set(true);
         }
@@ -214,6 +220,11 @@ public class SimpleDimple {
             }
         }
 
+        /**
+         * Send.
+         *
+         * @param msg - message
+         */
         private void send(String msg) {
             try {
                 out.write(msg + "\n");

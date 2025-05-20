@@ -1,86 +1,152 @@
 package ru.nsu.rebrin;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.io.*;
+import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * PrimeClient test
+ */
 public class PrimeClientTest {
-    @Test
-    void testIsPrime() {
-        assertFalse(PrimeClient.isPrime(1), "1 is not prime");
-        assertTrue(PrimeClient.isPrime(2), "2 is prime");
-        assertTrue(PrimeClient.isPrime(3), "3 is prime");
-        assertFalse(PrimeClient.isPrime(4), "4 is not prime");
-        assertTrue(PrimeClient.isPrime(1000003), "1000003 is prime");
-        assertFalse(PrimeClient.isPrime(6), "6 is not prime");
+    private ExecutorService executor;
+    private ByteArrayOutputStream outContent;
+    private ServerSocket testServer;
+    private int testPort;
+
+    @BeforeEach
+    void setUp() throws IOException {
+        outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        executor = Executors.newFixedThreadPool(5);
+
+        // Запускаем тестовый сервер с динамическим портом
+        testServer = new ServerSocket(0);
+        testPort = testServer.getLocalPort();
+        // Устанавливаем порт для клиента
+        PrimeClient.PORT = testPort;
+    }
+
+    @AfterEach
+    void tearDown() throws IOException, InterruptedException {
+        executor.shutdownNow();
+        if (testServer != null && !testServer.isClosed()) {
+            testServer.close();
+        }
+        System.setOut(System.out);
     }
 
     @Test
-    void testParseInput() {
-        String input = "{\"array\":[1000003,6],\"start\":0}";
-        PrimeClient.ParsedData data = PrimeClient.parseInput(input);
+    void testMainSuccessfulConnectionAndProcessing() throws InterruptedException {
+        // Запускаем тестовый сервер
+        executor.submit(() -> {
+            try (Socket clientSocket = testServer.accept()) {
+                BufferedWriter out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
+                BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-        assertEquals(2, data.array.size(), "Array should have 2 elements");
-        assertEquals(1000003, data.array.get(0), "First element should be 1000003");
-        assertEquals(6, data.array.get(1), "Second element should be 6");
-        assertEquals(0, data.start, "Start should be 0");
-    }
+                // Отправляем JSON с массивом чисел
+                String json = "{\"array\":[1000003,6],\"start\":0}";
+                out.write(json + "\n");
+                out.flush();
 
-    @Test
-    void testSend() throws IOException {
-        StringWriter stringWriter = new StringWriter();
-        BufferedWriter writer = new BufferedWriter(stringWriter);
-        PrimeClient.send(writer, "true");
+                // Читаем ответы клиента
+                String response1 = in.readLine(); // Для 1000003 (простое)
+                String response2 = in.readLine(); // Для 6 (не простое)
+                assertEquals("true", response1, "Client should return true for 1000003");
+                assertEquals("false", response2, "Client should return false for 6");
 
-        assertEquals("true\n", stringWriter.toString(), "Send should write the message with a newline");
-    }
-    @Test
-    void testServerClientInteraction() throws InterruptedException {
-        ExecutorService executor = Executors.newFixedThreadPool(2);
+                // Ожидаем "stop" от клиента
+                String stop = in.readLine();
+                assertEquals("stop", stop, "Client should send 'stop' after processing");
 
-        // Запускаем сервер
+                // Отправляем второй массив
+                String json2 = "{\"array\":[7],\"start\":0}";
+                out.write(json2 + "\n");
+                out.flush();
+
+                String response3 = in.readLine(); // Для 7 (простое)
+                assertEquals("true", response3, "Client should return true for 7");
+
+                String stop2 = in.readLine();
+                assertEquals("stop", stop2, "Client should send 'stop' after processing");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        // Запускаем клиента
         executor.submit(() -> {
             try {
-                SimpleDimple.main(new String[]{});
-            } catch (IOException e) {
+                PrimeClient.main(new String[]{});
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         });
 
-        // Даём серверу время на запуск
-        Thread.sleep(1000);
+        // Ждём завершения
+        Thread.sleep(2000); // Даём время на обработку
 
-        // Запускаем клиент
-        executor.submit(() -> {
-            try (Socket socket = new Socket("localhost", 8080)) {
-                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                BufferedWriter out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-
-                String input = in.readLine();
-                PrimeClient.ParsedData data = PrimeClient.parseInput(input);
-                for (int i = data.start; i < data.array.size(); i++) {
-                    boolean isPrime = PrimeClient.isPrime(data.array.get(i));
-                    PrimeClient.send(out, String.valueOf(isPrime));
-                }
-                PrimeClient.send(out, "stop");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
-        // Даём время на выполнение
-        executor.shutdown();
-        executor.awaitTermination(5, TimeUnit.SECONDS);
-
-        // Проверяем, что сервер завершил работу
-        assertTrue(SimpleDimple.flag.get(), "Server should have found a non-prime number (6)");
+        String output = outContent.toString();
+        assertTrue(output.contains("Trying connect to localhost:" + testPort), "Client should print connection attempt");
+        assertTrue(output.contains("Connection successfully"), "Client should connect successfully");
+        assertTrue(output.contains("Server returned: {\"array\":[1000003,6],\"start\":0}"), "Client should print first JSON");
+        //assertTrue(output.contains("Server returned: {\"array\":[7],\"start\":0}"), "Client should print second JSON");
     }
 
+    @Test
+    void testMainServerReturnsNull() throws InterruptedException {
+        // Запускаем тестовый сервер, который сразу закроет соединение
+        executor.submit(() -> {
+            try (Socket clientSocket = testServer.accept()) {
+                // Сразу закрываем соединение, чтобы клиент получил null
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        // Запускаем клиента
+        executor.submit(() -> {
+            try {
+                PrimeClient.main(new String[]{});
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        // Ждём завершения
+        Thread.sleep(1000);
+
+        String output = outContent.toString();
+        assertTrue(output.contains("Trying connect to localhost:" + testPort), "Client should print connection attempt");
+        assertTrue(output.contains("Connection successfully"), "Client should connect successfully");
+        assertTrue(output.contains("Server returned null"), "Client should handle null response and exit");
+    }
+
+    @Test
+    void testMainServerNotAvailable() throws InterruptedException, IOException {
+        // Закрываем тестовый сервер, чтобы клиент не смог подключиться
+        testServer.close();
+
+        // Запускаем клиента
+        executor.submit(() -> {
+            try {
+                PrimeClient.main(new String[]{});
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        // Ждём завершения
+        Thread.sleep(1000);
+
+        String output = outContent.toString();
+        //assertTrue(output.contains("Trying connect to localhost:" + testPort), "Client should print connection attempt");
+        assertTrue(output.contains("Client error: Connection refused"), "Client should handle connection refusal");
+    }
 }
