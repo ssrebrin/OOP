@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.rebrin","l":"Arr"},{"p":"ru.nsu.rebrin","l":"PrimeClient"},{"p":"ru.nsu.rebrin","l":"SimpleDimple"}];updateSearchResults();
