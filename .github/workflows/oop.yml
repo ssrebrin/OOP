@@ -21,6 +21,15 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
 
+      - name: Debug check if javadoc exists
+        run: |
+          echo "Checking contents of current dir:"
+          pwd
+          ls -la
+          echo "Checking javadoc dir:"
+          ls -la ${{ github.event.pull_request.title }}/build/docs/javadoc || echo "No javadoc dir"
+
+
       - name: Make gradlew executable
         run: chmod +x ./gradlew
     
