@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a094270f-1775-4473-9118-7e0671051e87" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Task_1_1_2/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task_1_1_2/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task_1_1_2/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task_1_1_2/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task_1_1_2/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task_1_1_2/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task_1_1_2/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task_1_1_2/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Task_1_1_2/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/rebrin/Add.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/rebrin/Add.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/rebrin/Div.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/rebrin/Div.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/rebrin/Expr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/rebrin/Expr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/rebrin/Expression.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/rebrin/Expression.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/rebrin/Mul.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/rebrin/Mul.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/rebrin/Number.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/rebrin/Number.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/rebrin/Sub.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/rebrin/Sub.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/rebrin/Variable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/rebrin/Variable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ru/nsu/rebrin/ExpressionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ru/nsu/rebrin/ExpressionTest.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2mmn3vw1gQyb66dHB6rnaYE9sKu" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.AddTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;Gradle.DivTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;Gradle.ExprTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;Gradle.ExprTest.testVariableExpression.executor&quot;: &quot;Debug&quot;,
+    &quot;Gradle.ExpressionTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;Gradle.ExpressionTest.testParseAssignments_EmptyInput.executor&quot;: &quot;Debug&quot;,
+    &quot;Gradle.ExpressionTest.testParseAssignments_InvalidFormat.executor&quot;: &quot;Debug&quot;,
+    &quot;Gradle.ExpressionTest.testParseAssignments_MultipleSpaces.executor&quot;: &quot;Debug&quot;,
+    &quot;Gradle.MulTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;Gradle.MulTest.test1.executor&quot;: &quot;Coverage&quot;,
+    &quot;Gradle.NumberTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;Gradle.SubTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;Gradle.Task_1_1_3 [:ru.nsu.rebrin.Expr.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.VariableTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Task__1__2__1&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Asus/Desktop/OOPworkspace/OOP/Task_1_1_3&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.language&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="ru.nsu.rebrin" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.ExprTest.testVariableExpression">
+    <configuration name="ExprTest.testVariableExpression" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;ru.nsu.rebrin.ExprTest.testVariableExpression&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="MulTest.test1" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;ru.nsu.rebrin.MulTest.test1&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.ExprTest.testVariableExpression" />
+        <item itemvalue="Gradle.MulTest.test1" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a094270f-1775-4473-9118-7e0671051e87" name="Changes" comment="" />
+      <created>1727690425423</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1727690425423</updated>
+      <workItem from="1727690426300" duration="772000" />
+      <workItem from="1727691329174" duration="9011000" />
+      <workItem from="1727702149560" duration="3673000" />
+      <workItem from="1727748380296" duration="4853000" />
+      <workItem from="1727789434092" duration="1089000" />
+      <workItem from="1727834809972" duration="5103000" />
+      <workItem from="1727858032996" duration="13066000" />
+      <workItem from="1727921332019" duration="4954000" />
+      <workItem from="1727933948604" duration="2030000" />
+      <workItem from="1727960484733" duration="2284000" />
+      <workItem from="1727963647067" duration="2415000" />
+      <workItem from="1728020546107" duration="6817000" />
+      <workItem from="1728357123367" duration="168000" />
+      <workItem from="1728385592390" duration="2723000" />
+      <workItem from="1728395475990" duration="6000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ru/nsu/rebrin/ExpressionTest.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/ru/nsu/rebrin/ExpressionTest.java</url>
+          <line>100</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/nsu/rebrin/Expr.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/ru/nsu/rebrin/Div.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Task_1_1_3$AddTest.ic" NAME="AddTest Coverage Results" MODIFIED="1727961284000" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/Task_1_1_3$VariableTest.ic" NAME="VariableTest Coverage Results" MODIFIED="1727964697534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/Task_1_1_3$SubTest.ic" NAME="SubTest Coverage Results" MODIFIED="1728022465487" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/Task_1_1_3$ExprTest_testVariableExpression.ic" NAME="ExprTest.testVariableExpression Coverage Results" MODIFIED="1728021726649" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/Task_1_1_3$MulTest_test1.ic" NAME="MulTest.test1 Coverage Results" MODIFIED="1727963488982" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/Task_1_1_3$MulTest.ic" NAME="MulTest Coverage Results" MODIFIED="1727963528878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/Task_1_1_3$ExprTest.ic" NAME="ExprTest Coverage Results" MODIFIED="1728022017964" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/Task_1_1_3$DivTest.ic" NAME="DivTest Coverage Results" MODIFIED="1727963995720" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/Task_1_1_3$ExpressionTest.ic" NAME="ExpressionTest Coverage Results" MODIFIED="1727964034584" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/Task_1_1_3$NumberTest.ic" NAME="NumberTest Coverage Results" MODIFIED="1727964889353" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+  </component>
+</project>
