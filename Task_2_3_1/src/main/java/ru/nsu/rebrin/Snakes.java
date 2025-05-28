@@ -21,8 +21,26 @@ public class Snakes {
         snakes = new LinkedList<>();
     }
 
+    public void addSnakes(Snake snake) {
+        snakes.add(snake);
+    }
+
+    /**
+     * Set snakes.
+     *
+     * @param snakes - s
+     */
     protected void setSnakes(List<Snake> snakes) {
         this.snakes = snakes;
+    }
+
+    /**
+     * Get size of snakes.
+     *
+     * @return - size
+     */
+    public int getSize() {
+        return snakes.size();
     }
 
     /**

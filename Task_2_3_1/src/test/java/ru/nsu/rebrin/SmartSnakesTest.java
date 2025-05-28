@@ -11,10 +11,13 @@ class SmartSnakesTest {
     @Test
     void testSmartSnakesInitialization() {
         Point start = new Point(2, 2);
-        SmartSnakes smartSnakes = new SmartSnakes(List.of(start));
-
-        assertEquals(1, smartSnakes.snakes.size());
-        assertTrue(smartSnakes.snakes.get(0) instanceof SmartSnake);
-        assertEquals(start, smartSnakes.snakes.get(0).points.getFirst());
+        SmartSnakes smartSnakes = new SmartSnakes(List.of(start), 1);
+        int i = 0;
+        for (Snake a : smartSnakes.getSnake()){
+            i++;
+        }
+        assertEquals(1, i);
+        assertTrue(smartSnakes.getSnake().iterator().next() instanceof SmartSnake);
+        assertEquals(start, smartSnakes.getSnake().iterator().next().points.getFirst());
     }
 }

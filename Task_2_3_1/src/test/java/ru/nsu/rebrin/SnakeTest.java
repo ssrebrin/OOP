@@ -14,21 +14,21 @@ class SnakeTest {
     @Test
     void testSnakeInitialPosition() {
         Point start = new Point(3, 3);
-        Snake snake = new Snake(start);
+        Snake snake = new Snake(start, 1);
         assertEquals(start, snake.points.getFirst());
         assertTrue(snake.alive);
     }
 
     @Test
     void testMoveRightWithoutApples() {
-        Snake snake = new Snake(new Point(2, 2));
+        Snake snake = new Snake(new Point(2, 2), 1);
         snake.move(10, 10, List.of(), List.of());
         assertEquals(new Point(3, 2), snake.points.getFirst());
     }
 
     @Test
     void testChangeDirectionTowardApple() {
-        Snake snake = new Snake(new Point(2, 2));
+        Snake snake = new Snake(new Point(2, 2), 1);
         List<Point> apples = List.of(new Point(2, 1)); // выше головы
 
         snake.move(10, 10, apples, List.of());
@@ -39,14 +39,14 @@ class SnakeTest {
 
     @Test
     void testNearReturnsClosestApple() {
-        Snake snake = new Snake(new Point(0, 0));
+        Snake snake = new Snake(new Point(0, 0), 1);
         Point nearest = snake.near(new Point(0, 0), List.of(new Point(5, 5), new Point(1, 0)));
         assertEquals(new Point(1, 0), nearest);
     }
 
     @Test
     void testDieAndRevive() throws InterruptedException {
-        Snake snake = new Snake(new Point(2, 2));
+        Snake snake = new Snake(new Point(2, 2), 1);
         snake.die();
         assertFalse(snake.alive);
         assertEquals(0, snake.points.size());
@@ -60,7 +60,7 @@ class SnakeTest {
 
     @Test
     void testCannotReviveBeforeCooldown() throws InterruptedException {
-        Snake snake = new Snake(new Point(2, 2));
+        Snake snake = new Snake(new Point(2, 2), 1);
         snake.die();
         assertFalse(snake.alive);
 
@@ -72,7 +72,7 @@ class SnakeTest {
 
     @Test
     void testEatAppleSuccessful() {
-        Snake snake = new Snake(new Point(2, 2));
+        Snake snake = new Snake(new Point(2, 2), 1);
         snake.prevTail = new Point(1, 2); // нужно для роста
         List<Point> apples = new LinkedList<>(List.of(new Point(2, 2)));
 
@@ -85,7 +85,7 @@ class SnakeTest {
 
     @Test
     void testEatAppleFails() {
-        Snake snake = new Snake(new Point(2, 2));
+        Snake snake = new Snake(new Point(2, 2), 1);
         List<Point> apples = new LinkedList<>(List.of(new Point(3, 3)));
 
         boolean result = snake.eatApple(apples);
@@ -97,7 +97,7 @@ class SnakeTest {
 
     @Test
     void testChangeDirBasicCases() {
-        Snake snake = new Snake(new Point(2, 2));
+        Snake snake = new Snake(new Point(2, 2), 1);
         snake.direction = SnakeModel.Direction.RIGHT;
         snake.changeDir(new Point(2, 2), new Point(2, 0)); // вверх
         assertEquals(SnakeModel.Direction.UP, snake.direction);
@@ -105,7 +105,7 @@ class SnakeTest {
 
     @Test
     void testChangeDirPrefersVerticalWhenEqualDistance() {
-        Snake snake = new Snake(new Point(2, 2));
+        Snake snake = new Snake(new Point(2, 2), 1);
         snake.direction = SnakeModel.Direction.RIGHT;
 
         Point head = new Point(2, 2);
@@ -117,7 +117,7 @@ class SnakeTest {
 
     @Test
     void testChangeDirAvoidsReverse() {
-        Snake snake = new Snake(new Point(2, 2));
+        Snake snake = new Snake(new Point(2, 2), 1);
         snake.direction = SnakeModel.Direction.UP;
 
         Point head = new Point(2, 2);
@@ -129,7 +129,7 @@ class SnakeTest {
 
     @Test
     void testChangeDirAvoidsReverseDown() {
-        Snake snake = new Snake(new Point(2, 2));
+        Snake snake = new Snake(new Point(2, 2), 1);
         snake.direction = SnakeModel.Direction.DOWN;
 
         Point head = new Point(2, 2);
@@ -141,7 +141,7 @@ class SnakeTest {
 
     @Test
     void testChangeDirAvoidsReverseLeftToRight() {
-        Snake snake = new Snake(new Point(5, 5));
+        Snake snake = new Snake(new Point(5, 5), 1);
         snake.direction = SnakeModel.Direction.LEFT;
 
         Point target = new Point(6, 5);
@@ -153,7 +153,7 @@ class SnakeTest {
 
     @Test
     void testChangeDirAvoidsReverseRightToLeft() {
-        Snake snake = new Snake(new Point(5, 5));
+        Snake snake = new Snake(new Point(5, 5), 1);
         snake.direction = SnakeModel.Direction.RIGHT;
 
         Point target = new Point(4, 5);
@@ -165,7 +165,7 @@ class SnakeTest {
 
     @Test
     void testNearChoosesFirstIfDistancesEqual() {
-        Snake snake = new Snake(new Point(0, 0));
+        Snake snake = new Snake(new Point(0, 0), 1);
         Point apple1 = new Point(1, 0);
         Point apple2 = new Point(0, 1);
 
@@ -176,7 +176,7 @@ class SnakeTest {
 
     @Test
     void testMoveDoesNotGrowIfNoAppleEaten() {
-        Snake snake = new Snake(new Point(4, 4));
+        Snake snake = new Snake(new Point(4, 4), 1);
         snake.move(10, 10, List.of(), List.of());
 
         // Длина не изменилась
@@ -185,7 +185,7 @@ class SnakeTest {
 
     @Test
     void testMoveUpdatesPrevTailCorrectly() {
-        Snake snake = new Snake(new Point(4, 4));
+        Snake snake = new Snake(new Point(4, 4), 1);
         snake.move(10, 10, List.of(), List.of());
 
         assertEquals(new Point(4, 4), snake.prevTail);
@@ -193,7 +193,7 @@ class SnakeTest {
 
     @Test
     void testEatMultipleApplesOneEaten() {
-        Snake snake = new Snake(new Point(5, 5));
+        Snake snake = new Snake(new Point(5, 5), 1);
         snake.prevTail = new Point(4, 5);
         List<Point> apples = new LinkedList<>(List.of(new Point(3, 3),
             new Point(5, 5), new Point(6, 6)));
@@ -206,7 +206,7 @@ class SnakeTest {
 
     @Test
     void testReviveDoesNotClearDeathTimeIfTooSoon() throws InterruptedException {
-        Snake snake = new Snake(new Point(5, 5));
+        Snake snake = new Snake(new Point(5, 5), 1);
         snake.die();
 
         long beforeRevive = snake.deathTime;
@@ -217,7 +217,7 @@ class SnakeTest {
 
     @Test
     void testDirectionUnchangedIfAppleNullOrEmpty() {
-        Snake snake = new Snake(new Point(2, 2));
+        Snake snake = new Snake(new Point(2, 2), 1);
         snake.direction = SnakeModel.Direction.UP;
 
         snake.move(10, 10, null, List.of());
@@ -229,7 +229,7 @@ class SnakeTest {
 
     @Test
     void verticalUpAllowed() {
-        Snake snake = new Snake(new Point(5, 5));
+        Snake snake = new Snake(new Point(5, 5), 1);
         snake.direction = SnakeModel.Direction.RIGHT;
         snake.changeDir(new Point(5, 5), new Point(5, 4));
         assertEquals(SnakeModel.Direction.UP, snake.direction);
@@ -237,7 +237,7 @@ class SnakeTest {
 
     @Test
     void verticalUpBlockedGoesLeft() {
-        Snake snake = new Snake(new Point(5, 5));
+        Snake snake = new Snake(new Point(5, 5), 1);
         snake.direction = SnakeModel.Direction.DOWN;
         snake.changeDir(new Point(5, 5), new Point(5, 4));
         assertEquals(SnakeModel.Direction.LEFT, snake.direction);
@@ -245,7 +245,7 @@ class SnakeTest {
 
     @Test
     void verticalDownAllowed() {
-        Snake snake = new Snake(new Point(5, 5));
+        Snake snake = new Snake(new Point(5, 5), 1);
         snake.direction = SnakeModel.Direction.RIGHT;
         snake.changeDir(new Point(5, 4), new Point(5, 5));
         assertEquals(SnakeModel.Direction.DOWN, snake.direction);
@@ -253,7 +253,7 @@ class SnakeTest {
 
     @Test
     void verticalDownBlockedGoesLeft() {
-        Snake snake = new Snake(new Point(5, 4));
+        Snake snake = new Snake(new Point(5, 4), 1);
         snake.direction = SnakeModel.Direction.UP;
         snake.changeDir(new Point(5, 4), new Point(5, 5));
         assertEquals(SnakeModel.Direction.LEFT, snake.direction);
@@ -261,7 +261,7 @@ class SnakeTest {
 
     @Test
     void horizontalLeftAllowed() {
-        Snake snake = new Snake(new Point(5, 5));
+        Snake snake = new Snake(new Point(5, 5), 1);
         snake.direction = SnakeModel.Direction.UP;
         snake.changeDir(new Point(5, 5), new Point(4, 5));
         assertEquals(SnakeModel.Direction.LEFT, snake.direction);
@@ -269,7 +269,7 @@ class SnakeTest {
 
     @Test
     void horizontalLeftBlockedGoesDown() {
-        Snake snake = new Snake(new Point(5, 5));
+        Snake snake = new Snake(new Point(5, 5), 1);
         snake.direction = SnakeModel.Direction.RIGHT;
         snake.changeDir(new Point(5, 5), new Point(4, 5));
         assertEquals(SnakeModel.Direction.DOWN, snake.direction);
@@ -277,7 +277,7 @@ class SnakeTest {
 
     @Test
     void horizontalRightAllowed() {
-        Snake snake = new Snake(new Point(4, 5));
+        Snake snake = new Snake(new Point(4, 5), 1);
         snake.direction = SnakeModel.Direction.UP;
         snake.changeDir(new Point(4, 5), new Point(5, 5));
         assertEquals(SnakeModel.Direction.RIGHT, snake.direction);
@@ -285,7 +285,7 @@ class SnakeTest {
 
     @Test
     void horizontalRightBlockedGoesDown() {
-        Snake snake = new Snake(new Point(4, 5));
+        Snake snake = new Snake(new Point(4, 5), 1);
         snake.direction = SnakeModel.Direction.LEFT;
         snake.changeDir(new Point(4, 5), new Point(5, 5));
         assertEquals(SnakeModel.Direction.DOWN, snake.direction);
@@ -293,7 +293,7 @@ class SnakeTest {
 
     @Test
     void diagonalLeftPreference() {
-        Snake snake = new Snake(new Point(5, 5));
+        Snake snake = new Snake(new Point(5, 5), 1);
         snake.direction = SnakeModel.Direction.RIGHT;
         snake.changeDir(new Point(5, 5), new Point(4, 4));
         assertEquals(SnakeModel.Direction.UP, snake.direction);
@@ -301,7 +301,7 @@ class SnakeTest {
 
     @Test
     void diagonalRightPreference() {
-        Snake snake = new Snake(new Point(4, 4));
+        Snake snake = new Snake(new Point(4, 4), 1);
         snake.direction = SnakeModel.Direction.LEFT;
         snake.changeDir(new Point(4, 4), new Point(5, 5));
         assertEquals(SnakeModel.Direction.DOWN, snake.direction);
@@ -309,7 +309,7 @@ class SnakeTest {
 
     @Test
     void diagonalUpPreference() {
-        Snake snake = new Snake(new Point(4, 4));
+        Snake snake = new Snake(new Point(4, 4), 1);
         snake.direction = SnakeModel.Direction.DOWN;
         snake.changeDir(new Point(4, 4), new Point(5, 3));
         assertEquals(SnakeModel.Direction.RIGHT, snake.direction);
@@ -317,7 +317,7 @@ class SnakeTest {
 
     @Test
     void diagonalDownPreference() {
-        Snake snake = new Snake(new Point(5, 3));
+        Snake snake = new Snake(new Point(5, 3), 1);
         snake.direction = SnakeModel.Direction.UP;
         snake.changeDir(new Point(5, 3), new Point(4, 4));
         assertEquals(SnakeModel.Direction.LEFT, snake.direction);

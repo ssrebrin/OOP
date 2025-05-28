@@ -18,22 +18,22 @@ class SnakesTest {
 
     @BeforeEach
     void setup() {
-        snakes = new Snakes(List.of(p1, p2));
+        snakes = new Snakes(List.of(p1, p2), 1);
     }
 
     @Test
     void testInitialization() {
-        assertEquals(2, snakes.snakes.size());
-        assertEquals(p1, snakes.snakes.get(0).points.getFirst());
+        assertEquals(2, snakes.getSize());
+        assertEquals(p1, snakes.getSnake().iterator().next().points.getFirst());
     }
 
     @Test
     void testSelfCollisionKillsSnake() {
-        Snake s = new Snake(new Point(0, 0));
+        Snake s = new Snake(new Point(0, 0), 1);
         s.points.add(new Point(0, 1));
         s.points.add(new Point(0, 0)); // head collides with body
         snakes = new Snakes();
-        snakes.snakes.add(s);
+        snakes.addSnakes(s);
 
         snakes.checkSelf();
 
@@ -42,11 +42,12 @@ class SnakesTest {
 
     @Test
     void testCollisionWithOtherSnakeHead() {
-        Snake s1 = new Snake(new Point(5, 5));
-        Snake s2 = new Snake(new Point(5, 5)); // same head
+        Snake s1 = new Snake(new Point(5, 5), 1);
+        Snake s2 = new Snake(new Point(5, 5), 2); // same head
 
         snakes = new Snakes();
-        snakes.snakes.addAll(List.of(s1, s2));
+        snakes.addSnakes(s1);
+        snakes.addSnakes(s2);
 
         snakes.checkSelves();
 
@@ -56,14 +57,15 @@ class SnakesTest {
 
     @Test
     void testCollisionWithOtherSnakeBody() {
-        Snake s1 = new Snake(new Point(5, 5));
+        Snake s1 = new Snake(new Point(5, 5), 1);
         s1.points.add(new Point(4, 5));
         s1.points.add(new Point(3, 5));
 
-        Snake s2 = new Snake(new Point(4, 5)); // head hits body of s1
+        Snake s2 = new Snake(new Point(4, 5), 2); // head hits body of s1
 
         snakes = new Snakes();
-        snakes.snakes.addAll(List.of(s1, s2));
+        snakes.addSnakes(s1);
+        snakes.addSnakes(s2);
 
         snakes.checkSelves();
 
@@ -73,16 +75,16 @@ class SnakesTest {
 
     @Test
     void testCheckOthersKillsCollidingSnakes() {
-        Snake s1 = new Snake(new Point(7, 7));
+        Snake s1 = new Snake(new Point(7, 7), 1);
         s1.points.add(new Point(6, 7));
 
-        Snake s2 = new Snake(new Point(6, 7));
+        Snake s2 = new Snake(new Point(6, 7), 2);
 
         Snakes others = new Snakes();
-        others.snakes.add(s2);
+        others.addSnakes(s2);
 
         snakes = new Snakes();
-        snakes.snakes.add(s1);
+        snakes.addSnakes(s1);
 
         others.checkOthers(snakes);
 
@@ -92,9 +94,9 @@ class SnakesTest {
 
     @Test
     void testCheckListKillsSnake() {
-        Snake s = new Snake(new Point(1, 2));
+        Snake s = new Snake(new Point(1, 2), 1);
         snakes = new Snakes();
-        snakes.snakes.add(s);
+        snakes.addSnakes(s);
 
         List<Point> enemyBody = List.of(new Point(9, 9), new Point(1, 2)); // matches head
 
@@ -105,18 +107,18 @@ class SnakesTest {
 
     @Test
     void testCollisOnHead() {
-        Point hit = snakes.snakes.get(0).points.getFirst();
+        Point hit = snakes.getSnake().iterator().next().points.getFirst();
         boolean result = snakes.collis(hit);
         assertTrue(result);
-        assertFalse(snakes.snakes.get(0).alive);
+        assertFalse(snakes.getSnake().iterator().next().alive);
     }
 
     @Test
     void testCollisOnBodyOnly() {
-        Snake s = new Snake(new Point(5, 5));
+        Snake s = new Snake(new Point(5, 5), 1);
         s.points.add(new Point(5, 6));
         s.points.add(new Point(5, 7));
-        snakes.snakes.add(s);
+        snakes.addSnakes(s);
 
         boolean result = snakes.collis(new Point(5, 7));
         assertTrue(result);
@@ -125,11 +127,11 @@ class SnakesTest {
 
     @Test
     void testCheckAppleEaten() {
-        Snake s = new Snake(new Point(4, 4));
+        Snake s = new Snake(new Point(4, 4), 1);
         s.prevTail = new Point(3, 4); // needed to grow
 
         snakes = new Snakes();
-        snakes.snakes.add(s);
+        snakes.addSnakes(s);
 
         List<Point> apples = new LinkedList<>(List.of(new Point(4, 4), new Point(1, 1)));
 
