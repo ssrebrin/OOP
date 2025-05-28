@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./${{ github.head_ref }}
+        working-directory: ./${{ pwd }}
     steps:
       - uses: actions/checkout@v3
       
@@ -24,20 +24,11 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
     
-      - name: Debug check if javadoc exists
-        run: |
-          echo "Checking contents of current dir:"
-          pwd
-          ls -la
-          echo "Checking javadoc dir:"
-          ls -la ${{ github.event.pull_request.title }}/build/docs/javadoc || echo "No javadoc dir"
-
       - name: Execute Gradle build
         run: ./gradlew build
 
       - name: Generate Jacoco report
-        run: ./gradlew jacocoTestReport    
-
+        run: ./gradlew jacocoTestReport
 
       - name: Check coverage and publish
         id: jacoco
