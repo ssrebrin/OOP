@@ -30,6 +30,9 @@ jobs:
       - name: Generate Jacoco report
         run: ./gradlew jacocoTestReport
 
+      - name: Debug PR title
+        run: echo "PR title: ${{ github.event.pull_request.title }}"
+
       - name: Check coverage and publish
         id: jacoco
         uses: madrapps/jacoco-report@v1.2
