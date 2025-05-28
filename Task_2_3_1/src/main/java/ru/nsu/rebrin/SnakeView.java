@@ -11,6 +11,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
+import javax.swing.*;
+
 /**
  * Handles rendering of snakes, apples, and game states on a canvas.
  */
@@ -49,14 +51,11 @@ public class SnakeView {
     public void render(SnakeModel model) {
         clear();
         drawApple(model.getApple());
-        if (model.getSmartSnake() != null) {
-            for (Snake s : model.getSmartSnake()) {
-                drawSnake(s.points, Color.CYAN);
-            }
-        }
-        if (model.getStupidSnake() != null) {
-            for (Snake s : model.getStupidSnake()) {
-                drawSnake(s.points, Color.BLUE);
+        for (Snakes snakee : model.CustomsSnakes) {
+            if (snakee != null) {
+                for (Snake s : snakee.getSnake()) {
+                    drawSnake(s.points, snakee.color);
+                }
             }
         }
         drawSnake(model.getSnake(), Color.GREEN);

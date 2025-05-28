@@ -27,8 +27,7 @@ public class SnakeModel {
     private Direction direction = Direction.RIGHT;
     private Direction curDirection;
     private LinkedList<Point> snake;
-    private Snakes stupidSnakes = null;
-    private Snakes smartedSnakes = null;
+    LinkedList<Snakes> CustomsSnakes = new LinkedList<>();
     private boolean running = true;
     private boolean paused = true;
     private boolean win = false;
@@ -50,8 +49,8 @@ public class SnakeModel {
             spawnApple();
         }
 
-        stupidSnakes = new Snakes(getFreeRandomPoints(stupid));
-        smartedSnakes = new SmartSnakes(getFreeRandomPoints(smart));
+        CustomsSnakes.add(new Snakes(getFreeRandomPoints(stupid), 1));
+        CustomsSnakes.add(new SmartSnakes(getFreeRandomPoints(smart), 2));
     }
 
     /**
@@ -63,15 +62,9 @@ public class SnakeModel {
     public List<Point> getFreeRandomPoints(int count) {
         List<Point> occupied = new LinkedList<>(snake);
         occupied.addAll(apple);
-        if (stupidSnakes != null) {
-            for (Snake s : stupidSnakes.snakes) {
-                occupied.addAll(s.points);
-            }
-        }
-        if (smartedSnakes != null) {
-            for (Snake s : smartedSnakes.snakes) {
-                occupied.addAll(s.points);
-            }
+        for (Snakes snakee : CustomsSnakes) {
+
+            occupied.addAll(snakee.getPoints());
         }
 
         List<Point> freePoints = new LinkedList<>();
@@ -86,6 +79,7 @@ public class SnakeModel {
 
         return freePoints;
     }
+
 
     /**
      * Updates the game state, moves the snakes, handles collisions and apple consumption.
@@ -124,53 +118,53 @@ public class SnakeModel {
             }
         }
 
-        if (stupidSnakes.collis(newHead) || smartedSnakes.collis(newHead)) {
-            running = false;
-        }
-
-        for (Snake snake : stupidSnakes.snakes) {
-            if (snake.alive) {
-                snake.move(height, width, apple, new ArrayList<>());
-                if (isCollision(snake.points.get(0))) {
-                    snake.die();
-                }
-            } else {
-                snake.revive(getFreeRandomPoints(1).get(0));
+        for (Snakes snakee : CustomsSnakes) {
+            if(snakee.collis(newHead)) {
+                running = false;
+                break;
             }
         }
 
-        for (Snake snake : smartedSnakes.snakes) {
-            if (snake.alive) {
-                snake.move(height, width, apple, checkInFive1(snake, stupidSnakes, smartedSnakes));
-                if (isCollision(snake.points.get(0))) {
-                    snake.die();
+        for (Snakes snakee : CustomsSnakes) {
+            for (Snake snake : snakee.getSnake()) {
+                if (snake.alive) {
+                    snake.move(height, width, apple, checkInFive1(snake));
+                    if (!snake.points.isEmpty() && isCollision(snake.points.get(0))) {
+                        snake.die();
+                    }
+                } else {
+                    snake.revive(getFreeRandomPoints(1).get(0));
                 }
-            } else {
-                snake.revive(getFreeRandomPoints(1).get(0));
             }
         }
 
-        stupidSnakes.checkSelf();
-        smartedSnakes.checkSelf();
-
-        stupidSnakes.checkList(snake);
-        smartedSnakes.checkList(snake);
-
-        stupidSnakes.checkSelves();
-        smartedSnakes.checkSelves();
-
-        stupidSnakes.checkOthers(smartedSnakes);
-        smartedSnakes.checkOthers(stupidSnakes);
-
-        int cnt = stupidSnakes.checkApple(apple);
-        for (int i = 0; i < cnt; i++) {
-            spawnApple();
+        for (Snakes snakee : CustomsSnakes) {
+            snakee.checkSelf();
         }
 
-        cnt = smartedSnakes.checkApple(apple);
-        for (int i = 0; i < cnt; i++) {
-            spawnApple();
+        for (Snakes snakee : CustomsSnakes) {
+            snakee.checkList(snake);
         }
+
+        for (Snakes snakee : CustomsSnakes) {
+            snakee.checkSelves();
+        }
+
+        for (Snakes snakee : CustomsSnakes) {
+            for(Snakes s : CustomsSnakes) {
+                if (s.getId() != snakee.getId()) {
+                    snakee.checkOthers(s);
+                }
+            }
+        }
+
+        for (Snakes snakee : CustomsSnakes) {
+            int cnt = snakee.checkApple(apple);
+            for (int i = 0; i < cnt; i++) {
+                spawnApple();
+            }
+        }
+
 
         curDirection = direction;
     }
@@ -179,18 +173,15 @@ public class SnakeModel {
      * Returns a list of points that are dangerous to step on for a smart snake.
      *
      * @param snakee the smart snake
-     * @param s1     first group of snakes
-     * @param s2     second group of snakes
      * @return list of dangerous points
      */
-    private List<Point> checkInFive1(Snake snakee, Snakes s1, Snakes s2) {
+    private List<Point> checkInFive1(Snake snakee) {
         List<Point> danger = new LinkedList<>();
         Point head = snakee.points.getFirst();
         List<Point> d = getNexts(snakee);
 
         List<Snake> allSnakes = new ArrayList<>();
-        allSnakes.addAll(s1.snakes);
-        allSnakes.addAll(s2.snakes);
+
 
         for (Point point : snake) {
             if (d.contains(point)) {
@@ -198,22 +189,24 @@ public class SnakeModel {
             }
         }
 
-        for (Snake s : allSnakes) {
-            if (!s.alive || s.points.isEmpty()) {
-                continue;
-            }
+        for (Snakes i : CustomsSnakes) {
+            for (Snake s : i.getSnake()) {
+                if (!s.alive || s.points.isEmpty()) {
+                    continue;
+                }
 
-            if (s == snakee && s.points.size() >= 3) {
-                for (Point point : s.points.subList(3, s.points.size())) {
+                if (s.getId() == snakee.getId() && s.points.size() >= 3) {
+                    for (Point point : s.points.subList(3, s.points.size())) {
+                        if (d.contains(point)) {
+                            danger.add(point);
+                        }
+                    }
+                }
+
+                for (Point point : s.points) {
                     if (d.contains(point)) {
                         danger.add(point);
                     }
-                }
-            }
-
-            for (Point point : s.points) {
-                if (d.contains(point)) {
-                    danger.add(point);
                 }
             }
         }
@@ -322,23 +315,6 @@ public class SnakeModel {
         return snake;
     }
 
-    /**
-     * Sets the running state of the game.
-     *
-     * @return list of stupid snakes or null if not initialized
-     */
-    public List<Snake> getStupidSnake() {
-        return stupidSnakes == null ? null : stupidSnakes.snakes;
-    }
-
-    /**
-     * Sets the running state of the game.
-     *
-     * @return list of smart snakes or null if not initialized
-     */
-    public List<Snake> getSmartSnake() {
-        return smartedSnakes == null ? null : smartedSnakes.snakes;
-    }
 
     /**
      * Sets the running state of the game.

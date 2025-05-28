@@ -1,5 +1,6 @@
 package ru.nsu.rebrin;
 
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -13,8 +14,9 @@ public class SmartSnake extends Snake {
      *
      * @param start the starting point of the snake
      */
-    public SmartSnake(Point start) {
-        super(start);
+    public SmartSnake(Point start, int id) {
+        super(start, id);
+        this.id = id;
     }
 
     /**

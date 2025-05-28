@@ -1,5 +1,8 @@
 package ru.nsu.rebrin;
 
+import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -7,7 +10,9 @@ import java.util.List;
  * Manages a list of snakes and their interactions.
  */
 public class Snakes {
-    List<Snake> snakes;
+    private List<Snake> snakes;
+    int id;
+    Color color = Color.BLUE;
 
     /**
      * Constructs an empty snake list.
@@ -16,15 +21,21 @@ public class Snakes {
         snakes = new LinkedList<>();
     }
 
+    protected void setSnakes(List<Snake> snakes) {
+        this.snakes = snakes;
+    }
+
     /**
      * Constructs snakes from given starting points.
      *
      * @param starts list of starting points for each snake
      */
-    public Snakes(List<Point> starts) {
+    public Snakes(List<Point> starts, int id) {
         snakes = new LinkedList<>();
+        this.id = id;
+        int i = 0;
         for (Point p : starts) {
-            snakes.add(new Snake(p));
+            snakes.add(new Snake(p, i++));
         }
     }
 
@@ -172,5 +183,31 @@ public class Snakes {
         return cnt;
     }
 
+    /**
+     * Get id.
+     *
+     * @return - id
+     */
+    public int getId(){
+        return id;
+    }
 
+    /**
+     * Get snake.
+     *
+     * @return iterable
+     */
+    public Iterable<Snake> getSnake(){
+        return snakes;
+    }
+
+    public List<Point> getPoints(){
+        List<Point> a = new ArrayList<>();
+        for (Snake i : snakes) {
+            for (Point pp : i.points) {
+                a.add(new Point(pp.xxCoord, pp.yyCoord));
+            }
+        }
+        return a;
+    }
 }

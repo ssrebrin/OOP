@@ -11,7 +11,7 @@ class SmartSnakeTest {
 
     @Test
     void testMoveTowardsApple() {
-        SmartSnake snake = new SmartSnake(new Point(2, 2));
+        SmartSnake snake = new SmartSnake(new Point(2, 2), 1);
         snake.direction = SnakeModel.Direction.UP;
 
         List<Point> apples = List.of(new Point(2, 1));
@@ -22,7 +22,7 @@ class SmartSnakeTest {
 
     @Test
     void testAvoidDanger() {
-        SmartSnake snake = new SmartSnake(new Point(2, 2));
+        SmartSnake snake = new SmartSnake(new Point(2, 2), 1);
         snake.direction = SnakeModel.Direction.UP;
 
         List<Point> apples = List.of(new Point(2, 1));
@@ -35,7 +35,7 @@ class SmartSnakeTest {
 
     @Test
     void testNoAvailableMoveKeepsDirection() {
-        SmartSnake snake = new SmartSnake(new Point(0, 0));
+        SmartSnake snake = new SmartSnake(new Point(0, 0), 1);
         snake.direction = SnakeModel.Direction.UP;
 
         List<Point> danger = List.of(

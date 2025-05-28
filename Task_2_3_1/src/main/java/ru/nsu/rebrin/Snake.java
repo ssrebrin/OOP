@@ -1,5 +1,6 @@
 package ru.nsu.rebrin;
 
+import java.awt.*;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,15 +17,17 @@ public class Snake {
     LinkedList<Point> points;
     boolean alive = true;
     Point prevTail;
+    int id;
 
     /**
      * Constructs a snake with initial head position.
      *
      * @param p Starting point for the snake's head
      */
-    public Snake(Point p) {
+    public Snake(Point p, int id) {
         points = new LinkedList<>();
         points.add(p);
+        this.id = id;
     }
 
 
@@ -189,11 +192,19 @@ public class Snake {
             Point point = iterator.next();
             if (head.equals(point)) {
                 points.add(prevTail);
-                iterator.remove();  // безопасное удаление
+                iterator.remove();
                 return true;
             }
         }
         return false;
     }
 
+    /**
+     * Get id.
+     *
+     * @return - id
+     */
+    public int getId(){
+        return id;
+    }
 }
