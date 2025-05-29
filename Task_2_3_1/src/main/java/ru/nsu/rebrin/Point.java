@@ -7,7 +7,7 @@ import java.util.Objects;
  */
 public final class Point {
     final int xxCoord;
-    final int yyCoord;
+    final int yyCoord; 
 
     /**
      * Init.
