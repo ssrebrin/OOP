@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="ru.nsu.rebrin.StartScreenController">
+    <TextField fx:id="widthField" promptText="Width" />
+    <TextField fx:id="heightField" promptText="Height" />
+    <TextField fx:id="winField" promptText="Win Length" />
+    <TextField fx:id="initLenField" promptText="Initial Snake Length" />
+    <TextField fx:id="cntAppleField" promptText="Number of Apples" />
+    <TextField fx:id="cntStupidSnakes" promptText="Number of stupid snakes" />
+    <TextField fx:id="cntSmartSnakes" promptText="Number of smart snakes" />
+    <Button fx:id="startButton" text="Start Game" />
+</VBox>
