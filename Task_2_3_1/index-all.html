@@ -55,6 +55,8 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Adds two integers.</div>
 </dd>
+<dt><a href="ru/nsu/rebrin/Snakes.html#addSnakes(ru.nsu.rebrin.Snake)" class="member-name-link">addSnakes(Snake)</a> - Method in class ru.nsu.rebrin.<a href="ru/nsu/rebrin/Snakes.html" title="class in ru.nsu.rebrin">Snakes</a></dt>
+<dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:C">C</h2>
 <dl class="index">
@@ -139,6 +141,14 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns a list of random free positions not occupied by any object.</div>
 </dd>
+<dt><a href="ru/nsu/rebrin/Snake.html#getId()" class="member-name-link">getId()</a> - Method in class ru.nsu.rebrin.<a href="ru/nsu/rebrin/Snake.html" title="class in ru.nsu.rebrin">Snake</a></dt>
+<dd>
+<div class="block">Get id.</div>
+</dd>
+<dt><a href="ru/nsu/rebrin/Snakes.html#getId()" class="member-name-link">getId()</a> - Method in class ru.nsu.rebrin.<a href="ru/nsu/rebrin/Snakes.html" title="class in ru.nsu.rebrin">Snakes</a></dt>
+<dd>
+<div class="block">Get id.</div>
+</dd>
 <dt><a href="ru/nsu/rebrin/SnakeModel.html#getLength()" class="member-name-link">getLength()</a> - Method in class ru.nsu.rebrin.<a href="ru/nsu/rebrin/SnakeModel.html" title="class in ru.nsu.rebrin">SnakeModel</a></dt>
 <dd>
 <div class="block">Sets the running state of the game.</div>
@@ -147,26 +157,28 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns a list of points in front and to the sides of the snake's head based on its dir.</div>
 </dd>
+<dt><a href="ru/nsu/rebrin/Snakes.html#getPoints()" class="member-name-link">getPoints()</a> - Method in class ru.nsu.rebrin.<a href="ru/nsu/rebrin/Snakes.html" title="class in ru.nsu.rebrin">Snakes</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="ru/nsu/rebrin/StartScreenController.html#getSettings()" class="member-name-link">getSettings()</a> - Method in class ru.nsu.rebrin.<a href="ru/nsu/rebrin/StartScreenController.html" title="class in ru.nsu.rebrin">StartScreenController</a></dt>
 <dd>
 <div class="block">Reads and parses settings from input fields,
  creates and initializes a SnakeModel with these settings.</div>
 </dd>
-<dt><a href="ru/nsu/rebrin/SnakeModel.html#getSmartSnake()" class="member-name-link">getSmartSnake()</a> - Method in class ru.nsu.rebrin.<a href="ru/nsu/rebrin/SnakeModel.html" title="class in ru.nsu.rebrin">SnakeModel</a></dt>
+<dt><a href="ru/nsu/rebrin/Snakes.html#getSize()" class="member-name-link">getSize()</a> - Method in class ru.nsu.rebrin.<a href="ru/nsu/rebrin/Snakes.html" title="class in ru.nsu.rebrin">Snakes</a></dt>
 <dd>
-<div class="block">Sets the running state of the game.</div>
+<div class="block">Get size of snakes.</div>
 </dd>
 <dt><a href="ru/nsu/rebrin/SnakeModel.html#getSnake()" class="member-name-link">getSnake()</a> - Method in class ru.nsu.rebrin.<a href="ru/nsu/rebrin/SnakeModel.html" title="class in ru.nsu.rebrin">SnakeModel</a></dt>
 <dd>
 <div class="block">Sets the running state of the game.</div>
 </dd>
+<dt><a href="ru/nsu/rebrin/Snakes.html#getSnake()" class="member-name-link">getSnake()</a> - Method in class ru.nsu.rebrin.<a href="ru/nsu/rebrin/Snakes.html" title="class in ru.nsu.rebrin">Snakes</a></dt>
+<dd>
+<div class="block">Get snake.</div>
+</dd>
 <dt><a href="ru/nsu/rebrin/SnakeView.html#getSnakeRectangles(java.util.LinkedList)" class="member-name-link">getSnakeRectangles(LinkedList&lt;Point&gt;)</a> - Static method in class ru.nsu.rebrin.<a href="ru/nsu/rebrin/SnakeView.html" title="class in ru.nsu.rebrin">SnakeView</a></dt>
 <dd>
 <div class="block">Converts a snake's points into rectangles for collision or drawing.</div>
-</dd>
-<dt><a href="ru/nsu/rebrin/SnakeModel.html#getStupidSnake()" class="member-name-link">getStupidSnake()</a> - Method in class ru.nsu.rebrin.<a href="ru/nsu/rebrin/SnakeModel.html" title="class in ru.nsu.rebrin">SnakeModel</a></dt>
-<dd>
-<div class="block">Sets the running state of the game.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:H">H</h2>
@@ -264,6 +276,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Sets the running state of the game.</div>
 </dd>
+<dt><a href="ru/nsu/rebrin/Snakes.html#setSnakes(java.util.List)" class="member-name-link">setSnakes(List&lt;Snake&gt;)</a> - Method in class ru.nsu.rebrin.<a href="ru/nsu/rebrin/Snakes.html" title="class in ru.nsu.rebrin">Snakes</a></dt>
+<dd>
+<div class="block">Set snakes.</div>
+</dd>
 <dt><a href="ru/nsu/rebrin/StartScreenController.html#setStartButtonAction(java.lang.Runnable)" class="member-name-link">setStartButtonAction(Runnable)</a> - Method in class ru.nsu.rebrin.<a href="ru/nsu/rebrin/StartScreenController.html" title="class in ru.nsu.rebrin">StartScreenController</a></dt>
 <dd>
 <div class="block">Sets the action to be executed when the start button is pressed.</div>
@@ -277,7 +293,7 @@ loadScripts(document, 'script');</script>
 <div class="block">A smarter implementation of a Snake that chooses the safest and shortest path to an apple
  while avoiding dangerous areas and self-collision.</div>
 </dd>
-<dt><a href="ru/nsu/rebrin/SmartSnake.html#%3Cinit%3E(ru.nsu.rebrin.Point)" class="member-name-link">SmartSnake(Point)</a> - Constructor for class ru.nsu.rebrin.<a href="ru/nsu/rebrin/SmartSnake.html" title="class in ru.nsu.rebrin">SmartSnake</a></dt>
+<dt><a href="ru/nsu/rebrin/SmartSnake.html#%3Cinit%3E(ru.nsu.rebrin.Point,int)" class="member-name-link">SmartSnake(Point, int)</a> - Constructor for class ru.nsu.rebrin.<a href="ru/nsu/rebrin/SmartSnake.html" title="class in ru.nsu.rebrin">SmartSnake</a></dt>
 <dd>
 <div class="block">Creates a smart snake starting at the specified point.</div>
 </dd>
@@ -285,7 +301,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Smart snakes.</div>
 </dd>
-<dt><a href="ru/nsu/rebrin/SmartSnakes.html#%3Cinit%3E(java.util.List)" class="member-name-link">SmartSnakes(List&lt;Point&gt;)</a> - Constructor for class ru.nsu.rebrin.<a href="ru/nsu/rebrin/SmartSnakes.html" title="class in ru.nsu.rebrin">SmartSnakes</a></dt>
+<dt><a href="ru/nsu/rebrin/SmartSnakes.html#%3Cinit%3E(java.util.List,int)" class="member-name-link">SmartSnakes(List&lt;Point&gt;, int)</a> - Constructor for class ru.nsu.rebrin.<a href="ru/nsu/rebrin/SmartSnakes.html" title="class in ru.nsu.rebrin">SmartSnakes</a></dt>
 <dd>
 <div class="block">Init.</div>
 </dd>
@@ -293,7 +309,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Represents a snake in the game, handling movement, growth, and life states.</div>
 </dd>
-<dt><a href="ru/nsu/rebrin/Snake.html#%3Cinit%3E(ru.nsu.rebrin.Point)" class="member-name-link">Snake(Point)</a> - Constructor for class ru.nsu.rebrin.<a href="ru/nsu/rebrin/Snake.html" title="class in ru.nsu.rebrin">Snake</a></dt>
+<dt><a href="ru/nsu/rebrin/Snake.html#%3Cinit%3E(ru.nsu.rebrin.Point,int)" class="member-name-link">Snake(Point, int)</a> - Constructor for class ru.nsu.rebrin.<a href="ru/nsu/rebrin/Snake.html" title="class in ru.nsu.rebrin">Snake</a></dt>
 <dd>
 <div class="block">Constructs a snake with initial head position.</div>
 </dd>
@@ -322,7 +338,7 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Constructs an empty snake list.</div>
 </dd>
-<dt><a href="ru/nsu/rebrin/Snakes.html#%3Cinit%3E(java.util.List)" class="member-name-link">Snakes(List&lt;Point&gt;)</a> - Constructor for class ru.nsu.rebrin.<a href="ru/nsu/rebrin/Snakes.html" title="class in ru.nsu.rebrin">Snakes</a></dt>
+<dt><a href="ru/nsu/rebrin/Snakes.html#%3Cinit%3E(java.util.List,int)" class="member-name-link">Snakes(List&lt;Point&gt;, int)</a> - Constructor for class ru.nsu.rebrin.<a href="ru/nsu/rebrin/Snakes.html" title="class in ru.nsu.rebrin">Snakes</a></dt>
 <dd>
 <div class="block">Constructs snakes from given starting points.</div>
 </dd>

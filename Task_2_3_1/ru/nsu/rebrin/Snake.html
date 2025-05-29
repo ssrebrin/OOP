@@ -108,7 +108,8 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.rebrin.Point)" class="member-name-link">Snake</a><wbr>(<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&nbsp;p)</code></div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(ru.nsu.rebrin.Point,int)" class="member-name-link">Snake</a><wbr>(<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&nbsp;p,
+ int&nbsp;id)</code></div>
 <div class="col-last even-row-color">
 <div class="block">Constructs a snake with initial head position.</div>
 </div>
@@ -136,17 +137,22 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Attempts to eat an apple at head position.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#move(int,int,java.util.List,java.util.List)" class="member-name-link">move</a><wbr>(int&nbsp;height,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getId()" class="member-name-link">getId</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Get id.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#move(int,int,java.util.List,java.util.List)" class="member-name-link">move</a><wbr>(int&nbsp;height,
  int&nbsp;width,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;apples,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&gt;&nbsp;danger)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Moves the snake one cell in current direction.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#revive(ru.nsu.rebrin.Point)" class="member-name-link">revive</a><wbr>(<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&nbsp;p)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#revive(ru.nsu.rebrin.Point)" class="member-name-link">revive</a><wbr>(<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&nbsp;p)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Revives the snake after cooldown period.</div>
 </div>
 </div>
@@ -181,9 +187,10 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(ru.nsu.rebrin.Point)">
+<section class="detail" id="&lt;init&gt;(ru.nsu.rebrin.Point,int)">
 <h3>Snake</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Snake</span><wbr><span class="parameters">(<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&nbsp;p)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Snake</span><wbr><span class="parameters">(<a href="Point.html" title="class in ru.nsu.rebrin">Point</a>&nbsp;p,
+ int&nbsp;id)</span></div>
 <div class="block">Constructs a snake with initial head position.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
@@ -244,6 +251,17 @@ loadScripts(document, 'script');</script>
 <dd><code>apple</code> - Mutable list of apples</dd>
 <dt>Returns:</dt>
 <dd>true if apple was consumed</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getId()">
+<h3>getId</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">getId</span>()</div>
+<div class="block">Get id.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>- id</dd>
 </dl>
 </section>
 </li>
