@@ -15,7 +15,7 @@ public class SimpleDimple {
      * @param args - args
      */
     public static void main(String[] args) {
-        int[] array = generateLargeArray(20000000);
+        int[] array = generateLargeArray(1000000);
         SimpleDimple sd = new SimpleDimple();
 
         // Последовательное выполнение
@@ -23,7 +23,7 @@ public class SimpleDimple {
         boolean result1 = sd.notAllPrime1(array);
         long endTime = System.nanoTime();
         System.out.println("" + (endTime - startTime));
-        for (int thCount = 2; thCount < 30; thCount++) {
+        for (int thCount =2;thCount<30;thCount++) {
             startTime = System.nanoTime();
             boolean result2 = sd.notAllPrime2(array, thCount);
             endTime = System.nanoTime();
@@ -45,8 +45,10 @@ public class SimpleDimple {
     public static int[] generateLargeArray(int size) {
         Random rand = new Random();
         int[] array = new int[size];
-        Arrays.fill(array, 1000003);
-        array[size - 1] = 6;
+        for (int i = 0; i < size; i++) {
+            array[i] = 1000003;
+        }
+        array[size-1] = 6;
         return array;
     }
 
@@ -74,7 +76,7 @@ public class SimpleDimple {
      * @return - bool
      */
     public boolean notAllPrime2(int[] arr, int thCount) {
-        boolean flag = false;
+        AtomicBoolean flag = new AtomicBoolean(false);
 
         int size = (int) Math.ceil((double) arr.length / thCount);
         Thread[] t = new Thread[thCount];
@@ -93,7 +95,7 @@ public class SimpleDimple {
                 break;
             }
         }
-        return flag;
+        return flag.get();
     }
 
     /**
@@ -133,7 +135,7 @@ public class SimpleDimple {
         private int[] array;
         private int start;
         private int end;
-        private boolean flag;
+        private AtomicBoolean flag;
 
         /**
          * Init.
@@ -143,7 +145,7 @@ public class SimpleDimple {
          * @param end   - end
          * @param flag  - flag which we will change
          */
-        public Thread2(int[] array, int start, int end, boolean flag) {
+        public Thread2(int[] array, int start, int end, AtomicBoolean flag) {
             this.array = array;
             this.start = start;
             this.end = end;
@@ -157,7 +159,7 @@ public class SimpleDimple {
         public void run() {
             for (int i = start; i < end; i++) {
                 if (!isPr(array[i])) {
-                    flag = true;
+                    flag.set(true);
                 }
             }
         }
